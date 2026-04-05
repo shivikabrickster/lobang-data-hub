@@ -378,15 +378,13 @@ function TileCard({ tile, index, onModalOpen, onDrilldown }: { tile: Tile; index
 }
 
 function DrilldownView({ data, onBack }: { data: typeof drilldownData['aws']; onBack: () => void }) {
-  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
-
   return (
     <motion.div
       initial={{ opacity: 0, x: 80 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -80 }}
       transition={{ duration: 0.35, ease: 'easeOut' }}
-      className="flex flex-col gap-6 max-w-[820px] w-full"
+      className="flex flex-col gap-8 max-w-[820px] w-full"
     >
       {/* Back button + title */}
       <div className="flex items-center gap-4">
@@ -397,97 +395,59 @@ function DrilldownView({ data, onBack }: { data: typeof drilldownData['aws']; on
           <span className="text-lg leading-none">&larr;</span> Back
         </button>
         <div className="flex items-center gap-3">
-          <img src={data.image} alt={data.title} className="w-8 h-8 object-contain" />
+          {data.image && <img src={data.image} alt={data.title} className="w-8 h-8 object-contain" />}
           <h2 className="text-[22px] font-bold text-white">{data.title}</h2>
         </div>
       </div>
 
-      {/* Category tiles */}
-      <div className="flex flex-wrap justify-center gap-4">
-        {data.groups.map((group, gi) => (
-          <motion.div
-            key={group.category}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.1 + gi * 0.08 }}
-            className="w-full"
-          >
-            <button
-              onClick={() => setExpandedCategory(expandedCategory === group.category ? null : group.category)}
-              className="w-full flex items-center gap-4 px-5 py-4 rounded-2xl cursor-pointer transition-all duration-200 border-none text-left"
-              style={{
-                background: expandedCategory === group.category ? 'rgba(255,54,33,0.08)' : 'rgba(255,255,255,0.035)',
-                border: expandedCategory === group.category ? '1px solid rgba(255,54,33,0.25)' : '1px solid rgba(255,255,255,0.07)',
-              }}
-              onMouseEnter={(e) => {
-                if (expandedCategory !== group.category) {
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (expandedCategory !== group.category) {
+      {/* Categories with resource tiles */}
+      {data.groups.map((group, gi) => (
+        <motion.div
+          key={group.category}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.1 + gi * 0.08 }}
+          className="flex flex-col items-center gap-3"
+        >
+          {gi > 0 && <div className="w-full h-px bg-white/10 mb-1" />}
+          <span className="text-[13px] font-extrabold uppercase tracking-[0.15em] text-[#FF3621]">
+            {group.category}
+          </span>
+          <div className="flex flex-wrap justify-center gap-3">
+            {group.items.map((item, ii) => (
+              <motion.a
+                key={item.href}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.25, delay: 0.15 + ii * 0.04 }}
+                className="group flex flex-col items-center justify-center gap-2 w-[180px] h-[80px] rounded-2xl no-underline transition-all duration-200 hover:-translate-y-1 cursor-pointer"
+                style={{
+                  background: 'rgba(255,255,255,0.035)',
+                  border: '1px solid rgba(255,255,255,0.07)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(255,54,33,0.1)';
+                  e.currentTarget.style.borderColor = 'rgba(255,54,33,0.3)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(255,54,33,0.08)';
+                }}
+                onMouseLeave={(e) => {
                   e.currentTarget.style.background = 'rgba(255,255,255,0.035)';
                   e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)';
-                }
-              }}
-            >
-              <span className="text-2xl">{categoryEmojis[group.category] || '📁'}</span>
-              <div className="flex flex-col gap-0.5 flex-1">
-                <span className="text-[15px] font-bold text-white">{group.category}</span>
-                <span className="text-[12px] text-white/40">{group.items.length} resource{group.items.length > 1 ? 's' : ''}</span>
-              </div>
-              <motion.span
-                animate={{ rotate: expandedCategory === group.category ? 180 : 0 }}
-                transition={{ duration: 0.2 }}
-                className="text-white/30 text-lg"
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
               >
-                ▾
-              </motion.span>
-            </button>
-
-            {/* Expanded resource list */}
-            <AnimatePresence>
-              {expandedCategory === group.category && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.25, ease: 'easeOut' }}
-                  className="overflow-hidden"
-                >
-                  <div className="flex flex-col gap-1 pt-2 pl-2">
-                    {group.items.map((item, ii) => (
-                      <motion.a
-                        key={item.href}
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        initial={{ opacity: 0, x: 8 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.15, delay: ii * 0.03 }}
-                        className="group flex items-center gap-3 px-4 py-2.5 rounded-lg no-underline transition-all duration-150"
-                        style={{ background: 'transparent' }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.background = 'rgba(255,54,33,0.06)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.background = 'transparent';
-                        }}
-                      >
-                        <span className="text-[#FF3621] text-[10px] shrink-0">&#9654;</span>
-                        <span className="text-[13px] font-medium text-white/90 flex-1">{item.title}</span>
-                        <span className="text-[11px] text-white/25 shrink-0">{item.source}</span>
-                        <span className="text-white/20 group-hover:text-[#FF3621] text-sm shrink-0 transition-colors">↗</span>
-                      </motion.a>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        ))}
-      </div>
+                <span className="text-[12px] font-bold text-white text-center leading-tight px-3">
+                  {item.title}
+                </span>
+                <span className="text-[10px] text-white/30">{item.source}</span>
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
+      ))}
     </motion.div>
   );
 }
