@@ -71,7 +71,10 @@ const sections = [
   },
   {
     title: 'Migrate',
-    tiles: [],
+    tiles: [
+      { label: 'Lakebridge', emoji: '🌉', href: 'https://databrickslabs.github.io/lakebridge/docs/overview/' },
+      { label: 'Migrate with LLM', emoji: '🤖', href: 'https://github.com/databricks-solutions/databricks-migrator-with-llm' },
+    ],
   },
   {
     title: 'Cloud Provider',
