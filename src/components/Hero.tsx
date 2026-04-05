@@ -172,6 +172,7 @@ const costMonitoringGroups = [
     category: 'Resources',
     items: [
       { title: 'Cloud Infra Costs', desc: 'Monitor and optimize cloud infrastructure costs for Databricks workloads', href: 'https://github.com/databricks-solutions/cloud-infra-costs', source: 'GitHub' },
+      { title: 'Unify Databricks and Cloud Costs', desc: 'Get the full picture by unifying Databricks and cloud infrastructure costs', href: 'https://www.databricks.com/blog/getting-full-picture-unifying-databricks-and-cloud-infrastructure-costs', source: 'Databricks Blog' },
     ],
   },
 ];
