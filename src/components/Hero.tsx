@@ -53,8 +53,8 @@ const sections = [
       { label: 'AI Dev Kit', emoji: '🤖', href: 'https://github.com/databricks-solutions/ai-dev-kit', modal: 'ai-dev-kit' },
       { label: 'Apps Cookbook', emoji: '👨‍🍳', href: 'https://apps-cookbook.dev/resources/' },
       { label: 'Cheatsheet', emoji: '📋', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf' },
-      { label: 'Genie', emoji: '🧞', href: '#genie', modal: 'genie' },
-      { label: 'Genie Code', emoji: '👨‍💻', image: '/icons/genie-code.png', href: '#genie-code', modal: 'genie-code' },
+      { label: 'Genie', emoji: '🧞', href: '#genie', drilldown: 'genie' },
+      { label: 'Genie Code', emoji: '👨‍💻', image: '/icons/genie-code.png', href: '#genie-code', drilldown: 'genie-code' },
     ],
   },
   {
@@ -80,6 +80,11 @@ const categoryEmojis: Record<string, string> = {
   'Getting Started': '🚀',
   'Workspace Setup': '🏗️',
   'Security & Identity': '🔐',
+  'Learn': '📚',
+  'Build & Integrate': '🔧',
+  'Security & Access': '🔐',
+  'Documentation': '📖',
+  'Resources': '📁',
 };
 
 // Parallax stars
@@ -105,20 +110,45 @@ function StarLayer({ stars, size, duration, opacity }: { stars: { x: number; y: 
 
 type Tile = { label: string; emoji: string; image?: string; href: string; modal?: string; drilldown?: string };
 
-const genieResources = [
-  { title: 'Databricks Genie Explained', href: 'https://www.youtube.com/watch?v=cg6OeWTtqPA', source: 'YouTube', icon: '▶️' },
-  { title: 'Genie–Teams Integration (SSO & Auto-Generated)', href: 'https://linkedin.com/pulse/databricks-genie-teams-integration-sso-auto-generated-modarressi-morqc/', source: 'LinkedIn', icon: '💼' },
-  { title: 'Embedding Genie in Power BI', href: 'https://medium.com/@ajit.kalura/embedding-databricks-genie-in-powerbi-e8b67bea7774', source: 'Medium', icon: '📝' },
-  { title: 'How to Build Production-Ready Genie Spaces', href: 'https://www.databricks.com/blog/how-build-production-ready-genie-spaces-and-build-trust-along-way', source: 'Databricks Blog', icon: '🏗️' },
-  { title: 'Use Genie Everywhere with Enterprise OAuth', href: 'https://www.databricks.com/blog/access-genie-everywhere', source: 'Databricks Blog', icon: '🔐' },
-  { title: 'Genie Best Practices', href: 'https://docs.databricks.com/aws/en/genie/best-practices', source: 'Databricks Docs', icon: '📖' },
-  { title: 'From Data to Dialogue: Building High-Performing Genie Spaces', href: 'https://www.databricks.com/blog/data-dialogue-best-practices-guide-building-high-performing-genie-spaces', source: 'Databricks Blog', icon: '💬' },
+const genieResourceGroups = [
+  {
+    category: 'Learn',
+    items: [
+      { title: 'Databricks Genie Explained', desc: 'Video walkthrough of Genie capabilities and use cases', href: 'https://www.youtube.com/watch?v=cg6OeWTtqPA', source: 'YouTube' },
+      { title: 'Genie Best Practices', desc: 'Official guide for building effective Genie Spaces', href: 'https://docs.databricks.com/aws/en/genie/best-practices', source: 'Databricks Docs' },
+      { title: 'From Data to Dialogue', desc: 'Best practices for building high-performing Genie Spaces', href: 'https://www.databricks.com/blog/data-dialogue-best-practices-guide-building-high-performing-genie-spaces', source: 'Databricks Blog' },
+    ],
+  },
+  {
+    category: 'Build & Integrate',
+    items: [
+      { title: 'Build Production-Ready Genie Spaces', desc: 'End-to-end guide to building and trusting Genie Spaces', href: 'https://www.databricks.com/blog/how-build-production-ready-genie-spaces-and-build-trust-along-way', source: 'Databricks Blog' },
+      { title: 'Genie–Teams Integration', desc: 'Embed Genie in Microsoft Teams with SSO and auto-generated responses', href: 'https://linkedin.com/pulse/databricks-genie-teams-integration-sso-auto-generated-modarressi-morqc/', source: 'LinkedIn' },
+      { title: 'Embedding Genie in Power BI', desc: 'Integrate Genie directly into Power BI dashboards', href: 'https://medium.com/@ajit.kalura/embedding-databricks-genie-in-powerbi-e8b67bea7774', source: 'Medium' },
+    ],
+  },
+  {
+    category: 'Security & Access',
+    items: [
+      { title: 'Use Genie Everywhere with Enterprise OAuth', desc: 'Access Genie from external apps with enterprise-grade authentication', href: 'https://www.databricks.com/blog/access-genie-everywhere', source: 'Databricks Blog' },
+    ],
+  },
 ];
 
-const genieCodeResources = [
-  { title: 'Genie Code in Action', href: 'https://www.youtube.com/watch?v=heouBA5U1bE', source: 'YouTube', icon: '▶️' },
-  { title: 'Introducing Genie Code', href: 'https://www.databricks.com/blog/introducing-genie-code', source: 'Databricks Blog', icon: '🚀' },
-  { title: 'Use Genie Code (Azure Databricks)', href: 'https://learn.microsoft.com/en-us/azure/databricks/genie-code/use-genie-code', source: 'Microsoft Docs', icon: '📖' },
+const genieCodeResourceGroups = [
+  {
+    category: 'Learn',
+    items: [
+      { title: 'Genie Code in Action', desc: 'Video demo of Genie Code capabilities', href: 'https://www.youtube.com/watch?v=heouBA5U1bE', source: 'YouTube' },
+      { title: 'Introducing Genie Code', desc: 'Blog post introducing Genie Code and its features', href: 'https://www.databricks.com/blog/introducing-genie-code', source: 'Databricks Blog' },
+    ],
+  },
+  {
+    category: 'Documentation',
+    items: [
+      { title: 'Use Genie Code (Azure Databricks)', desc: 'Official guide for using Genie Code on Azure Databricks', href: 'https://learn.microsoft.com/en-us/azure/databricks/genie-code/use-genie-code', source: 'Microsoft Docs' },
+    ],
+  },
 ];
 
 const awsResourceGroups = [
@@ -180,6 +210,8 @@ const costMonitoringGroups = [
 const drilldownData: Record<string, { title: string; image: string; groups: typeof awsResourceGroups }> = {
   aws: { title: 'Databricks on AWS', image: '/icons/aws.svg', groups: awsResourceGroups },
   azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
+  genie: { title: 'Genie', image: '', groups: genieResourceGroups },
+  'genie-code': { title: 'Genie Code', image: '/icons/genie-code.png', groups: genieCodeResourceGroups },
   'cost-monitoring': { title: 'Cost Monitoring', image: '', groups: costMonitoringGroups },
 };
 
@@ -190,9 +222,13 @@ const aiDevKitResources = [
 
 const sourceColors: Record<string, string> = {
   'Databricks Docs': '#FF3621',
+  'Databricks Blog': '#FF3621',
   'GitHub': '#8b5cf6',
   'Starter Journey': '#3b82f6',
   'Microsoft Docs': '#0078d4',
+  'YouTube': '#ff0000',
+  'LinkedIn': '#0a66c2',
+  'Medium': '#00ab6c',
 };
 
 function ResourceModal({ title, emoji, resources, onClose }: { title: string; emoji: string; resources: typeof genieResources; onClose: () => void }) {
@@ -596,8 +632,6 @@ export default function Hero() {
 
       {/* Modals (for non-drilldown items) */}
       <AnimatePresence>
-        {activeModal === 'genie' && <ResourceModal title="Genie Resources" emoji="🧞" resources={genieResources} onClose={() => setActiveModal(null)} />}
-        {activeModal === 'genie-code' && <ResourceModal title="Genie Code Resources" emoji="👨‍💻" resources={genieCodeResources} onClose={() => setActiveModal(null)} />}
         {activeModal === 'ai-dev-kit' && <ResourceModal title="AI Dev Kit Resources" emoji="🤖" resources={aiDevKitResources} onClose={() => setActiveModal(null)} />}
       </AnimatePresence>
 
