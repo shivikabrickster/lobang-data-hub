@@ -126,6 +126,7 @@ const genieResourceGroups = [
       { title: 'Genie–Teams Integration', desc: 'Embed Genie in Microsoft Teams with SSO and auto-generated responses', href: 'https://linkedin.com/pulse/databricks-genie-teams-integration-sso-auto-generated-modarressi-morqc/', source: 'LinkedIn' },
       { title: 'Embedding Genie in Power BI', desc: 'Integrate Genie directly into Power BI dashboards', href: 'https://medium.com/@ajit.kalura/embedding-databricks-genie-in-powerbi-e8b67bea7774', source: 'Medium' },
       { title: 'Genie Workbench', desc: 'Open-source workbench for developing and testing Genie Spaces', href: 'https://github.com/databricks-solutions/databricks-genie-workbench', source: 'GitHub' },
+      { title: 'Genie Rails', desc: 'Guardrails and governance framework for Genie Spaces', href: 'https://github.com/databricks-solutions/genierails', source: 'GitHub' },
     ],
   },
   {
