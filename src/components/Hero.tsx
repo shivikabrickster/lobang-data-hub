@@ -71,6 +71,7 @@ const sections = [
     tiles: [
       { label: 'AWS', emoji: '☁️', image: '/icons/aws.svg', href: 'https://docs.databricks.com/en/getting-started/index.html' },
       { label: 'AWS BYOVPC', emoji: '🔒', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc' },
+      { label: 'AWS PrivateLink', emoji: '🔗', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc-classic-privatelink' },
       { label: 'Azure', emoji: '🔷', image: '/icons/azure.svg', href: 'https://learn.microsoft.com/en-us/azure/databricks/' },
     ],
   },
