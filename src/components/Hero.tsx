@@ -124,6 +124,7 @@ const awsResources = [
 const azureResources = [
   { title: 'Databricks on Azure — Getting Started', href: 'https://learn.microsoft.com/en-us/azure/databricks/', source: 'Microsoft Docs', icon: '📖' },
   { title: 'Manual Workspace Deployment', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/create-workspaces/azure/manual', source: 'Starter Journey', icon: '📄' },
+  { title: 'Terraform Deployment', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/create-workspaces/azure/terraform', source: 'Starter Journey', icon: '🏗️' },
 ];
 
 const aiDevKitResources = [
