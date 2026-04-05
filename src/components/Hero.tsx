@@ -52,7 +52,7 @@ const sections = [
     tiles: [
       { label: 'AI Dev Kit', emoji: '🤖', href: 'https://github.com/databricks-solutions/ai-dev-kit', modal: 'ai-dev-kit' },
       { label: 'Apps Cookbook', emoji: '👨‍🍳', href: 'https://apps-cookbook.dev/resources/' },
-      { label: 'Cheatsheet', emoji: '📋', href: 'https://community.databricks.com/t5/announcements/announcing-the-databricks-data-intelligence-platform-cheat-sheet/td-p/136829' },
+      { label: 'Cheatsheet', emoji: '📋', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf' },
       { label: 'Genie', emoji: '🧞', href: '#genie', modal: 'genie' },
       { label: 'Genie Code', emoji: '👨‍💻', image: '/icons/genie-code.png', href: '#genie-code', modal: 'genie-code' },
     ],
