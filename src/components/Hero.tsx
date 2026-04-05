@@ -55,6 +55,7 @@ const sections = [
       { label: 'Cheatsheet', emoji: '📋', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf' },
       { label: 'Genie', emoji: '🧞', href: '#genie', drilldown: 'genie' },
       { label: 'Genie Code', emoji: '👨‍💻', image: '/icons/genie-code.png', href: '#genie-code', drilldown: 'genie-code' },
+      { label: 'Lakeflow Connect', emoji: '🔄', href: '#lakeflow-connect', drilldown: 'lakeflow-connect' },
     ],
   },
   {
@@ -208,12 +209,22 @@ const aiDevKitResourceGroups = [
   },
 ];
 
+const lakeflowConnectResourceGroups = [
+  {
+    category: 'Resources',
+    items: [
+      { title: 'Using Terraform', desc: 'Deploy and manage Lakeflow Connect with Terraform', href: 'https://github.com/databricks-solutions/lakeflow-connect-terraform', source: 'GitHub' },
+    ],
+  },
+];
+
 const drilldownData: Record<string, { title: string; image: string; groups: typeof awsResourceGroups }> = {
   aws: { title: 'Databricks on AWS', image: '/icons/aws.svg', groups: awsResourceGroups },
   azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
   genie: { title: 'Genie', image: '', groups: genieResourceGroups },
   'genie-code': { title: 'Genie Code', image: '/icons/genie-code.png', groups: genieCodeResourceGroups },
   'ai-dev-kit': { title: 'AI Dev Kit', image: '', groups: aiDevKitResourceGroups },
+  'lakeflow-connect': { title: 'Lakeflow Connect', image: '', groups: lakeflowConnectResourceGroups },
   'cost-monitoring': { title: 'Cost Monitoring', image: '', groups: costMonitoringGroups },
 };
 
