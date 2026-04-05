@@ -206,6 +206,7 @@ const aiDevKitResourceGroups = [
       { title: 'GitHub Repository', desc: 'Source code, docs, and examples', href: 'https://github.com/databricks-solutions/ai-dev-kit', source: 'GitHub' },
       { title: 'AI Dev Kit Demo', desc: 'Video walkthrough of AI Dev Kit capabilities', href: 'https://www.youtube.com/watch?v=HFSIKrG8bRg', source: 'YouTube' },
       { title: 'Cursor IDE + Databricks', desc: 'Step-by-step AI coding tutorial', href: 'https://www.youtube.com/watch?v=Ii2LuEJ0gpc', source: 'YouTube' },
+      { title: 'Install for Copilot + VS Code', desc: '', href: 'https://www.youtube.com/watch?v=8Ehzr8ajzhc', source: 'YouTube' },
     ],
   },
 ];
