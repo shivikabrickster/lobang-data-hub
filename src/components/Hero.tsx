@@ -105,25 +105,25 @@ const genieResourceGroups = [
   {
     category: 'Learn',
     items: [
-      { title: 'Databricks Genie Explained', desc: 'Video walkthrough of Genie capabilities and use cases', href: 'https://www.youtube.com/watch?v=cg6OeWTtqPA', source: 'YouTube' },
-      { title: 'Genie Best Practices', desc: 'Official guide for building effective Genie Spaces', href: 'https://docs.databricks.com/aws/en/genie/best-practices', source: 'Databricks Docs' },
-      { title: 'From Data to Dialogue', desc: 'Best practices for building high-performing Genie Spaces', href: 'https://www.databricks.com/blog/data-dialogue-best-practices-guide-building-high-performing-genie-spaces', source: 'Databricks Blog' },
+      { title: 'Databricks Genie Explained', desc: 'Video walkthrough of Genie capabilities', icon: '▶️', href: 'https://www.youtube.com/watch?v=cg6OeWTtqPA', source: 'YouTube' },
+      { title: 'Genie Best Practices', desc: 'Official guide for effective Genie Spaces', icon: '📖', href: 'https://docs.databricks.com/aws/en/genie/best-practices', source: 'Databricks Docs' },
+      { title: 'From Data to Dialogue', desc: 'Building high-performing Genie Spaces', icon: '💬', href: 'https://www.databricks.com/blog/data-dialogue-best-practices-guide-building-high-performing-genie-spaces', source: 'Databricks Blog' },
     ],
   },
   {
     category: 'Build & Integrate',
     items: [
-      { title: 'Build Production-Ready Genie Spaces', desc: 'End-to-end guide to building and trusting Genie Spaces', href: 'https://www.databricks.com/blog/how-build-production-ready-genie-spaces-and-build-trust-along-way', source: 'Databricks Blog' },
-      { title: 'Genie–Teams Integration', desc: 'Embed Genie in Microsoft Teams with SSO and auto-generated responses', href: 'https://linkedin.com/pulse/databricks-genie-teams-integration-sso-auto-generated-modarressi-morqc/', source: 'LinkedIn' },
-      { title: 'Embedding Genie in Power BI', desc: 'Integrate Genie directly into Power BI dashboards', href: 'https://medium.com/@ajit.kalura/embedding-databricks-genie-in-powerbi-e8b67bea7774', source: 'Medium' },
-      { title: 'Genie Workbench', desc: 'Creating, scoring, and optimizing Genie Spaces', href: 'https://github.com/databricks-solutions/databricks-genie-workbench', source: 'GitHub' },
-      { title: 'Genie Rails', desc: 'Create and govern Genie Spaces', href: 'https://github.com/databricks-solutions/genierails', source: 'GitHub' },
+      { title: 'Production-Ready Genie Spaces', desc: 'End-to-end build and trust guide', icon: '🏗️', href: 'https://www.databricks.com/blog/how-build-production-ready-genie-spaces-and-build-trust-along-way', source: 'Databricks Blog' },
+      { title: 'Genie–Teams Integration', desc: 'Embed in Teams with SSO', icon: '💼', href: 'https://linkedin.com/pulse/databricks-genie-teams-integration-sso-auto-generated-modarressi-morqc/', source: 'LinkedIn' },
+      { title: 'Genie in Power BI', desc: 'Integrate into Power BI dashboards', icon: '📊', href: 'https://medium.com/@ajit.kalura/embedding-databricks-genie-in-powerbi-e8b67bea7774', source: 'Medium' },
+      { title: 'Genie Workbench', desc: 'Creating, scoring, and optimizing Genie Spaces', icon: '🔧', href: 'https://github.com/databricks-solutions/databricks-genie-workbench', source: 'GitHub' },
+      { title: 'Genie Rails', desc: 'Create and govern Genie Spaces', icon: '🛤️', href: 'https://github.com/databricks-solutions/genierails', source: 'GitHub' },
     ],
   },
   {
     category: 'Security & Access',
     items: [
-      { title: 'Use Genie Everywhere with Enterprise OAuth', desc: 'Access Genie from external apps with enterprise-grade authentication', href: 'https://www.databricks.com/blog/access-genie-everywhere', source: 'Databricks Blog' },
+      { title: 'Genie Everywhere with OAuth', desc: 'Enterprise-grade external access', icon: '🔐', href: 'https://www.databricks.com/blog/access-genie-everywhere', source: 'Databricks Blog' },
     ],
   },
 ];
@@ -132,14 +132,14 @@ const genieCodeResourceGroups = [
   {
     category: 'Learn',
     items: [
-      { title: 'Genie Code in Action', desc: 'Video demo of Genie Code capabilities', href: 'https://www.youtube.com/watch?v=heouBA5U1bE', source: 'YouTube' },
-      { title: 'Introducing Genie Code', desc: 'Blog post introducing Genie Code and its features', href: 'https://www.databricks.com/blog/introducing-genie-code', source: 'Databricks Blog' },
+      { title: 'Genie Code in Action', desc: 'Video demo of capabilities', icon: '▶️', href: 'https://www.youtube.com/watch?v=heouBA5U1bE', source: 'YouTube' },
+      { title: 'Introducing Genie Code', desc: 'Features and use cases', icon: '🚀', href: 'https://www.databricks.com/blog/introducing-genie-code', source: 'Databricks Blog' },
     ],
   },
   {
     category: 'Documentation',
     items: [
-      { title: 'Use Genie Code (Azure Databricks)', desc: 'Official guide for using Genie Code on Azure Databricks', href: 'https://learn.microsoft.com/en-us/azure/databricks/genie-code/use-genie-code', source: 'Microsoft Docs' },
+      { title: 'Use Genie Code (Azure)', desc: 'Official Azure Databricks guide', icon: '📖', href: 'https://learn.microsoft.com/en-us/azure/databricks/genie-code/use-genie-code', source: 'Microsoft Docs' },
     ],
   },
 ];
@@ -148,22 +148,22 @@ const awsResourceGroups = [
   {
     category: 'Getting Started',
     items: [
-      { title: 'Databricks on AWS', desc: 'Official quickstart guide for setting up Databricks on AWS', href: 'https://docs.databricks.com/en/getting-started/index.html', source: 'Databricks Docs' },
+      { title: 'Databricks on AWS', desc: 'Official quickstart guide', icon: '🚀', href: 'https://docs.databricks.com/en/getting-started/index.html', source: 'Databricks Docs' },
     ],
   },
   {
     category: 'Workspace Setup',
     items: [
-      { title: 'Customer-Managed VPC (BYOVPC)', desc: 'Terraform templates for deploying with your own VPC', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc', source: 'GitHub' },
-      { title: 'Private Link (BYOVPC)', desc: 'Terraform templates with AWS PrivateLink for secure connectivity', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc-classic-privatelink', source: 'GitHub' },
-      { title: 'Manual Workspace Deployment', desc: 'Step-by-step guide for classic workspace configuration', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/AWS-Automated-Configuration-Classic-Workspace-Deployment.pdf', source: 'Starter Journey' },
+      { title: 'Customer-Managed VPC', desc: 'BYOVPC Terraform templates', icon: '🔒', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc', source: 'GitHub' },
+      { title: 'Private Link (BYOVPC)', desc: 'Secure connectivity via PrivateLink', icon: '🔗', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc-classic-privatelink', source: 'GitHub' },
+      { title: 'Manual Deployment', desc: 'Classic workspace configuration', icon: '📄', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/AWS-Automated-Configuration-Classic-Workspace-Deployment.pdf', source: 'Starter Journey' },
     ],
   },
   {
     category: 'Security & Identity',
     items: [
-      { title: 'User Provisioning — SCIM', desc: 'Automate user and group sync from your identity provider', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/add-users/scim', source: 'Starter Journey' },
-      { title: 'Configure SSO', desc: 'Set up single sign-on with SAML 2.0 or OIDC', href: 'https://docs.databricks.com/aws/en/security/auth/single-sign-on/', source: 'Databricks Docs' },
+      { title: 'User Provisioning — SCIM', desc: 'Automate user and group sync', icon: '👥', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/add-users/scim', source: 'Starter Journey' },
+      { title: 'Configure SSO', desc: 'SAML 2.0 or OIDC setup', icon: '🔐', href: 'https://docs.databricks.com/aws/en/security/auth/single-sign-on/', source: 'Databricks Docs' },
     ],
   },
 ];
@@ -172,20 +172,20 @@ const azureResourceGroups = [
   {
     category: 'Getting Started',
     items: [
-      { title: 'Databricks on Azure', desc: 'Official Azure Databricks documentation and quickstart', href: 'https://learn.microsoft.com/en-us/azure/databricks/', source: 'Microsoft Docs' },
+      { title: 'Databricks on Azure', desc: 'Official Azure Databricks docs', icon: '🚀', href: 'https://learn.microsoft.com/en-us/azure/databricks/', source: 'Microsoft Docs' },
     ],
   },
   {
     category: 'Workspace Setup',
     items: [
-      { title: 'Manual Workspace Deployment', desc: 'Deploy Azure Databricks workspace via Azure Portal', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/create-workspaces/azure/manual', source: 'Starter Journey' },
-      { title: 'Terraform Deployment', desc: 'Infrastructure-as-code workspace provisioning with Terraform', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/create-workspaces/azure/terraform', source: 'Starter Journey' },
+      { title: 'Manual Deployment', desc: 'Deploy via Azure Portal', icon: '📄', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/create-workspaces/azure/manual', source: 'Starter Journey' },
+      { title: 'Terraform Deployment', desc: 'IaC workspace provisioning', icon: '🏗️', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/create-workspaces/azure/terraform', source: 'Starter Journey' },
     ],
   },
   {
     category: 'Security & Identity',
     items: [
-      { title: 'Automatic Identity Management', desc: 'Sync users and groups automatically from Entra ID', href: 'https://learn.microsoft.com/en-us/azure/databricks/admin/users-groups/automatic-identity-management', source: 'Microsoft Docs' },
+      { title: 'Automatic Identity Management', desc: 'Sync from Entra ID', icon: '👤', href: 'https://learn.microsoft.com/en-us/azure/databricks/admin/users-groups/automatic-identity-management', source: 'Microsoft Docs' },
     ],
   },
 ];
@@ -194,8 +194,8 @@ const costMonitoringGroups = [
   {
     category: 'Resources',
     items: [
-      { title: 'Cloud Infra Costs', desc: 'Monitor and optimize cloud infrastructure costs for Databricks workloads', href: 'https://github.com/databricks-solutions/cloud-infra-costs', source: 'GitHub' },
-      { title: 'Unify Databricks and Cloud Costs', desc: 'Get the full picture by unifying Databricks and cloud infrastructure costs', href: 'https://www.databricks.com/blog/getting-full-picture-unifying-databricks-and-cloud-infrastructure-costs', source: 'Databricks Blog' },
+      { title: 'Cloud Infra Costs', desc: 'Monitor and optimize cloud costs', icon: '📈', href: 'https://github.com/databricks-solutions/cloud-infra-costs', source: 'GitHub' },
+      { title: 'Unify Databricks and Cloud Costs', desc: 'Full picture cost unification', icon: '🔄', href: 'https://www.databricks.com/blog/getting-full-picture-unifying-databricks-and-cloud-infrastructure-costs', source: 'Databricks Blog' },
     ],
   },
 ];
@@ -204,11 +204,11 @@ const aiDevKitResourceGroups = [
   {
     category: 'Resources',
     items: [
-      { title: 'GitHub Repository', desc: 'Source code, docs, and examples', href: 'https://github.com/databricks-solutions/ai-dev-kit', source: 'GitHub' },
-      { title: 'AI Dev Kit Demo', desc: 'Video walkthrough of AI Dev Kit capabilities', href: 'https://www.youtube.com/watch?v=HFSIKrG8bRg', source: 'YouTube' },
-      { title: 'Cursor IDE + Databricks', desc: 'Step-by-step AI coding tutorial', href: 'https://www.youtube.com/watch?v=Ii2LuEJ0gpc', source: 'YouTube' },
-      { title: 'Install for Copilot + VS Code', desc: '', href: 'https://www.youtube.com/watch?v=8Ehzr8ajzhc', source: 'YouTube' },
-      { title: 'Databricks VS Code Extension', desc: '', href: 'https://www.youtube.com/watch?v=o4qMWHgT1zM&t=371s', source: 'YouTube' },
+      { title: 'GitHub Repository', desc: 'Source code, docs, and examples', icon: '💻', href: 'https://github.com/databricks-solutions/ai-dev-kit', source: 'GitHub' },
+      { title: 'AI Dev Kit Demo', desc: 'Video walkthrough', icon: '▶️', href: 'https://www.youtube.com/watch?v=HFSIKrG8bRg', source: 'YouTube' },
+      { title: 'Cursor IDE + Databricks', desc: 'Step-by-step AI coding tutorial', icon: '⌨️', href: 'https://www.youtube.com/watch?v=Ii2LuEJ0gpc', source: 'YouTube' },
+      { title: 'Install for Copilot + VS Code', desc: 'Setup guide', icon: '🧩', href: 'https://www.youtube.com/watch?v=8Ehzr8ajzhc', source: 'YouTube' },
+      { title: 'Databricks VS Code Extension', desc: 'Extension walkthrough', icon: '🔌', href: 'https://www.youtube.com/watch?v=o4qMWHgT1zM&t=371s', source: 'YouTube' },
     ],
   },
 ];
@@ -217,7 +217,7 @@ const databricksAppsResourceGroups = [
   {
     category: 'Resources',
     items: [
-      { title: 'Apps Cookbook', desc: 'Recipes and resources for building Databricks Apps', href: 'https://apps-cookbook.dev/resources/', source: 'Apps Cookbook' },
+      { title: 'Apps Cookbook', desc: 'Recipes for building Databricks Apps', icon: '👨‍🍳', href: 'https://apps-cookbook.dev/resources/', source: 'Apps Cookbook' },
     ],
   },
 ];
@@ -226,7 +226,7 @@ const agentBricksResourceGroups = [
   {
     category: 'Resources',
     items: [
-      { title: 'AgentBricks Utilities', desc: 'Utility tools and helpers for AgentBricks', href: 'https://github.com/databricks-solutions/agentbricks-utilities/tree/main/utilities', source: 'GitHub' },
+      { title: 'AgentBricks Utilities', desc: 'Utility tools and helpers', icon: '🧰', href: 'https://github.com/databricks-solutions/agentbricks-utilities/tree/main/utilities', source: 'GitHub' },
     ],
   },
 ];
@@ -235,7 +235,7 @@ const lakeflowConnectResourceGroups = [
   {
     category: 'Resources',
     items: [
-      { title: 'Using Terraform', desc: 'Deploy and manage Lakeflow Connect with Terraform', href: 'https://github.com/databricks-solutions/lakeflow-connect-terraform', source: 'GitHub' },
+      { title: 'Using Terraform', desc: 'Deploy and manage with Terraform', icon: '🏗️', href: 'https://github.com/databricks-solutions/lakeflow-connect-terraform', source: 'GitHub' },
     ],
   },
 ];
@@ -365,7 +365,7 @@ function DrilldownView({ data, onBack }: { data: typeof drilldownData['aws']; on
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.25, delay: 0.15 + ii * 0.04 }}
-                className="group flex flex-col items-center justify-center gap-1.5 w-[180px] py-4 rounded-2xl no-underline transition-all duration-200 hover:-translate-y-1 cursor-pointer"
+                className="group flex flex-col items-center justify-center gap-2 w-[200px] py-5 rounded-2xl no-underline transition-all duration-200 hover:-translate-y-1 cursor-pointer"
                 style={{
                   background: 'rgba(255,255,255,0.035)',
                   border: '1px solid rgba(255,255,255,0.07)',
@@ -381,7 +381,8 @@ function DrilldownView({ data, onBack }: { data: typeof drilldownData['aws']; on
                   e.currentTarget.style.boxShadow = 'none';
                 }}
               >
-                <span className="text-[12px] font-bold text-white text-center leading-tight px-3">
+                {'icon' in item && item.icon && <span className="text-2xl">{item.icon}</span>}
+                <span className="text-[13px] font-bold text-white text-center leading-tight px-3">
                   {item.title}
                 </span>
                 {item.desc && (
@@ -389,7 +390,6 @@ function DrilldownView({ data, onBack }: { data: typeof drilldownData['aws']; on
                     {item.desc}
                   </span>
                 )}
-                <span className="text-[10px] text-white/20">{item.source}</span>
               </motion.a>
             ))}
           </div>
