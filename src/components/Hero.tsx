@@ -169,8 +169,10 @@ const azureResourceGroups = [
 
 const costMonitoringGroups = [
   {
-    category: 'Coming Soon',
-    items: [] as { title: string; desc: string; href: string; source: string }[],
+    category: 'Resources',
+    items: [
+      { title: 'Cloud Infra Costs', desc: 'Monitor and optimize cloud infrastructure costs for Databricks workloads', href: 'https://github.com/databricks-solutions/cloud-infra-costs', source: 'GitHub' },
+    ],
   },
 ];
 
