@@ -222,17 +222,6 @@ const aiDevKitResources = [
   { title: 'AI Dev Kit Demo', href: 'https://www.youtube.com/watch?v=HFSIKrG8bRg', source: 'YouTube', icon: '▶️' },
 ];
 
-const sourceColors: Record<string, string> = {
-  'Databricks Docs': '#FF3621',
-  'Databricks Blog': '#FF3621',
-  'GitHub': '#8b5cf6',
-  'Starter Journey': '#3b82f6',
-  'Microsoft Docs': '#0078d4',
-  'YouTube': '#ff0000',
-  'LinkedIn': '#0a66c2',
-  'Medium': '#00ab6c',
-};
-
 function ResourceModal({ title, emoji, resources, onClose }: { title: string; emoji: string; resources: { title: string; href: string; source: string; icon: string }[]; onClose: () => void }) {
   return (
     <motion.div
