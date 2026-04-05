@@ -70,6 +70,10 @@ const sections = [
     ],
   },
   {
+    title: 'Migrate',
+    tiles: [],
+  },
+  {
     title: 'Cloud Provider',
     tiles: [
       { label: 'AWS', emoji: '☁️', image: '/icons/aws.svg', href: '#aws', drilldown: 'aws' },
