@@ -70,7 +70,7 @@ const sections = [
     title: 'Cloud Provider',
     tiles: [
       { label: 'AWS', emoji: '☁️', image: '/icons/aws.svg', href: '#aws', modal: 'aws' },
-      { label: 'Azure', emoji: '🔷', image: '/icons/azure.svg', href: 'https://learn.microsoft.com/en-us/azure/databricks/' },
+      { label: 'Azure', emoji: '🔷', image: '/icons/azure.svg', href: '#azure', modal: 'azure' },
     ],
   },
 ];
@@ -119,6 +119,11 @@ const awsResources = [
   { title: 'Databricks on AWS with Customer-Managed VPC (BYOVPC)', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc', source: 'GitHub', icon: '🔒' },
   { title: 'Databricks on AWS with Private Link (BYOVPC)', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc-classic-privatelink', source: 'GitHub', icon: '🔗' },
   { title: 'Manual Workspace Deployment', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/AWS-Automated-Configuration-Classic-Workspace-Deployment.pdf', source: 'Starter Journey', icon: '📄' },
+];
+
+const azureResources = [
+  { title: 'Databricks on Azure — Getting Started', href: 'https://learn.microsoft.com/en-us/azure/databricks/', source: 'Microsoft Docs', icon: '📖' },
+  { title: 'Manual Workspace Deployment', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/create-workspaces/azure/manual', source: 'Starter Journey', icon: '📄' },
 ];
 
 const aiDevKitResources = [
@@ -361,6 +366,7 @@ export default function Hero() {
         {activeModal === 'genie' && <ResourceModal title="Genie Resources" emoji="🧞" resources={genieResources} onClose={() => setActiveModal(null)} />}
         {activeModal === 'genie-code' && <ResourceModal title="Genie Code Resources" emoji="👨‍💻" resources={genieCodeResources} onClose={() => setActiveModal(null)} />}
         {activeModal === 'aws' && <ResourceModal title="AWS Resources" emoji="☁️" resources={awsResources} onClose={() => setActiveModal(null)} />}
+        {activeModal === 'azure' && <ResourceModal title="Azure Resources" emoji="🔷" resources={azureResources} onClose={() => setActiveModal(null)} />}
         {activeModal === 'ai-dev-kit' && <ResourceModal title="AI Dev Kit Resources" emoji="🤖" resources={aiDevKitResources} onClose={() => setActiveModal(null)} />}
       </AnimatePresence>
 
