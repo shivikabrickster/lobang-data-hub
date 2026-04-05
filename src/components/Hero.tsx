@@ -69,9 +69,7 @@ const sections = [
   {
     title: 'Cloud Provider',
     tiles: [
-      { label: 'AWS', emoji: '☁️', image: '/icons/aws.svg', href: 'https://docs.databricks.com/en/getting-started/index.html' },
-      { label: 'AWS BYOVPC', emoji: '🔒', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc' },
-      { label: 'AWS PrivateLink', emoji: '🔗', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc-classic-privatelink' },
+      { label: 'AWS', emoji: '☁️', image: '/icons/aws.svg', href: '#aws', modal: 'aws' },
       { label: 'Azure', emoji: '🔷', image: '/icons/azure.svg', href: 'https://learn.microsoft.com/en-us/azure/databricks/' },
     ],
   },
@@ -114,6 +112,12 @@ const genieCodeResources = [
   { title: 'Genie Code in Action', href: 'https://www.youtube.com/watch?v=heouBA5U1bE', source: 'YouTube', icon: '▶️' },
   { title: 'Introducing Genie Code', href: 'https://www.databricks.com/blog/introducing-genie-code', source: 'Databricks Blog', icon: '🚀' },
   { title: 'Use Genie Code (Azure Databricks)', href: 'https://learn.microsoft.com/en-us/azure/databricks/genie-code/use-genie-code', source: 'Microsoft Docs', icon: '📖' },
+];
+
+const awsResources = [
+  { title: 'Databricks on AWS — Getting Started', href: 'https://docs.databricks.com/en/getting-started/index.html', source: 'Databricks Docs', icon: '📖' },
+  { title: 'Databricks on AWS with Customer-Managed VPC (BYOVPC)', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc', source: 'GitHub', icon: '🔒' },
+  { title: 'Databricks on AWS with Private Link (BYOVPC)', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc-classic-privatelink', source: 'GitHub', icon: '🔗' },
 ];
 
 const aiDevKitResources = [
@@ -355,6 +359,7 @@ export default function Hero() {
       <AnimatePresence>
         {activeModal === 'genie' && <ResourceModal title="Genie Resources" emoji="🧞" resources={genieResources} onClose={() => setActiveModal(null)} />}
         {activeModal === 'genie-code' && <ResourceModal title="Genie Code Resources" emoji="👨‍💻" resources={genieCodeResources} onClose={() => setActiveModal(null)} />}
+        {activeModal === 'aws' && <ResourceModal title="AWS Resources" emoji="☁️" resources={awsResources} onClose={() => setActiveModal(null)} />}
         {activeModal === 'ai-dev-kit' && <ResourceModal title="AI Dev Kit Resources" emoji="🤖" resources={aiDevKitResources} onClose={() => setActiveModal(null)} />}
       </AnimatePresence>
 
