@@ -57,6 +57,7 @@ const sections = [
       { label: 'Genie Code', emoji: '👨‍💻', image: '/icons/genie-code.png', href: '#genie-code', drilldown: 'genie-code' },
       { label: 'Lakeflow Connect', emoji: '🔄', href: '#lakeflow-connect', drilldown: 'lakeflow-connect' },
       { label: 'AgentBricks', emoji: '🧱', href: '#agentbricks', drilldown: 'agentbricks' },
+      { label: 'Declarative Automation Bundles', emoji: '📜', href: '#dab', drilldown: 'dab' },
     ],
   },
   {
@@ -243,6 +244,13 @@ const agentBricksResourceGroups = [
   },
 ];
 
+const dabResourceGroups = [
+  {
+    category: 'Resources',
+    items: [] as { title: string; desc: string; icon: string; href: string; source: string }[],
+  },
+];
+
 const lakeflowConnectResourceGroups = [
   {
     category: 'Resources',
@@ -260,6 +268,7 @@ const drilldownData: Record<string, { title: string; image: string; groups: type
   'ai-dev-kit': { title: 'AI Dev Kit', image: '', groups: aiDevKitResourceGroups },
   'databricks-apps': { title: 'Databricks Apps', image: '', groups: databricksAppsResourceGroups },
   'agentbricks': { title: 'AgentBricks', image: '', groups: agentBricksResourceGroups },
+  'dab': { title: 'Declarative Automation Bundles', image: '', groups: dabResourceGroups },
   'lakeflow-connect': { title: 'Lakeflow Connect', image: '', groups: lakeflowConnectResourceGroups },
   'cost-monitoring': { title: 'Cost Monitoring', image: '', groups: costMonitoringGroups },
 };
