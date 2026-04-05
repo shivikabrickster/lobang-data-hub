@@ -232,7 +232,7 @@ const sourceColors: Record<string, string> = {
   'Medium': '#00ab6c',
 };
 
-function ResourceModal({ title, emoji, resources, onClose }: { title: string; emoji: string; resources: typeof genieResources; onClose: () => void }) {
+function ResourceModal({ title, emoji, resources, onClose }: { title: string; emoji: string; resources: { title: string; href: string; source: string; icon: string }[]; onClose: () => void }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
