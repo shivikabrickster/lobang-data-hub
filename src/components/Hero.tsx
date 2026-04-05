@@ -114,8 +114,8 @@ const genieResourceGroups = [
       { title: 'Build Production-Ready Genie Spaces', desc: 'End-to-end guide to building and trusting Genie Spaces', href: 'https://www.databricks.com/blog/how-build-production-ready-genie-spaces-and-build-trust-along-way', source: 'Databricks Blog' },
       { title: 'Genie–Teams Integration', desc: 'Embed Genie in Microsoft Teams with SSO and auto-generated responses', href: 'https://linkedin.com/pulse/databricks-genie-teams-integration-sso-auto-generated-modarressi-morqc/', source: 'LinkedIn' },
       { title: 'Embedding Genie in Power BI', desc: 'Integrate Genie directly into Power BI dashboards', href: 'https://medium.com/@ajit.kalura/embedding-databricks-genie-in-powerbi-e8b67bea7774', source: 'Medium' },
-      { title: 'Genie Workbench', desc: 'Open-source workbench for developing and testing Genie Spaces', href: 'https://github.com/databricks-solutions/databricks-genie-workbench', source: 'GitHub' },
-      { title: 'Genie Rails', desc: 'Guardrails and governance framework for Genie Spaces', href: 'https://github.com/databricks-solutions/genierails', source: 'GitHub' },
+      { title: 'Genie Workbench', desc: 'Creating, scoring, and optimizing Genie Spaces', href: 'https://github.com/databricks-solutions/databricks-genie-workbench', source: 'GitHub' },
+      { title: 'Genie Rails', desc: 'Create and govern Genie Spaces', href: 'https://github.com/databricks-solutions/genierails', source: 'GitHub' },
     ],
   },
   {
@@ -412,7 +412,7 @@ function DrilldownView({ data, onBack }: { data: typeof drilldownData['aws']; on
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.25, delay: 0.15 + ii * 0.04 }}
-                className="group flex flex-col items-center justify-center gap-2 w-[180px] h-[80px] rounded-2xl no-underline transition-all duration-200 hover:-translate-y-1 cursor-pointer"
+                className="group flex flex-col items-center justify-center gap-1.5 w-[180px] py-4 rounded-2xl no-underline transition-all duration-200 hover:-translate-y-1 cursor-pointer"
                 style={{
                   background: 'rgba(255,255,255,0.035)',
                   border: '1px solid rgba(255,255,255,0.07)',
@@ -431,7 +431,12 @@ function DrilldownView({ data, onBack }: { data: typeof drilldownData['aws']; on
                 <span className="text-[12px] font-bold text-white text-center leading-tight px-3">
                   {item.title}
                 </span>
-                <span className="text-[10px] text-white/30">{item.source}</span>
+                {item.desc && (
+                  <span className="text-[10px] text-white/35 text-center leading-snug px-3">
+                    {item.desc}
+                  </span>
+                )}
+                <span className="text-[10px] text-white/20">{item.source}</span>
               </motion.a>
             ))}
           </div>
