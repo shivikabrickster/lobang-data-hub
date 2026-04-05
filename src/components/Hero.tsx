@@ -81,11 +81,6 @@ const categoryEmojis: Record<string, string> = {
   'Security & Identity': '🔐',
 };
 
-const drilldownData: Record<string, { title: string; image: string; groups: typeof awsResourceGroups }> = {
-  aws: { title: 'Databricks on AWS', image: '/icons/aws.svg', groups: awsResourceGroups },
-  azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
-};
-
 // Parallax stars
 function generateStars(count: number) {
   return Array.from({ length: count }, () => ({
@@ -170,6 +165,11 @@ const azureResourceGroups = [
     ],
   },
 ];
+
+const drilldownData: Record<string, { title: string; image: string; groups: typeof awsResourceGroups }> = {
+  aws: { title: 'Databricks on AWS', image: '/icons/aws.svg', groups: awsResourceGroups },
+  azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
+};
 
 const aiDevKitResources = [
   { title: 'AI Dev Kit GitHub Repository', href: 'https://github.com/databricks-solutions/ai-dev-kit', source: 'GitHub', icon: '💻' },
