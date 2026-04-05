@@ -467,47 +467,29 @@ function DrilldownView({ data, onBack }: { data: typeof drilldownData['aws']; on
                   transition={{ duration: 0.25, ease: 'easeOut' }}
                   className="overflow-hidden"
                 >
-                  <div className="flex flex-col gap-2 pt-3 pl-4">
+                  <div className="flex flex-col gap-1 pt-2 pl-2">
                     {group.items.map((item, ii) => (
                       <motion.a
                         key={item.href}
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        initial={{ opacity: 0, x: 12 }}
+                        initial={{ opacity: 0, x: 8 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.2, delay: ii * 0.05 }}
-                        className="group flex items-start gap-4 px-4 py-3.5 rounded-xl no-underline transition-all duration-150"
-                        style={{
-                          background: 'rgba(255,255,255,0.025)',
-                          border: '1px solid rgba(255,255,255,0.06)',
-                        }}
+                        transition={{ duration: 0.15, delay: ii * 0.03 }}
+                        className="group flex items-center gap-3 px-4 py-2.5 rounded-lg no-underline transition-all duration-150"
+                        style={{ background: 'transparent' }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.background = 'rgba(255,54,33,0.06)';
-                          e.currentTarget.style.borderColor = 'rgba(255,54,33,0.2)';
-                          e.currentTarget.style.transform = 'translateX(4px)';
                         }}
                         onMouseLeave={(e) => {
-                          e.currentTarget.style.background = 'rgba(255,255,255,0.025)';
-                          e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
-                          e.currentTarget.style.transform = 'translateX(0)';
+                          e.currentTarget.style.background = 'transparent';
                         }}
                       >
-                        <div className="flex flex-col gap-1 min-w-0 flex-1">
-                          <span className="text-[14px] font-semibold text-white leading-snug">{item.title}</span>
-                          <span className="text-[12px] text-white/40 leading-relaxed">{item.desc}</span>
-                          <span
-                            className="inline-block mt-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full w-fit"
-                            style={{
-                              color: sourceColors[item.source] || '#888',
-                              background: `${sourceColors[item.source] || '#888'}15`,
-                              border: `1px solid ${sourceColors[item.source] || '#888'}30`,
-                            }}
-                          >
-                            {item.source}
-                          </span>
-                        </div>
-                        <span className="text-white/20 group-hover:text-[#FF3621] text-sm shrink-0 mt-1 transition-colors">↗</span>
+                        <span className="text-[#FF3621] text-[10px] shrink-0">&#9654;</span>
+                        <span className="text-[13px] font-medium text-white/90 flex-1">{item.title}</span>
+                        <span className="text-[11px] text-white/25 shrink-0">{item.source}</span>
+                        <span className="text-white/20 group-hover:text-[#FF3621] text-sm shrink-0 transition-colors">↗</span>
                       </motion.a>
                     ))}
                   </div>
