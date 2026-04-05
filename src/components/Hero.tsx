@@ -114,26 +114,154 @@ const genieCodeResources = [
   { title: 'Use Genie Code (Azure Databricks)', href: 'https://learn.microsoft.com/en-us/azure/databricks/genie-code/use-genie-code', source: 'Microsoft Docs', icon: '📖' },
 ];
 
-const awsResources = [
-  { title: 'Databricks on AWS — Getting Started', href: 'https://docs.databricks.com/en/getting-started/index.html', source: 'Databricks Docs', icon: '📖' },
-  { title: 'Databricks on AWS with Customer-Managed VPC (BYOVPC)', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc', source: 'GitHub', icon: '🔒' },
-  { title: 'Databricks on AWS with Private Link (BYOVPC)', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc-classic-privatelink', source: 'GitHub', icon: '🔗' },
-  { title: 'Manual Workspace Deployment', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/AWS-Automated-Configuration-Classic-Workspace-Deployment.pdf', source: 'Starter Journey', icon: '📄' },
-  { title: 'User Provisioning - SCIM', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/add-users/scim', source: 'Starter Journey', icon: '👥' },
-  { title: 'Configure SSO', href: 'https://docs.databricks.com/aws/en/security/auth/single-sign-on/', source: 'Databricks Docs', icon: '🔐' },
+const awsResourceGroups = [
+  {
+    category: 'Getting Started',
+    items: [
+      { title: 'Databricks on AWS', desc: 'Official quickstart guide for setting up Databricks on AWS', href: 'https://docs.databricks.com/en/getting-started/index.html', source: 'Databricks Docs' },
+    ],
+  },
+  {
+    category: 'Workspace Setup',
+    items: [
+      { title: 'Customer-Managed VPC (BYOVPC)', desc: 'Terraform templates for deploying with your own VPC', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc', source: 'GitHub' },
+      { title: 'Private Link (BYOVPC)', desc: 'Terraform templates with AWS PrivateLink for secure connectivity', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc-classic-privatelink', source: 'GitHub' },
+      { title: 'Manual Workspace Deployment', desc: 'Step-by-step guide for classic workspace configuration', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/AWS-Automated-Configuration-Classic-Workspace-Deployment.pdf', source: 'Starter Journey' },
+    ],
+  },
+  {
+    category: 'Security & Identity',
+    items: [
+      { title: 'User Provisioning — SCIM', desc: 'Automate user and group sync from your identity provider', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/add-users/scim', source: 'Starter Journey' },
+      { title: 'Configure SSO', desc: 'Set up single sign-on with SAML 2.0 or OIDC', href: 'https://docs.databricks.com/aws/en/security/auth/single-sign-on/', source: 'Databricks Docs' },
+    ],
+  },
 ];
 
-const azureResources = [
-  { title: 'Databricks on Azure — Getting Started', href: 'https://learn.microsoft.com/en-us/azure/databricks/', source: 'Microsoft Docs', icon: '📖' },
-  { title: 'Manual Workspace Deployment', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/create-workspaces/azure/manual', source: 'Starter Journey', icon: '📄' },
-  { title: 'Terraform Deployment', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/create-workspaces/azure/terraform', source: 'Starter Journey', icon: '🏗️' },
-  { title: 'Automatic Identity Management', href: 'https://learn.microsoft.com/en-us/azure/databricks/admin/users-groups/automatic-identity-management', source: 'Microsoft Docs', icon: '👤' },
+const azureResourceGroups = [
+  {
+    category: 'Getting Started',
+    items: [
+      { title: 'Databricks on Azure', desc: 'Official Azure Databricks documentation and quickstart', href: 'https://learn.microsoft.com/en-us/azure/databricks/', source: 'Microsoft Docs' },
+    ],
+  },
+  {
+    category: 'Workspace Setup',
+    items: [
+      { title: 'Manual Workspace Deployment', desc: 'Deploy Azure Databricks workspace via Azure Portal', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/create-workspaces/azure/manual', source: 'Starter Journey' },
+      { title: 'Terraform Deployment', desc: 'Infrastructure-as-code workspace provisioning with Terraform', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/create-workspaces/azure/terraform', source: 'Starter Journey' },
+    ],
+  },
+  {
+    category: 'Security & Identity',
+    items: [
+      { title: 'Automatic Identity Management', desc: 'Sync users and groups automatically from Entra ID', href: 'https://learn.microsoft.com/en-us/azure/databricks/admin/users-groups/automatic-identity-management', source: 'Microsoft Docs' },
+    ],
+  },
 ];
 
 const aiDevKitResources = [
   { title: 'AI Dev Kit GitHub Repository', href: 'https://github.com/databricks-solutions/ai-dev-kit', source: 'GitHub', icon: '💻' },
   { title: 'AI Dev Kit Demo', href: 'https://www.youtube.com/watch?v=HFSIKrG8bRg', source: 'YouTube', icon: '▶️' },
 ];
+
+const sourceColors: Record<string, string> = {
+  'Databricks Docs': '#FF3621',
+  'GitHub': '#8b5cf6',
+  'Starter Journey': '#3b82f6',
+  'Microsoft Docs': '#0078d4',
+};
+
+function CloudProviderModal({ title, emoji, image, groups, onClose }: {
+  title: string; emoji: string; image?: string; groups: typeof awsResourceGroups; onClose: () => void;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center px-4"
+      onClick={onClose}
+    >
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
+      <motion.div
+        initial={{ opacity: 0, y: 30, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 20, scale: 0.95 }}
+        transition={{ duration: 0.25 }}
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-2xl rounded-2xl overflow-hidden"
+        style={{
+          background: 'linear-gradient(145deg, rgba(20,22,30,0.98), rgba(12,13,18,0.98))',
+          border: '1px solid rgba(255,255,255,0.1)',
+          boxShadow: '0 24px 80px rgba(0,0,0,0.6)',
+        }}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 pt-5 pb-4" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+          <div className="flex items-center gap-3">
+            {image ? <img src={image} alt={title} className="w-8 h-8 object-contain" /> : <span className="text-3xl">{emoji}</span>}
+            <h2 className="text-xl font-bold text-white">{title}</h2>
+          </div>
+          <button onClick={onClose} className="text-white/40 hover:text-white transition-colors text-2xl leading-none cursor-pointer bg-transparent border-none">&times;</button>
+        </div>
+
+        {/* Grouped content */}
+        <div className="px-6 pb-6 max-h-[65vh] overflow-y-auto">
+          {groups.map((group, gi) => (
+            <div key={group.category} className={gi > 0 ? 'mt-5' : 'mt-4'}>
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF3621]">{group.category}</span>
+                <div className="flex-1 h-px bg-white/8" />
+              </div>
+              <div className="flex flex-col gap-2">
+                {group.items.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-start gap-4 px-4 py-3.5 rounded-xl no-underline transition-all duration-150"
+                    style={{
+                      background: 'rgba(255,255,255,0.025)',
+                      border: '1px solid rgba(255,255,255,0.06)',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(255,54,33,0.06)';
+                      e.currentTarget.style.borderColor = 'rgba(255,54,33,0.2)';
+                      e.currentTarget.style.transform = 'translateX(4px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(255,255,255,0.025)';
+                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
+                      e.currentTarget.style.transform = 'translateX(0)';
+                    }}
+                  >
+                    <div className="flex flex-col gap-1 min-w-0 flex-1">
+                      <span className="text-[14px] font-semibold text-white leading-snug">{item.title}</span>
+                      <span className="text-[12px] text-white/40 leading-relaxed">{item.desc}</span>
+                      <span
+                        className="inline-block mt-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full w-fit"
+                        style={{
+                          color: sourceColors[item.source] || '#888',
+                          background: `${sourceColors[item.source] || '#888'}15`,
+                          border: `1px solid ${sourceColors[item.source] || '#888'}30`,
+                        }}
+                      >
+                        {item.source}
+                      </span>
+                    </div>
+                    <span className="text-white/20 group-hover:text-[#FF3621] text-sm shrink-0 mt-1 transition-colors">↗</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 function ResourceModal({ title, emoji, resources, onClose }: { title: string; emoji: string; resources: typeof genieResources; onClose: () => void }) {
   return (
@@ -369,8 +497,8 @@ export default function Hero() {
       <AnimatePresence>
         {activeModal === 'genie' && <ResourceModal title="Genie Resources" emoji="🧞" resources={genieResources} onClose={() => setActiveModal(null)} />}
         {activeModal === 'genie-code' && <ResourceModal title="Genie Code Resources" emoji="👨‍💻" resources={genieCodeResources} onClose={() => setActiveModal(null)} />}
-        {activeModal === 'aws' && <ResourceModal title="AWS Resources" emoji="☁️" resources={awsResources} onClose={() => setActiveModal(null)} />}
-        {activeModal === 'azure' && <ResourceModal title="Azure Resources" emoji="🔷" resources={azureResources} onClose={() => setActiveModal(null)} />}
+        {activeModal === 'aws' && <CloudProviderModal title="Databricks on AWS" emoji="☁️" image="/icons/aws.svg" groups={awsResourceGroups} onClose={() => setActiveModal(null)} />}
+        {activeModal === 'azure' && <CloudProviderModal title="Databricks on Azure" emoji="🔷" image="/icons/azure.svg" groups={azureResourceGroups} onClose={() => setActiveModal(null)} />}
         {activeModal === 'ai-dev-kit' && <ResourceModal title="AI Dev Kit Resources" emoji="🤖" resources={aiDevKitResources} onClose={() => setActiveModal(null)} />}
       </AnimatePresence>
 
