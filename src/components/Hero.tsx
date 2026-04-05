@@ -51,7 +51,7 @@ const sections = [
     title: 'Build',
     tiles: [
       { label: 'AI Dev Kit', emoji: '🤖', href: '#ai-dev-kit', drilldown: 'ai-dev-kit' },
-      { label: 'Apps Cookbook', emoji: '👨‍🍳', href: 'https://apps-cookbook.dev/resources/' },
+      { label: 'Databricks Apps', emoji: '📱', href: '#databricks-apps', drilldown: 'databricks-apps' },
       { label: 'Cheatsheet', emoji: '📋', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf' },
       { label: 'Genie', emoji: '🧞', href: '#genie', drilldown: 'genie' },
       { label: 'Genie Code', emoji: '👨‍💻', image: '/icons/genie-code.png', href: '#genie-code', drilldown: 'genie-code' },
@@ -213,6 +213,15 @@ const aiDevKitResourceGroups = [
   },
 ];
 
+const databricksAppsResourceGroups = [
+  {
+    category: 'Resources',
+    items: [
+      { title: 'Apps Cookbook', desc: 'Recipes and resources for building Databricks Apps', href: 'https://apps-cookbook.dev/resources/', source: 'Apps Cookbook' },
+    ],
+  },
+];
+
 const agentBricksResourceGroups = [
   {
     category: 'Resources',
@@ -237,6 +246,7 @@ const drilldownData: Record<string, { title: string; image: string; groups: type
   genie: { title: 'Genie', image: '', groups: genieResourceGroups },
   'genie-code': { title: 'Genie Code', image: '/icons/genie-code.png', groups: genieCodeResourceGroups },
   'ai-dev-kit': { title: 'AI Dev Kit', image: '', groups: aiDevKitResourceGroups },
+  'databricks-apps': { title: 'Databricks Apps', image: '', groups: databricksAppsResourceGroups },
   'agentbricks': { title: 'AgentBricks', image: '', groups: agentBricksResourceGroups },
   'lakeflow-connect': { title: 'Lakeflow Connect', image: '', groups: lakeflowConnectResourceGroups },
   'cost-monitoring': { title: 'Cost Monitoring', image: '', groups: costMonitoringGroups },
