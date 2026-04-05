@@ -97,7 +97,7 @@ function StarLayer({ stars, size, duration, opacity }: { stars: { x: number; y: 
   );
 }
 
-type Tile = { label: string; emoji: string; image?: string; href: string; modal?: string; drilldown?: string };
+type Tile = { label: string; emoji: string; image?: string; href: string; drilldown?: string };
 
 const genieResourceGroups = [
   {
@@ -198,15 +198,6 @@ const costMonitoringGroups = [
   },
 ];
 
-const drilldownData: Record<string, { title: string; image: string; groups: typeof awsResourceGroups }> = {
-  aws: { title: 'Databricks on AWS', image: '/icons/aws.svg', groups: awsResourceGroups },
-  azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
-  genie: { title: 'Genie', image: '', groups: genieResourceGroups },
-  'genie-code': { title: 'Genie Code', image: '/icons/genie-code.png', groups: genieCodeResourceGroups },
-  'ai-dev-kit': { title: 'AI Dev Kit', image: '', groups: aiDevKitResourceGroups },
-  'cost-monitoring': { title: 'Cost Monitoring', image: '', groups: costMonitoringGroups },
-};
-
 const aiDevKitResourceGroups = [
   {
     category: 'Resources',
@@ -217,78 +208,16 @@ const aiDevKitResourceGroups = [
   },
 ];
 
-function ResourceModal({ title, emoji, resources, onClose }: { title: string; emoji: string; resources: { title: string; href: string; source: string; icon: string }[]; onClose: () => void }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center px-4"
-      onClick={onClose}
-    >
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
-      <motion.div
-        initial={{ opacity: 0, y: 30, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 20, scale: 0.95 }}
-        transition={{ duration: 0.25 }}
-        onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-lg rounded-2xl overflow-hidden"
-        style={{
-          background: 'linear-gradient(145deg, rgba(20,22,30,0.98), rgba(12,13,18,0.98))',
-          border: '1px solid rgba(255,255,255,0.1)',
-          boxShadow: '0 24px 80px rgba(0,0,0,0.6)',
-        }}
-      >
-        <div className="flex items-center justify-between px-6 pt-5 pb-4">
-          <div className="flex items-center gap-3">
-            <span className="text-3xl">{emoji}</span>
-            <h2 className="text-xl font-bold text-white">{title}</h2>
-          </div>
-          <button
-            onClick={onClose}
-            className="text-white/40 hover:text-white transition-colors text-2xl leading-none cursor-pointer bg-transparent border-none"
-          >
-            &times;
-          </button>
-        </div>
-        <div className="px-6 pb-6 flex flex-col gap-2 max-h-[60vh] overflow-y-auto">
-          {resources.map((r) => (
-            <a
-              key={r.href}
-              href={r.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 px-4 py-3 rounded-xl no-underline transition-all duration-150"
-              style={{
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.06)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(255,54,33,0.08)';
-                e.currentTarget.style.borderColor = 'rgba(255,54,33,0.25)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
-              }}
-            >
-              <span className="text-xl shrink-0">{r.icon}</span>
-              <div className="flex flex-col gap-0.5 min-w-0">
-                <span className="text-[14px] font-semibold text-white leading-snug">{r.title}</span>
-                <span className="text-[11px] text-white/40 font-medium">{r.source}</span>
-              </div>
-              <span className="ml-auto text-white/20 text-sm shrink-0">↗</span>
-            </a>
-          ))}
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-}
+const drilldownData: Record<string, { title: string; image: string; groups: typeof awsResourceGroups }> = {
+  aws: { title: 'Databricks on AWS', image: '/icons/aws.svg', groups: awsResourceGroups },
+  azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
+  genie: { title: 'Genie', image: '', groups: genieResourceGroups },
+  'genie-code': { title: 'Genie Code', image: '/icons/genie-code.png', groups: genieCodeResourceGroups },
+  'ai-dev-kit': { title: 'AI Dev Kit', image: '', groups: aiDevKitResourceGroups },
+  'cost-monitoring': { title: 'Cost Monitoring', image: '', groups: costMonitoringGroups },
+};
 
-function TileCard({ tile, index, onModalOpen, onDrilldown }: { tile: Tile; index: number; onModalOpen?: (modal: string) => void; onDrilldown?: (key: string) => void }) {
-  const isModal = !!tile.modal;
+function TileCard({ tile, index, onDrilldown }: { tile: Tile; index: number; onDrilldown?: (key: string) => void }) {
   const isDrilldown = !!tile.drilldown;
 
   const inner = (
@@ -331,23 +260,6 @@ function TileCard({ tile, index, onModalOpen, onDrilldown }: { tile: Tile; index
         onMouseEnter={enter}
         onMouseLeave={leave}
         onClick={() => onDrilldown?.(tile.drilldown!)}
-      >
-        {inner}
-      </motion.button>
-    );
-  }
-
-  if (isModal) {
-    return (
-      <motion.button
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.35, delay: 0.25 + index * 0.04 }}
-        className={sharedClass + ' border-none'}
-        style={sharedStyle}
-        onMouseEnter={enter}
-        onMouseLeave={leave}
-        onClick={() => onModalOpen?.(tile.modal!)}
       >
         {inner}
       </motion.button>
@@ -454,7 +366,6 @@ function DrilldownView({ data, onBack }: { data: typeof drilldownData['aws']; on
 
 export default function Hero() {
   const newsItems = useTickerItems();
-  const [activeModal, setActiveModal] = useState<string | null>(null);
   const [activeDrilldown, setActiveDrilldown] = useState<string | null>(null);
 
   return (
@@ -552,7 +463,7 @@ export default function Hero() {
                     </span>
                     <div className="flex flex-wrap justify-center gap-4">
                       {section.tiles.map((tile, i) => (
-                        <TileCard key={tile.label} tile={tile} index={offset + i} onModalOpen={setActiveModal} onDrilldown={setActiveDrilldown} />
+                        <TileCard key={tile.label} tile={tile} index={offset + i} onDrilldown={setActiveDrilldown} />
                       ))}
                     </div>
                   </div>
@@ -562,10 +473,6 @@ export default function Hero() {
           )}
         </AnimatePresence>
       </div>
-
-      {/* Modals (for non-drilldown items) */}
-      <AnimatePresence>
-      </AnimatePresence>
 
     </section>
   );
