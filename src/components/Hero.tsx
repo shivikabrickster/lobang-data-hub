@@ -76,17 +76,6 @@ const sections = [
   },
 ];
 
-const categoryEmojis: Record<string, string> = {
-  'Getting Started': '🚀',
-  'Workspace Setup': '🏗️',
-  'Security & Identity': '🔐',
-  'Learn': '📚',
-  'Build & Integrate': '🔧',
-  'Security & Access': '🔐',
-  'Documentation': '📖',
-  'Resources': '📁',
-};
-
 // Parallax stars
 function generateStars(count: number) {
   return Array.from({ length: count }, () => ({
