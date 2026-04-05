@@ -119,6 +119,7 @@ const awsResources = [
   { title: 'Databricks on AWS with Customer-Managed VPC (BYOVPC)', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc', source: 'GitHub', icon: '🔒' },
   { title: 'Databricks on AWS with Private Link (BYOVPC)', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc-classic-privatelink', source: 'GitHub', icon: '🔗' },
   { title: 'Manual Workspace Deployment', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/AWS-Automated-Configuration-Classic-Workspace-Deployment.pdf', source: 'Starter Journey', icon: '📄' },
+  { title: 'User Provisioning - SCIM', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/add-users/scim', source: 'Starter Journey', icon: '👥' },
 ];
 
 const azureResources = [
