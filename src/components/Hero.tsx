@@ -55,7 +55,7 @@ const sections = [
       { label: 'Cheatsheet', emoji: '📋', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf' },
       { label: 'Genie', emoji: '🧞', href: '#genie', drilldown: 'genie' },
       { label: 'Genie Code', emoji: '👨‍💻', image: '/icons/genie-code.png', href: '#genie-code', drilldown: 'genie-code' },
-      { label: 'Lakeflow Connect', emoji: '🔄', href: '#lakeflow-connect', drilldown: 'lakeflow-connect' },
+      { label: 'Lakeflow Connect', emoji: '🔌', href: '#lakeflow-connect', drilldown: 'lakeflow-connect' },
       { label: 'AgentBricks', emoji: '🧱', href: '#agentbricks', drilldown: 'agentbricks' },
       { label: 'Declarative Automation Bundles', emoji: '⚙️', href: '#dab', drilldown: 'dab' },
       { label: 'Lakebase', emoji: '🗄️', href: '#lakebase', drilldown: 'lakebase' },
