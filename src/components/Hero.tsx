@@ -64,6 +64,7 @@ const sections = [
       { label: 'Release Hub', emoji: '🚀', href: 'https://databricksreleasehub.com/timeline' },
       { label: 'NextGen Lakehouse', emoji: '🏠', href: 'https://www.nextgenlakehouse.com/' },
       { label: 'Community', emoji: '💬', href: 'https://community.databricks.com/tmcxu86974/' },
+      { label: 'Cost Monitoring', emoji: '💰', href: '#cost-monitoring', drilldown: 'cost-monitoring' },
     ],
   },
   {
@@ -166,9 +167,17 @@ const azureResourceGroups = [
   },
 ];
 
+const costMonitoringGroups = [
+  {
+    category: 'Coming Soon',
+    items: [] as { title: string; desc: string; href: string; source: string }[],
+  },
+];
+
 const drilldownData: Record<string, { title: string; image: string; groups: typeof awsResourceGroups }> = {
   aws: { title: 'Databricks on AWS', image: '/icons/aws.svg', groups: awsResourceGroups },
   azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
+  'cost-monitoring': { title: 'Cost Monitoring', image: '', groups: costMonitoringGroups },
 };
 
 const aiDevKitResources = [
