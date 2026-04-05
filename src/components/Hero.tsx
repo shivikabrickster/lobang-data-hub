@@ -50,7 +50,7 @@ const sections = [
   {
     title: 'Build',
     tiles: [
-      { label: 'AI Dev Kit', emoji: '🤖', href: 'https://github.com/databricks-solutions/ai-dev-kit', modal: 'ai-dev-kit' },
+      { label: 'AI Dev Kit', emoji: '🤖', href: '#ai-dev-kit', drilldown: 'ai-dev-kit' },
       { label: 'Apps Cookbook', emoji: '👨‍🍳', href: 'https://apps-cookbook.dev/resources/' },
       { label: 'Cheatsheet', emoji: '📋', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf' },
       { label: 'Genie', emoji: '🧞', href: '#genie', drilldown: 'genie' },
@@ -203,12 +203,18 @@ const drilldownData: Record<string, { title: string; image: string; groups: type
   azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
   genie: { title: 'Genie', image: '', groups: genieResourceGroups },
   'genie-code': { title: 'Genie Code', image: '/icons/genie-code.png', groups: genieCodeResourceGroups },
+  'ai-dev-kit': { title: 'AI Dev Kit', image: '', groups: aiDevKitResourceGroups },
   'cost-monitoring': { title: 'Cost Monitoring', image: '', groups: costMonitoringGroups },
 };
 
-const aiDevKitResources = [
-  { title: 'AI Dev Kit GitHub Repository', href: 'https://github.com/databricks-solutions/ai-dev-kit', source: 'GitHub', icon: '💻' },
-  { title: 'AI Dev Kit Demo', href: 'https://www.youtube.com/watch?v=HFSIKrG8bRg', source: 'YouTube', icon: '▶️' },
+const aiDevKitResourceGroups = [
+  {
+    category: 'Resources',
+    items: [
+      { title: 'GitHub Repository', desc: 'Source code, docs, and examples', href: 'https://github.com/databricks-solutions/ai-dev-kit', source: 'GitHub' },
+      { title: 'AI Dev Kit Demo', desc: 'Video walkthrough of AI Dev Kit capabilities', href: 'https://www.youtube.com/watch?v=HFSIKrG8bRg', source: 'YouTube' },
+    ],
+  },
 ];
 
 function ResourceModal({ title, emoji, resources, onClose }: { title: string; emoji: string; resources: { title: string; href: string; source: string; icon: string }[]; onClose: () => void }) {
@@ -559,7 +565,6 @@ export default function Hero() {
 
       {/* Modals (for non-drilldown items) */}
       <AnimatePresence>
-        {activeModal === 'ai-dev-kit' && <ResourceModal title="AI Dev Kit Resources" emoji="🤖" resources={aiDevKitResources} onClose={() => setActiveModal(null)} />}
       </AnimatePresence>
 
     </section>
