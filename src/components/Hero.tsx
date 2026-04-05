@@ -69,11 +69,22 @@ const sections = [
   {
     title: 'Cloud Provider',
     tiles: [
-      { label: 'AWS', emoji: '☁️', image: '/icons/aws.svg', href: '#aws', modal: 'aws' },
-      { label: 'Azure', emoji: '🔷', image: '/icons/azure.svg', href: '#azure', modal: 'azure' },
+      { label: 'AWS', emoji: '☁️', image: '/icons/aws.svg', href: '#aws', drilldown: 'aws' },
+      { label: 'Azure', emoji: '🔷', image: '/icons/azure.svg', href: '#azure', drilldown: 'azure' },
     ],
   },
 ];
+
+const categoryEmojis: Record<string, string> = {
+  'Getting Started': '🚀',
+  'Workspace Setup': '🏗️',
+  'Security & Identity': '🔐',
+};
+
+const drilldownData: Record<string, { title: string; image: string; groups: typeof awsResourceGroups }> = {
+  aws: { title: 'Databricks on AWS', image: '/icons/aws.svg', groups: awsResourceGroups },
+  azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
+};
 
 // Parallax stars
 function generateStars(count: number) {
@@ -96,7 +107,7 @@ function StarLayer({ stars, size, duration, opacity }: { stars: { x: number; y: 
   );
 }
 
-type Tile = { label: string; emoji: string; image?: string; href: string; modal?: string };
+type Tile = { label: string; emoji: string; image?: string; href: string; modal?: string; drilldown?: string };
 
 const genieResources = [
   { title: 'Databricks Genie Explained', href: 'https://www.youtube.com/watch?v=cg6OeWTtqPA', source: 'YouTube', icon: '▶️' },
@@ -172,97 +183,6 @@ const sourceColors: Record<string, string> = {
   'Microsoft Docs': '#0078d4',
 };
 
-function CloudProviderModal({ title, emoji, image, groups, onClose }: {
-  title: string; emoji: string; image?: string; groups: typeof awsResourceGroups; onClose: () => void;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center px-4"
-      onClick={onClose}
-    >
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
-      <motion.div
-        initial={{ opacity: 0, y: 30, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 20, scale: 0.95 }}
-        transition={{ duration: 0.25 }}
-        onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-2xl rounded-2xl overflow-hidden"
-        style={{
-          background: 'linear-gradient(145deg, rgba(20,22,30,0.98), rgba(12,13,18,0.98))',
-          border: '1px solid rgba(255,255,255,0.1)',
-          boxShadow: '0 24px 80px rgba(0,0,0,0.6)',
-        }}
-      >
-        {/* Header */}
-        <div className="flex items-center justify-between px-6 pt-5 pb-4" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
-          <div className="flex items-center gap-3">
-            {image ? <img src={image} alt={title} className="w-8 h-8 object-contain" /> : <span className="text-3xl">{emoji}</span>}
-            <h2 className="text-xl font-bold text-white">{title}</h2>
-          </div>
-          <button onClick={onClose} className="text-white/40 hover:text-white transition-colors text-2xl leading-none cursor-pointer bg-transparent border-none">&times;</button>
-        </div>
-
-        {/* Grouped content */}
-        <div className="px-6 pb-6 max-h-[65vh] overflow-y-auto">
-          {groups.map((group, gi) => (
-            <div key={group.category} className={gi > 0 ? 'mt-5' : 'mt-4'}>
-              <div className="flex items-center gap-2 mb-3">
-                <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF3621]">{group.category}</span>
-                <div className="flex-1 h-px bg-white/8" />
-              </div>
-              <div className="flex flex-col gap-2">
-                {group.items.map((item) => (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-start gap-4 px-4 py-3.5 rounded-xl no-underline transition-all duration-150"
-                    style={{
-                      background: 'rgba(255,255,255,0.025)',
-                      border: '1px solid rgba(255,255,255,0.06)',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = 'rgba(255,54,33,0.06)';
-                      e.currentTarget.style.borderColor = 'rgba(255,54,33,0.2)';
-                      e.currentTarget.style.transform = 'translateX(4px)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = 'rgba(255,255,255,0.025)';
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
-                      e.currentTarget.style.transform = 'translateX(0)';
-                    }}
-                  >
-                    <div className="flex flex-col gap-1 min-w-0 flex-1">
-                      <span className="text-[14px] font-semibold text-white leading-snug">{item.title}</span>
-                      <span className="text-[12px] text-white/40 leading-relaxed">{item.desc}</span>
-                      <span
-                        className="inline-block mt-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full w-fit"
-                        style={{
-                          color: sourceColors[item.source] || '#888',
-                          background: `${sourceColors[item.source] || '#888'}15`,
-                          border: `1px solid ${sourceColors[item.source] || '#888'}30`,
-                        }}
-                      >
-                        {item.source}
-                      </span>
-                    </div>
-                    <span className="text-white/20 group-hover:text-[#FF3621] text-sm shrink-0 mt-1 transition-colors">↗</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-}
-
 function ResourceModal({ title, emoji, resources, onClose }: { title: string; emoji: string; resources: typeof genieResources; onClose: () => void }) {
   return (
     <motion.div
@@ -333,8 +253,9 @@ function ResourceModal({ title, emoji, resources, onClose }: { title: string; em
   );
 }
 
-function TileCard({ tile, index, onModalOpen }: { tile: Tile; index: number; onModalOpen?: (modal: string) => void }) {
+function TileCard({ tile, index, onModalOpen, onDrilldown }: { tile: Tile; index: number; onModalOpen?: (modal: string) => void; onDrilldown?: (key: string) => void }) {
   const isModal = !!tile.modal;
+  const isDrilldown = !!tile.drilldown;
 
   const inner = (
     <>
@@ -364,6 +285,23 @@ function TileCard({ tile, index, onModalOpen }: { tile: Tile; index: number; onM
     e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)';
     e.currentTarget.style.boxShadow = 'none';
   };
+
+  if (isDrilldown) {
+    return (
+      <motion.button
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35, delay: 0.25 + index * 0.04 }}
+        className={sharedClass + ' border-none'}
+        style={sharedStyle}
+        onMouseEnter={enter}
+        onMouseLeave={leave}
+        onClick={() => onDrilldown?.(tile.drilldown!)}
+      >
+        {inner}
+      </motion.button>
+    );
+  }
 
   if (isModal) {
     return (
@@ -400,9 +338,143 @@ function TileCard({ tile, index, onModalOpen }: { tile: Tile; index: number; onM
   );
 }
 
+function DrilldownView({ data, onBack }: { data: typeof drilldownData['aws']; onBack: () => void }) {
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 80 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -80 }}
+      transition={{ duration: 0.35, ease: 'easeOut' }}
+      className="flex flex-col gap-6 max-w-[820px] w-full"
+    >
+      {/* Back button + title */}
+      <div className="flex items-center gap-4">
+        <button
+          onClick={onBack}
+          className="flex items-center gap-2 px-4 py-2 rounded-xl text-[13px] font-semibold text-white/60 hover:text-white bg-transparent border border-white/10 hover:border-white/20 cursor-pointer transition-all duration-200"
+        >
+          <span className="text-lg leading-none">&larr;</span> Back
+        </button>
+        <div className="flex items-center gap-3">
+          <img src={data.image} alt={data.title} className="w-8 h-8 object-contain" />
+          <h2 className="text-[22px] font-bold text-white">{data.title}</h2>
+        </div>
+      </div>
+
+      {/* Category tiles */}
+      <div className="flex flex-wrap justify-center gap-4">
+        {data.groups.map((group, gi) => (
+          <motion.div
+            key={group.category}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.1 + gi * 0.08 }}
+            className="w-full"
+          >
+            <button
+              onClick={() => setExpandedCategory(expandedCategory === group.category ? null : group.category)}
+              className="w-full flex items-center gap-4 px-5 py-4 rounded-2xl cursor-pointer transition-all duration-200 border-none text-left"
+              style={{
+                background: expandedCategory === group.category ? 'rgba(255,54,33,0.08)' : 'rgba(255,255,255,0.035)',
+                border: expandedCategory === group.category ? '1px solid rgba(255,54,33,0.25)' : '1px solid rgba(255,255,255,0.07)',
+              }}
+              onMouseEnter={(e) => {
+                if (expandedCategory !== group.category) {
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (expandedCategory !== group.category) {
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.035)';
+                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)';
+                }
+              }}
+            >
+              <span className="text-2xl">{categoryEmojis[group.category] || '📁'}</span>
+              <div className="flex flex-col gap-0.5 flex-1">
+                <span className="text-[15px] font-bold text-white">{group.category}</span>
+                <span className="text-[12px] text-white/40">{group.items.length} resource{group.items.length > 1 ? 's' : ''}</span>
+              </div>
+              <motion.span
+                animate={{ rotate: expandedCategory === group.category ? 180 : 0 }}
+                transition={{ duration: 0.2 }}
+                className="text-white/30 text-lg"
+              >
+                ▾
+              </motion.span>
+            </button>
+
+            {/* Expanded resource list */}
+            <AnimatePresence>
+              {expandedCategory === group.category && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.25, ease: 'easeOut' }}
+                  className="overflow-hidden"
+                >
+                  <div className="flex flex-col gap-2 pt-3 pl-4">
+                    {group.items.map((item, ii) => (
+                      <motion.a
+                        key={item.href}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        initial={{ opacity: 0, x: 12 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.2, delay: ii * 0.05 }}
+                        className="group flex items-start gap-4 px-4 py-3.5 rounded-xl no-underline transition-all duration-150"
+                        style={{
+                          background: 'rgba(255,255,255,0.025)',
+                          border: '1px solid rgba(255,255,255,0.06)',
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = 'rgba(255,54,33,0.06)';
+                          e.currentTarget.style.borderColor = 'rgba(255,54,33,0.2)';
+                          e.currentTarget.style.transform = 'translateX(4px)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = 'rgba(255,255,255,0.025)';
+                          e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
+                          e.currentTarget.style.transform = 'translateX(0)';
+                        }}
+                      >
+                        <div className="flex flex-col gap-1 min-w-0 flex-1">
+                          <span className="text-[14px] font-semibold text-white leading-snug">{item.title}</span>
+                          <span className="text-[12px] text-white/40 leading-relaxed">{item.desc}</span>
+                          <span
+                            className="inline-block mt-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full w-fit"
+                            style={{
+                              color: sourceColors[item.source] || '#888',
+                              background: `${sourceColors[item.source] || '#888'}15`,
+                              border: `1px solid ${sourceColors[item.source] || '#888'}30`,
+                            }}
+                          >
+                            {item.source}
+                          </span>
+                        </div>
+                        <span className="text-white/20 group-hover:text-[#FF3621] text-sm shrink-0 mt-1 transition-colors">↗</span>
+                      </motion.a>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Hero() {
   const newsItems = useTickerItems();
   const [activeModal, setActiveModal] = useState<string | null>(null);
+  const [activeDrilldown, setActiveDrilldown] = useState<string | null>(null);
 
   return (
     <section id="hero" className="relative overflow-hidden min-h-screen flex flex-col">
@@ -471,34 +543,49 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Tile Sections */}
+      {/* Main content area */}
       <div className="relative z-10 flex-1 flex items-center justify-center px-6">
-        <div className="flex flex-col gap-8 max-w-[820px] w-full">
-          {sections.map((section, si) => {
-            const offset = sections.slice(0, si).reduce((acc, s) => acc + s.tiles.length, 0);
-            return (
-              <div key={section.title} className="flex flex-col items-center gap-3">
-                {si > 0 && <div className="w-full h-px bg-white/10" />}
-                <span className="text-[16px] font-extrabold uppercase tracking-[0.15em] text-[#FF3621]">
-                  {section.title}
-                </span>
-                <div className="flex flex-wrap justify-center gap-4">
-                  {section.tiles.map((tile, i) => (
-                    <TileCard key={tile.label} tile={tile} index={offset + i} onModalOpen={setActiveModal} />
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        <AnimatePresence mode="wait">
+          {activeDrilldown && drilldownData[activeDrilldown] ? (
+            <DrilldownView
+              key={activeDrilldown}
+              data={drilldownData[activeDrilldown]}
+              onBack={() => setActiveDrilldown(null)}
+            />
+          ) : (
+            <motion.div
+              key="main-tiles"
+              initial={{ opacity: 0, x: -80 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -80 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+              className="flex flex-col gap-8 max-w-[820px] w-full"
+            >
+              {sections.map((section, si) => {
+                const offset = sections.slice(0, si).reduce((acc, s) => acc + s.tiles.length, 0);
+                return (
+                  <div key={section.title} className="flex flex-col items-center gap-3">
+                    {si > 0 && <div className="w-full h-px bg-white/10" />}
+                    <span className="text-[16px] font-extrabold uppercase tracking-[0.15em] text-[#FF3621]">
+                      {section.title}
+                    </span>
+                    <div className="flex flex-wrap justify-center gap-4">
+                      {section.tiles.map((tile, i) => (
+                        <TileCard key={tile.label} tile={tile} index={offset + i} onModalOpen={setActiveModal} onDrilldown={setActiveDrilldown} />
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      {/* Modals */}
+      {/* Modals (for non-drilldown items) */}
       <AnimatePresence>
         {activeModal === 'genie' && <ResourceModal title="Genie Resources" emoji="🧞" resources={genieResources} onClose={() => setActiveModal(null)} />}
         {activeModal === 'genie-code' && <ResourceModal title="Genie Code Resources" emoji="👨‍💻" resources={genieCodeResources} onClose={() => setActiveModal(null)} />}
-        {activeModal === 'aws' && <CloudProviderModal title="Databricks on AWS" emoji="☁️" image="/icons/aws.svg" groups={awsResourceGroups} onClose={() => setActiveModal(null)} />}
-        {activeModal === 'azure' && <CloudProviderModal title="Databricks on Azure" emoji="🔷" image="/icons/azure.svg" groups={azureResourceGroups} onClose={() => setActiveModal(null)} />}
         {activeModal === 'ai-dev-kit' && <ResourceModal title="AI Dev Kit Resources" emoji="🤖" resources={aiDevKitResources} onClose={() => setActiveModal(null)} />}
       </AnimatePresence>
 
