@@ -56,6 +56,7 @@ const sections = [
       { label: 'Genie', emoji: '🧞', href: '#genie', drilldown: 'genie' },
       { label: 'Genie Code', emoji: '👨‍💻', image: '/icons/genie-code.png', href: '#genie-code', drilldown: 'genie-code' },
       { label: 'Lakeflow Connect', emoji: '🔄', href: '#lakeflow-connect', drilldown: 'lakeflow-connect' },
+      { label: 'AgentBricks', emoji: '🧱', href: '#agentbricks', drilldown: 'agentbricks' },
     ],
   },
   {
@@ -212,6 +213,15 @@ const aiDevKitResourceGroups = [
   },
 ];
 
+const agentBricksResourceGroups = [
+  {
+    category: 'Resources',
+    items: [
+      { title: 'AgentBricks Utilities', desc: 'Utility tools and helpers for AgentBricks', href: 'https://github.com/databricks-solutions/agentbricks-utilities/tree/main/utilities', source: 'GitHub' },
+    ],
+  },
+];
+
 const lakeflowConnectResourceGroups = [
   {
     category: 'Resources',
@@ -227,6 +237,7 @@ const drilldownData: Record<string, { title: string; image: string; groups: type
   genie: { title: 'Genie', image: '', groups: genieResourceGroups },
   'genie-code': { title: 'Genie Code', image: '/icons/genie-code.png', groups: genieCodeResourceGroups },
   'ai-dev-kit': { title: 'AI Dev Kit', image: '', groups: aiDevKitResourceGroups },
+  'agentbricks': { title: 'AgentBricks', image: '', groups: agentBricksResourceGroups },
   'lakeflow-connect': { title: 'Lakeflow Connect', image: '', groups: lakeflowConnectResourceGroups },
   'cost-monitoring': { title: 'Cost Monitoring', image: '', groups: costMonitoringGroups },
 };
