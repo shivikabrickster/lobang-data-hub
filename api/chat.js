@@ -62,15 +62,38 @@ C. Provisioned Throughput / Self-Hosted LLM — download from HuggingFace, deplo
 - Security & Compliance: Security & Trust Center, Agentic & ML Features in SG
 - Cloud Provider: AWS (BYOVPC, PrivateLink, Manual Deploy, SCIM, SSO), Azure (Manual, Terraform, Identity Mgmt)
 
-## Important Links
-- Databricks Docs: docs.databricks.com
-- Help Centre: help.databricks.com
-- Community: community.databricks.com
-- AI Dev Kit: github.com/databricks-solutions/ai-dev-kit
-- Apps Cookbook: apps-cookbook.dev
-- Designated Services: docs.databricks.com/aws/en/resources/designated-services
+## Feature-Specific Documentation Links (always include the relevant link in your answers)
+- Lakebase: https://docs.databricks.com/aws/en/oltp
+- Genie: https://docs.databricks.com/aws/en/genie/
+- Genie Code: https://docs.databricks.com/aws/en/genie-code/use-genie-code
+- AI Gateway: https://docs.databricks.com/aws/en/ai-gateway/overview-serving-endpoints
+- Agent Bricks: https://docs.databricks.com/aws/en/generative-ai/agent-bricks/
+- Knowledge Assistant: https://docs.databricks.com/aws/en/generative-ai/agent-bricks/knowledge-assistant
+- Multi-Agent Supervisor: https://docs.databricks.com/aws/en/generative-ai/agent-bricks/multi-agent-supervisor
+- Vector Search: https://docs.databricks.com/aws/en/vector-search/
+- Model Serving: https://docs.databricks.com/aws/en/machine-learning/model-serving/
+- Foundation Model APIs: https://docs.databricks.com/aws/en/machine-learning/model-serving/foundation-model-overview
+- MLflow: https://docs.databricks.com/aws/en/mlflow3/
+- Databricks Apps: https://docs.databricks.com/aws/en/dev-tools/databricks-apps/
+- Lakeflow Connect: https://docs.databricks.com/aws/en/ingestion/lakeflow-connect/
+- Unity Catalog: https://docs.databricks.com/aws/en/data-governance/unity-catalog/
+- Spark Declarative Pipelines: https://docs.databricks.com/aws/en/delta-live-tables/
+- Databricks SQL: https://docs.databricks.com/aws/en/sql/
+- MCP Servers: https://docs.databricks.com/aws/en/generative-ai/mcp/
+- AI Functions: https://docs.databricks.com/aws/en/large-language-models/ai-functions
+- Data Classification: https://docs.databricks.com/aws/en/data-governance/unity-catalog/data-classification
+- Online Feature Store: https://docs.databricks.com/aws/en/machine-learning/feature-store/online-feature-store
+- Designated Services (SG availability): https://docs.databricks.com/aws/en/resources/designated-services
+- Feature Region Support: https://docs.databricks.com/aws/en/resources/feature-region-support
+- Free Training: https://docs.databricks.com/aws/en/getting-started/free-training
+- Help Centre: https://help.databricks.com/s/
+- Community: https://community.databricks.com
+- AI Dev Kit: https://github.com/databricks-solutions/ai-dev-kit
+- Apps Cookbook: https://apps-cookbook.dev/resources/
+- Pricing: https://www.databricks.com/product/pricing
+- Security & Trust: https://www.databricks.com/trust/security-features
 
-Be concise, helpful, and friendly. Use bullet points for lists. If you don't know something, say so and point them to the relevant section of the hub or official docs. Always answer in the context of Singapore public sector use cases when relevant.`;
+IMPORTANT: When answering about a specific feature, ALWAYS include the relevant documentation link from the list above. Format links as markdown: [Link Text](URL). Be concise, helpful, and friendly. Use bullet points for lists. Always answer in the context of Singapore public sector use cases when relevant.`;
 
 export default async function handler(req, res) {
   // CORS headers
