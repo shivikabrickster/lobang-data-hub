@@ -79,6 +79,12 @@ const sections = [
     ],
   },
   {
+    title: 'Security & Compliance',
+    tiles: [
+      { label: 'Security & Trust Center', emoji: '🛡️', href: 'https://www.databricks.com/trust/security-features' },
+    ],
+  },
+  {
     title: 'Cloud Provider',
     tiles: [
       { label: 'AWS', emoji: '☁️', image: '/icons/aws.svg', href: '#aws', drilldown: 'aws' },
