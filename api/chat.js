@@ -133,6 +133,7 @@ C. Provisioned Throughput / Self-Hosted LLM — download from HuggingFace, deplo
 - Runtime Release Notes: AWS: https://docs.databricks.com/aws/en/release-notes/runtime/
 
 ### Region & Availability
+- Resources Overview: https://docs.databricks.com/aws/en/resources/
 - Designated Services (SG): https://docs.databricks.com/aws/en/resources/designated-services
 - Feature Region Support: AWS: https://docs.databricks.com/aws/en/resources/feature-region-support | Azure: https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support
 
