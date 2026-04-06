@@ -216,18 +216,11 @@ export default function SgFeaturesView({ onBack }: { onBack: () => void }) {
                               <div className="w-[14%] flex justify-center"><StatusBadge status={f.serviceInSg} /></div>
                               <div className="w-[14%] flex justify-center"><StatusBadge status={f.modelInSg} /></div>
                               <div className="w-[34%] pl-3 flex items-center gap-1">
-                                {f.comments && <span className="text-[11px] text-white/50">{f.comments}</span>}
+                                {f.comments && <span className="text-[11px] text-white/70">{f.comments}</span>}
                                 {f.source && <a href={f.source} target="_blank" rel="noopener noreferrer" className="text-[#FF3621]/40 hover:text-[#FF3621] text-[10px] no-underline shrink-0">↗</a>}
                               </div>
                             </div>
                           ))}
-                          {/* Column headers as footer legend */}
-                          <div className="flex items-center px-5 py-2" style={{ borderTop: '1px solid rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.01)' }}>
-                            <div className="w-[38%]"><span className="text-[9px] text-white/25 uppercase tracking-wider font-bold">Feature</span></div>
-                            <div className="w-[14%] text-center"><span className="text-[9px] text-white/25 uppercase tracking-wider font-bold">Service</span></div>
-                            <div className="w-[14%] text-center"><span className="text-[9px] text-white/25 uppercase tracking-wider font-bold">Model</span></div>
-                            <div className="w-[34%] pl-3"><span className="text-[9px] text-white/25 uppercase tracking-wider font-bold">Notes</span></div>
-                          </div>
                         </div>
                       </div>
                     );
@@ -252,7 +245,7 @@ export default function SgFeaturesView({ onBack }: { onBack: () => void }) {
                           <div className="w-[15%] flex justify-center">
                             <StatusBadge status={m.availableInSg ? 'yes' : 'no'} />
                           </div>
-                          <div className="w-[45%] pl-3"><span className="text-[11px] text-white/50">{m.comments}</span></div>
+                          <div className="w-[45%] pl-3"><span className="text-[11px] text-white/70">{m.comments}</span></div>
                         </div>
                       ))}
                     </div>

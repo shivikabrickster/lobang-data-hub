@@ -71,8 +71,7 @@ export const featureAvailability: Record<CloudProvider, FeatureAvailability[]> =
     { feature: 'Lakebase (Stateful Agents)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: '', source: 'https://docs.databricks.com/aws/en/oltp/projects/manage-projects' },
     { feature: 'Managed MCP Servers', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: 'Preview', source: 'https://learn.microsoft.com/en-us/azure/databricks/generative-ai/mcp/external-mcp' },
     { feature: 'Custom MCP Servers', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: 'Via UC connections', source: 'https://learn.microsoft.com/en-us/azure/databricks/generative-ai/mcp/external-mcp' },
-    { feature: 'AI Guardrails (In-region)', category: 'agentic', serviceInSg: 'no', modelInSg: 'no', comments: 'Not available', source: 'https://docs.databricks.com/sap/en/ai-gateway' },
-    { feature: 'Custom Guardrails', category: 'agentic', serviceInSg: 'yes', modelInSg: 'depends', comments: 'Private Preview', source: 'https://docs.databricks.com/sap/en/ai-gateway' },
+    { feature: 'AI Guardrails', category: 'agentic', serviceInSg: 'no', modelInSg: 'no', comments: 'Public Preview. Not supported in regions requiring X-geo for FMAPI', source: 'https://docs.databricks.com/aws/en/ai-gateway/overview-serving-endpoints' },
     // ── ML & Platform ──
     { feature: 'Model Serving (CPU)', category: 'ml', serviceInSg: 'yes', modelInSg: 'yes', comments: '', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
     { feature: 'Model Serving (GPU)', category: 'ml', serviceInSg: 'yes', modelInSg: 'yes', comments: '', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
