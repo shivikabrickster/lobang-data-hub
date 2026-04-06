@@ -485,7 +485,7 @@ function EventBanner() {
   const progress = Math.max(0, Math.min(100, ((90 - daysLeft) / 90) * 100));
 
   return (
-    <div className="relative z-10 w-full px-6 pb-8">
+    <div className="relative z-10 w-full px-6 pb-6">
       <motion.a
         href={EVENT_URL}
         target="_blank"
@@ -493,10 +493,10 @@ function EventBanner() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
-        className="block max-w-[700px] mx-auto no-underline group"
+        className="block max-w-[600px] mx-auto no-underline group"
       >
         <div
-          className="relative overflow-hidden rounded-2xl px-5 py-4 transition-all duration-300 group-hover:scale-[1.01]"
+          className="relative overflow-hidden rounded-xl px-4 py-3 transition-all duration-300 group-hover:scale-[1.01]"
           style={{
             background: 'linear-gradient(135deg, rgba(255,54,33,0.08) 0%, rgba(255,112,51,0.06) 50%, rgba(255,54,33,0.04) 100%)',
             border: '1px solid rgba(255,54,33,0.2)',
@@ -511,11 +511,11 @@ function EventBanner() {
 
           <div className="relative flex items-center gap-4 flex-wrap">
             {/* Event icon + info */}
-            <div className="flex items-center gap-3 flex-1 min-w-[200px]">
-              <span className="text-2xl">🎪</span>
+            <div className="flex items-center gap-2.5 flex-1 min-w-[200px]">
+              <span className="text-xl">🎪</span>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[14px] font-extrabold text-white tracking-tight">DATA + AI SUMMIT 2026</span>
+                  <span className="text-[13px] font-extrabold text-white tracking-tight">DATA + AI SUMMIT 2026</span>
                   {isHappening && (
                     <span className="text-[9px] font-bold bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full uppercase tracking-wider flex items-center gap-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -523,7 +523,7 @@ function EventBanner() {
                     </span>
                   )}
                 </div>
-                <div className="text-[11px] text-white/40 mt-0.5">June 9–12, 2026 · San Francisco</div>
+                <div className="text-[10px] text-white/40">June 9–12, 2026 · San Francisco</div>
               </div>
             </div>
 
@@ -532,10 +532,10 @@ function EventBanner() {
               {!isHappening && daysLeft > 0 && (
                 <div className="flex items-center gap-3">
                   <div className="flex flex-col items-end">
-                    <span className="text-[18px] font-extrabold text-white leading-none">{daysLeft}</span>
-                    <span className="text-[9px] text-white/30 uppercase tracking-wider">days left</span>
+                    <span className="text-[16px] font-extrabold text-white leading-none">{daysLeft}</span>
+                    <span className="text-[8px] text-white/30 uppercase tracking-wider">days left</span>
                   </div>
-                  <div className="w-16 h-1.5 rounded-full bg-white/10 overflow-hidden">
+                  <div className="w-12 h-1 rounded-full bg-white/10 overflow-hidden">
                     <motion.div
                       className="h-full rounded-full"
                       style={{ background: 'linear-gradient(90deg, #FF3621, #FF7033)' }}
@@ -548,7 +548,7 @@ function EventBanner() {
               )}
 
               {/* CTA */}
-              <span className="text-[12px] font-bold text-[#FF3621] group-hover:text-white bg-[#FF3621]/10 group-hover:bg-[#FF3621] px-4 py-2 rounded-xl transition-all duration-200 whitespace-nowrap">
+              <span className="text-[11px] font-bold text-[#FF3621] group-hover:text-white bg-[#FF3621]/10 group-hover:bg-[#FF3621] px-3 py-1.5 rounded-lg transition-all duration-200 whitespace-nowrap">
                 {isHappening ? 'Watch Live →' : 'Register Free →'}
               </span>
             </div>
