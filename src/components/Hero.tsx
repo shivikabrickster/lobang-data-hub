@@ -592,7 +592,7 @@ export default function Hero() {
       </div>
 
       {/* Title + Punchline — centered */}
-      <div className="relative z-10 w-full px-6 pt-12 md:pt-16 pb-8 md:pb-10">
+      <div className="relative z-10 w-full px-6 pt-12 md:pt-16 pb-14 md:pb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
