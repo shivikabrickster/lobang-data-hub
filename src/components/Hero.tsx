@@ -82,6 +82,7 @@ const sections = [
     title: 'Sizing',
     tiles: [
       { label: 'Pricing Calculator', emoji: '💲', href: 'https://www.databricks.com/product/pricing/product-pricing/instance-types' },
+      { label: 'Pricing Overview', emoji: '📊', href: 'https://www.databricks.com/product/pricing' },
     ],
   },
   {
