@@ -206,6 +206,13 @@ export default function SgFeaturesView({ onBack }: { onBack: () => void }) {
                           <div className="flex-1 h-px bg-white/6" />
                         </div>
                         <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                          {/* Column headers */}
+                          <div className="flex items-center px-5 py-2.5" style={{ background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                            <div className="w-[38%]"><span className="text-[10px] text-white/50 font-bold uppercase tracking-wider">Feature</span></div>
+                            <div className="w-[14%] text-center"><span className="text-[10px] text-white/50 font-bold uppercase tracking-wider">Service in SG 🇸🇬</span></div>
+                            <div className="w-[14%] text-center"><span className="text-[10px] text-white/50 font-bold uppercase tracking-wider">Model in SG 🇸🇬</span></div>
+                            <div className="w-[34%] pl-3"><span className="text-[10px] text-white/50 font-bold uppercase tracking-wider">Comments</span></div>
+                          </div>
                           {rows.map((f, i) => (
                             <div key={f.feature}
                               className="flex items-center px-5 py-3 hover:bg-white/[0.02] transition-colors group"
