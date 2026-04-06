@@ -64,13 +64,8 @@
       },
       "ai_query (batch inference)": {
         "available": true,
-        "xgeo": false,
-        "raw": "\u2713"
-      },
-      "ai_parse_document": {
-        "available": true,
         "xgeo": true,
-        "raw": "\u2713\u2942"
+        "raw": "\u2713\u2021"
       },
       "ai_parse_document v2": {
         "available": true,
@@ -84,8 +79,8 @@
       },
       "ai_extract and ai_classify v2": {
         "available": true,
-        "xgeo": false,
-        "raw": "\u2713"
+        "xgeo": true,
+        "raw": "\u2713\u2021"
       },
       "Core Model Serving capability (CPU serving)": {
         "available": true,
@@ -572,11 +567,6 @@
         "xgeo": false,
         "raw": "\u2713"
       },
-      "ai_parse_document": {
-        "available": true,
-        "xgeo": true,
-        "raw": "\u2713\u2942"
-      },
       "ai_parse_document v2": {
         "available": true,
         "xgeo": true,
@@ -758,11 +748,6 @@
         "raw": "\u2713\u2942"
       },
       "ai_query (batch inference)": {
-        "available": true,
-        "xgeo": true,
-        "raw": "\u2713\u2942"
-      },
-      "ai_parse_document": {
         "available": true,
         "xgeo": true,
         "raw": "\u2713\u2942"
