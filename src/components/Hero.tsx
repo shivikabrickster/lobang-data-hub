@@ -43,10 +43,18 @@ const sections = [
   {
     title: 'Get Started',
     tiles: [
-      { label: 'Starter Journey', emoji: '🗺️', href: 'https://databricks-solutions.github.io/starter-journey/' },
-      { label: 'Free Edition', emoji: '⚡', href: 'https://www.databricks.com/learn/free-edition' },
-      { label: 'Trainings', emoji: '🎓', href: '#trainings', drilldown: 'trainings' },
-      { label: 'Product Help', emoji: '🛟', href: '#product-help', drilldown: 'product-help' },
+      { label: 'Starter Journey', emoji: '🗺️', image: '/icons/databricks/rocket.svg', href: 'https://databricks-solutions.github.io/starter-journey/' },
+      { label: 'Free Edition', emoji: '⚡', image: '/icons/databricks/lightning.svg', href: 'https://www.databricks.com/learn/free-edition' },
+      { label: 'Cheatsheet', emoji: '📋', image: '/icons/databricks/book.svg', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf' },
+      { label: 'Trainings', emoji: '🎓', image: '/icons/databricks/training.svg', href: '#trainings', drilldown: 'trainings' },
+      { label: 'Product Help', emoji: '🛟', image: '/icons/databricks/help.svg', href: '#product-help', drilldown: 'product-help' },
+    ],
+  },
+  {
+    title: 'Cloud Provider',
+    tiles: [
+      { label: 'AWS', emoji: '☁️', image: '/icons/aws.svg', href: '#aws', drilldown: 'aws' },
+      { label: 'Azure', emoji: '🔷', image: '/icons/azure.svg', href: '#azure', drilldown: 'azure' },
     ],
   },
   {
@@ -54,7 +62,6 @@ const sections = [
     tiles: [
       { label: 'AI Dev Kit', emoji: '🤖', href: '#ai-dev-kit', drilldown: 'ai-dev-kit' },
       { label: 'Databricks Apps', emoji: '📱', image: '/icons/databricks/apps.svg', href: '#databricks-apps', drilldown: 'databricks-apps' },
-      { label: 'Cheatsheet', emoji: '📋', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf' },
       { label: 'Genie', emoji: '🧞', image: '/icons/databricks/genie.svg', href: '#genie', drilldown: 'genie' },
       { label: 'Genie Code', emoji: '👨‍💻', image: '/icons/genie-code.png', href: '#genie-code', drilldown: 'genie-code' },
       { label: 'Lakeflow Connect', emoji: '🔌', image: '/icons/databricks/lakeflow-connect.svg', href: '#lakeflow-connect', drilldown: 'lakeflow-connect' },
@@ -66,47 +73,40 @@ const sections = [
   {
     title: 'Explore',
     tiles: [
-      { label: 'Demo Centre', emoji: '🎬', href: 'https://www.databricks.com/resources/demos' },
-      { label: 'Release Hub', emoji: '🚀', href: '#release-hub', drilldown: 'release-hub' },
-      { label: 'NextGen Lakehouse', emoji: '🏠', href: 'https://www.nextgenlakehouse.com/' },
+      { label: 'Demo Centre', emoji: '🎬', image: '/icons/databricks/play.svg', href: 'https://www.databricks.com/resources/demos' },
+      { label: 'Release Hub', emoji: '🚀', image: '/icons/databricks/rocket.svg', href: '#release-hub', drilldown: 'release-hub' },
+      { label: 'NextGen Lakehouse', emoji: '🏠', image: '/icons/databricks/lakehouse.svg', href: 'https://www.nextgenlakehouse.com/' },
       { label: 'Community', emoji: '💬', image: '/icons/databricks/community.svg', href: 'https://community.databricks.com/tmcxu86974/' },
-      { label: 'User Groups', emoji: '👥', href: 'https://usergroups.databricks.com/' },
+      { label: 'User Groups', emoji: '👥', image: '/icons/databricks/user-group.svg', href: 'https://usergroups.databricks.com/' },
     ],
   },
   {
     title: 'Migrate',
     tiles: [
       { label: 'Lakebridge', emoji: '🌉', image: '/icons/databricks/lakebridge.svg', href: 'https://databrickslabs.github.io/lakebridge/docs/overview/' },
-      { label: 'Migrate with LLM', emoji: '🤖', href: 'https://github.com/databricks-solutions/databricks-migrator-with-llm' },
-    ],
-  },
-  {
-    title: 'Sizing',
-    tiles: [
-      { label: 'Pricing & Cost Calculators', emoji: '💲', href: '#pricing', drilldown: 'pricing' },
-      { label: 'Compute & Cluster Sizing', emoji: '⚡', href: '#compute-sizing', drilldown: 'compute-sizing' },
-    ],
-  },
-  {
-    title: 'Cost Optimization, Monitoring & Benchmarks',
-    tiles: [
-      { label: 'Cost Monitoring', emoji: '💰', href: '#cost-monitoring', drilldown: 'cost-monitoring' },
-      { label: 'Cost Optimization', emoji: '📉', href: '#cost-optimization', drilldown: 'cost-optimization' },
-      { label: 'Benchmarks', emoji: '🏆', href: '#benchmarks', drilldown: 'benchmarks' },
+      { label: 'Migrate with LLM', emoji: '🤖', image: '/icons/databricks/notebooks.svg', href: 'https://github.com/databricks-solutions/databricks-migrator-with-llm' },
     ],
   },
   {
     title: 'Security & Compliance',
     tiles: [
-      { label: 'Security & Trust Center', emoji: '🛡️', href: 'https://www.databricks.com/trust/security-features' },
-      { label: 'Agentic and ML Features Availability in SG', emoji: '🇸🇬', href: '#sg-features', drilldown: 'sg-features' },
+      { label: 'Security & Trust Center', emoji: '🛡️', image: '/icons/databricks/shield-check.svg', href: 'https://www.databricks.com/trust/security-features' },
+      { label: 'SG Feature Availability', emoji: '🇸🇬', href: '#sg-features', drilldown: 'sg-features' },
     ],
   },
   {
-    title: 'Cloud Provider',
+    title: 'Sizing',
     tiles: [
-      { label: 'AWS', emoji: '☁️', image: '/icons/aws.svg', href: '#aws', drilldown: 'aws' },
-      { label: 'Azure', emoji: '🔷', image: '/icons/azure.svg', href: '#azure', drilldown: 'azure' },
+      { label: 'Pricing & Cost Calculators', emoji: '💲', image: '/icons/databricks/chart-line.svg', href: '#pricing', drilldown: 'pricing' },
+      { label: 'Compute & Cluster Sizing', emoji: '⚡', image: '/icons/databricks/lightning.svg', href: '#compute-sizing', drilldown: 'compute-sizing' },
+    ],
+  },
+  {
+    title: 'Cost & Performance',
+    tiles: [
+      { label: 'Cost Monitoring', emoji: '💰', image: '/icons/databricks/chart-line.svg', href: '#cost-monitoring', drilldown: 'cost-monitoring' },
+      { label: 'Cost Optimization', emoji: '📉', image: '/icons/databricks/chart-line.svg', href: '#cost-optimization', drilldown: 'cost-optimization' },
+      { label: 'Benchmarks', emoji: '🏆', image: '/icons/databricks/performance.svg', href: '#benchmarks', drilldown: 'benchmarks' },
     ],
   },
 ];
