@@ -247,6 +247,7 @@ const aiDevKitResourceGroups = [
       { title: 'Cursor IDE + Databricks', desc: 'Step-by-step AI coding tutorial', icon: '⌨️', href: 'https://www.youtube.com/watch?v=Ii2LuEJ0gpc', source: 'YouTube' },
       { title: 'Install for Copilot + VS Code', desc: 'Setup guide', icon: '🧩', href: 'https://www.youtube.com/watch?v=8Ehzr8ajzhc', source: 'YouTube' },
       { title: 'Databricks VS Code Extension', desc: 'Extension walkthrough', icon: '🔌', href: 'https://www.youtube.com/watch?v=o4qMWHgT1zM&t=371s', source: 'YouTube' },
+      { title: 'Databricks Agent Skills', desc: 'Pre-built skills for AI agents', icon: '🧩', href: 'https://github.com/databricks/databricks-agent-skills', source: 'GitHub' },
     ],
   },
 ];
