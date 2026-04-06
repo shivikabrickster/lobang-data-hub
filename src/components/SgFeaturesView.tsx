@@ -15,15 +15,20 @@ import {
 // ── Helpers ──────────────────────────────────────────────
 
 function StatusBadge({ status }: { status: AvailabilityStatus }) {
-  const config: Record<AvailabilityStatus, { text: string; color: string }> = {
-    yes: { text: '✅ YES', color: 'text-emerald-400' },
-    no: { text: '❌ NO', color: 'text-red-400' },
-    tbc: { text: '⏳ TBC', color: 'text-amber-400' },
-    na: { text: '➖ N/A', color: 'text-white/40' },
-    depends: { text: '⚠️ Depends', color: 'text-amber-400' },
+  const config: Record<AvailabilityStatus, { label: string; bg: string; text: string; dot: string }> = {
+    yes: { label: 'Yes', bg: 'bg-emerald-500/10', text: 'text-emerald-400', dot: 'bg-emerald-400' },
+    no: { label: 'No', bg: 'bg-red-500/10', text: 'text-red-400', dot: 'bg-red-400' },
+    tbc: { label: 'TBC', bg: 'bg-amber-500/10', text: 'text-amber-400', dot: 'bg-amber-400' },
+    na: { label: 'N/A', bg: 'bg-white/5', text: 'text-white/30', dot: 'bg-white/30' },
+    depends: { label: 'Depends', bg: 'bg-amber-500/10', text: 'text-amber-400', dot: 'bg-amber-400' },
   };
-  const { text, color } = config[status];
-  return <span className={`${color} font-semibold text-[13px]`}>{text}</span>;
+  const c = config[status];
+  return (
+    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full ${c.bg}`}>
+      <span className={`w-1.5 h-1.5 rounded-full ${c.dot}`} />
+      <span className={`${c.text} font-semibold text-[11px]`}>{c.label}</span>
+    </span>
+  );
 }
 
 function isStale(dateStr: string): boolean {
@@ -228,40 +233,77 @@ export default function SgFeaturesView({ onBack }: { onBack: () => void }) {
             )}
           </div>
 
+          {/* Summary Stats */}
+          {features.length > 0 && (
+            <div className="flex gap-3">
+              {[
+                { label: 'Service in SG', count: filteredFeatures.filter(f => f.serviceInSg === 'yes').length, total: filteredFeatures.length, color: 'emerald' },
+                { label: 'Model in SG', count: filteredFeatures.filter(f => f.modelInSg === 'yes').length, total: filteredFeatures.filter(f => f.modelInSg !== 'na').length, color: 'emerald' },
+              ].map((stat) => (
+                <div key={stat.label} className="flex items-center gap-3 px-4 py-2.5 rounded-xl" style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                  <div className="flex flex-col">
+                    <span className="text-[10px] text-white/40 font-semibold uppercase tracking-wider">{stat.label}</span>
+                    <span className="text-[18px] font-bold text-white">{stat.count}<span className="text-white/30 text-[13px] font-normal">/{stat.total}</span></span>
+                  </div>
+                  <div className="w-12 h-1.5 rounded-full bg-white/10 overflow-hidden">
+                    <div className={`h-full rounded-full ${stat.count === stat.total ? 'bg-emerald-400' : stat.count > stat.total / 2 ? 'bg-amber-400' : 'bg-red-400'}`} style={{ width: `${stat.total > 0 ? (stat.count / stat.total) * 100 : 0}%` }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
           {/* Feature Table */}
           {features.length === 0 ? (
             <div className="text-center py-10 text-white/30 text-[14px]">
               Data coming soon for {cloud.toUpperCase()}
             </div>
           ) : (
-            <div className="overflow-x-auto rounded-xl border border-white/10">
+            <div className="overflow-x-auto rounded-2xl" style={{ background: 'rgba(255,255,255,0.015)', border: '1px solid rgba(255,255,255,0.08)' }}>
               <table className="w-full text-[12px]">
                 <thead>
-                  <tr style={{ background: 'rgba(255,54,33,0.08)' }}>
-                    <th className="text-left px-4 py-3 text-white/70 font-bold">Feature</th>
-                    <th className="text-center px-3 py-3 text-white/70 font-bold whitespace-nowrap">Service in SG 🇸🇬?</th>
-                    <th className="text-center px-3 py-3 text-white/70 font-bold whitespace-nowrap">Model in SG 🇸🇬?</th>
-                    <th className="text-left px-4 py-3 text-white/70 font-bold">Comments</th>
+                  <tr>
+                    <th className="text-left px-5 py-3.5 text-[11px] text-white/50 font-bold uppercase tracking-wider" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>Feature</th>
+                    <th className="text-center px-3 py-3.5 text-[11px] text-white/50 font-bold uppercase tracking-wider whitespace-nowrap" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>Service in SG</th>
+                    <th className="text-center px-3 py-3.5 text-[11px] text-white/50 font-bold uppercase tracking-wider whitespace-nowrap" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>Model in SG</th>
+                    <th className="text-left px-5 py-3.5 text-[11px] text-white/50 font-bold uppercase tracking-wider" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>Notes</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredFeatures.map((f, i) => (
-                    <tr
-                      key={f.feature}
-                      className="border-t border-white/5 hover:bg-white/[0.02] transition-colors"
-                      style={i % 2 === 0 ? { background: 'rgba(255,255,255,0.01)' } : {}}
-                    >
-                      <td className="px-4 py-2.5 text-white font-medium">{f.feature}</td>
-                      <td className="px-3 py-2.5 text-center"><StatusBadge status={f.serviceInSg} /></td>
-                      <td className="px-3 py-2.5 text-center"><StatusBadge status={f.modelInSg} /></td>
-                      <td className="px-4 py-2.5 text-white/40">
-                        {f.comments}
-                        {f.source && (
-                          <a href={f.source} target="_blank" rel="noopener noreferrer" className="ml-1 text-[#FF3621]/60 hover:text-[#FF3621] text-[10px]">[docs]</a>
-                        )}
-                      </td>
-                    </tr>
-                  ))}
+                  {(() => {
+                    let lastCategory = '';
+                    return filteredFeatures.map((f) => {
+                      const showCategoryHeader = f.category !== lastCategory;
+                      lastCategory = f.category;
+                      const categoryLabel = f.category === 'agentic' ? 'Agentic AI' : f.category === 'ml' ? 'ML & Platform' : 'Models';
+                      return (
+                        <>
+                          {showCategoryHeader && (
+                            <tr key={`cat-${f.category}`}>
+                              <td colSpan={4} className="px-5 pt-4 pb-2">
+                                <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#FF3621]/70">{categoryLabel}</span>
+                              </td>
+                            </tr>
+                          )}
+                          <tr
+                            key={f.feature}
+                            className="hover:bg-white/[0.03] transition-colors"
+                            style={{ borderTop: '1px solid rgba(255,255,255,0.04)' }}
+                          >
+                            <td className="px-5 py-3 text-[13px] text-white font-medium">{f.feature}</td>
+                            <td className="px-3 py-3 text-center"><StatusBadge status={f.serviceInSg} /></td>
+                            <td className="px-3 py-3 text-center"><StatusBadge status={f.modelInSg} /></td>
+                            <td className="px-5 py-3">
+                              <span className="text-[11px] text-white/35 leading-relaxed">{f.comments}</span>
+                              {f.source && (
+                                <a href={f.source} target="_blank" rel="noopener noreferrer" className="ml-1.5 text-[#FF3621]/40 hover:text-[#FF3621] text-[10px] no-underline">↗</a>
+                              )}
+                            </td>
+                          </tr>
+                        </>
+                      );
+                    });
+                  })()}
                 </tbody>
               </table>
             </div>
