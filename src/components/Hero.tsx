@@ -82,6 +82,7 @@ const sections = [
     title: 'Sizing',
     tiles: [
       { label: 'Pricing & Cost Calculators', emoji: '💲', href: '#pricing', drilldown: 'pricing' },
+      { label: 'Compute & Cluster Sizing', emoji: '⚡', href: '#compute-sizing', drilldown: 'compute-sizing' },
     ],
   },
   {
@@ -284,6 +285,16 @@ const lakeflowConnectResourceGroups = [
   },
 ];
 
+const computeSizingResourceGroups = [
+  {
+    category: 'Resources',
+    items: [
+      { title: 'Compute Configuration Recommendations', desc: 'Cores, memory, instance type guidance', icon: '🖥️', href: 'https://docs.databricks.com/aws/en/compute/cluster-config-best-practices', source: 'Databricks Docs' },
+      { title: 'SQL Warehouse Sizing & Scaling', desc: 'T-shirt sizes, autoscaling, concurrency', icon: '📐', href: 'https://docs.databricks.com/aws/en/compute/sql-warehouse/warehouse-behavior', source: 'Databricks Docs' },
+    ],
+  },
+];
+
 const pricingResourceGroups = [
   {
     category: 'Resources',
@@ -305,6 +316,7 @@ const drilldownData: Record<string, { title: string; image: string; groups: type
   'lakebase': { title: 'Lakebase', image: '/icons/databricks/lakebase.svg', groups: lakebaseResourceGroups },
   'dab': { title: 'Declarative Automation Bundles', image: '/icons/databricks/asset-bundle.svg', groups: dabResourceGroups },
   'lakeflow-connect': { title: 'Lakeflow Connect', image: '/icons/databricks/lakeflow-connect.svg', groups: lakeflowConnectResourceGroups },
+  'compute-sizing': { title: 'Compute & Cluster Sizing', image: '', groups: computeSizingResourceGroups },
   'pricing': { title: 'Pricing & Cost Calculators', image: '', groups: pricingResourceGroups },
   'cost-monitoring': { title: 'Cost Monitoring', image: '', groups: costMonitoringGroups },
 };
