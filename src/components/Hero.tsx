@@ -484,37 +484,35 @@ function EventBanner() {
   const isHappening = new Date() >= EVENT_DATE && new Date() <= EVENT_END;
 
   return (
-    <div className="relative z-10 w-full flex justify-center px-6 pb-8">
-      <motion.a
-        href={EVENT_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.4, delay: 0.4 }}
-        className="inline-flex items-center gap-3 no-underline group px-5 py-2.5 rounded-full transition-all duration-300 hover:scale-[1.02]"
-        style={{
-          background: 'rgba(255,54,33,0.08)',
-          border: '1px solid rgba(255,54,33,0.25)',
-          boxShadow: '0 0 20px rgba(255,54,33,0.06)',
-        }}
-      >
-        <span className="text-[14px]">🎪</span>
-        <span className="text-[12px] font-bold text-white">DATA + AI SUMMIT</span>
-        <span className="text-[11px] text-white/40">June 9–12</span>
-        {isHappening ? (
-          <span className="text-[10px] font-bold bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            LIVE
-          </span>
-        ) : (
-          <span className="text-[11px] font-bold text-[#FF3621]/70">{daysLeft}d left</span>
-        )}
-        <span className="text-[11px] font-bold text-[#FF3621] group-hover:text-white bg-[#FF3621]/15 group-hover:bg-[#FF3621] px-3 py-1 rounded-full transition-all duration-200">
-          {isHappening ? 'Watch →' : 'Register →'}
+    <motion.a
+      href={EVENT_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.4, delay: 0.5 }}
+      className="absolute top-12 right-6 z-20 inline-flex items-center gap-2 no-underline group px-3.5 py-2 rounded-full transition-all duration-300 hover:scale-[1.03]"
+      style={{
+        background: 'rgba(255,54,33,0.1)',
+        border: '1px solid rgba(255,54,33,0.25)',
+        backdropFilter: 'blur(8px)',
+      }}
+    >
+      <span className="text-[12px]">🎪</span>
+      <span className="text-[11px] font-bold text-white">DATA + AI SUMMIT</span>
+      <span className="text-[10px] text-white/35">Jun 9–12</span>
+      {isHappening ? (
+        <span className="text-[9px] font-bold bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded-full flex items-center gap-1">
+          <span className="w-1 h-1 rounded-full bg-emerald-400 animate-pulse" />
+          LIVE
         </span>
-      </motion.a>
-    </div>
+      ) : (
+        <span className="text-[10px] font-bold text-[#FF3621]/60">{daysLeft}d</span>
+      )}
+      <span className="text-[10px] font-bold text-[#FF3621] group-hover:text-white bg-[#FF3621]/15 group-hover:bg-[#FF3621] px-2.5 py-1 rounded-full transition-all duration-200">
+        {isHappening ? 'Watch →' : 'Register →'}
+      </span>
+    </motion.a>
   );
 }
 
@@ -669,7 +667,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Featured Event Banner */}
+      {/* Featured Event Banner — top right below ticker */}
       <EventBanner />
 
       {/* Spacer */}
