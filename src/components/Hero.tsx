@@ -484,35 +484,71 @@ function EventBanner() {
   const isHappening = new Date() >= EVENT_DATE && new Date() <= EVENT_END;
 
   return (
-    <motion.a
-      href={EVENT_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.4, delay: 0.5 }}
-      className="absolute top-12 right-6 z-20 inline-flex items-center gap-2 no-underline group px-3.5 py-2 rounded-full transition-all duration-300 hover:scale-[1.03]"
-      style={{
-        background: 'rgba(255,54,33,0.1)',
-        border: '1px solid rgba(255,54,33,0.25)',
-        backdropFilter: 'blur(8px)',
-      }}
-    >
-      <span className="text-[12px]">🎪</span>
-      <span className="text-[11px] font-bold text-white">DATA + AI SUMMIT</span>
-      <span className="text-[10px] text-white/35">Jun 9–12</span>
-      {isHappening ? (
-        <span className="text-[9px] font-bold bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded-full flex items-center gap-1">
-          <span className="w-1 h-1 rounded-full bg-emerald-400 animate-pulse" />
-          LIVE
-        </span>
-      ) : (
-        <span className="text-[10px] font-bold text-[#FF3621]/60">{daysLeft}d</span>
-      )}
-      <span className="text-[10px] font-bold text-[#FF3621] group-hover:text-white bg-[#FF3621]/15 group-hover:bg-[#FF3621] px-2.5 py-1 rounded-full transition-all duration-200">
-        {isHappening ? 'Watch →' : 'Register →'}
-      </span>
-    </motion.a>
+    <div className="relative z-10 w-full flex justify-center px-6 pb-10">
+      <motion.a
+        href={EVENT_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="no-underline group w-full max-w-[420px]"
+      >
+        <div
+          className="relative overflow-hidden rounded-2xl p-[1px] transition-all duration-300 group-hover:scale-[1.02]"
+          style={{ background: 'linear-gradient(135deg, rgba(255,54,33,0.5), rgba(255,112,51,0.2), rgba(255,54,33,0.3))' }}
+        >
+          <div className="relative rounded-2xl px-6 py-5" style={{ background: 'linear-gradient(135deg, #12151c, #0f1218)' }}>
+            {/* Glow effect */}
+            <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-20" style={{ background: 'radial-gradient(circle, #FF3621, transparent 70%)' }} />
+
+            {/* Content */}
+            <div className="relative flex flex-col items-center text-center gap-3">
+              {/* Date badge */}
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#FF3621]">📅 June 2026</span>
+                {isHappening && (
+                  <span className="text-[9px] font-bold bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    LIVE NOW
+                  </span>
+                )}
+              </div>
+
+              {/* Title */}
+              <h3 className="text-[20px] font-extrabold text-white tracking-tight leading-tight">
+                Data + AI Summit 2026
+              </h3>
+
+              {/* Location */}
+              <p className="text-[12px] text-white/40 flex items-center gap-1.5">
+                <span>📍</span> San Francisco, CA · June 9–12
+              </p>
+
+              {/* Countdown */}
+              {!isHappening && daysLeft > 0 && (
+                <div className="flex items-center gap-4 mt-1">
+                  {[
+                    { value: daysLeft, label: 'Days' },
+                  ].map((item) => (
+                    <div key={item.label} className="flex flex-col items-center">
+                      <span className="text-[28px] font-extrabold text-white leading-none">{item.value}</span>
+                      <span className="text-[9px] text-white/30 uppercase tracking-wider mt-1">{item.label} to go</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* CTA Button */}
+              <div className="mt-2 px-6 py-2.5 rounded-xl text-[13px] font-bold text-white transition-all duration-200"
+                style={{ background: 'linear-gradient(135deg, #FF3621, #e02e1b)', boxShadow: '0 4px 15px rgba(255,54,33,0.3)' }}>
+                {isHappening ? '🔴 Watch Live' : '🎟️ Register Free'}
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.a>
+    </div>
   );
 }
 
@@ -667,7 +703,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Featured Event Banner — top right below ticker */}
+      {/* Featured Event */}
       <EventBanner />
 
       {/* Spacer */}
