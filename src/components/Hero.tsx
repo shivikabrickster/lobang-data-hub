@@ -592,7 +592,7 @@ export default function Hero() {
       </div>
 
       {/* Title + Punchline — centered */}
-      <div className="relative z-10 w-full px-6 pt-16 md:pt-20">
+      <div className="relative z-10 w-full px-6 pt-12 md:pt-16 pb-8 md:pb-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -602,7 +602,7 @@ export default function Hero() {
           <h1 className="text-[clamp(2rem,4.5vw,3rem)] font-bold text-white leading-tight tracking-tight">
             The <span className="text-[#FF3621]">Lobang</span> Data Hub 🇸🇬
           </h1>
-          <p className="text-[#71717a] text-[15px] mt-4">
+          <p className="text-[#71717a] text-[15px] mt-3">
             Don't say bojio! — Your one-stop Databricks resource hub.
           </p>
         </motion.div>
