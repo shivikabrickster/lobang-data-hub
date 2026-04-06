@@ -67,7 +67,7 @@ const sections = [
     title: 'Explore',
     tiles: [
       { label: 'Demo Centre', emoji: '🎬', href: 'https://www.databricks.com/resources/demos' },
-      { label: 'Release Hub', emoji: '🚀', href: 'https://databricksreleasehub.com/timeline' },
+      { label: 'Release Hub', emoji: '🚀', href: '#release-hub', drilldown: 'release-hub' },
       { label: 'NextGen Lakehouse', emoji: '🏠', href: 'https://www.nextgenlakehouse.com/' },
       { label: 'Community', emoji: '💬', image: '/icons/databricks/community.svg', href: 'https://community.databricks.com/tmcxu86974/' },
     ],
@@ -338,6 +338,16 @@ const pricingResourceGroups = [
   },
 ];
 
+const releaseHubResourceGroups = [
+  {
+    category: 'Resources',
+    items: [
+      { title: 'Release Hub Timeline', desc: 'Visual timeline of all Databricks releases', icon: '📅', href: 'https://databricksreleasehub.com/timeline', source: 'Release Hub' },
+      { title: 'Release Notes', desc: 'Official Databricks release notes', icon: '📝', href: 'https://docs.databricks.com/aws/en/release-notes/', source: 'Databricks Docs' },
+    ],
+  },
+];
+
 const trainingsResourceGroups = [
   {
     category: 'Resources',
@@ -360,6 +370,7 @@ const productHelpResourceGroups = [
 ];
 
 const drilldownData: Record<string, { title: string; image: string; groups: typeof awsResourceGroups }> = {
+  'release-hub': { title: 'Release Hub', image: '', groups: releaseHubResourceGroups },
   'trainings': { title: 'Trainings', image: '', groups: trainingsResourceGroups },
   'product-help': { title: 'Product Help', image: '', groups: productHelpResourceGroups },
   aws: { title: 'Databricks on AWS', image: '/icons/aws.svg', groups: awsResourceGroups },
