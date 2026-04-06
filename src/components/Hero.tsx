@@ -81,8 +81,7 @@ const sections = [
   {
     title: 'Sizing',
     tiles: [
-      { label: 'Pricing Calculator', emoji: '💲', href: 'https://www.databricks.com/product/pricing/product-pricing/instance-types' },
-      { label: 'Pricing Overview', emoji: '📊', href: 'https://www.databricks.com/product/pricing' },
+      { label: 'Pricing & Cost Calculators', emoji: '💲', href: '#pricing', drilldown: 'pricing' },
     ],
   },
   {
@@ -285,6 +284,16 @@ const lakeflowConnectResourceGroups = [
   },
 ];
 
+const pricingResourceGroups = [
+  {
+    category: 'Resources',
+    items: [
+      { title: 'Pricing Calculator', desc: 'Instance types and cost calculator', icon: '🧮', href: 'https://www.databricks.com/product/pricing/product-pricing/instance-types', source: 'Databricks' },
+      { title: 'Pricing Overview', desc: 'DBU rates by SKU and tier (AWS/Azure/GCP)', icon: '📊', href: 'https://www.databricks.com/product/pricing', source: 'Databricks' },
+    ],
+  },
+];
+
 const drilldownData: Record<string, { title: string; image: string; groups: typeof awsResourceGroups }> = {
   aws: { title: 'Databricks on AWS', image: '/icons/aws.svg', groups: awsResourceGroups },
   azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
@@ -296,6 +305,7 @@ const drilldownData: Record<string, { title: string; image: string; groups: type
   'lakebase': { title: 'Lakebase', image: '/icons/databricks/lakebase.svg', groups: lakebaseResourceGroups },
   'dab': { title: 'Declarative Automation Bundles', image: '/icons/databricks/asset-bundle.svg', groups: dabResourceGroups },
   'lakeflow-connect': { title: 'Lakeflow Connect', image: '/icons/databricks/lakeflow-connect.svg', groups: lakeflowConnectResourceGroups },
+  'pricing': { title: 'Pricing & Cost Calculators', image: '', groups: pricingResourceGroups },
   'cost-monitoring': { title: 'Cost Monitoring', image: '', groups: costMonitoringGroups },
 };
 
