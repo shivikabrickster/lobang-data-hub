@@ -51,6 +51,13 @@ const sections = [
     ],
   },
   {
+    title: 'Security & Compliance',
+    tiles: [
+      { label: 'Security & Trust Center', emoji: '🛡️', image: '/icons/databricks/shield-check.svg', href: 'https://www.databricks.com/trust/security-features' },
+      { label: 'SG Feature Availability', emoji: '🇸🇬', href: '#sg-features', drilldown: 'sg-features' },
+    ],
+  },
+  {
     title: 'Cloud Provider',
     tiles: [
       { label: 'AWS', emoji: '☁️', image: '/icons/aws.svg', href: '#aws', drilldown: 'aws' },
@@ -88,13 +95,6 @@ const sections = [
     ],
   },
   {
-    title: 'Security & Compliance',
-    tiles: [
-      { label: 'Security & Trust Center', emoji: '🛡️', image: '/icons/databricks/shield-check.svg', href: 'https://www.databricks.com/trust/security-features' },
-      { label: 'SG Feature Availability', emoji: '🇸🇬', href: '#sg-features', drilldown: 'sg-features' },
-    ],
-  },
-  {
     title: 'Sizing',
     tiles: [
       { label: 'Pricing & Cost Calculators', emoji: '💲', image: '/icons/databricks/chart-line.svg', href: '#pricing', drilldown: 'pricing' },
@@ -105,8 +105,8 @@ const sections = [
   {
     title: 'Cost & Performance',
     tiles: [
-      { label: 'Cost Monitoring', emoji: '💰', image: '/icons/databricks/search-data.svg', href: '#cost-monitoring', drilldown: 'cost-monitoring' },
-      { label: 'Cost Optimization', emoji: '📉', image: '/icons/databricks/bars-descending.svg', href: '#cost-optimization', drilldown: 'cost-optimization' },
+      { label: 'Cost Monitoring', emoji: '💰', image: '/icons/databricks/pie-chart.svg', href: '#cost-monitoring', drilldown: 'cost-monitoring' },
+      { label: 'Cost Optimization', emoji: '📉', image: '/icons/databricks/gear.svg', href: '#cost-optimization', drilldown: 'cost-optimization' },
       { label: 'Benchmarks', emoji: '🏆', image: '/icons/databricks/performance.svg', href: '#benchmarks', drilldown: 'benchmarks' },
     ],
   },
