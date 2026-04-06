@@ -70,6 +70,7 @@ const sections = [
       { label: 'Release Hub', emoji: '🚀', href: '#release-hub', drilldown: 'release-hub' },
       { label: 'NextGen Lakehouse', emoji: '🏠', href: 'https://www.nextgenlakehouse.com/' },
       { label: 'Community', emoji: '💬', image: '/icons/databricks/community.svg', href: 'https://community.databricks.com/tmcxu86974/' },
+      { label: 'User Groups', emoji: '👥', href: 'https://usergroups.databricks.com/' },
     ],
   },
   {
