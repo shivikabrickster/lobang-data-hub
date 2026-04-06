@@ -43,8 +43,8 @@ const sections = [
   {
     title: 'Get Started',
     tiles: [
-      { label: 'Starter Journey', emoji: '🗺️', image: '/icons/databricks/rocket.svg', href: 'https://databricks-solutions.github.io/starter-journey/' },
-      { label: 'Free Edition', emoji: '⚡', image: '/icons/databricks/lightning.svg', href: 'https://www.databricks.com/learn/free-edition' },
+      { label: 'Starter Journey', emoji: '🗺️', image: '/icons/databricks/map.svg', href: 'https://databricks-solutions.github.io/starter-journey/' },
+      { label: 'Free Edition', emoji: '⚡', image: '/icons/databricks/sparkle.svg', href: 'https://www.databricks.com/learn/free-edition' },
       { label: 'Cheatsheet', emoji: '📋', image: '/icons/databricks/book.svg', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf' },
       { label: 'Trainings', emoji: '🎓', image: '/icons/databricks/training.svg', href: '#trainings', drilldown: 'trainings' },
       { label: 'Product Help', emoji: '🛟', image: '/icons/databricks/help.svg', href: '#product-help', drilldown: 'product-help' },
@@ -67,7 +67,7 @@ const sections = [
   {
     title: 'Build',
     tiles: [
-      { label: 'AI Dev Kit', emoji: '🤖', href: '#ai-dev-kit', drilldown: 'ai-dev-kit' },
+      { label: 'AI Dev Kit', emoji: '🤖', image: '/icons/databricks/mosaic-ai.svg', href: '#ai-dev-kit', drilldown: 'ai-dev-kit' },
       { label: 'Databricks Apps', emoji: '📱', image: '/icons/databricks/apps.svg', href: '#databricks-apps', drilldown: 'databricks-apps' },
       { label: 'Genie', emoji: '🧞', image: '/icons/databricks/genie.svg', href: '#genie', drilldown: 'genie' },
       { label: 'Genie Code', emoji: '👨‍💻', image: '/icons/genie-code.png', href: '#genie-code', drilldown: 'genie-code' },
@@ -81,7 +81,7 @@ const sections = [
     title: 'Explore',
     tiles: [
       { label: 'Demo Centre', emoji: '🎬', image: '/icons/databricks/play.svg', href: 'https://www.databricks.com/resources/demos' },
-      { label: 'Release Hub', emoji: '🚀', image: '/icons/databricks/rocket.svg', href: '#release-hub', drilldown: 'release-hub' },
+      { label: 'Release Hub', emoji: '🚀', image: '/icons/databricks/globe.svg', href: '#release-hub', drilldown: 'release-hub' },
       { label: 'NextGen Lakehouse', emoji: '🏠', image: '/icons/databricks/lakehouse.svg', href: 'https://www.nextgenlakehouse.com/' },
       { label: 'Community', emoji: '💬', image: '/icons/databricks/community.svg', href: 'https://community.databricks.com/tmcxu86974/' },
       { label: 'User Groups', emoji: '👥', image: '/icons/databricks/user-group.svg', href: 'https://usergroups.databricks.com/' },
@@ -98,7 +98,7 @@ const sections = [
     title: 'Sizing',
     tiles: [
       { label: 'Pricing & Cost Calculators', emoji: '💲', image: '/icons/databricks/chart-line.svg', href: '#pricing', drilldown: 'pricing' },
-      { label: 'Compute & Cluster Sizing', emoji: '⚡', image: '/icons/databricks/lightning.svg', href: '#compute-sizing', drilldown: 'compute-sizing' },
+      { label: 'Compute & Cluster Sizing', emoji: '⚡', image: '/icons/databricks/cluster.svg', href: '#compute-sizing', drilldown: 'compute-sizing' },
       { label: 'Lakemeter', emoji: '📏', href: '#lakemeter', drilldown: 'lakemeter' },
     ],
   },
