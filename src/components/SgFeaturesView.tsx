@@ -13,18 +13,18 @@ import {
 } from '../data/sgFeaturesData';
 
 function StatusBadge({ status }: { status: AvailabilityStatus }) {
-  const config: Record<AvailabilityStatus, { label: string; bg: string; text: string; dot: string }> = {
-    yes: { label: 'Yes', bg: 'bg-emerald-500/15', text: 'text-emerald-400', dot: 'bg-emerald-400' },
-    no: { label: 'No', bg: 'bg-red-500/15', text: 'text-red-400', dot: 'bg-red-400' },
-    tbc: { label: 'TBC', bg: 'bg-amber-500/15', text: 'text-amber-400', dot: 'bg-amber-400' },
-    na: { label: 'N/A', bg: 'bg-white/5', text: 'text-white/40', dot: 'bg-white/30' },
-    depends: { label: 'Depends', bg: 'bg-amber-500/15', text: 'text-amber-400', dot: 'bg-amber-400' },
+  const config: Record<AvailabilityStatus, { label: string; bg: string; text: string; dot: string; glow: string }> = {
+    yes: { label: 'Available', bg: 'bg-emerald-500/10', text: 'text-emerald-400', dot: 'bg-emerald-400', glow: 'shadow-[0_0_6px_rgba(52,211,153,0.3)]' },
+    no: { label: 'Unavailable', bg: 'bg-red-500/10', text: 'text-red-400', dot: 'bg-red-400', glow: 'shadow-[0_0_6px_rgba(248,113,113,0.3)]' },
+    tbc: { label: 'TBC', bg: 'bg-amber-500/10', text: 'text-amber-400', dot: 'bg-amber-400', glow: 'shadow-[0_0_6px_rgba(251,191,36,0.3)]' },
+    na: { label: '—', bg: '', text: 'text-white/30', dot: 'bg-white/20', glow: '' },
+    depends: { label: 'Depends', bg: 'bg-amber-500/10', text: 'text-amber-400', dot: 'bg-amber-400', glow: 'shadow-[0_0_6px_rgba(251,191,36,0.3)]' },
   };
   const c = config[status];
   return (
-    <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full ${c.bg}`}>
-      <span className={`w-1.5 h-1.5 rounded-full ${c.dot}`} />
-      <span className={`${c.text} font-semibold text-[11px]`}>{c.label}</span>
+    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full ${c.bg}`}>
+      <span className={`w-2 h-2 rounded-full ${c.dot} ${c.glow}`} />
+      <span className={`${c.text} font-bold text-[10px] uppercase tracking-wide`}>{c.label}</span>
     </span>
   );
 }
@@ -205,26 +205,29 @@ export default function SgFeaturesView({ onBack }: { onBack: () => void }) {
                           <span className="text-[11px] text-white/20">{rows.length}</span>
                           <div className="flex-1 h-px bg-white/6" />
                         </div>
-                        <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                        <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.015)', border: '1px solid rgba(255,255,255,0.08)' }}>
                           {/* Column headers */}
-                          <div className="flex items-center px-5 py-2.5" style={{ background: 'rgba(255,255,255,0.02)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-                            <div className="w-[38%]"><span className="text-[11px] text-[#FF3621] font-extrabold uppercase tracking-wider">Feature</span></div>
-                            <div className="w-[14%] text-center"><span className="text-[11px] text-[#FF3621] font-extrabold uppercase tracking-wider">Service in SG 🇸🇬</span></div>
-                            <div className="w-[14%] text-center"><span className="text-[11px] text-[#FF3621] font-extrabold uppercase tracking-wider">Model in SG 🇸🇬</span></div>
-                            <div className="w-[34%] pl-3"><span className="text-[11px] text-[#FF3621] font-extrabold uppercase tracking-wider">Comments</span></div>
+                          <div className="flex items-center px-5 py-3" style={{ background: 'rgba(255,54,33,0.06)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+                            <div className="w-[36%]"><span className="text-[11px] text-[#FF3621] font-extrabold uppercase tracking-wider">Feature</span></div>
+                            <div className="w-[16%] text-center"><span className="text-[11px] text-[#FF3621] font-extrabold uppercase tracking-wider">Service in SG 🇸🇬</span></div>
+                            <div className="w-[16%] text-center"><span className="text-[11px] text-[#FF3621] font-extrabold uppercase tracking-wider">Model in SG 🇸🇬</span></div>
+                            <div className="w-[32%] pl-4"><span className="text-[11px] text-[#FF3621] font-extrabold uppercase tracking-wider">Comments</span></div>
                           </div>
                           {rows.map((f, i) => (
                             <div key={f.feature}
-                              className="flex items-center px-5 py-3 hover:bg-white/[0.02] transition-colors group"
-                              style={{ borderTop: i > 0 ? '1px solid rgba(255,255,255,0.04)' : undefined }}>
-                              <div className="w-[38%] pr-3">
-                                <span className="text-[12px] text-white/90 font-medium">{f.feature}</span>
+                              className="flex items-center px-5 py-3 transition-all duration-150 hover:bg-[#FF3621]/[0.03]"
+                              style={{
+                                background: i % 2 === 0 ? 'rgba(255,255,255,0.01)' : 'transparent',
+                                borderTop: i > 0 ? '1px solid rgba(255,255,255,0.04)' : undefined,
+                              }}>
+                              <div className="w-[36%] pr-3">
+                                <span className="text-[12px] text-white font-semibold">{f.feature}</span>
                               </div>
-                              <div className="w-[14%] flex justify-center"><StatusBadge status={f.serviceInSg} /></div>
-                              <div className="w-[14%] flex justify-center"><StatusBadge status={f.modelInSg} /></div>
-                              <div className="w-[34%] pl-3 flex items-center gap-1">
-                                {f.comments && <span className="text-[11px] text-white/70 font-semibold">{f.comments}</span>}
-                                {f.source && <a href={f.source} target="_blank" rel="noopener noreferrer" className="text-[#FF3621]/40 hover:text-[#FF3621] text-[10px] no-underline shrink-0">↗</a>}
+                              <div className="w-[16%] flex justify-center"><StatusBadge status={f.serviceInSg} /></div>
+                              <div className="w-[16%] flex justify-center"><StatusBadge status={f.modelInSg} /></div>
+                              <div className="w-[32%] pl-4 flex items-center gap-1.5">
+                                {f.comments && <span className="text-[11px] text-white/60 font-medium">{f.comments}</span>}
+                                {f.source && <a href={f.source} target="_blank" rel="noopener noreferrer" className="text-[#FF3621]/50 hover:text-[#FF3621] text-[11px] no-underline shrink-0">↗</a>}
                               </div>
                             </div>
                           ))}
@@ -244,15 +247,23 @@ export default function SgFeaturesView({ onBack }: { onBack: () => void }) {
                       <span className="text-[11px] text-white/20">{models.length}</span>
                       <div className="flex-1 h-px bg-white/6" />
                     </div>
-                    <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                    <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.015)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                      <div className="flex items-center px-5 py-3" style={{ background: 'rgba(255,54,33,0.06)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+                        <div className="w-[40%]"><span className="text-[11px] text-[#FF3621] font-extrabold uppercase tracking-wider">Model</span></div>
+                        <div className="w-[20%] text-center"><span className="text-[11px] text-[#FF3621] font-extrabold uppercase tracking-wider">In SG 🇸🇬</span></div>
+                        <div className="w-[40%] pl-4"><span className="text-[11px] text-[#FF3621] font-extrabold uppercase tracking-wider">Comments</span></div>
+                      </div>
                       {models.map((m, i) => (
-                        <div key={m.model} className="flex items-center px-5 py-2.5 hover:bg-white/[0.02]"
-                          style={{ borderTop: i > 0 ? '1px solid rgba(255,255,255,0.04)' : undefined }}>
-                          <div className="w-[40%]"><span className="text-[12px] text-white/90 font-medium">{m.model}</span></div>
-                          <div className="w-[15%] flex justify-center">
+                        <div key={m.model} className="flex items-center px-5 py-3 transition-all duration-150 hover:bg-[#FF3621]/[0.03]"
+                          style={{
+                            background: i % 2 === 0 ? 'rgba(255,255,255,0.01)' : 'transparent',
+                            borderTop: i > 0 ? '1px solid rgba(255,255,255,0.04)' : undefined,
+                          }}>
+                          <div className="w-[40%]"><span className="text-[12px] text-white font-semibold">{m.model}</span></div>
+                          <div className="w-[20%] flex justify-center">
                             <StatusBadge status={m.availableInSg ? 'yes' : 'no'} />
                           </div>
-                          <div className="w-[45%] pl-3"><span className="text-[11px] text-white/70">{m.comments}</span></div>
+                          <div className="w-[40%] pl-4"><span className="text-[11px] text-white/60 font-medium">{m.comments}</span></div>
                         </div>
                       ))}
                     </div>
