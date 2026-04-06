@@ -609,7 +609,7 @@ export default function Hero() {
       </div>
 
       {/* Main content area */}
-      <div className="relative z-10 flex-1 flex items-center justify-center px-6">
+      <div className="relative z-10 flex-1 flex items-start justify-center px-6 mt-6">
         <AnimatePresence mode="wait">
           {activeDrilldown === 'sg-features' ? (
             <SgFeaturesView
