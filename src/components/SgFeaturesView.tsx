@@ -385,7 +385,7 @@ export default function SgFeaturesView({ onBack }: { onBack: () => void }) {
 
           {/* General FAQ */}
           <div className="text-[11px] text-white/40 font-bold uppercase tracking-wider px-1 mt-1">General</div>
-          {faqItems.filter((f) => f.category === 'general').map((faq, i) => {
+          {faqItems.filter((f) => f.category === 'general').map((faq) => {
             const idx = faqItems.indexOf(faq);
             return (
               <div key={idx} className="rounded-xl overflow-hidden" style={{ border: '1px solid rgba(255,255,255,0.06)' }}>
