@@ -482,7 +482,6 @@ function EventBanner() {
   if (new Date() > EVENT_END) return null;
 
   const isHappening = new Date() >= EVENT_DATE && new Date() <= EVENT_END;
-  const progress = Math.max(0, Math.min(100, ((90 - daysLeft) / 90) * 100));
 
   return (
     <div className="relative z-10 w-full flex justify-center px-6 pb-8">
