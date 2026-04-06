@@ -68,7 +68,6 @@ const sections = [
       { label: 'Release Hub', emoji: '🚀', href: 'https://databricksreleasehub.com/timeline' },
       { label: 'NextGen Lakehouse', emoji: '🏠', href: 'https://www.nextgenlakehouse.com/' },
       { label: 'Community', emoji: '💬', image: '/icons/databricks/community.svg', href: 'https://community.databricks.com/tmcxu86974/' },
-      { label: 'Cost Monitoring', emoji: '💰', href: '#cost-monitoring', drilldown: 'cost-monitoring' },
     ],
   },
   {
@@ -83,6 +82,12 @@ const sections = [
     tiles: [
       { label: 'Pricing & Cost Calculators', emoji: '💲', href: '#pricing', drilldown: 'pricing' },
       { label: 'Compute & Cluster Sizing', emoji: '⚡', href: '#compute-sizing', drilldown: 'compute-sizing' },
+    ],
+  },
+  {
+    title: 'Cost Optimization, Monitoring & Benchmarks',
+    tiles: [
+      { label: 'Cost Monitoring', emoji: '💰', href: '#cost-monitoring', drilldown: 'cost-monitoring' },
     ],
   },
   {
