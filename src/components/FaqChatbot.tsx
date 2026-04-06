@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send, Bot, User } from 'lucide-react';
+import { MessageCircle, X, Send, Bot, User, Sparkles, RotateCcw } from 'lucide-react';
 
 interface Message {
   role: 'bot' | 'user';
@@ -8,14 +8,14 @@ interface Message {
 }
 
 const suggestedQuestions = [
-  'What features are available in Singapore?',
-  'How do I build AI apps on Databricks?',
-  'What free training is available?',
-  'What are the options for SG agencies?',
-  'Which models are in ap-southeast-1?',
+  '🇸🇬 What features are available in Singapore?',
+  '🤖 How do I build AI apps?',
+  '🎓 What free training is available?',
+  '🏛️ Options for SG agencies?',
+  '📋 Which models are in SG?',
+  '🔐 What about data residency?',
 ];
 
-// Fallback keyword matcher for when API is unavailable
 const fallbackFaqs: { keywords: string[]; answer: string }[] = [
   { keywords: ['singapore', 'sg', 'region', 'available'], answer: 'Databricks is available in Singapore on AWS (ap-southeast-1), Azure (Southeast Asia), and GCP (asia-southeast1). Check the **"Agentic & ML Features in SG"** tile under Security & Compliance for detailed feature availability.' },
   { keywords: ['training', 'learn', 'course', 'free'], answer: 'Check out the **Trainings** tile under Get Started for Training Home and Free Trainings links.' },
@@ -32,49 +32,92 @@ function fallbackAnswer(input: string): string {
   return "I'm having trouble connecting right now. Browse the tiles on the main page — they're organized by topic (Build, Explore, Security & Compliance, etc.) to help you find what you need!";
 }
 
+// Render markdown-like text: **bold**, [links](url), bullet points
+function RenderText({ text }: { text: string }) {
+  const lines = text.split('\n');
+  return (
+    <>
+      {lines.map((line, li) => {
+        const isBullet = line.trimStart().startsWith('- ') || line.trimStart().startsWith('• ');
+        const content = isBullet ? line.replace(/^\s*[-•]\s*/, '') : line;
+
+        // Parse **bold** and [links](url)
+        const parts = content.split(/(\*\*.*?\*\*|\[.*?\]\(.*?\))/).map((part, pi) => {
+          if (part.startsWith('**') && part.endsWith('**')) {
+            return <strong key={pi} className="font-semibold text-white">{part.slice(2, -2)}</strong>;
+          }
+          const linkMatch = part.match(/^\[(.*?)\]\((.*?)\)$/);
+          if (linkMatch) {
+            return <a key={pi} href={linkMatch[2]} target="_blank" rel="noopener noreferrer" className="text-[#FF3621] hover:text-[#ff5a45] underline underline-offset-2">{linkMatch[1]}</a>;
+          }
+          return <span key={pi}>{part}</span>;
+        });
+
+        if (isBullet) {
+          return (
+            <div key={li} className="flex gap-2 mt-1">
+              <span className="text-[#FF3621] shrink-0 mt-0.5">•</span>
+              <span>{parts}</span>
+            </div>
+          );
+        }
+        return <div key={li} className={li > 0 && line === '' ? 'h-2' : ''}>{parts}</div>;
+      })}
+    </>
+  );
+}
+
 export default function FaqChatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'bot', text: "Hi! 👋 I'm the Lobang Bot — your AI assistant for Databricks in Singapore. Ask me anything about features, availability, training, or resources!" },
+    { role: 'bot', text: "Hi! 👋 I'm the **Lobang Bot** — your AI assistant for Databricks in Singapore.\n\nI can help with feature availability, training, pricing, security, and more. What would you like to know?" },
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isTyping]);
 
+  useEffect(() => {
+    if (isOpen) inputRef.current?.focus();
+  }, [isOpen]);
+
   const handleSend = async (text: string) => {
     if (!text.trim()) return;
+    // Strip emoji prefix from suggested questions
+    const cleanText = text.replace(/^[^\w\s]*\s/, '').trim() || text.trim();
 
-    const userMsg: Message = { role: 'user', text: text.trim() };
+    const userMsg: Message = { role: 'user', text: cleanText };
     const updatedMessages = [...messages, userMsg];
     setMessages(updatedMessages);
     setInput('');
     setIsTyping(true);
 
     try {
-      // Send last 10 messages for context (keep it light)
       const recentMessages = updatedMessages.slice(-10);
-
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: recentMessages }),
       });
-
       if (!response.ok) throw new Error('API error');
-
       const data = await response.json();
       setMessages((prev) => [...prev, { role: 'bot', text: data.reply }]);
     } catch {
-      // Fallback to keyword matching if API fails
-      const answer = fallbackAnswer(text);
+      const answer = fallbackAnswer(cleanText);
       setMessages((prev) => [...prev, { role: 'bot', text: answer }]);
     } finally {
       setIsTyping(false);
     }
+  };
+
+  const resetChat = () => {
+    setMessages([
+      { role: 'bot', text: "Hi! 👋 I'm the **Lobang Bot** — your AI assistant for Databricks in Singapore.\n\nI can help with feature availability, training, pricing, security, and more. What would you like to know?" },
+    ]);
   };
 
   return (
@@ -85,124 +128,139 @@ export default function FaqChatbot() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="fixed bottom-20 right-6 z-50 w-[400px] max-h-[560px] rounded-2xl overflow-hidden flex flex-col"
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            className="fixed bottom-20 right-6 z-50 w-[420px] rounded-2xl overflow-hidden flex flex-col"
             style={{
-              background: '#0f1318',
-              border: '1px solid rgba(255,255,255,0.1)',
-              boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+              height: '580px',
+              background: 'linear-gradient(180deg, #0d1117, #0f1419)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              boxShadow: '0 25px 80px rgba(0,0,0,0.6), 0 0 40px rgba(255,54,33,0.08)',
             }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-5 py-4" style={{ background: 'linear-gradient(135deg, #FF3621, #e02e1b)' }}>
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center">
-                  <Bot size={18} className="text-white" />
-                </div>
-                <div>
-                  <div className="text-white font-bold text-[14px]">Lobang Bot</div>
-                  <div className="text-white/70 text-[11px] flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    AI-powered assistant
+            <div className="relative px-5 py-4" style={{ background: 'linear-gradient(135deg, #FF3621 0%, #d42e1a 100%)' }}>
+              <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 80% 20%, white 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+              <div className="relative flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur flex items-center justify-center">
+                    <Sparkles size={20} className="text-white" />
+                  </div>
+                  <div>
+                    <div className="text-white font-bold text-[15px] flex items-center gap-2">
+                      Lobang Bot
+                      <span className="text-[9px] font-semibold bg-white/20 px-1.5 py-0.5 rounded-full uppercase tracking-wider">AI</span>
+                    </div>
+                    <div className="text-white/60 text-[11px] flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      Powered by Llama 3.3
+                    </div>
                   </div>
                 </div>
+                <div className="flex items-center gap-1">
+                  <button onClick={resetChat} className="text-white/50 hover:text-white transition-colors p-2 cursor-pointer bg-transparent border-none rounded-lg hover:bg-white/10" title="Reset chat">
+                    <RotateCcw size={14} />
+                  </button>
+                  <button onClick={() => setIsOpen(false)} className="text-white/50 hover:text-white transition-colors p-2 cursor-pointer bg-transparent border-none rounded-lg hover:bg-white/10">
+                    <X size={16} />
+                  </button>
+                </div>
               </div>
-              <button onClick={() => setIsOpen(false)} className="text-white/70 hover:text-white transition-colors p-1 cursor-pointer bg-transparent border-none">
-                <X size={18} />
-              </button>
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 min-h-[300px] max-h-[380px]">
+            <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
               {messages.map((msg, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className={`flex gap-2 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                  transition={{ duration: 0.25, delay: 0.05 }}
+                  className={`flex gap-2.5 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   {msg.role === 'bot' && (
-                    <div className="w-6 h-6 rounded-full bg-[#FF3621]/20 flex items-center justify-center shrink-0 mt-1">
-                      <Bot size={12} className="text-[#FF3621]" />
+                    <div className="w-7 h-7 rounded-lg bg-[#FF3621]/15 flex items-center justify-center shrink-0 mt-0.5">
+                      <Bot size={14} className="text-[#FF3621]" />
                     </div>
                   )}
                   <div
-                    className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-[13px] leading-relaxed whitespace-pre-line ${
+                    className={`max-w-[82%] rounded-2xl px-4 py-3 text-[13px] leading-[1.6] ${
                       msg.role === 'user'
-                        ? 'bg-[#FF3621] text-white rounded-br-sm'
-                        : 'bg-white/[0.06] text-white/85 rounded-bl-sm'
+                        ? 'bg-[#FF3621] text-white rounded-br-md'
+                        : 'text-white/80 rounded-bl-md'
                     }`}
+                    style={msg.role === 'bot' ? { background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' } : {}}
                   >
-                    {msg.text.split(/(\*\*.*?\*\*)/).map((part, j) =>
-                      part.startsWith('**') && part.endsWith('**') ? (
-                        <strong key={j} className="font-semibold text-white">{part.slice(2, -2)}</strong>
-                      ) : (
-                        <span key={j}>{part}</span>
-                      )
-                    )}
+                    <RenderText text={msg.text} />
                   </div>
                   {msg.role === 'user' && (
-                    <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-1">
-                      <User size={12} className="text-white/60" />
+                    <div className="w-7 h-7 rounded-lg bg-white/8 flex items-center justify-center shrink-0 mt-0.5">
+                      <User size={14} className="text-white/50" />
                     </div>
                   )}
                 </motion.div>
               ))}
 
+              {/* Typing indicator */}
               {isTyping && (
-                <div className="flex gap-2 items-start">
-                  <div className="w-6 h-6 rounded-full bg-[#FF3621]/20 flex items-center justify-center shrink-0 mt-1">
-                    <Bot size={12} className="text-[#FF3621]" />
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-2.5 items-start">
+                  <div className="w-7 h-7 rounded-lg bg-[#FF3621]/15 flex items-center justify-center shrink-0 mt-0.5">
+                    <Bot size={14} className="text-[#FF3621]" />
                   </div>
-                  <div className="bg-white/[0.06] rounded-2xl rounded-bl-sm px-4 py-3">
-                    <div className="flex gap-1">
-                      <span className="w-2 h-2 bg-white/30 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                      <span className="w-2 h-2 bg-white/30 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                      <span className="w-2 h-2 bg-white/30 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                  <div className="rounded-2xl rounded-bl-md px-4 py-3.5" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                    <div className="flex gap-1.5 items-center">
+                      <span className="text-[11px] text-white/30 mr-1">Thinking</span>
+                      <span className="w-1.5 h-1.5 bg-[#FF3621]/60 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                      <span className="w-1.5 h-1.5 bg-[#FF3621]/60 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                      <span className="w-1.5 h-1.5 bg-[#FF3621]/60 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                     </div>
                   </div>
-                </div>
+                </motion.div>
               )}
 
               {/* Suggested questions */}
               {messages.length === 1 && !isTyping && (
-                <div className="flex flex-wrap gap-1.5 pt-2">
+                <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="flex flex-col gap-1.5 pt-1">
+                  <span className="text-[10px] text-white/25 uppercase tracking-wider font-bold px-1 mb-1">Try asking</span>
                   {suggestedQuestions.map((q) => (
                     <button
                       key={q}
                       onClick={() => handleSend(q)}
-                      className="text-[11px] px-3 py-1.5 rounded-full text-white/60 hover:text-white hover:bg-[#FF3621]/10 hover:border-[#FF3621]/30 transition-all cursor-pointer bg-transparent"
-                      style={{ border: '1px solid rgba(255,255,255,0.1)' }}
+                      className="text-left text-[12px] px-3 py-2 rounded-xl text-white/60 hover:text-white transition-all cursor-pointer bg-transparent hover:bg-white/[0.04]"
+                      style={{ border: '1px solid rgba(255,255,255,0.06)' }}
                     >
                       {q}
                     </button>
                   ))}
-                </div>
+                </motion.div>
               )}
 
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input */}
-            <div className="px-4 py-3" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+            {/* Input area */}
+            <div className="px-4 py-3" style={{ borderTop: '1px solid rgba(255,255,255,0.06)', background: 'rgba(0,0,0,0.2)' }}>
               <form onSubmit={(e) => { e.preventDefault(); handleSend(input); }} className="flex items-center gap-2">
                 <input
+                  ref={inputRef}
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask about Databricks in SG..."
                   disabled={isTyping}
-                  className="flex-1 bg-white/[0.06] text-white text-[13px] px-4 py-2.5 rounded-xl border-none outline-none placeholder:text-white/25 focus:bg-white/[0.08] transition-colors disabled:opacity-50"
+                  className="flex-1 bg-white/[0.06] text-white text-[13px] px-4 py-3 rounded-xl border-none outline-none placeholder:text-white/20 focus:bg-white/[0.08] focus:ring-1 focus:ring-[#FF3621]/30 transition-all disabled:opacity-50"
                 />
                 <button
                   type="submit"
                   disabled={!input.trim() || isTyping}
-                  className="w-9 h-9 rounded-xl bg-[#FF3621] flex items-center justify-center text-white shrink-0 hover:bg-[#e02e1b] transition-colors disabled:opacity-30 disabled:hover:bg-[#FF3621] cursor-pointer border-none"
+                  className="w-10 h-10 rounded-xl flex items-center justify-center text-white shrink-0 transition-all cursor-pointer border-none disabled:opacity-20"
+                  style={{ background: !input.trim() || isTyping ? 'rgba(255,255,255,0.05)' : '#FF3621' }}
                 >
-                  <Send size={14} />
+                  <Send size={15} />
                 </button>
               </form>
+              <div className="text-center mt-2">
+                <span className="text-[9px] text-white/15">Powered by Databricks Lobang Data Hub</span>
+              </div>
             </div>
           </motion.div>
         )}
@@ -212,7 +270,7 @@ export default function FaqChatbot() {
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-110 cursor-pointer border-none"
-        style={{ background: '#FF3621', boxShadow: '0 4px 20px rgba(255,54,33,0.35)' }}
+        style={{ background: 'linear-gradient(135deg, #FF3621, #d42e1a)', boxShadow: '0 4px 24px rgba(255,54,33,0.4)' }}
         whileTap={{ scale: 0.95 }}
       >
         <AnimatePresence mode="wait">
@@ -221,7 +279,7 @@ export default function FaqChatbot() {
               <X size={22} />
             </motion.div>
           ) : (
-            <motion.div key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
+            <motion.div key="open" initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.5, opacity: 0 }} transition={{ duration: 0.15 }}>
               <MessageCircle size={22} />
             </motion.div>
           )}
