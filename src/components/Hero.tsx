@@ -608,8 +608,11 @@ export default function Hero() {
         </motion.div>
       </div>
 
+      {/* Spacer */}
+      <div className="h-12 md:h-16" />
+
       {/* Main content area */}
-      <div className="relative z-10 flex-1 flex items-start justify-center px-6 mt-14">
+      <div className="relative z-10 flex-1 flex items-start justify-center px-6">
         <AnimatePresence mode="wait">
           {activeDrilldown === 'sg-features' ? (
             <SgFeaturesView
