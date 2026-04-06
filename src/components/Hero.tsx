@@ -96,6 +96,7 @@ const sections = [
     title: 'Security & Compliance',
     tiles: [
       { label: 'Security & Trust Center', emoji: '🛡️', href: 'https://www.databricks.com/trust/security-features' },
+      { label: 'Agentic and ML Features Availability in SG', emoji: '🇸🇬', href: '#sg-features', drilldown: 'sg-features' },
     ],
   },
   {
@@ -335,6 +336,13 @@ const pricingResourceGroups = [
   },
 ];
 
+const sgFeaturesResourceGroups = [
+  {
+    category: 'Resources',
+    items: [] as { title: string; desc: string; icon: string; href: string; source: string }[],
+  },
+];
+
 const drilldownData: Record<string, { title: string; image: string; groups: typeof awsResourceGroups }> = {
   aws: { title: 'Databricks on AWS', image: '/icons/aws.svg', groups: awsResourceGroups },
   azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
@@ -350,6 +358,7 @@ const drilldownData: Record<string, { title: string; image: string; groups: type
   'cost-optimization': { title: 'Cost Optimization', image: '', groups: costOptimizationResourceGroups },
   'compute-sizing': { title: 'Compute & Cluster Sizing', image: '', groups: computeSizingResourceGroups },
   'pricing': { title: 'Pricing & Cost Calculators', image: '', groups: pricingResourceGroups },
+  'sg-features': { title: 'Agentic and ML Features Availability in SG', image: '', groups: sgFeaturesResourceGroups },
   'cost-monitoring': { title: 'Cost Monitoring', image: '', groups: costMonitoringGroups },
 };
 
