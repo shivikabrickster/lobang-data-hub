@@ -484,66 +484,51 @@ function EventBanner() {
   const isHappening = new Date() >= EVENT_DATE && new Date() <= EVENT_END;
 
   return (
-    <div className="relative z-10 w-full flex justify-start px-6 pb-10">
+    <div className="relative z-10 w-full flex justify-start px-6 pb-6">
       <motion.a
         href={EVENT_URL}
         target="_blank"
         rel="noopener noreferrer"
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
-        className="no-underline group w-full max-w-[420px]"
+        className="no-underline group"
       >
         <div
-          className="relative overflow-hidden rounded-2xl p-[1px] transition-all duration-300 group-hover:scale-[1.02]"
+          className="relative overflow-hidden rounded-xl p-[1px] transition-all duration-300 group-hover:scale-[1.02]"
           style={{ background: 'linear-gradient(135deg, rgba(255,54,33,0.5), rgba(255,112,51,0.2), rgba(255,54,33,0.3))' }}
         >
-          <div className="relative rounded-2xl px-6 py-5" style={{ background: 'linear-gradient(135deg, #12151c, #0f1218)' }}>
-            {/* Glow effect */}
-            <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-20" style={{ background: 'radial-gradient(circle, #FF3621, transparent 70%)' }} />
+          <div className="relative rounded-xl px-5 py-3 flex items-center gap-5" style={{ background: 'linear-gradient(135deg, #12151c, #0f1218)' }}>
+            {/* Glow */}
+            <div className="absolute top-0 right-0 w-24 h-24 rounded-full opacity-15" style={{ background: 'radial-gradient(circle, #FF3621, transparent 70%)' }} />
 
-            {/* Content */}
-            <div className="relative flex flex-col items-center text-center gap-3">
-              {/* Date badge */}
+            {/* Left: Title + location */}
+            <div className="relative flex flex-col gap-0.5">
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#FF3621]">📅 June 2026</span>
+                <span className="text-[15px]">🎪</span>
+                <span className="text-[15px] font-extrabold text-white tracking-tight">Data + AI Summit 2026</span>
                 {isHappening && (
                   <span className="text-[9px] font-bold bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    LIVE NOW
+                    LIVE
                   </span>
                 )}
               </div>
+              <span className="text-[11px] text-white/40 ml-7">📍 San Francisco · June 9–12</span>
+            </div>
 
-              {/* Title */}
-              <h3 className="text-[20px] font-extrabold text-white tracking-tight leading-tight">
-                Data + AI Summit 2026
-              </h3>
-
-              {/* Location */}
-              <p className="text-[12px] text-white/40 flex items-center gap-1.5">
-                <span>📍</span> San Francisco, CA · June 9–12
-              </p>
-
-              {/* Countdown */}
-              {!isHappening && daysLeft > 0 && (
-                <div className="flex items-center gap-4 mt-1">
-                  {[
-                    { value: daysLeft, label: 'Days' },
-                  ].map((item) => (
-                    <div key={item.label} className="flex flex-col items-center">
-                      <span className="text-[28px] font-extrabold text-white leading-none">{item.value}</span>
-                      <span className="text-[9px] text-white/30 uppercase tracking-wider mt-1">{item.label} to go</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* CTA Button */}
-              <div className="mt-2 px-6 py-2.5 rounded-xl text-[13px] font-bold text-white transition-all duration-200"
-                style={{ background: 'linear-gradient(135deg, #FF3621, #e02e1b)', boxShadow: '0 4px 15px rgba(255,54,33,0.3)' }}>
-                {isHappening ? '🔴 Watch Live' : '🎟️ Register Free'}
+            {/* Middle: Countdown */}
+            {!isHappening && daysLeft > 0 && (
+              <div className="relative flex flex-col items-center px-4" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
+                <span className="text-[22px] font-extrabold text-white leading-none">{daysLeft}</span>
+                <span className="text-[8px] text-white/30 uppercase tracking-wider mt-0.5">days</span>
               </div>
+            )}
+
+            {/* Right: CTA */}
+            <div className="relative px-4 py-2 rounded-lg text-[12px] font-bold text-white transition-all duration-200 shrink-0"
+              style={{ background: 'linear-gradient(135deg, #FF3621, #e02e1b)', boxShadow: '0 2px 10px rgba(255,54,33,0.3)' }}>
+              {isHappening ? '🔴 Watch Live' : 'Register →'}
             </div>
           </div>
         </div>
