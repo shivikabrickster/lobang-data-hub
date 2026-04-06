@@ -79,6 +79,12 @@ const sections = [
     ],
   },
   {
+    title: 'Sizing',
+    tiles: [
+      { label: 'Product Pricing', emoji: '💲', href: 'https://www.databricks.com/product/pricing/product-pricing/instance-types' },
+    ],
+  },
+  {
     title: 'Security & Compliance',
     tiles: [
       { label: 'Security & Trust Center', emoji: '🛡️', href: 'https://www.databricks.com/trust/security-features' },
