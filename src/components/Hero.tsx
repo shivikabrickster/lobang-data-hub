@@ -460,7 +460,7 @@ function TileCard({ tile, index, onDrilldown }: { tile: Tile; index: number; onD
   );
 }
 
-function EventBanner() {
+function EventTickerBadge() {
   const EVENT_DATE = new Date('2026-06-09T00:00:00');
   const EVENT_END = new Date('2026-06-12T23:59:59');
   const EVENT_URL = 'https://www.databricks.com/dataaisummit';
@@ -478,62 +478,39 @@ function EventBanner() {
     return () => clearInterval(timer);
   }, []);
 
-  // Hide after event ends
   if (new Date() > EVENT_END) return null;
 
   const isHappening = new Date() >= EVENT_DATE && new Date() <= EVENT_END;
 
   return (
-    <div className="relative z-10 w-full flex justify-start px-6 pb-6">
-      <motion.a
-        href={EVENT_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="no-underline group"
-      >
-        <div
-          className="relative overflow-hidden rounded-xl p-[1px] transition-all duration-300 group-hover:scale-[1.02]"
-          style={{ background: 'linear-gradient(135deg, rgba(255,54,33,0.5), rgba(255,112,51,0.2), rgba(255,54,33,0.3))' }}
-        >
-          <div className="relative rounded-xl px-5 py-3 flex items-center gap-5" style={{ background: 'linear-gradient(135deg, #12151c, #0f1218)' }}>
-            {/* Glow */}
-            <div className="absolute top-0 right-0 w-24 h-24 rounded-full opacity-15" style={{ background: 'radial-gradient(circle, #FF3621, transparent 70%)' }} />
-
-            {/* Left: Title + location */}
-            <div className="relative flex flex-col gap-0.5">
-              <div className="flex items-center gap-2">
-                <span className="text-[15px]">🎪</span>
-                <span className="text-[15px] font-extrabold text-white tracking-tight">Data + AI Summit 2026</span>
-                {isHappening && (
-                  <span className="text-[9px] font-bold bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    LIVE
-                  </span>
-                )}
-              </div>
-              <span className="text-[11px] text-white/40 ml-7">📍 San Francisco · June 9–12</span>
-            </div>
-
-            {/* Middle: Countdown */}
-            {!isHappening && daysLeft > 0 && (
-              <div className="relative flex flex-col items-center px-4" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
-                <span className="text-[22px] font-extrabold text-white leading-none">{daysLeft}</span>
-                <span className="text-[8px] text-white/30 uppercase tracking-wider mt-0.5">days</span>
-              </div>
-            )}
-
-            {/* Right: CTA */}
-            <div className="relative px-4 py-2 rounded-lg text-[12px] font-bold text-white transition-all duration-200 shrink-0"
-              style={{ background: 'linear-gradient(135deg, #FF3621, #e02e1b)', boxShadow: '0 2px 10px rgba(255,54,33,0.3)' }}>
-              {isHappening ? '🔴 Watch Live' : 'Register →'}
-            </div>
-          </div>
-        </div>
-      </motion.a>
-    </div>
+    <a
+      href={EVENT_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="shrink-0 h-full flex items-center gap-2.5 px-4 no-underline z-10 transition-all duration-200 hover:brightness-110"
+      style={{
+        background: 'linear-gradient(135deg, #1a0a08, #0d0604)',
+        borderLeft: '1px solid rgba(255,54,33,0.3)',
+        boxShadow: '-5px 0 15px rgba(0,0,0,0.5)',
+      }}
+    >
+      <span className="text-[13px]">🎪</span>
+      <div className="flex flex-col">
+        <span className="text-[11px] font-extrabold text-white leading-tight whitespace-nowrap">Data + AI Summit</span>
+        <span className="text-[9px] text-white/40 whitespace-nowrap">Jun 9–12 · SF</span>
+      </div>
+      {isHappening ? (
+        <span className="flex items-center gap-1 text-[9px] font-bold text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded-full">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          LIVE
+        </span>
+      ) : (
+        <span className="text-[11px] font-extrabold text-[#FF3621]">{daysLeft}d</span>
+      )}
+      <span className="text-[10px] font-bold text-white bg-[#FF3621] px-2.5 py-1 rounded-full whitespace-nowrap hover:bg-[#e02e1b] transition-colors">
+        {isHappening ? 'Watch →' : 'Register →'}
+      </span>
+    </a>
   );
 }
 
@@ -668,6 +645,8 @@ export default function Hero() {
               ))}
             </div>
           </div>
+          {/* Event highlight — fixed right side of ticker */}
+          <EventTickerBadge />
         </div>
       </div>
 
@@ -687,9 +666,6 @@ export default function Hero() {
           </p>
         </motion.div>
       </div>
-
-      {/* Featured Event */}
-      <EventBanner />
 
       {/* Spacer */}
       <div className="h-12 md:h-16" />
