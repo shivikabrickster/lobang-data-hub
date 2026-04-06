@@ -89,6 +89,7 @@ const sections = [
     tiles: [
       { label: 'Cost Monitoring', emoji: '💰', href: '#cost-monitoring', drilldown: 'cost-monitoring' },
       { label: 'Cost Optimization', emoji: '📉', href: '#cost-optimization', drilldown: 'cost-optimization' },
+      { label: 'Benchmarks', emoji: '🏆', href: '#benchmarks', drilldown: 'benchmarks' },
     ],
   },
   {
@@ -302,6 +303,17 @@ const computeSizingResourceGroups = [
   },
 ];
 
+const benchmarksResourceGroups = [
+  {
+    category: 'Resources',
+    items: [
+      { title: 'TPC-DS Evaluation Guide', desc: 'Run TPC-DS benchmarks on your warehouse (1GB & 1TB datasets)', icon: '📊', href: 'https://docs.databricks.com/aws/en/sql/tpcds-eval', source: 'Databricks Docs' },
+      { title: '100TB TPC-DS World Record', desc: 'Official benchmark results', icon: '🥇', href: 'https://www.databricks.com/blog/databricks-sets-official-data-war-5x', source: 'Databricks Blog' },
+      { title: 'ETL 1 Billion Records Under $1', desc: 'DLT cost benchmark', icon: '⚡', href: 'https://www.databricks.com/blog/how-we-performed-etl-one-billion-records-under-1', source: 'Databricks Blog' },
+    ],
+  },
+];
+
 const costOptimizationResourceGroups = [
   {
     category: 'Resources',
@@ -333,6 +345,7 @@ const drilldownData: Record<string, { title: string; image: string; groups: type
   'lakebase': { title: 'Lakebase', image: '/icons/databricks/lakebase.svg', groups: lakebaseResourceGroups },
   'dab': { title: 'Declarative Automation Bundles', image: '/icons/databricks/asset-bundle.svg', groups: dabResourceGroups },
   'lakeflow-connect': { title: 'Lakeflow Connect', image: '/icons/databricks/lakeflow-connect.svg', groups: lakeflowConnectResourceGroups },
+  'benchmarks': { title: 'Benchmarks', image: '', groups: benchmarksResourceGroups },
   'cost-optimization': { title: 'Cost Optimization', image: '', groups: costOptimizationResourceGroups },
   'compute-sizing': { title: 'Compute & Cluster Sizing', image: '', groups: computeSizingResourceGroups },
   'pricing': { title: 'Pricing & Cost Calculators', image: '', groups: pricingResourceGroups },
