@@ -484,7 +484,7 @@ function EventBanner() {
   const isHappening = new Date() >= EVENT_DATE && new Date() <= EVENT_END;
 
   return (
-    <div className="relative z-10 w-full flex justify-center px-6 pb-10">
+    <div className="relative z-10 w-full flex justify-start px-6 pb-10">
       <motion.a
         href={EVENT_URL}
         target="_blank"
