@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import SgFeaturesView from './SgFeaturesView';
 
 const fallbackItems = [
   'Lakeflow Connect — SQL Server Connector Now GA',
@@ -336,13 +337,6 @@ const pricingResourceGroups = [
   },
 ];
 
-const sgFeaturesResourceGroups = [
-  {
-    category: 'Resources',
-    items: [] as { title: string; desc: string; icon: string; href: string; source: string }[],
-  },
-];
-
 const drilldownData: Record<string, { title: string; image: string; groups: typeof awsResourceGroups }> = {
   aws: { title: 'Databricks on AWS', image: '/icons/aws.svg', groups: awsResourceGroups },
   azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
@@ -358,7 +352,6 @@ const drilldownData: Record<string, { title: string; image: string; groups: type
   'cost-optimization': { title: 'Cost Optimization', image: '', groups: costOptimizationResourceGroups },
   'compute-sizing': { title: 'Compute & Cluster Sizing', image: '', groups: computeSizingResourceGroups },
   'pricing': { title: 'Pricing & Cost Calculators', image: '', groups: pricingResourceGroups },
-  'sg-features': { title: 'Agentic and ML Features Availability in SG', image: '', groups: sgFeaturesResourceGroups },
   'cost-monitoring': { title: 'Cost Monitoring', image: '', groups: costMonitoringGroups },
 };
 
@@ -583,7 +576,12 @@ export default function Hero() {
       {/* Main content area */}
       <div className="relative z-10 flex-1 flex items-center justify-center px-6">
         <AnimatePresence mode="wait">
-          {activeDrilldown && drilldownData[activeDrilldown] ? (
+          {activeDrilldown === 'sg-features' ? (
+            <SgFeaturesView
+              key="sg-features"
+              onBack={() => setActiveDrilldown(null)}
+            />
+          ) : activeDrilldown && drilldownData[activeDrilldown] ? (
             <DrilldownView
               key={activeDrilldown}
               data={drilldownData[activeDrilldown]}
