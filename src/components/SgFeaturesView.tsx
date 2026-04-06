@@ -223,7 +223,7 @@ export default function SgFeaturesView({ onBack }: { onBack: () => void }) {
                               <div className="w-[14%] flex justify-center"><StatusBadge status={f.serviceInSg} /></div>
                               <div className="w-[14%] flex justify-center"><StatusBadge status={f.modelInSg} /></div>
                               <div className="w-[34%] pl-3 flex items-center gap-1">
-                                {f.comments && <span className="text-[11px] text-white/70">{f.comments}</span>}
+                                {f.comments && <span className="text-[11px] text-white/70 font-semibold">{f.comments}</span>}
                                 {f.source && <a href={f.source} target="_blank" rel="noopener noreferrer" className="text-[#FF3621]/40 hover:text-[#FF3621] text-[10px] no-underline shrink-0">↗</a>}
                               </div>
                             </div>
