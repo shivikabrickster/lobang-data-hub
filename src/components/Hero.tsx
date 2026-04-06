@@ -46,7 +46,7 @@ const sections = [
       { label: 'Starter Journey', emoji: '🗺️', href: 'https://databricks-solutions.github.io/starter-journey/' },
       { label: 'Free Edition', emoji: '⚡', href: 'https://www.databricks.com/learn/free-edition' },
       { label: 'Trainings', emoji: '🎓', href: '#trainings', drilldown: 'trainings' },
-      { label: 'Product Help', emoji: '🆘', href: '#product-help', drilldown: 'product-help' },
+      { label: 'Product Help', emoji: '🛟', href: '#product-help', drilldown: 'product-help' },
     ],
   },
   {
