@@ -105,8 +105,8 @@ const sections = [
   {
     title: 'Cost & Performance',
     tiles: [
-      { label: 'Cost Monitoring', emoji: '💰', image: '/icons/databricks/chart-line.svg', href: '#cost-monitoring', drilldown: 'cost-monitoring' },
-      { label: 'Cost Optimization', emoji: '📉', image: '/icons/databricks/chart-line.svg', href: '#cost-optimization', drilldown: 'cost-optimization' },
+      { label: 'Cost Monitoring', emoji: '💰', image: '/icons/databricks/search-data.svg', href: '#cost-monitoring', drilldown: 'cost-monitoring' },
+      { label: 'Cost Optimization', emoji: '📉', image: '/icons/databricks/bars-descending.svg', href: '#cost-optimization', drilldown: 'cost-optimization' },
       { label: 'Benchmarks', emoji: '🏆', image: '/icons/databricks/performance.svg', href: '#benchmarks', drilldown: 'benchmarks' },
     ],
   },
