@@ -460,6 +460,106 @@ function TileCard({ tile, index, onDrilldown }: { tile: Tile; index: number; onD
   );
 }
 
+function EventBanner() {
+  const EVENT_DATE = new Date('2026-06-09T00:00:00');
+  const EVENT_END = new Date('2026-06-12T23:59:59');
+  const EVENT_URL = 'https://www.databricks.com/dataaisummit';
+
+  const [daysLeft, setDaysLeft] = useState(() => {
+    const diff = EVENT_DATE.getTime() - new Date().getTime();
+    return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const diff = EVENT_DATE.getTime() - new Date().getTime();
+      setDaysLeft(Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24))));
+    }, 60000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Hide after event ends
+  if (new Date() > EVENT_END) return null;
+
+  const isHappening = new Date() >= EVENT_DATE && new Date() <= EVENT_END;
+  const progress = Math.max(0, Math.min(100, ((90 - daysLeft) / 90) * 100));
+
+  return (
+    <div className="relative z-10 w-full px-6 pb-8">
+      <motion.a
+        href={EVENT_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="block max-w-[700px] mx-auto no-underline group"
+      >
+        <div
+          className="relative overflow-hidden rounded-2xl px-5 py-4 transition-all duration-300 group-hover:scale-[1.01]"
+          style={{
+            background: 'linear-gradient(135deg, rgba(255,54,33,0.08) 0%, rgba(255,112,51,0.06) 50%, rgba(255,54,33,0.04) 100%)',
+            border: '1px solid rgba(255,54,33,0.2)',
+            boxShadow: '0 0 30px rgba(255,54,33,0.06)',
+          }}
+        >
+          {/* Animated shimmer */}
+          <div className="absolute inset-0 opacity-30" style={{
+            background: 'linear-gradient(90deg, transparent, rgba(255,54,33,0.08), transparent)',
+            animation: 'shimmer 3s ease-in-out infinite',
+          }} />
+
+          <div className="relative flex items-center gap-4 flex-wrap">
+            {/* Event icon + info */}
+            <div className="flex items-center gap-3 flex-1 min-w-[200px]">
+              <span className="text-2xl">🎪</span>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[14px] font-extrabold text-white tracking-tight">DATA + AI SUMMIT 2026</span>
+                  {isHappening && (
+                    <span className="text-[9px] font-bold bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full uppercase tracking-wider flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      Live Now
+                    </span>
+                  )}
+                </div>
+                <div className="text-[11px] text-white/40 mt-0.5">June 9–12, 2026 · San Francisco</div>
+              </div>
+            </div>
+
+            {/* Countdown + progress */}
+            <div className="flex items-center gap-4">
+              {!isHappening && daysLeft > 0 && (
+                <div className="flex items-center gap-3">
+                  <div className="flex flex-col items-end">
+                    <span className="text-[18px] font-extrabold text-white leading-none">{daysLeft}</span>
+                    <span className="text-[9px] text-white/30 uppercase tracking-wider">days left</span>
+                  </div>
+                  <div className="w-16 h-1.5 rounded-full bg-white/10 overflow-hidden">
+                    <motion.div
+                      className="h-full rounded-full"
+                      style={{ background: 'linear-gradient(90deg, #FF3621, #FF7033)' }}
+                      initial={{ width: 0 }}
+                      animate={{ width: `${progress}%` }}
+                      transition={{ duration: 1, delay: 0.5 }}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* CTA */}
+              <span className="text-[12px] font-bold text-[#FF3621] group-hover:text-white bg-[#FF3621]/10 group-hover:bg-[#FF3621] px-4 py-2 rounded-xl transition-all duration-200 whitespace-nowrap">
+                {isHappening ? 'Watch Live →' : 'Register Free →'}
+              </span>
+            </div>
+          </div>
+        </div>
+      </motion.a>
+      <style>{`@keyframes shimmer { 0%,100% { transform: translateX(-100%); } 50% { transform: translateX(100%); } }`}</style>
+    </div>
+  );
+}
+
 function DrilldownView({ data, onBack }: { data: typeof drilldownData['aws']; onBack: () => void }) {
   return (
     <motion.div
@@ -595,7 +695,7 @@ export default function Hero() {
       </div>
 
       {/* Title + Punchline — centered */}
-      <div className="relative z-10 w-full px-6 pt-12 md:pt-16 pb-14 md:pb-16">
+      <div className="relative z-10 w-full px-6 pt-12 md:pt-16 pb-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -610,6 +710,9 @@ export default function Hero() {
           </p>
         </motion.div>
       </div>
+
+      {/* Featured Event Banner */}
+      <EventBanner />
 
       {/* Spacer */}
       <div className="h-12 md:h-16" />
