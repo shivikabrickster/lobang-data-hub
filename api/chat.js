@@ -86,15 +86,16 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const apiKey = process.env.GROQ_API_KEY;
-  if (!apiKey) {
-    return res.status(500).json({ error: 'GROQ_API_KEY not configured' });
+  const gatewayUrl = process.env.DATABRICKS_GATEWAY_URL;
+  const token = process.env.DATABRICKS_TOKEN;
+  if (!gatewayUrl || !token) {
+    return res.status(500).json({ error: 'Databricks AI Gateway not configured' });
   }
 
   try {
     const { messages } = req.body;
 
-    const groqMessages = [
+    const chatMessages = [
       { role: 'system', content: SYSTEM_PROMPT },
       ...messages.map((m) => ({
         role: m.role === 'bot' ? 'assistant' : 'user',
@@ -102,15 +103,15 @@ export default async function handler(req, res) {
       })),
     ];
 
-    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    const response = await fetch(gatewayUrl, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile',
-        messages: groqMessages,
+        model: 'databricks-claude-sonnet-4-6',
+        messages: chatMessages,
         temperature: 0.3,
         max_tokens: 1024,
       }),
@@ -118,7 +119,7 @@ export default async function handler(req, res) {
 
     if (!response.ok) {
       const err = await response.text();
-      console.error('Groq API error:', err);
+      console.error('Databricks AI Gateway error:', err);
       return res.status(502).json({ error: 'LLM API error' });
     }
 
