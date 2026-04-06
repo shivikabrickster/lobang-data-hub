@@ -493,7 +493,7 @@ function EventBanner() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
-        className="block max-w-[600px] mx-auto no-underline group"
+        className="block max-w-[480px] mx-auto no-underline group"
       >
         <div
           className="relative overflow-hidden rounded-xl px-4 py-3 transition-all duration-300 group-hover:scale-[1.01]"
