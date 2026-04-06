@@ -119,8 +119,8 @@ export default async function handler(req, res) {
 
     if (!response.ok) {
       const err = await response.text();
-      console.error('Databricks AI Gateway error:', err);
-      return res.status(502).json({ error: 'LLM API error' });
+      console.error('Databricks AI Gateway error:', response.status, err);
+      return res.status(502).json({ error: 'LLM API error', status: response.status, detail: err });
     }
 
     const data = await response.json();
