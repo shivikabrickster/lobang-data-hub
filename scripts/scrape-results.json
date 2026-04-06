@@ -1,0 +1,812 @@
+{
+  "last_updated": "2026-04-06",
+  "aws": {
+    "feature_region": {
+      "CMK": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "PrivateLink (classic compute plane)": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Serverless compute (notebooks, jobs, pipelines, and SQL warehouses)": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Model Training - forecasting": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Databricks Apps": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Managed connectors in Lakeflow Connect": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Serverless workspaces": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Vector Search": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Predictive Optimization": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Foundation Model Fine-tuning": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "Agent Framework & Evaluation": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Knowledge Assistant": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "ai_query (batch inference)": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "ai_parse_document": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "ai_parse_document v2": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "ai_forecast": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "ai_extract and ai_classify v2": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Core Model Serving capability (CPU serving)": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Core Model Serving capability (GPU serving)": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "External models": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Foundation Model APIs (provisioned throughput) **": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2021"
+      },
+      "Foundation Model APIs (pay-per-token)": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      }
+    },
+    "designated": {
+      "Pay-per-token Foundation Model APIs": {
+        "available": true,
+        "not_available": false,
+        "footnote": "\u2020",
+        "raw": "Available\u2020"
+      },
+      "AI Functions optimized for batch inference": {
+        "available": true,
+        "not_available": false,
+        "footnote": "\u2020",
+        "raw": "Available\u2020"
+      },
+      "Provisioned throughput Foundation Model APIs": {
+        "available": true,
+        "not_available": false,
+        "footnote": "\u2020",
+        "raw": "Available\u2020"
+      },
+      "Knowledge Assistant and Supervisor Agent": {
+        "available": true,
+        "not_available": false,
+        "footnote": "*",
+        "raw": "Available*"
+      },
+      "Foundation Model Fine-tuning": {
+        "available": true,
+        "not_available": true,
+        "footnote": "",
+        "raw": "Not available"
+      },
+      "AI-generated comments": {
+        "available": true,
+        "not_available": false,
+        "footnote": "\u2021",
+        "raw": "Available\u2021"
+      },
+      "AI-based autocomplete": {
+        "available": true,
+        "not_available": false,
+        "footnote": "*",
+        "raw": "Available*"
+      },
+      "Genie Code Agent mode": {
+        "available": true,
+        "not_available": false,
+        "footnote": "",
+        "raw": "Available"
+      },
+      "Genie Code chat and cell actions": {
+        "available": true,
+        "not_available": false,
+        "footnote": "\u00a7",
+        "raw": "Available\u00a7"
+      },
+      "Genie": {
+        "available": true,
+        "not_available": false,
+        "footnote": "\u00b6",
+        "raw": "Available\u00b6"
+      },
+      "Genie spaces Agent mode": {
+        "available": true,
+        "not_available": false,
+        "footnote": "\u2020",
+        "raw": "Available\u2020"
+      },
+      "AI/BI dashboards": {
+        "available": true,
+        "not_available": false,
+        "footnote": "\u00a7",
+        "raw": "Available\u00a7"
+      },
+      "Data classification": {
+        "available": true,
+        "not_available": false,
+        "footnote": "*",
+        "raw": "Available*"
+      }
+    },
+    "models": {
+      "in_sg": [
+        {
+          "model": "databricks-gpt-5-4",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gpt-5-4-mini",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gpt-5-4-nano",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gpt-5-3-codex",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gpt-5-2-codex",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gpt-5-2",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gpt-5-1",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gpt-5-1-codex-max",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gpt-5-1-codex-mini",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gpt-5",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gpt-5-mini",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gpt-5-nano",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gemini-3-1-pro",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gemini-3-pro",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gemini-3-1-flash-lite",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gemini-3-flash",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gemini-2-5-pro",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gemini-2-5-flash",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-claude-sonnet-4-6",
+          "xgeo": false,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-claude-sonnet-4-5",
+          "xgeo": false,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-claude-haiku-4-5",
+          "xgeo": false,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-claude-opus-4-6",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-claude-opus-4-5",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-claude-opus-4-1",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gpt-oss-20b",
+          "xgeo": false,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gpt-oss-120b",
+          "xgeo": false,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gemma-3-12b",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-claude-sonnet-4",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-llama-4-maverick",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-claude-3-7-sonnet",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-meta-llama-3-3-70b-instruct",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-meta-llama-3-1-405b-instruct",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-meta-llama-3-1-8b-instruct",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-qwen3-embedding-0-6b",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gte-large-en",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gpt-5-4",
+          "xgeo": true,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-gpt-5-4-mini",
+          "xgeo": true,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-gpt-5-4-nano",
+          "xgeo": true,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-gpt-5-2",
+          "xgeo": true,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-gpt-5-1",
+          "xgeo": true,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-gpt-5",
+          "xgeo": true,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-gpt-5-mini",
+          "xgeo": true,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-gpt-5-nano",
+          "xgeo": true,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-gemini-3-1-pro",
+          "xgeo": true,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-gemini-3-pro",
+          "xgeo": true,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-gemini-3-1-flash-lite",
+          "xgeo": true,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-gemini-3-flash",
+          "xgeo": true,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-gemini-2-5-pro",
+          "xgeo": true,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-gemini-2-5-flash",
+          "xgeo": true,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-claude-sonnet-4",
+          "xgeo": false,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-gpt-oss-20b",
+          "xgeo": false,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-gpt-oss-120b",
+          "xgeo": false,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-gemma-3-12b",
+          "xgeo": true,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-llama-4-maverick",
+          "xgeo": true,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-meta-llama-3-3-70b-instruct",
+          "xgeo": true,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-meta-llama-3-1-8b-instruct",
+          "xgeo": true,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-qwen3-embedding-0-6b",
+          "xgeo": false,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-gte-large-en",
+          "xgeo": false,
+          "category": "AI Functions (batch inference)"
+        }
+      ],
+      "count": 58
+    },
+    "lakebase_in_sg": true
+  },
+  "azure": {
+    "feature_region": {
+      "System tables": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Serverless compute for notebooks, jobs, pipelines, and SQL warehouses": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Serverless workspaces": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Default storage": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Private connectivity": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Managed connectors in Lakeflow Connect": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Databricks Apps": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Model Training - forecasting": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Vector Search": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Predictive Optimization": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Foundation Model Fine-tuning": {
+        "available": false,
+        "xgeo": false,
+        "raw": ""
+      },
+      "Data Quality Monitoring": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Agent Framework and Evaluation": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Knowledge Assistant": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "Supervisor Agent": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "ai_query (batch inference)": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "ai_parse_document": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "ai_parse_document v2": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "ai_forecast": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "ai_extract and ai_classify v2": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "Other AI functions": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Core Model Serving capability (CPU serving)": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Core Model Serving capability (GPU serving)": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "External models": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Foundation Model APIs (provisioned throughput) **": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "Foundation Model APIs (pay-per-token)": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "AI Gateway (Beta)": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      }
+    },
+    "designated": {
+      "Pay-per-token Foundation Model APIs": {
+        "available": true,
+        "not_available": false,
+        "footnote": "*",
+        "raw": "Available*"
+      },
+      "AI Functions optimized for batch inference (excluding ai_parse_document)": {
+        "available": true,
+        "not_available": false,
+        "footnote": "*",
+        "raw": "Available*"
+      },
+      "AI Function: ai_parse_document": {
+        "available": true,
+        "not_available": false,
+        "footnote": "*",
+        "raw": "Available*"
+      },
+      "Provisioned throughput Foundation Model APIs": {
+        "available": true,
+        "not_available": false,
+        "footnote": "*",
+        "raw": "Available*"
+      },
+      "Knowledge Assistant and Supervisor Agent": {
+        "available": true,
+        "not_available": false,
+        "footnote": "*",
+        "raw": "Available*"
+      },
+      "Foundation Model Fine-tuning": {
+        "available": true,
+        "not_available": true,
+        "footnote": "",
+        "raw": "Not available"
+      },
+      "AI-generated comments": {
+        "available": true,
+        "not_available": false,
+        "footnote": "",
+        "raw": "Available"
+      },
+      "AI-based autocomplete": {
+        "available": true,
+        "not_available": false,
+        "footnote": "*",
+        "raw": "Available*"
+      },
+      "Genie Code Agent mode": {
+        "available": true,
+        "not_available": false,
+        "footnote": "*",
+        "raw": "Available*"
+      },
+      "Genie Code chat and cell actions": {
+        "available": true,
+        "not_available": false,
+        "footnote": "",
+        "raw": "Available"
+      },
+      "Genie": {
+        "available": true,
+        "not_available": false,
+        "footnote": "*",
+        "raw": "Available*"
+      },
+      "Genie spaces Agent mode": {
+        "available": true,
+        "not_available": false,
+        "footnote": "*",
+        "raw": "Available*"
+      },
+      "AI/BI dashboards": {
+        "available": true,
+        "not_available": false,
+        "footnote": "",
+        "raw": "Available"
+      },
+      "Data classification": {
+        "available": true,
+        "not_available": false,
+        "footnote": "*",
+        "raw": "Available*"
+      }
+    }
+  },
+  "gcp": {
+    "feature_region": {
+      "Serverless compute for notebooks, jobs, pipelines, and SQL warehouses": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Databricks Apps": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Managed connectors in Lakeflow Connect": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Serverless workspaces": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Vector Search": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Data Quality Monitoring": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Agent Framework & Evaluation": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Knowledge Assistant": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "ai_query (batch inference)": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "ai_parse_document": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "ai_parse_document v2": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "ai_forecast": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "ai_extract and ai_classify v2": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "Core Model Serving capability (CPU serving)": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Core Model Serving capability (GPU serving)": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "External models": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Foundation Model APIs (provisioned throughput)**": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "Foundation Model APIs (pay-per-token)": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      }
+    }
+  }
+}
