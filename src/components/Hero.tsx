@@ -45,7 +45,7 @@ const sections = [
     tiles: [
       { label: 'Starter Journey', emoji: '🗺️', href: 'https://databricks-solutions.github.io/starter-journey/' },
       { label: 'Free Edition', emoji: '⚡', href: 'https://www.databricks.com/learn/free-edition' },
-      { label: 'Trainings', emoji: '🎓', href: 'https://www.databricks.com/learn/training/home' },
+      { label: 'Trainings', emoji: '🎓', href: '#trainings', drilldown: 'trainings' },
       { label: 'Product Help', emoji: '🆘', href: '#product-help', drilldown: 'product-help' },
     ],
   },
@@ -338,6 +338,16 @@ const pricingResourceGroups = [
   },
 ];
 
+const trainingsResourceGroups = [
+  {
+    category: 'Resources',
+    items: [
+      { title: 'Training Home', desc: 'All Databricks training courses', icon: '🎓', href: 'https://www.databricks.com/learn/training/home', source: 'Databricks' },
+      { title: 'Free Trainings', desc: 'Self-paced free learning paths', icon: '🆓', href: 'https://docs.databricks.com/aws/en/getting-started/free-training', source: 'Databricks Docs' },
+    ],
+  },
+];
+
 const productHelpResourceGroups = [
   {
     category: 'Resources',
@@ -350,6 +360,7 @@ const productHelpResourceGroups = [
 ];
 
 const drilldownData: Record<string, { title: string; image: string; groups: typeof awsResourceGroups }> = {
+  'trainings': { title: 'Trainings', image: '', groups: trainingsResourceGroups },
   'product-help': { title: 'Product Help', image: '', groups: productHelpResourceGroups },
   aws: { title: 'Databricks on AWS', image: '/icons/aws.svg', groups: awsResourceGroups },
   azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
