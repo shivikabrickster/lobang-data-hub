@@ -88,6 +88,7 @@ const sections = [
     title: 'Cost Optimization, Monitoring & Benchmarks',
     tiles: [
       { label: 'Cost Monitoring', emoji: '💰', href: '#cost-monitoring', drilldown: 'cost-monitoring' },
+      { label: 'Cost Optimization', emoji: '📉', href: '#cost-optimization', drilldown: 'cost-optimization' },
     ],
   },
   {
@@ -301,6 +302,16 @@ const computeSizingResourceGroups = [
   },
 ];
 
+const costOptimizationResourceGroups = [
+  {
+    category: 'Resources',
+    items: [
+      { title: 'Cost Management Best Practices', desc: 'Blog guide to managing Databricks costs', icon: '📝', href: 'https://www.databricks.com/blog/best-practices-cost-management-databricks', source: 'Databricks Blog' },
+      { title: 'Cost Optimization Best Practices', desc: 'Official docs on cost optimization', icon: '📖', href: 'https://docs.databricks.com/aws/en/lakehouse-architecture/cost-optimization/best-practices', source: 'Databricks Docs' },
+    ],
+  },
+];
+
 const pricingResourceGroups = [
   {
     category: 'Resources',
@@ -322,6 +333,7 @@ const drilldownData: Record<string, { title: string; image: string; groups: type
   'lakebase': { title: 'Lakebase', image: '/icons/databricks/lakebase.svg', groups: lakebaseResourceGroups },
   'dab': { title: 'Declarative Automation Bundles', image: '/icons/databricks/asset-bundle.svg', groups: dabResourceGroups },
   'lakeflow-connect': { title: 'Lakeflow Connect', image: '/icons/databricks/lakeflow-connect.svg', groups: lakeflowConnectResourceGroups },
+  'cost-optimization': { title: 'Cost Optimization', image: '', groups: costOptimizationResourceGroups },
   'compute-sizing': { title: 'Compute & Cluster Sizing', image: '', groups: computeSizingResourceGroups },
   'pricing': { title: 'Pricing & Cost Calculators', image: '', groups: pricingResourceGroups },
   'cost-monitoring': { title: 'Cost Monitoring', image: '', groups: costMonitoringGroups },
