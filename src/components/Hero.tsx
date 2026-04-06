@@ -487,28 +487,54 @@ function EventTickerBadge() {
       href={EVENT_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="shrink-0 h-full flex items-center gap-2.5 px-4 no-underline z-10 transition-all duration-200 hover:brightness-110"
+      className="shrink-0 flex items-center gap-3 px-5 py-1 no-underline z-10 transition-all duration-200 hover:brightness-110 group"
       style={{
-        background: 'linear-gradient(135deg, #1a0a08, #0d0604)',
-        borderLeft: '1px solid rgba(255,54,33,0.3)',
-        boxShadow: '-5px 0 15px rgba(0,0,0,0.5)',
+        background: 'linear-gradient(135deg, #2a0a06, #1a0604, #0d0302)',
+        borderLeft: '2px solid #FF3621',
+        boxShadow: '-8px 0 20px rgba(0,0,0,0.6), inset 0 0 30px rgba(255,54,33,0.05)',
       }}
     >
-      <span className="text-[13px]">🎪</span>
+      {/* Pulsing attention dot */}
+      <span className="relative flex h-3 w-3 shrink-0">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF3621] opacity-60" />
+        <span className="relative inline-flex rounded-full h-3 w-3 bg-[#FF3621]" />
+      </span>
+
+      <span className="text-[16px]">🎪</span>
+
       <div className="flex flex-col">
-        <span className="text-[11px] font-extrabold text-white leading-tight whitespace-nowrap">Data + AI Summit</span>
-        <span className="text-[9px] text-white/40 whitespace-nowrap">Jun 9–12 · SF</span>
+        <span className="text-[13px] font-extrabold text-white leading-tight whitespace-nowrap tracking-tight">
+          DATA + AI SUMMIT 2026
+        </span>
+        <span className="text-[10px] text-white/50 whitespace-nowrap">📍 San Francisco · June 9–12</span>
       </div>
+
+      {/* Divider */}
+      <div className="w-px h-8 bg-white/10" />
+
+      {/* Countdown or Live badge */}
       {isHappening ? (
-        <span className="flex items-center gap-1 text-[9px] font-bold text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded-full">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          LIVE
+        <span className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-400 bg-emerald-500/15 px-2.5 py-1 rounded-full">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          LIVE NOW
         </span>
       ) : (
-        <span className="text-[11px] font-extrabold text-[#FF3621]">{daysLeft}d</span>
+        <div className="flex flex-col items-center">
+          <span className="text-[18px] font-extrabold text-white leading-none">{daysLeft}</span>
+          <span className="text-[8px] text-white/30 uppercase tracking-wider">days</span>
+        </div>
       )}
-      <span className="text-[10px] font-bold text-white bg-[#FF3621] px-2.5 py-1 rounded-full whitespace-nowrap hover:bg-[#e02e1b] transition-colors">
-        {isHappening ? 'Watch →' : 'Register →'}
+
+      {/* CTA with bouncing arrow */}
+      <span className="flex items-center gap-1.5 text-[12px] font-bold text-white bg-[#FF3621] px-4 py-1.5 rounded-full whitespace-nowrap group-hover:bg-[#ff4a33] transition-all duration-200 group-hover:shadow-[0_0_15px_rgba(255,54,33,0.4)]">
+        {isHappening ? 'Watch Live' : 'Register Free'}
+        <motion.span
+          animate={{ x: [0, 4, 0] }}
+          transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+          className="inline-block"
+        >
+          →
+        </motion.span>
       </span>
     </a>
   );
@@ -615,7 +641,7 @@ export default function Hero() {
       {/* News Ticker — above header, full width */}
       <div className="relative z-10 w-full">
         <div
-          className="ticker-container relative flex items-center h-10 overflow-hidden"
+          className="ticker-container relative flex items-center h-14 overflow-hidden"
           style={{
             background: '#000',
             borderTop: '1px solid #FF3621',
