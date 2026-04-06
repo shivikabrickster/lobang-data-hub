@@ -99,6 +99,7 @@ const sections = [
     tiles: [
       { label: 'Pricing & Cost Calculators', emoji: '💲', image: '/icons/databricks/chart-line.svg', href: '#pricing', drilldown: 'pricing' },
       { label: 'Compute & Cluster Sizing', emoji: '⚡', image: '/icons/databricks/lightning.svg', href: '#compute-sizing', drilldown: 'compute-sizing' },
+      { label: 'Lakemeter', emoji: '📏', href: '#lakemeter', drilldown: 'lakemeter' },
     ],
   },
   {
@@ -398,6 +399,7 @@ const drilldownData: Record<string, { title: string; image: string; groups: type
   'benchmarks': { title: 'Benchmarks', image: '', groups: benchmarksResourceGroups },
   'cost-optimization': { title: 'Cost Optimization', image: '', groups: costOptimizationResourceGroups },
   'compute-sizing': { title: 'Compute & Cluster Sizing', image: '', groups: computeSizingResourceGroups },
+  'lakemeter': { title: 'Lakemeter', image: '', groups: [{ category: 'Resources', items: [{ title: 'Coming Soon', desc: 'Lakemeter content is being prepared', icon: '🔜', href: '', source: '' }] }] },
   'pricing': { title: 'Pricing & Cost Calculators', image: '', groups: pricingResourceGroups },
   'cost-monitoring': { title: 'Cost Monitoring', image: '', groups: costMonitoringGroups },
 };
