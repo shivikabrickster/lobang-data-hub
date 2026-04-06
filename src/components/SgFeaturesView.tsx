@@ -259,53 +259,55 @@ export default function SgFeaturesView({ onBack }: { onBack: () => void }) {
               Data coming soon for {cloud.toUpperCase()}
             </div>
           ) : (
-            <div className="overflow-x-auto rounded-2xl" style={{ background: 'rgba(255,255,255,0.015)', border: '1px solid rgba(255,255,255,0.08)' }}>
-              <table className="w-full text-[12px]">
-                <thead>
-                  <tr>
-                    <th className="text-left px-5 py-3.5 text-[11px] text-white/50 font-bold uppercase tracking-wider" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>Feature</th>
-                    <th className="text-center px-3 py-3.5 text-[11px] text-white/50 font-bold uppercase tracking-wider whitespace-nowrap" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>Service in SG</th>
-                    <th className="text-center px-3 py-3.5 text-[11px] text-white/50 font-bold uppercase tracking-wider whitespace-nowrap" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>Model in SG</th>
-                    <th className="text-left px-5 py-3.5 text-[11px] text-white/50 font-bold uppercase tracking-wider" style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>Notes</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {(() => {
-                    let lastCategory = '';
-                    return filteredFeatures.map((f) => {
-                      const showCategoryHeader = f.category !== lastCategory;
-                      lastCategory = f.category;
-                      const categoryLabel = f.category === 'agentic' ? 'Agentic AI' : f.category === 'ml' ? 'ML & Platform' : 'Models';
-                      return (
-                        <>
-                          {showCategoryHeader && (
-                            <tr key={`cat-${f.category}`}>
-                              <td colSpan={4} className="px-5 pt-4 pb-2">
-                                <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#FF3621]/70">{categoryLabel}</span>
+            <div className="flex flex-col gap-6">
+              {/* Render each category as its own card */}
+              {(['agentic', 'ml'] as const).map((cat) => {
+                const catFeatures = filteredFeatures.filter((f) => f.category === cat);
+                if (catFeatures.length === 0) return null;
+                const catLabel = cat === 'agentic' ? 'Agentic AI' : 'ML & Platform';
+                return (
+                  <div key={cat}>
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#FF3621]">{catLabel}</span>
+                      <span className="text-[11px] text-white/20">{catFeatures.length} features</span>
+                      <div className="flex-1 h-px bg-white/8" />
+                    </div>
+                    <div className="rounded-2xl overflow-hidden" style={{ background: 'rgba(255,255,255,0.015)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                      <table className="w-full">
+                        <thead>
+                          <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                            <th className="text-left px-5 py-2.5 text-[10px] text-white/40 font-bold uppercase tracking-wider w-[40%]">Feature</th>
+                            <th className="text-center px-2 py-2.5 text-[10px] text-white/40 font-bold uppercase tracking-wider w-[15%]">Service</th>
+                            <th className="text-center px-2 py-2.5 text-[10px] text-white/40 font-bold uppercase tracking-wider w-[15%]">Model</th>
+                            <th className="text-left px-4 py-2.5 text-[10px] text-white/40 font-bold uppercase tracking-wider w-[30%]">Notes</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {catFeatures.map((f, i) => (
+                            <tr
+                              key={f.feature}
+                              className="hover:bg-white/[0.02] transition-colors"
+                              style={{ borderTop: i > 0 ? '1px solid rgba(255,255,255,0.03)' : undefined }}
+                            >
+                              <td className="px-5 py-2.5">
+                                <span className="text-[12px] text-white/90 font-medium">{f.feature}</span>
+                              </td>
+                              <td className="px-2 py-2.5 text-center"><StatusBadge status={f.serviceInSg} /></td>
+                              <td className="px-2 py-2.5 text-center"><StatusBadge status={f.modelInSg} /></td>
+                              <td className="px-4 py-2.5">
+                                {f.comments && <span className="text-[10px] text-white/30">{f.comments}</span>}
+                                {f.source && (
+                                  <a href={f.source} target="_blank" rel="noopener noreferrer" className="ml-1 text-[#FF3621]/30 hover:text-[#FF3621] text-[10px] no-underline">↗</a>
+                                )}
                               </td>
                             </tr>
-                          )}
-                          <tr
-                            key={f.feature}
-                            className="hover:bg-white/[0.03] transition-colors"
-                            style={{ borderTop: '1px solid rgba(255,255,255,0.04)' }}
-                          >
-                            <td className="px-5 py-3 text-[13px] text-white font-medium">{f.feature}</td>
-                            <td className="px-3 py-3 text-center"><StatusBadge status={f.serviceInSg} /></td>
-                            <td className="px-3 py-3 text-center"><StatusBadge status={f.modelInSg} /></td>
-                            <td className="px-5 py-3">
-                              <span className="text-[11px] text-white/35 leading-relaxed">{f.comments}</span>
-                              {f.source && (
-                                <a href={f.source} target="_blank" rel="noopener noreferrer" className="ml-1.5 text-[#FF3621]/40 hover:text-[#FF3621] text-[10px] no-underline">↗</a>
-                              )}
-                            </td>
-                          </tr>
-                        </>
-                      );
-                    });
-                  })()}
-                </tbody>
-              </table>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           )}
 

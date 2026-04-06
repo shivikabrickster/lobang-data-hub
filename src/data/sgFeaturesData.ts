@@ -50,88 +50,81 @@ export interface SgAgencyOption {
 
 export const featureAvailability: Record<CloudProvider, FeatureAvailability[]> = {
   aws: [
-    // From feature-region-support (ap-southeast-1)
-    { feature: 'AI Gateway', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: 'Beta. Available in ap-southeast-1', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
-    { feature: 'Model Serving (CPU)', category: 'ml', serviceInSg: 'yes', modelInSg: 'yes', comments: 'Available in ap-southeast-1', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
-    { feature: 'Model Serving (GPU)', category: 'ml', serviceInSg: 'yes', modelInSg: 'yes', comments: 'Available in ap-southeast-1', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
-    { feature: 'Agent Framework & Evaluation', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: 'Available in ap-southeast-1', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
-    { feature: 'Agent Bricks: Custom Code Agents', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: 'Deploy Langchain or other agent frameworks on your compute', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
-    { feature: 'Agent Bricks: Knowledge Assistant', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
+    // ── Agentic AI ──
+    { feature: 'Genie Code (Chat & Cell Actions)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: 'In-region, no X-geo needed', source: 'https://docs.databricks.com/aws/en/resources/designated-services' },
+    { feature: 'Genie Code (Agent)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: 'In-region, enforce in-geo enabled', source: 'https://docs.databricks.com/aws/en/resources/designated-services' },
+    { feature: 'Genie (excl. Research Agent)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: 'In-country per Mar 2026 release', source: 'https://docs.databricks.com/aws/en/release-notes/product/2026/march' },
+    { feature: 'Genie Agent Mode (Research)', category: 'agentic', serviceInSg: 'no', modelInSg: 'no', comments: 'Beta', source: 'https://docs.databricks.com/aws/en/resources/designated-services' },
+    { feature: 'AI/BI Dashboards', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: 'In-region, no X-geo needed', source: 'https://docs.databricks.com/aws/en/resources/designated-services' },
+    { feature: 'AI Gateway', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: 'Beta', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
+    { feature: 'Agent Framework & Evaluation', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: '', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
+    { feature: 'Agent Bricks: Custom Code', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: 'Deploy on your compute', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
+    { feature: 'Agent Bricks: Knowledge Asst.', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
     { feature: 'Agent Bricks: Multi-Agent Supervisor', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
-    { feature: 'Vector Search', category: 'ml', serviceInSg: 'yes', modelInSg: 'na', comments: 'Available in ap-southeast-1', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
-    { feature: 'Vector Search Reranker', category: 'ml', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required for reranker model', source: 'https://docs.databricks.com/aws/en/vector-search/query-vector-search' },
-    { feature: 'Vector Search Full-Text Search', category: 'ml', serviceInSg: 'yes', modelInSg: 'na', comments: 'Beta', source: 'https://docs.databricks.com/aws/en/vector-search/query-vector-search' },
-
-    // From designated-services (Asia column + footnotes)
-    { feature: 'Genie Code (Chat & Cell Actions)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: 'In-region for SG, no X-geo needed. Partner-Powered AI: Enabled', source: 'https://docs.databricks.com/aws/en/resources/designated-services' },
-    { feature: 'Genie Code (Agent)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: 'Available in SG. Partner-Powered AI: Enabled, Enforce in-geo: Enabled', source: 'https://docs.databricks.com/aws/en/resources/designated-services' },
-    { feature: 'Genie (excluding Research Agent)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: 'In-country for SG per March 2026 release notes. Partner-Powered AI: Enabled', source: 'https://docs.databricks.com/aws/en/release-notes/product/2026/march' },
-    { feature: 'Genie Agent Mode (Research Agent)', category: 'agentic', serviceInSg: 'no', modelInSg: 'no', comments: 'In Beta', source: 'https://docs.databricks.com/aws/en/resources/designated-services' },
-    { feature: 'AI/BI Dashboards', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: 'In-region for SG, no X-geo needed', source: 'https://docs.databricks.com/aws/en/resources/designated-services' },
-    { feature: 'AI-generated Comments', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: 'In-region for SG, no X-geo needed', source: 'https://docs.databricks.com/aws/en/resources/designated-services' },
-    { feature: 'AI-based Autocomplete', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://docs.databricks.com/aws/en/resources/designated-services' },
-    { feature: 'Data Classification', category: 'ml', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://docs.databricks.com/aws/en/resources/designated-services' },
-
-    // From feature-region-support (AI functions)
-    { feature: 'FMAPI (Pay-per-token)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: 'SG/Japan/Korea processing. Models available in ap-southeast-1', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
-    { feature: 'FMAPI (Provisioned Throughput)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: 'Available in ap-southeast-1', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
-    { feature: 'Foundation Model Fine-tuning', category: 'ml', serviceInSg: 'yes', modelInSg: 'no', comments: 'Cross-geography routing required', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
+    { feature: 'FMAPI (Pay-per-token)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: 'Models in ap-southeast-1', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
+    { feature: 'FMAPI (Provisioned Throughput)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: '', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
     { feature: 'AI Functions (ai_query)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'SG/Japan/Korea processing', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
     { feature: 'ai_query (Batch Inference)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'SG/Japan/Korea processing', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
     { feature: 'ai_parse_document', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'SG/Japan/Korea processing', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
-
-    // From oltp/projects/manage-projects (Lakebase regions)
-    { feature: 'Lakebase (Stateful AI Agents)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: 'Lakebase available in ap-southeast-1', source: 'https://docs.databricks.com/aws/en/oltp/projects/manage-projects' },
-    { feature: 'Online Feature Stores (Native/Lakebase)', category: 'ml', serviceInSg: 'yes', modelInSg: 'na', comments: 'Powered by Lakebase in ap-southeast-1. Requires DBR 16.4 LTS ML or serverless', source: 'https://docs.databricks.com/aws/en/oltp/projects/manage-projects' },
-
-    // Hardcoded — not on any public region page
-    { feature: 'Online Feature Stores (3rd Party)', category: 'ml', serviceInSg: 'yes', modelInSg: 'na', comments: 'DynamoDB, Aurora MySQL, RDS MySQL. AWS-native services in ap-southeast-1. DBR 10.5 ML+', source: 'https://docs.databricks.com/aws/en/machine-learning/feature-store/third-party-online-stores' },
-    { feature: 'MLflow 3.0', category: 'ml', serviceInSg: 'yes', modelInSg: 'na', comments: 'Core platform, runs on classic compute. All regions', source: 'https://docs.databricks.com/aws/en/mlflow3/genai/eval-monitor/concepts/scorers' },
-    { feature: 'MLflow LLM Judges', category: 'ml', serviceInSg: 'yes', modelInSg: 'no', comments: 'Judge uses US-hosted models for non-EU regions. Can bring your own LLM', source: 'https://docs.databricks.com/aws/en/mlflow3/genai/eval-monitor/concepts/scorers' },
-    { feature: 'Managed MCP Servers', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: 'Workspace feature, requires preview enablement', source: 'https://learn.microsoft.com/en-us/azure/databricks/generative-ai/mcp/external-mcp' },
-    { feature: 'Custom MCP Servers', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: 'Workspace feature via Unity Catalog connections', source: 'https://learn.microsoft.com/en-us/azure/databricks/generative-ai/mcp/external-mcp' },
-    { feature: 'AI Guardrails (In-region)', category: 'agentic', serviceInSg: 'no', modelInSg: 'no', comments: 'Not available. Regions requiring cross-geo for FMAPI do not support AI Guardrails', source: 'https://docs.databricks.com/sap/en/ai-gateway' },
-    { feature: 'Custom Guardrails', category: 'agentic', serviceInSg: 'yes', modelInSg: 'depends', comments: 'Private Preview. Depends on model used', source: 'https://docs.databricks.com/sap/en/ai-gateway' },
+    { feature: 'AI-generated Comments', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: 'In-region, no X-geo needed', source: 'https://docs.databricks.com/aws/en/resources/designated-services' },
+    { feature: 'AI-based Autocomplete', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://docs.databricks.com/aws/en/resources/designated-services' },
+    { feature: 'Lakebase (Stateful Agents)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: '', source: 'https://docs.databricks.com/aws/en/oltp/projects/manage-projects' },
+    { feature: 'Managed MCP Servers', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: 'Preview', source: 'https://learn.microsoft.com/en-us/azure/databricks/generative-ai/mcp/external-mcp' },
+    { feature: 'Custom MCP Servers', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: 'Via UC connections', source: 'https://learn.microsoft.com/en-us/azure/databricks/generative-ai/mcp/external-mcp' },
+    { feature: 'AI Guardrails (In-region)', category: 'agentic', serviceInSg: 'no', modelInSg: 'no', comments: 'Not available', source: 'https://docs.databricks.com/sap/en/ai-gateway' },
+    { feature: 'Custom Guardrails', category: 'agentic', serviceInSg: 'yes', modelInSg: 'depends', comments: 'Private Preview', source: 'https://docs.databricks.com/sap/en/ai-gateway' },
+    // ── ML & Platform ──
+    { feature: 'Model Serving (CPU)', category: 'ml', serviceInSg: 'yes', modelInSg: 'yes', comments: '', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
+    { feature: 'Model Serving (GPU)', category: 'ml', serviceInSg: 'yes', modelInSg: 'yes', comments: '', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
+    { feature: 'Vector Search', category: 'ml', serviceInSg: 'yes', modelInSg: 'na', comments: '', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
+    { feature: 'Vector Search Reranker', category: 'ml', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo for reranker model', source: 'https://docs.databricks.com/aws/en/vector-search/query-vector-search' },
+    { feature: 'Vector Search Full-Text', category: 'ml', serviceInSg: 'yes', modelInSg: 'na', comments: 'Beta', source: 'https://docs.databricks.com/aws/en/vector-search/query-vector-search' },
+    { feature: 'Foundation Model Fine-tuning', category: 'ml', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://docs.databricks.com/aws/en/resources/feature-region-support' },
+    { feature: 'Data Classification', category: 'ml', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://docs.databricks.com/aws/en/resources/designated-services' },
+    { feature: 'Online Feature Store (Lakebase)', category: 'ml', serviceInSg: 'yes', modelInSg: 'na', comments: 'DBR 16.4 LTS ML or serverless', source: 'https://docs.databricks.com/aws/en/oltp/projects/manage-projects' },
+    { feature: 'Online Feature Store (3rd Party)', category: 'ml', serviceInSg: 'yes', modelInSg: 'na', comments: 'DynamoDB, Aurora, RDS MySQL', source: 'https://docs.databricks.com/aws/en/machine-learning/feature-store/third-party-online-stores' },
+    { feature: 'MLflow 3.0', category: 'ml', serviceInSg: 'yes', modelInSg: 'na', comments: 'Core platform', source: 'https://docs.databricks.com/aws/en/mlflow3/genai/eval-monitor/concepts/scorers' },
+    { feature: 'MLflow LLM Judges', category: 'ml', serviceInSg: 'yes', modelInSg: 'no', comments: 'US-hosted judges; bring your own LLM', source: 'https://docs.databricks.com/aws/en/mlflow3/genai/eval-monitor/concepts/scorers' },
   ],
 
   azure: [
-    // From feature-region-support (southeastasia)
-    { feature: 'AI Gateway', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: 'Beta. Available in Southeast Asia', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
-    { feature: 'Model Serving (CPU)', category: 'ml', serviceInSg: 'yes', modelInSg: 'yes', comments: 'Available in Southeast Asia', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
-    { feature: 'Model Serving (GPU)', category: 'ml', serviceInSg: 'yes', modelInSg: 'yes', comments: 'Available in Southeast Asia', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
-    { feature: 'Agent Framework & Evaluation', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: 'Available in Southeast Asia', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
-    { feature: 'Agent Bricks: Knowledge Assistant', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required (cross geography routing)', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
-    { feature: 'Agent Bricks: Multi-Agent Supervisor', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required (cross geography routing)', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
-    { feature: 'Vector Search', category: 'ml', serviceInSg: 'yes', modelInSg: 'na', comments: 'Available in Southeast Asia', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
-    { feature: 'FMAPI (Pay-per-token)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required (cross geography routing)', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
-    { feature: 'FMAPI (Provisioned Throughput)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required (cross geography routing)', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
-
-    // From designated-services (Asia Pacific column)
-    { feature: 'Genie Code (Chat & Cell Actions)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: 'Available in Asia Pacific', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/designated-services' },
+    // ── Agentic AI ──
+    { feature: 'Genie Code (Chat & Cell Actions)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: '', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/designated-services' },
     { feature: 'Genie Code (Agent)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/designated-services' },
     { feature: 'Genie', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/designated-services' },
     { feature: 'Genie Spaces Agent Mode', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/designated-services' },
-    { feature: 'AI/BI Dashboards', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: 'Available in Asia Pacific', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/designated-services' },
-    { feature: 'AI-generated Comments', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: 'Available in Asia Pacific', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/designated-services' },
-    { feature: 'AI-based Autocomplete', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/designated-services' },
-    { feature: 'AI Functions (ai_query)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'Available in Southeast Asia. X-geo for some functions', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
+    { feature: 'AI/BI Dashboards', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: '', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/designated-services' },
+    { feature: 'AI Gateway', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: 'Beta', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
+    { feature: 'Agent Framework & Evaluation', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: '', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
+    { feature: 'Agent Bricks: Knowledge Asst.', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
+    { feature: 'Agent Bricks: Multi-Agent Supervisor', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
+    { feature: 'FMAPI (Pay-per-token)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
+    { feature: 'FMAPI (Provisioned Throughput)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
+    { feature: 'AI Functions (ai_query)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo for some functions', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
     { feature: 'ai_parse_document', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
+    { feature: 'AI-generated Comments', category: 'agentic', serviceInSg: 'yes', modelInSg: 'yes', comments: '', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/designated-services' },
+    { feature: 'AI-based Autocomplete', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/designated-services' },
+    // ── ML & Platform ──
+    { feature: 'Model Serving (CPU)', category: 'ml', serviceInSg: 'yes', modelInSg: 'yes', comments: '', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
+    { feature: 'Model Serving (GPU)', category: 'ml', serviceInSg: 'yes', modelInSg: 'yes', comments: '', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
+    { feature: 'Vector Search', category: 'ml', serviceInSg: 'yes', modelInSg: 'na', comments: '', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support' },
     { feature: 'Data Classification', category: 'ml', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://learn.microsoft.com/en-us/azure/databricks/resources/designated-services' },
   ],
 
   gcp: [
-    // From feature-region-support (asia-southeast1)
-    { feature: 'AI Gateway', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: 'Beta. Available in asia-southeast1', source: 'https://docs.databricks.com/gcp/en/resources/feature-region-support' },
-    { feature: 'Model Serving (CPU)', category: 'ml', serviceInSg: 'yes', modelInSg: 'yes', comments: 'Available in asia-southeast1', source: 'https://docs.databricks.com/gcp/en/resources/feature-region-support' },
-    { feature: 'Model Serving (GPU)', category: 'ml', serviceInSg: 'yes', modelInSg: 'yes', comments: 'Available in asia-southeast1', source: 'https://docs.databricks.com/gcp/en/resources/feature-region-support' },
-    { feature: 'Vector Search', category: 'ml', serviceInSg: 'yes', modelInSg: 'na', comments: 'Available in asia-southeast1', source: 'https://docs.databricks.com/gcp/en/resources/feature-region-support' },
-    { feature: 'Agent Framework & Evaluation', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: 'Available in asia-southeast1', source: 'https://docs.databricks.com/gcp/en/resources/feature-region-support' },
-    { feature: 'Agent Bricks: Knowledge Assistant', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://docs.databricks.com/gcp/en/resources/feature-region-support' },
+    // ── Agentic AI ──
+    { feature: 'AI Gateway', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: 'Beta', source: 'https://docs.databricks.com/gcp/en/resources/feature-region-support' },
+    { feature: 'Agent Framework & Evaluation', category: 'agentic', serviceInSg: 'yes', modelInSg: 'na', comments: '', source: 'https://docs.databricks.com/gcp/en/resources/feature-region-support' },
+    { feature: 'Agent Bricks: Knowledge Asst.', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://docs.databricks.com/gcp/en/resources/feature-region-support' },
     { feature: 'Agent Bricks: Multi-Agent Supervisor', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://docs.databricks.com/gcp/en/resources/feature-region-support' },
     { feature: 'FMAPI (Pay-per-token)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://docs.databricks.com/gcp/en/resources/feature-region-support' },
     { feature: 'FMAPI (Provisioned Throughput)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://docs.databricks.com/gcp/en/resources/feature-region-support' },
     { feature: 'AI Functions (ai_query)', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://docs.databricks.com/gcp/en/resources/feature-region-support' },
     { feature: 'ai_parse_document', category: 'agentic', serviceInSg: 'yes', modelInSg: 'no', comments: 'X-geo required', source: 'https://docs.databricks.com/gcp/en/resources/feature-region-support' },
+    // ── ML & Platform ──
+    { feature: 'Model Serving (CPU)', category: 'ml', serviceInSg: 'yes', modelInSg: 'yes', comments: '', source: 'https://docs.databricks.com/gcp/en/resources/feature-region-support' },
+    { feature: 'Model Serving (GPU)', category: 'ml', serviceInSg: 'yes', modelInSg: 'yes', comments: '', source: 'https://docs.databricks.com/gcp/en/resources/feature-region-support' },
+    { feature: 'Vector Search', category: 'ml', serviceInSg: 'yes', modelInSg: 'na', comments: '', source: 'https://docs.databricks.com/gcp/en/resources/feature-region-support' },
   ],
 };
 
