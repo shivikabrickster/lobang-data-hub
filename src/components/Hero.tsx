@@ -2,19 +2,8 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SgFeaturesView from './SgFeaturesView';
 
-const fallbackItems = [
-  'Lakeflow Connect — SQL Server Connector Now GA',
-  'Databricks Apps — Now Generally Available',
-  'AI/BI Dashboards — External Embedding SDK',
-  'Spark Declarative Pipelines — CREATE FLOW & AUTO CDC',
-  'Unity Catalog — Metric Views (Preview)',
-  'Multi-Agent Supervisor — Compound AI Systems',
-  'Lakebase — Managed PostgreSQL on Databricks',
-  'Vector Search — Managed Embeddings & Retrieval',
-];
-
 function useTickerItems() {
-  const [items, setItems] = useState<string[]>(fallbackItems);
+  const [items, setItems] = useState<string[]>([]);
 
   useEffect(() => {
     const url = 'https://api.rss2json.com/v1/api.json?rss_url=' +
@@ -31,9 +20,7 @@ function useTickerItems() {
           if (titles.length > 0) setItems(titles);
         }
       })
-      .catch(() => {
-        // keep fallback items
-      });
+      .catch(() => {});
   }, []);
 
   return items;
@@ -748,7 +735,8 @@ export default function Hero() {
         .ticker-container:hover .ticker-track { animation-play-state: paused !important; }
       `}</style>
 
-      {/* News Ticker — above header, full width */}
+      {/* News Ticker — above header, full width; hidden until RSS loads */}
+      {newsItems.length > 0 && (
       <div className="relative z-10 w-full">
         <div
           className="ticker-container relative flex items-center h-14 overflow-hidden"
@@ -785,6 +773,7 @@ export default function Hero() {
           <EventTickerBadge />
         </div>
       </div>
+      )}
 
       {/* Title + Punchline — centered */}
       <div className="relative z-10 w-full px-6 pt-12 md:pt-16 pb-6">
