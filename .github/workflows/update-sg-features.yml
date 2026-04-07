@@ -49,6 +49,16 @@ jobs:
           sed -i "s/export const LAST_UPDATED = '.*'/export const LAST_UPDATED = '${TODAY}'/" src/data/sgFeaturesData.ts
           echo "Updated LAST_UPDATED to ${TODAY}"
 
+      - name: Setup Node.js
+        if: steps.check.outputs.data_changed == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Regenerate chatbot SG context
+        if: steps.check.outputs.data_changed == 'true'
+        run: node scripts/generate-sg-context.js
+
       - name: Commit and push
         if: steps.check.outputs.data_changed == 'true'
         env:
@@ -57,7 +67,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/shivikabrickster/lobang-data-hub.git
-          git add scripts/scrape-results.json src/data/sgFeaturesData.ts
+          git add scripts/scrape-results.json src/data/sgFeaturesData.ts api/sg-features-context.json
           git commit -m "Auto-update SG features data from public docs [$(date -u +%Y-%m-%d)]"
           git push
 

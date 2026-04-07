@@ -1,6 +1,21 @@
 // Vercel Serverless Function — RAG chatbot with Tavily search + Groq LLM
 // API keys stay server-side, never exposed to the browser
 
+import { readFileSync } from 'fs';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
+
+// ── SG features context (auto-generated from scraped data) ──
+
+let sgFeaturesContext = null;
+try {
+  const __dirname = dirname(fileURLToPath(import.meta.url));
+  const data = JSON.parse(readFileSync(join(__dirname, 'sg-features-context.json'), 'utf-8'));
+  sgFeaturesContext = data.context;
+} catch {
+  // File not found — SG context unavailable
+}
+
 // ── Tavily doc search ──
 
 async function searchDocs(query) {
@@ -165,16 +180,27 @@ export default async function handler(req, res) {
     const lastUserMessage = [...messages].reverse().find((m) => m.role === 'user');
     const query = lastUserMessage?.text || '';
 
+    // Check if this is an SG-specific query
+    const lowerQuery = query.toLowerCase();
+    const isSgQuery = ['singapore', 'sg', 'region', 'available', 'feature', 'x-geo', 'cross-geo', 'designated', 'model'].some(kw => lowerQuery.includes(kw));
+
     // Search official docs via Tavily
     const searchResults = await searchDocs(query);
     const searchContext = formatSearchContext(searchResults);
 
-    // Build system prompt: base + retrieved docs (or fallback if Tavily returned nothing)
+    // Build system prompt: base + SG context (for SG queries) + Tavily results + fallback
     let systemPrompt = BASE_SYSTEM_PROMPT;
+
+    // For SG-specific queries, inject the comprehensive scraped feature data
+    if (isSgQuery && sgFeaturesContext) {
+      systemPrompt += `\n\n## Singapore Feature Availability (Auto-updated from official docs)\n${sgFeaturesContext}`;
+    }
+
+    // Add Tavily search results for additional context
     const hasResults = searchResults && (searchResults.results?.length > 0 || searchResults.answer);
     if (hasResults && searchContext) {
       systemPrompt += searchContext;
-    } else {
+    } else if (!isSgQuery || !sgFeaturesContext) {
       systemPrompt += FALLBACK_KNOWLEDGE;
     }
 
