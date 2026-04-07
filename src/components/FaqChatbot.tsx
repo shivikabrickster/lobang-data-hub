@@ -70,7 +70,7 @@ function RenderText({ text }: { text: string }) {
 export default function FaqChatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'bot', text: "Hi! 👋 I'm the **Lobang Bot** — your AI assistant for Databricks in Singapore.\n\nI can help with feature availability, training, pricing, security, and more. What would you like to know?" },
+    { role: 'bot', text: "Hi! 👋 I'm the **Lobang Bot** — your AI assistant for Databricks in Singapore.\n\nI can help with feature availability, training, pricing, security, and more. What would you like to know?\n\n⚠️ *Disclaimer: Responses are AI-generated and may not always be accurate. Please verify with official [Databricks documentation](https://docs.databricks.com) before making any decisions.*" },
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -116,7 +116,7 @@ export default function FaqChatbot() {
 
   const resetChat = () => {
     setMessages([
-      { role: 'bot', text: "Hi! 👋 I'm the **Lobang Bot** — your AI assistant for Databricks in Singapore.\n\nI can help with feature availability, training, pricing, security, and more. What would you like to know?" },
+      { role: 'bot', text: "Hi! 👋 I'm the **Lobang Bot** — your AI assistant for Databricks in Singapore.\n\nI can help with feature availability, training, pricing, security, and more. What would you like to know?\n\n⚠️ *Disclaimer: Responses are AI-generated and may not always be accurate. Please verify with official [Databricks documentation](https://docs.databricks.com) before making any decisions.*" },
     ]);
   };
 
