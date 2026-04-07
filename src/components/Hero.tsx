@@ -273,20 +273,6 @@ const agentBricksResourceGroups = [
   },
 ];
 
-const lakebaseResourceGroups = [
-  {
-    category: 'Resources',
-    items: [] as { title: string; desc: string; icon: string; href: string; source: string }[],
-  },
-];
-
-const dabResourceGroups = [
-  {
-    category: 'Resources',
-    items: [] as { title: string; desc: string; icon: string; href: string; source: string }[],
-  },
-];
-
 const lakeflowConnectResourceGroups = [
   {
     category: 'Getting Started',
