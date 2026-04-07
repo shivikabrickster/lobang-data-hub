@@ -67,14 +67,12 @@ const sections = [
   {
     title: 'Build',
     tiles: [
-      { label: 'AI Dev Kit', emoji: '🤖', image: '/icons/databricks/mosaic-ai.svg', href: '#ai-dev-kit', drilldown: 'ai-dev-kit' },
+      { label: 'AI & Agents', emoji: '🤖', image: '/icons/databricks/mosaic-ai.svg', href: '#ai-agents', drilldown: 'ai-agents' },
+      { label: 'Data Engineering', emoji: '🔧', image: '/icons/databricks/lakeflow-connect.svg', href: '#data-engineering', drilldown: 'data-engineering' },
+      { label: 'Model & Serving', emoji: '🧠', image: '/icons/databricks/performance.svg', href: '#model-serving', drilldown: 'model-serving' },
       { label: 'Databricks Apps', emoji: '📱', image: '/icons/databricks/apps.svg', href: '#databricks-apps', drilldown: 'databricks-apps' },
-      { label: 'Genie', emoji: '🧞', image: '/icons/databricks/genie.svg', href: '#genie', drilldown: 'genie' },
-      { label: 'Genie Code', emoji: '👨‍💻', image: '/icons/genie-code.png', href: '#genie-code', drilldown: 'genie-code' },
-      { label: 'Lakeflow Connect', emoji: '🔌', image: '/icons/databricks/lakeflow-connect.svg', href: '#lakeflow-connect', drilldown: 'lakeflow-connect' },
-      { label: 'AgentBricks', emoji: '🧱', image: '/icons/databricks/agent-bricks.svg', href: '#agentbricks', drilldown: 'agentbricks' },
-      { label: 'Declarative Automation Bundles', emoji: '⚙️', image: '/icons/databricks/asset-bundle.svg', href: '#dab', drilldown: 'dab' },
-      { label: 'Lakebase', emoji: '🗄️', image: '/icons/databricks/lakebase.svg', href: '#lakebase', drilldown: 'lakebase' },
+      { label: 'Database & Storage', emoji: '🗄️', image: '/icons/databricks/lakebase.svg', href: '#database-storage', drilldown: 'database-storage' },
+      { label: 'Governance', emoji: '🛡️', image: '/icons/databricks/shield-check.svg', href: '#governance', drilldown: 'governance' },
     ],
   },
   {
@@ -383,20 +381,126 @@ const productHelpResourceGroups = [
   },
 ];
 
+// ── Grouped Build tiles ──
+
+const aiAgentsResourceGroups = [
+  {
+    category: 'AI Dev Kit',
+    items: [
+      ...aiDevKitResourceGroups[0].items,
+    ],
+  },
+  {
+    category: 'AgentBricks',
+    items: [
+      ...agentBricksResourceGroups[0].items,
+    ],
+  },
+  ...genieResourceGroups.map(g => ({ ...g, category: `Genie — ${g.category}` })),
+  ...genieCodeResourceGroups.map(g => ({ ...g, category: `Genie Code — ${g.category}` })),
+  {
+    category: 'AI Playground & Functions',
+    items: [
+      { title: 'AI Playground', desc: 'Test and compare foundation models', icon: '🧪', href: 'https://docs.databricks.com/aws/en/large-language-models/ai-playground', source: 'Databricks Docs' },
+      { title: 'AI Functions', desc: 'SQL functions for AI (ai_query, ai_classify, ai_extract)', icon: '⚡', href: 'https://docs.databricks.com/aws/en/large-language-models/ai-functions', source: 'Databricks Docs' },
+    ],
+  },
+];
+
+const dataEngineeringResourceGroups = [
+  {
+    category: 'Lakeflow Connect',
+    items: [
+      ...lakeflowConnectResourceGroups[0].items,
+      ...lakeflowConnectResourceGroups[1].items,
+    ],
+  },
+  {
+    category: 'Pipelines & Orchestration',
+    items: [
+      { title: 'Declarative Pipelines (DLT)', desc: 'SQL-first pipeline framework', icon: '📊', href: 'https://docs.databricks.com/aws/en/delta-live-tables/', source: 'Databricks Docs' },
+      { title: 'Auto Loader', desc: 'Incremental file ingestion from cloud storage', icon: '📥', href: 'https://docs.databricks.com/aws/en/ingestion/cloud-object-storage/auto-loader/', source: 'Databricks Docs' },
+      { title: 'Jobs & Workflows', desc: 'Schedule and orchestrate tasks', icon: '⏱️', href: 'https://docs.databricks.com/aws/en/jobs/', source: 'Databricks Docs' },
+      { title: 'Asset Bundles (DABs)', desc: 'CI/CD infrastructure-as-code', icon: '⚙️', href: 'https://docs.databricks.com/en/dev-tools/bundles/index.html', source: 'Databricks Docs' },
+    ],
+  },
+];
+
+const modelServingResourceGroups = [
+  {
+    category: 'Model Serving',
+    items: [
+      { title: 'Model Serving Overview', desc: 'Deploy models as REST APIs', icon: '🚀', href: 'https://docs.databricks.com/aws/en/machine-learning/model-serving/', source: 'Databricks Docs' },
+      { title: 'Foundation Model APIs', desc: 'Pay-per-token and provisioned throughput', icon: '🧠', href: 'https://docs.databricks.com/aws/en/machine-learning/model-serving/foundation-model-overview', source: 'Databricks Docs' },
+      { title: 'Serving Limits & Regions', desc: 'Rate limits and region availability', icon: '📋', href: 'https://docs.databricks.com/aws/en/machine-learning/model-serving/model-serving-limits', source: 'Databricks Docs' },
+    ],
+  },
+  {
+    category: 'Search & Retrieval',
+    items: [
+      { title: 'Vector Search', desc: 'Semantic search and RAG retrieval', icon: '🔍', href: 'https://docs.databricks.com/aws/en/vector-search/', source: 'Databricks Docs' },
+      { title: 'MCP Servers', desc: 'Model Context Protocol for agents', icon: '🔌', href: 'https://docs.databricks.com/aws/en/generative-ai/mcp/', source: 'Databricks Docs' },
+    ],
+  },
+  {
+    category: 'MLflow & Feature Store',
+    items: [
+      { title: 'MLflow', desc: 'Experiment tracking, model registry', icon: '📈', href: 'https://docs.databricks.com/aws/en/mlflow/', source: 'Databricks Docs' },
+      { title: 'Feature Store', desc: 'Manage and serve ML features', icon: '🗂️', href: 'https://docs.databricks.com/aws/en/machine-learning/feature-store/', source: 'Databricks Docs' },
+      { title: 'AutoML', desc: 'Automated model training and tuning', icon: '🤖', href: 'https://docs.databricks.com/aws/en/machine-learning/automl/', source: 'Databricks Docs' },
+    ],
+  },
+];
+
+const databaseStorageResourceGroups = [
+  {
+    category: 'Databases',
+    items: [
+      { title: 'Lakebase', desc: 'Managed PostgreSQL for apps and agents', icon: '🗄️', href: 'https://docs.databricks.com/aws/en/oltp', source: 'Databricks Docs' },
+    ],
+  },
+  {
+    category: 'Table Formats',
+    items: [
+      { title: 'Delta Lake', desc: 'ACID transactions, time travel, optimization', icon: '🔺', href: 'https://docs.databricks.com/aws/en/delta/', source: 'Databricks Docs' },
+      { title: 'Apache Iceberg', desc: 'Open table format interoperability', icon: '🧊', href: 'https://docs.databricks.com/aws/en/iceberg/', source: 'Databricks Docs' },
+    ],
+  },
+];
+
+const governanceResourceGroups = [
+  {
+    category: 'Unity Catalog',
+    items: [
+      { title: 'Unity Catalog', desc: 'Unified governance for data and AI', icon: '📚', href: 'https://docs.databricks.com/aws/en/data-governance/unity-catalog/', source: 'Databricks Docs' },
+      { title: 'Data Classification', desc: 'Automated sensitive data tagging', icon: '🏷️', href: 'https://docs.databricks.com/aws/en/data-governance/unity-catalog/data-classification', source: 'Databricks Docs' },
+      { title: 'System Tables', desc: 'Audit logs, lineage, billing data', icon: '📊', href: 'https://docs.databricks.com/aws/en/admin/system-tables/', source: 'Databricks Docs' },
+    ],
+  },
+  {
+    category: 'Sharing & Collaboration',
+    items: [
+      { title: 'Delta Sharing', desc: 'Open protocol for secure data sharing', icon: '🤝', href: 'https://docs.databricks.com/aws/en/delta-sharing/', source: 'Databricks Docs' },
+      { title: 'Catalog Federation', desc: 'Query external catalogs without copying', icon: '🔗', href: 'https://docs.databricks.com/aws/en/query-federation/catalog-federation', source: 'Databricks Docs' },
+      { title: 'Clean Rooms', desc: 'Privacy-safe collaboration on sensitive data', icon: '🔒', href: 'https://docs.databricks.com/aws/en/clean-rooms/', source: 'Databricks Docs' },
+      { title: 'Marketplace', desc: 'Discover and share data products', icon: '🏪', href: 'https://www.databricks.com/product/marketplace', source: 'Databricks' },
+    ],
+  },
+];
+
 const drilldownData: Record<string, { title: string; image: string; groups: typeof awsResourceGroups }> = {
   'release-hub': { title: 'Release Hub', image: '', groups: releaseHubResourceGroups },
   'trainings': { title: 'Trainings', image: '', groups: trainingsResourceGroups },
   'product-help': { title: 'Product Help', image: '', groups: productHelpResourceGroups },
   aws: { title: 'Databricks on AWS', image: '/icons/aws.svg', groups: awsResourceGroups },
   azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
-  genie: { title: 'Genie', image: '/icons/databricks/genie.svg', groups: genieResourceGroups },
-  'genie-code': { title: 'Genie Code', image: '/icons/genie-code.png', groups: genieCodeResourceGroups },
-  'ai-dev-kit': { title: 'AI Dev Kit', image: '', groups: aiDevKitResourceGroups },
+  // Build sub-groups
+  'ai-agents': { title: 'AI & Agents', image: '/icons/databricks/mosaic-ai.svg', groups: aiAgentsResourceGroups },
+  'data-engineering': { title: 'Data Engineering', image: '/icons/databricks/lakeflow-connect.svg', groups: dataEngineeringResourceGroups },
+  'model-serving': { title: 'Model & Serving', image: '/icons/databricks/performance.svg', groups: modelServingResourceGroups },
   'databricks-apps': { title: 'Databricks Apps', image: '/icons/databricks/apps.svg', groups: databricksAppsResourceGroups },
-  'agentbricks': { title: 'AgentBricks', image: '/icons/databricks/agent-bricks.svg', groups: agentBricksResourceGroups },
-  'lakebase': { title: 'Lakebase', image: '/icons/databricks/lakebase.svg', groups: lakebaseResourceGroups },
-  'dab': { title: 'Declarative Automation Bundles', image: '/icons/databricks/asset-bundle.svg', groups: dabResourceGroups },
-  'lakeflow-connect': { title: 'Lakeflow Connect', image: '/icons/databricks/lakeflow-connect.svg', groups: lakeflowConnectResourceGroups },
+  'database-storage': { title: 'Database & Storage', image: '/icons/databricks/lakebase.svg', groups: databaseStorageResourceGroups },
+  'governance': { title: 'Governance', image: '/icons/databricks/shield-check.svg', groups: governanceResourceGroups },
   'benchmarks': { title: 'Benchmarks', image: '', groups: benchmarksResourceGroups },
   'cost-optimization': { title: 'Cost Optimization', image: '', groups: costOptimizationResourceGroups },
   'compute-sizing': { title: 'Compute & Cluster Sizing', image: '', groups: computeSizingResourceGroups },
