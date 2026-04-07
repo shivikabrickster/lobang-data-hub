@@ -67,11 +67,11 @@ const sections = [
   {
     title: 'Build',
     tiles: [
-      { label: 'AI & Agents', emoji: '🤖', image: '/icons/databricks/mosaic-ai.svg', href: '#ai-agents', drilldown: 'ai-agents' },
+      { label: 'AI & Agents', emoji: '🤖', image: '/icons/databricks/agent-bricks.svg', href: '#ai-agents', drilldown: 'ai-agents' },
       { label: 'Data Engineering', emoji: '🔧', image: '/icons/databricks/lakeflow.svg', href: '#data-engineering', drilldown: 'data-engineering' },
       { label: 'Model & Serving', emoji: '🧠', image: '/icons/databricks/mosaic-ai.svg', href: '#model-serving', drilldown: 'model-serving' },
       { label: 'Databricks Apps', emoji: '📱', image: '/icons/databricks/apps.svg', href: '#databricks-apps', drilldown: 'databricks-apps' },
-      { label: 'Database & Storage', emoji: '🗄️', image: '/icons/databricks/cloud-database.svg', href: '#database-storage', drilldown: 'database-storage' },
+      { label: 'Database & Storage', emoji: '🗄️', image: '/icons/databricks/lakebase.svg', href: '#database-storage', drilldown: 'database-storage' },
       { label: 'Governance', emoji: '🛡️', image: '/icons/databricks/unity-catalog.svg', href: '#governance', drilldown: 'governance' },
     ],
   },
@@ -483,11 +483,11 @@ const drilldownData: Record<string, { title: string; image: string; groups: type
   aws: { title: 'Databricks on AWS', image: '/icons/aws.svg', groups: awsResourceGroups },
   azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
   // Build sub-groups
-  'ai-agents': { title: 'AI & Agents', image: '/icons/databricks/mosaic-ai.svg', groups: aiAgentsResourceGroups },
+  'ai-agents': { title: 'AI & Agents', image: '/icons/databricks/agent-bricks.svg', groups: aiAgentsResourceGroups },
   'data-engineering': { title: 'Data Engineering', image: '/icons/databricks/lakeflow.svg', groups: dataEngineeringResourceGroups },
   'model-serving': { title: 'Model & Serving', image: '/icons/databricks/mosaic-ai.svg', groups: modelServingResourceGroups },
   'databricks-apps': { title: 'Databricks Apps', image: '/icons/databricks/apps.svg', groups: databricksAppsResourceGroups },
-  'database-storage': { title: 'Database & Storage', image: '/icons/databricks/cloud-database.svg', groups: databaseStorageResourceGroups },
+  'database-storage': { title: 'Database & Storage', image: '/icons/databricks/lakebase.svg', groups: databaseStorageResourceGroups },
   'governance': { title: 'Governance', image: '/icons/databricks/unity-catalog.svg', groups: governanceResourceGroups },
   'benchmarks': { title: 'Benchmarks', image: '', groups: benchmarksResourceGroups },
   'cost-optimization': { title: 'Cost Optimization', image: '', groups: costOptimizationResourceGroups },
