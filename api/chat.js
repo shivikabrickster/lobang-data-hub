@@ -26,10 +26,11 @@ async function searchDocs(query) {
       },
       body: JSON.stringify({
         query: searchQuery,
-        search_depth: 'basic',
+        search_depth: 'advanced',
         max_results: 5,
+        chunks_per_source: 3,
         include_domains: ['docs.databricks.com', 'learn.microsoft.com/en-us/azure/databricks'],
-        include_answer: false,
+        include_answer: 'advanced',
         include_raw_content: 'markdown',
       }),
     });
@@ -40,27 +41,38 @@ async function searchDocs(query) {
     }
     const data = await response.json();
     console.log('[Tavily] Found', data.results?.length || 0, 'results for:', searchQuery);
-    return data.results || null;
+    if (data.answer) console.log('[Tavily] Answer length:', data.answer.length);
+    return { results: data.results || [], answer: data.answer || null };
   } catch (err) {
     console.error('[Tavily] Search error:', err.message);
     return null;
   }
 }
 
-function formatSearchContext(results) {
-  if (!results || results.length === 0) return '';
+function formatSearchContext(searchData) {
+  if (!searchData) return '';
+  const { results, answer } = searchData;
 
-  // Use raw_content (full page markdown) when available, fall back to content (short excerpt)
-  // Give the top result more space (likely the most relevant page), others get less
-  const docs = results
-    .map((r, i) => {
-      const maxChars = i === 0 ? 12000 : 4000;
-      const text = (r.raw_content || r.content || '').slice(0, maxChars);
-      return `[${i + 1}] ${r.title}\nSource: ${r.url}\n${text}`;
-    })
-    .join('\n\n');
+  let context = '\n\n## Retrieved from Official Databricks Documentation\nUse the following to answer the user\'s question accurately and completely. Always cite the source URLs in your answer.\n';
 
-  return `\n\n## Retrieved from Official Databricks Documentation\nUse the following documentation excerpts to answer the user's question accurately and completely. Always cite the source URL in your answer.\n\n${docs}`;
+  // Include Tavily's synthesized answer if available (advanced search produces a summary)
+  if (answer) {
+    context += `\n### Summary from Documentation\n${answer}\n`;
+  }
+
+  // Include individual doc excerpts
+  if (results && results.length > 0) {
+    const docs = results
+      .map((r, i) => {
+        const maxChars = i === 0 ? 12000 : 4000;
+        const text = (r.raw_content || r.content || '').slice(0, maxChars);
+        return `[${i + 1}] ${r.title}\nSource: ${r.url}\n${text}`;
+      })
+      .join('\n\n');
+    context += `\n### Source Documents\n${docs}`;
+  }
+
+  return context;
 }
 
 // ── System prompt ──
@@ -157,9 +169,10 @@ export default async function handler(req, res) {
     const searchResults = await searchDocs(query);
     const searchContext = formatSearchContext(searchResults);
 
-    // Build system prompt: base + retrieved docs (or fallback if no results)
+    // Build system prompt: base + retrieved docs (or fallback if Tavily returned nothing)
     let systemPrompt = BASE_SYSTEM_PROMPT;
-    if (searchContext) {
+    const hasResults = searchResults && (searchResults.results?.length > 0 || searchResults.answer);
+    if (hasResults && searchContext) {
       systemPrompt += searchContext;
     } else {
       systemPrompt += FALLBACK_KNOWLEDGE;
