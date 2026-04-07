@@ -5,7 +5,17 @@
 
 async function searchDocs(query) {
   const apiKey = process.env.TAVILY_API_KEY;
-  if (!apiKey) return null;
+  if (!apiKey) {
+    console.log('[Tavily] No API key configured, using fallback');
+    return null;
+  }
+
+  // Enhance query for better search results — add "Singapore" context for region queries
+  const lowerQuery = query.toLowerCase();
+  const isSgQuery = ['singapore', 'sg', 'region', 'available', 'feature', 'x-geo', 'cross-geo', 'designated'].some(kw => lowerQuery.includes(kw));
+  const searchQuery = isSgQuery
+    ? `Databricks Singapore region ${query}`
+    : `Databricks ${query}`;
 
   try {
     const response = await fetch('https://api.tavily.com/search', {
@@ -15,7 +25,7 @@ async function searchDocs(query) {
         'Authorization': `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        query: `Databricks ${query}`,
+        query: searchQuery,
         search_depth: 'basic',
         max_results: 5,
         include_domains: ['docs.databricks.com', 'learn.microsoft.com/en-us/azure/databricks'],
@@ -24,10 +34,15 @@ async function searchDocs(query) {
       }),
     });
 
-    if (!response.ok) return null;
+    if (!response.ok) {
+      console.error('[Tavily] Search failed:', response.status, await response.text());
+      return null;
+    }
     const data = await response.json();
+    console.log('[Tavily] Found', data.results?.length || 0, 'results for:', searchQuery);
     return data.results || null;
-  } catch {
+  } catch (err) {
+    console.error('[Tavily] Search error:', err.message);
     return null;
   }
 }
