@@ -54,7 +54,8 @@ const sections = [
     title: 'Security & Compliance',
     tiles: [
       { label: 'Security & Trust Center', emoji: '🛡️', image: '/icons/databricks/shield-check.svg', href: 'https://www.databricks.com/trust/security-features' },
-      { label: 'SG Feature Availability', emoji: '🇸🇬', href: '#sg-features', drilldown: 'sg-features' },
+      // SG Feature Availability — removed from public site, deployed as Databricks App
+      // { label: 'SG Feature Availability', emoji: '🇸🇬', href: '#sg-features', drilldown: 'sg-features' },
     ],
   },
   {
