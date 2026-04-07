@@ -25,7 +25,7 @@ function useTickerItems() {
       .then((data) => {
         if (data.status === 'ok' && data.items?.length > 0) {
           const titles = data.items
-            .slice(0, 15)
+            .slice(0, 50)
             .map((item: { title: string }) => item.title)
             .filter(Boolean);
           if (titles.length > 0) setItems(titles);
