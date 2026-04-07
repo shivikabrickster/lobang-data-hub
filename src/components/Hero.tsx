@@ -150,7 +150,8 @@ const genieResourceGroups = [
       { title: 'Genie in Power BI', desc: 'Integrate into Power BI dashboards', icon: '📊', href: 'https://medium.com/@ajit.kalura/embedding-databricks-genie-in-powerbi-e8b67bea7774', source: 'Medium' },
       { title: 'Genie Workbench', desc: 'Creating, scoring, and optimizing Genie Spaces', icon: '🔧', href: 'https://github.com/databricks-solutions/databricks-genie-workbench', source: 'GitHub' },
       { title: 'Genie Rails', desc: 'Create and govern Genie Spaces', icon: '🛤️', href: 'https://github.com/databricks-solutions/genierails', source: 'GitHub' },
-      { title: 'AI-Powered Genie Space Generator', desc: 'Auto-generate Genie Spaces with AI', icon: '✨', href: 'https://github.com/sunnysingh-db/ai-genie-space-generator', source: 'GitHub' },
+      { title: 'AI Genie Space Generator (GitHub)', desc: 'Auto-generate Genie Spaces with AI', icon: '✨', href: 'https://github.com/sunnysingh-db/ai-genie-space-generator', source: 'GitHub' },
+      { title: 'AI Genie Space Generator (GitLab)', desc: 'Auto-generate Genie Spaces with AI', icon: '✨', href: 'https://gitlab.com/sunny.singh7/ai-genie-space-generator', source: 'GitLab' },
     ],
   },
   {
