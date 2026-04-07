@@ -152,7 +152,7 @@ export default function FaqChatbot() {
                     </div>
                     <div className="text-white/60 text-[11px] flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      Powered by Llama 3.3
+                      Powered by Llama 3.3 + Databricks Docs
                     </div>
                   </div>
                 </div>
