@@ -51,11 +51,11 @@ function formatSearchContext(results) {
   if (!results || results.length === 0) return '';
 
   // Use raw_content (full page markdown) when available, fall back to content (short excerpt)
-  // Truncate each result to ~3000 chars to stay within prompt limits
-  const MAX_CHARS_PER_RESULT = 3000;
+  // Give the top result more space (likely the most relevant page), others get less
   const docs = results
     .map((r, i) => {
-      const text = (r.raw_content || r.content || '').slice(0, MAX_CHARS_PER_RESULT);
+      const maxChars = i === 0 ? 12000 : 4000;
+      const text = (r.raw_content || r.content || '').slice(0, maxChars);
       return `[${i + 1}] ${r.title}\nSource: ${r.url}\n${text}`;
     })
     .join('\n\n');
