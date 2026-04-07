@@ -30,7 +30,7 @@ async function searchDocs(query) {
         max_results: 5,
         include_domains: ['docs.databricks.com', 'learn.microsoft.com/en-us/azure/databricks'],
         include_answer: false,
-        include_raw_content: false,
+        include_raw_content: 'markdown',
       }),
     });
 
@@ -50,11 +50,17 @@ async function searchDocs(query) {
 function formatSearchContext(results) {
   if (!results || results.length === 0) return '';
 
+  // Use raw_content (full page markdown) when available, fall back to content (short excerpt)
+  // Truncate each result to ~3000 chars to stay within prompt limits
+  const MAX_CHARS_PER_RESULT = 3000;
   const docs = results
-    .map((r, i) => `[${i + 1}] ${r.title}\nSource: ${r.url}\n${r.content}`)
+    .map((r, i) => {
+      const text = (r.raw_content || r.content || '').slice(0, MAX_CHARS_PER_RESULT);
+      return `[${i + 1}] ${r.title}\nSource: ${r.url}\n${text}`;
+    })
     .join('\n\n');
 
-  return `\n\n## Retrieved from Official Databricks Documentation\nUse the following documentation excerpts to answer the user's question. Always cite the source URL in your answer.\n\n${docs}`;
+  return `\n\n## Retrieved from Official Databricks Documentation\nUse the following documentation excerpts to answer the user's question accurately and completely. Always cite the source URL in your answer.\n\n${docs}`;
 }
 
 // ── System prompt ──
