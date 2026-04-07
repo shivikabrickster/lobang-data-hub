@@ -26,11 +26,10 @@ async function searchDocs(query) {
       },
       body: JSON.stringify({
         query: searchQuery,
-        search_depth: 'advanced',
-        max_results: 5,
-        chunks_per_source: 3,
+        search_depth: 'basic',
+        max_results: 3,
         include_domains: ['docs.databricks.com', 'learn.microsoft.com/en-us/azure/databricks'],
-        include_answer: 'advanced',
+        include_answer: 'basic',
         include_raw_content: 'markdown',
       }),
     });
