@@ -63,7 +63,7 @@ function formatSearchContext(searchData) {
   if (results && results.length > 0) {
     const docs = results
       .map((r, i) => {
-        const maxChars = i === 0 ? 12000 : 4000;
+        const maxChars = i === 0 ? 20000 : 4000;
         const text = (r.raw_content || r.content || '').slice(0, maxChars);
         return `[${i + 1}] ${r.title}\nSource: ${r.url}\n${text}`;
       })
@@ -89,7 +89,8 @@ You help users understand Databricks features, availability in Singapore, and gu
 - IMPORTANT: Base your answers primarily on the Retrieved Documentation section below. This is live data from official Databricks docs.
 - Always cite source URLs as markdown links: [Link Text](URL)
 - If the retrieved documentation doesn't cover the question, say so honestly — do not guess or make up information.
-- Be concise, helpful, and friendly. Use bullet points for lists.
+- When listing features, be COMPREHENSIVE — list ALL features mentioned in the documentation, not just a few examples. Users need the complete picture.
+- Be helpful and friendly. Use bullet points for lists. Group features by category (e.g., Security, Compute, AI/ML, Data Engineering) when listing many.
 - When relevant, contextualize for Singapore public sector use cases (data residency, cross-geo requirements, available regions).
 - When user asks about a feature, provide BOTH AWS and Azure links where available.`;
 
