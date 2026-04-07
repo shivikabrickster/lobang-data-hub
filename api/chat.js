@@ -14,7 +14,8 @@ Key facts you know:
 - Data residency stays within Singapore for most features
 
 ## Feature Availability in SG (AWS)
-- Genie Code (Chat & Agent): Available in-region, no X-geo needed
+- Genie Code Chat & Cell Actions: Available in-region, processed within SG when cross-geo is disabled
+- Genie Code Agent Mode: Available but X-geo required (model hosted outside SG, uses Azure AI Services or Anthropic)
 - Genie (excl. Research Agent): In-country per March 2026 release
 - Genie Agent Mode (Research): Available but Beta, X-geo required
 - AI/BI Dashboards: In-region, no X-geo needed
