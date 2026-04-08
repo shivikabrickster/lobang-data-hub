@@ -41,7 +41,7 @@ const sections = [
     title: 'Security & Compliance',
     tiles: [
       { label: 'Security & Trust Center', emoji: '🛡️', image: '/icons/databricks/shield-check.svg', href: 'https://www.databricks.com/trust/security-features' },
-      { label: 'Data Exfiltration Controls', emoji: '🔒', image: '/icons/databricks/shield-check.svg', href: 'https://www.databricks.com/blog/unified-approach-data-exfiltration-protection-databricks' },
+      { label: 'Data Exfiltration Controls', emoji: '🔒', image: '/icons/databricks/lock-shield.svg', href: 'https://www.databricks.com/blog/unified-approach-data-exfiltration-protection-databricks' },
       // SG Feature Availability — removed from public site, deployed as Databricks App
       // { label: 'SG Feature Availability', emoji: '🇸🇬', href: '#sg-features', drilldown: 'sg-features' },
     ],
