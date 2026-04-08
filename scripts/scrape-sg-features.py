@@ -16,7 +16,7 @@ import json
 import re
 import sys
 import urllib.request
-from datetime import date
+from datetime import datetime, timezone, timedelta
 from html.parser import HTMLParser
 
 
@@ -229,7 +229,7 @@ def main():
     print()
 
     results = {
-        "last_updated": date.today().isoformat(),
+        "last_updated": datetime.now(timezone(timedelta(hours=8))).date().isoformat(),
         "aws": {},
         "azure": {},
         "gcp": {},

@@ -45,7 +45,7 @@ jobs:
       - name: Update LAST_UPDATED timestamp
         if: steps.check.outputs.data_changed == 'true'
         run: |
-          TODAY=$(date -u +%Y-%m-%d)
+          TODAY=$(TZ='Asia/Singapore' date +%Y-%m-%d)
           sed -i "s/export const LAST_UPDATED = '.*'/export const LAST_UPDATED = '${TODAY}'/" src/data/sgFeaturesData.ts
           echo "Updated LAST_UPDATED to ${TODAY}"
 
