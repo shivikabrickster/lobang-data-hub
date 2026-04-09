@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-07",
+  "last_updated": "2026-04-09",
   "aws": {
     "feature_region": {
       "CMK": {
@@ -27,12 +27,12 @@
         "xgeo": false,
         "raw": "\u2713"
       },
-      "Managed connectors in Lakeflow Connect": {
+      "Serverless workspaces": {
         "available": true,
         "xgeo": false,
         "raw": "\u2713"
       },
-      "Serverless workspaces": {
+      "Managed connectors in Lakeflow Connect": {
         "available": true,
         "xgeo": false,
         "raw": "\u2713"
@@ -512,17 +512,22 @@
         "xgeo": false,
         "raw": "\u2713"
       },
-      "Managed connectors in Lakeflow Connect": {
-        "available": true,
-        "xgeo": false,
-        "raw": "\u2713"
-      },
       "Databricks Apps": {
         "available": true,
         "xgeo": false,
         "raw": "\u2713"
       },
       "Model Training - forecasting": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Managed connectors in Lakeflow Connect": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Zerobus Ingest": {
         "available": true,
         "xgeo": false,
         "raw": "\u2713"
@@ -717,12 +722,12 @@
         "xgeo": false,
         "raw": "\u2713"
       },
-      "Managed connectors in Lakeflow Connect": {
+      "Serverless workspaces": {
         "available": true,
         "xgeo": false,
         "raw": "\u2713"
       },
-      "Serverless workspaces": {
+      "Managed connectors in Lakeflow Connect": {
         "available": true,
         "xgeo": false,
         "raw": "\u2713"
