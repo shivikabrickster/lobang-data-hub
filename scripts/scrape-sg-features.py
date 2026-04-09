@@ -287,7 +287,7 @@ def main():
             print(f"    Found {count} features in asia-southeast1")
 
     # Check release notes for current month
-    now = date.today()
+    now = datetime.now(timezone(timedelta(hours=8))).date()
     for month_offset in [0, -1]:
         m = now.month + month_offset
         y = now.year
