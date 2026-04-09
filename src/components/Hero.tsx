@@ -41,7 +41,7 @@ const sections = [
     title: 'Security & Compliance',
     tiles: [
       { label: 'Security & Trust Center', emoji: '🛡️', image: '/icons/databricks/shield-check.svg', href: 'https://www.databricks.com/trust/security-features' },
-      { label: 'Data Exfiltration Controls', emoji: '🔒', image: '/icons/databricks/lock-shield.svg', href: 'https://www.databricks.com/blog/unified-approach-data-exfiltration-protection-databricks' },
+      { label: 'Data Exfiltration Controls', emoji: '🔒', image: '/icons/databricks/lock-shield.svg', href: '#data-exfiltration', drilldown: 'data-exfiltration' },
       // SG Feature Availability — removed from public site, deployed as Databricks App
       // { label: 'SG Feature Availability', emoji: '🇸🇬', href: '#sg-features', drilldown: 'sg-features' },
     ],
@@ -470,10 +470,41 @@ const governanceResourceGroups = [
   },
 ];
 
+const dataExfiltrationResourceGroups = [
+  {
+    category: 'Overview',
+    items: [
+      { title: 'Unified Approach to Data Exfiltration Protection', desc: 'End-to-end exfiltration prevention strategy on Databricks', icon: '📄', href: 'https://www.databricks.com/blog/unified-approach-data-exfiltration-protection-databricks', source: 'Databricks Blog' },
+      { title: 'Security & Trust Genie', desc: 'Natural language security queries over audit logs', icon: '🔍', href: 'https://github.com/andyweaves/security-and-trust-genie', source: 'GitHub' },
+    ],
+  },
+  {
+    category: 'Detection & Monitoring',
+    items: [
+      { title: 'Cybersec Workspace Detection App', desc: '31 security detections incl. data movement via downloads, SQL COPY INTO, session hijacking, privilege escalation', icon: '🛡️', href: 'https://github.com/databricks-solutions/cybersec-workspace-detection-app', source: 'GitHub' },
+      { title: 'System Tables Audit Log Alerts', desc: 'Community-built audit log queries with scheduled DBSQL alerting', icon: '🔔', href: 'https://github.com/andyweaves/system-tables-audit-logs', source: 'GitHub' },
+      { title: 'Security Analysis Tool (SAT)', desc: 'Workspace configuration posture checks — baseline compliance assessment', icon: '✅', href: 'https://github.com/databricks-industry-solutions/security-analysis-tool', source: 'GitHub' },
+    ],
+  },
+  {
+    category: 'Infrastructure as Code',
+    items: [
+      { title: 'Terraform SRA — Audit Log Module', desc: 'Automate security queries and alerts deployment across workspaces via Terraform', icon: '🏗️', href: 'https://github.com/databricks/terraform-databricks-sra', source: 'GitHub' },
+    ],
+  },
+  {
+    category: 'Demos & Tutorials',
+    items: [
+      { title: 'dbdemos — System Tables', desc: 'Install with dbdemos.install("uc-04-system-tables") — audit log notebook templates', icon: '🎓', href: 'https://www.databricks.com/resources/demos/tutorials/governance/system-tables', source: 'Databricks Demos' },
+    ],
+  },
+];
+
 const drilldownData: Record<string, { title: string; image: string; groups: typeof awsResourceGroups }> = {
   'release-hub': { title: 'Release Hub', image: '', groups: releaseHubResourceGroups },
   'trainings': { title: 'Trainings', image: '', groups: trainingsResourceGroups },
   'product-help': { title: 'Product Help', image: '', groups: productHelpResourceGroups },
+  'data-exfiltration': { title: 'Data Exfiltration Controls', image: '/icons/databricks/lock-shield.svg', groups: dataExfiltrationResourceGroups },
   aws: { title: 'Databricks on AWS', image: '/icons/aws.svg', groups: awsResourceGroups },
   azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
   // Build sub-groups
