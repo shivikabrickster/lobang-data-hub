@@ -204,8 +204,7 @@ const azureResourceGroups = [
     category: 'Workspace Setup',
     items: [
       { title: 'Manual Deployment', desc: 'Deploy via Azure Portal', icon: '📄', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/create-workspaces/azure/manual', source: 'Starter Journey' },
-      { title: 'Terraform Deployment', desc: 'IaC workspace provisioning', icon: '🏗️', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/create-workspaces/azure/terraform', source: 'Starter Journey' },
-      { title: 'Terraform Workspace Setup Examples', desc: 'Production-ready Terraform configs for Azure Databricks workspace provisioning', icon: '📐', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples', source: 'GitHub' },
+      { title: 'Terraform Deployment', desc: 'IaC workspace provisioning guides & examples', icon: '🏗️', href: '#azure-terraform', source: '', drilldown: 'azure-terraform' },
     ],
   },
   {
@@ -501,6 +500,16 @@ const dataExfiltrationResourceGroups = [
   },
 ];
 
+const azureTerraformResourceGroups = [
+  {
+    category: 'Resources',
+    items: [
+      { title: 'Terraform Deployment Guide', desc: 'Step-by-step IaC workspace provisioning on Azure', icon: '📖', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/create-workspaces/azure/terraform', source: 'Starter Journey' },
+      { title: 'Terraform Setup Examples', desc: 'Production-ready Terraform configs for Azure Databricks workspaces', icon: '📐', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples', source: 'GitHub' },
+    ],
+  },
+];
+
 const drilldownData: Record<string, { title: string; image: string; groups: typeof awsResourceGroups }> = {
   'release-hub': { title: 'Release Hub', image: '', groups: releaseHubResourceGroups },
   'trainings': { title: 'Trainings', image: '', groups: trainingsResourceGroups },
@@ -508,6 +517,7 @@ const drilldownData: Record<string, { title: string; image: string; groups: type
   'data-exfiltration': { title: 'Data Exfiltration Controls', image: '/icons/databricks/lock-shield.svg', groups: dataExfiltrationResourceGroups },
   aws: { title: 'Databricks on AWS', image: '/icons/aws.svg', groups: awsResourceGroups },
   azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
+  'azure-terraform': { title: 'Terraform Deployment', image: '', groups: azureTerraformResourceGroups },
   // Build sub-groups
   'ai-agents': { title: 'AI & Agents', image: '/icons/databricks/agent-bricks.svg', groups: aiAgentsResourceGroups },
   'data-engineering': { title: 'Data Engineering', image: '/icons/databricks/lakeflow.svg', groups: dataEngineeringResourceGroups },
@@ -670,7 +680,7 @@ function EventTickerBadge() {
   );
 }
 
-function DrilldownView({ data, onBack }: { data: typeof drilldownData['aws']; onBack: () => void }) {
+function DrilldownView({ data, onBack, onDrilldown }: { data: typeof drilldownData['aws']; onBack: () => void; onDrilldown?: (key: string) => void }) {
   return (
     <motion.div
       initial={{ opacity: 0, x: 80 }}
@@ -707,42 +717,53 @@ function DrilldownView({ data, onBack }: { data: typeof drilldownData['aws']; on
             {group.category}
           </span>
           <div className="flex flex-wrap justify-center gap-3">
-            {group.items.map((item, ii) => (
-              <motion.a
-                key={item.href}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.25, delay: 0.15 + ii * 0.04 }}
-                className="group flex flex-col items-center justify-center gap-2 w-[200px] py-5 rounded-2xl no-underline transition-all duration-200 hover:-translate-y-1 cursor-pointer"
-                style={{
+            {group.items.map((item, ii) => {
+              const sharedProps = {
+                initial: { opacity: 0, y: 12 } as const,
+                animate: { opacity: 1, y: 0 } as const,
+                transition: { duration: 0.25, delay: 0.15 + ii * 0.04 },
+                className: "group flex flex-col items-center justify-center gap-2 w-[200px] py-5 rounded-2xl no-underline transition-all duration-200 hover:-translate-y-1 cursor-pointer",
+                style: {
                   background: 'rgba(255,255,255,0.035)',
                   border: '1px solid rgba(255,255,255,0.07)',
-                }}
-                onMouseEnter={(e) => {
+                },
+                onMouseEnter: (e: React.MouseEvent<HTMLElement>) => {
                   e.currentTarget.style.background = 'rgba(255,54,33,0.1)';
                   e.currentTarget.style.borderColor = 'rgba(255,54,33,0.3)';
                   e.currentTarget.style.boxShadow = '0 8px 24px rgba(255,54,33,0.08)';
-                }}
-                onMouseLeave={(e) => {
+                },
+                onMouseLeave: (e: React.MouseEvent<HTMLElement>) => {
                   e.currentTarget.style.background = 'rgba(255,255,255,0.035)';
                   e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)';
                   e.currentTarget.style.boxShadow = 'none';
-                }}
-              >
-                {'icon' in item && item.icon && <span className="text-2xl">{item.icon}</span>}
-                <span className="text-[13px] font-bold text-white text-center leading-tight px-3">
-                  {item.title}
-                </span>
-                {item.desc && (
-                  <span className="text-[10px] text-white/35 text-center leading-snug px-3">
-                    {item.desc}
+                },
+              };
+              const content = (
+                <>
+                  {'icon' in item && item.icon && <span className="text-2xl">{item.icon}</span>}
+                  <span className="text-[13px] font-bold text-white text-center leading-tight px-3">
+                    {item.title}
                   </span>
-                )}
-              </motion.a>
-            ))}
+                  {item.desc && (
+                    <span className="text-[10px] text-white/35 text-center leading-snug px-3">
+                      {item.desc}
+                    </span>
+                  )}
+                </>
+              );
+              if ('drilldown' in item && item.drilldown && onDrilldown) {
+                return (
+                  <motion.button key={item.title} {...sharedProps} onClick={() => onDrilldown(item.drilldown as string)}>
+                    {content}
+                  </motion.button>
+                );
+              }
+              return (
+                <motion.a key={item.href} href={item.href} target="_blank" rel="noopener noreferrer" {...sharedProps}>
+                  {content}
+                </motion.a>
+              );
+            })}
           </div>
         </motion.div>
       ))}
@@ -840,7 +861,8 @@ export default function Hero() {
             <DrilldownView
               key={activeDrilldown}
               data={drilldownData[activeDrilldown]}
-              onBack={() => setActiveDrilldown(null)}
+              onBack={() => setActiveDrilldown(activeDrilldown.startsWith('azure-') ? 'azure' : activeDrilldown.startsWith('aws-') ? 'aws' : null)}
+              onDrilldown={(key) => setActiveDrilldown(key)}
             />
           ) : (
             <motion.div
