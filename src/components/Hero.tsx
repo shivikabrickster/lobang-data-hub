@@ -205,6 +205,7 @@ const azureResourceGroups = [
     items: [
       { title: 'Manual Deployment', desc: 'Deploy via Azure Portal', icon: '📄', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/create-workspaces/azure/manual', source: 'Starter Journey' },
       { title: 'Terraform Deployment', desc: 'IaC workspace provisioning', icon: '🏗️', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/create-workspaces/azure/terraform', source: 'Starter Journey' },
+      { title: 'Terraform Workspace Setup Examples', desc: 'Production-ready Terraform configs for Azure Databricks workspace provisioning', icon: '📐', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples', source: 'GitHub' },
     ],
   },
   {
