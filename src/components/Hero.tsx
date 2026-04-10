@@ -177,8 +177,7 @@ const awsResourceGroups = [
   {
     category: 'Workspace Setup',
     items: [
-      { title: 'Customer-Managed VPC', desc: 'BYOVPC Terraform templates', icon: '🔒', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc', source: 'GitHub' },
-      { title: 'Private Link (BYOVPC)', desc: 'Secure connectivity via PrivateLink', icon: '🔗', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc-classic-privatelink', source: 'GitHub' },
+      { title: 'Terraform Deployment', desc: 'BYOVPC & PrivateLink Terraform templates', icon: '🏗️', href: '#aws-terraform', source: '', drilldown: 'aws-terraform' },
       { title: 'Manual Deployment', desc: 'Classic workspace configuration', icon: '📄', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/AWS-Automated-Configuration-Classic-Workspace-Deployment.pdf', source: 'Starter Journey' },
     ],
   },
@@ -500,6 +499,16 @@ const dataExfiltrationResourceGroups = [
   },
 ];
 
+const awsTerraformResourceGroups = [
+  {
+    category: 'Resources',
+    items: [
+      { title: 'Customer-Managed VPC', desc: 'BYOVPC Terraform templates for AWS workspaces', icon: '🔒', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc', source: 'GitHub' },
+      { title: 'Private Link (BYOVPC)', desc: 'Secure connectivity via AWS PrivateLink', icon: '🔗', href: 'https://github.com/databricks-solutions/technical-services-solutions/tree/main/workspace-setup/terraform-examples/aws/aws-byovpc-classic-privatelink', source: 'GitHub' },
+    ],
+  },
+];
+
 const azureTerraformResourceGroups = [
   {
     category: 'Resources',
@@ -516,6 +525,7 @@ const drilldownData: Record<string, { title: string; image: string; groups: type
   'product-help': { title: 'Product Help', image: '', groups: productHelpResourceGroups },
   'data-exfiltration': { title: 'Data Exfiltration Controls', image: '/icons/databricks/lock-shield.svg', groups: dataExfiltrationResourceGroups },
   aws: { title: 'Databricks on AWS', image: '/icons/aws.svg', groups: awsResourceGroups },
+  'aws-terraform': { title: 'Terraform Deployment', image: '', groups: awsTerraformResourceGroups },
   azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
   'azure-terraform': { title: 'Terraform Deployment', image: '', groups: azureTerraformResourceGroups },
   // Build sub-groups
