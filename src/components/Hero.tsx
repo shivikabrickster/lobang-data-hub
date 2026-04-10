@@ -184,10 +184,8 @@ const awsResourceGroups = [
   {
     category: 'Security & Identity',
     items: [
-      { title: 'User Provisioning — SCIM', desc: 'Automate user and group sync', icon: '👥', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/add-users/scim', source: 'Starter Journey' },
-      { title: 'Configure SSO', desc: 'SAML 2.0 or OIDC setup', icon: '🔐', href: 'https://docs.databricks.com/aws/en/security/auth/single-sign-on/', source: 'Databricks Docs' },
-      { title: 'UC Storage Credentials & External Locations for S3', desc: 'Setup walkthrough for AWS S3', icon: '▶️', href: 'https://www.youtube.com/watch?v=oysb7Kef0Bk&t=23s', source: 'YouTube' },
-      { title: 'S3 External Location Manual', desc: 'Manual setup for S3 external locations', icon: '📄', href: 'https://docs.databricks.com/aws/en/connect/unity-catalog/cloud-storage/s3/s3-external-location-manual', source: 'Databricks Docs' },
+      { title: 'Identity & SSO', desc: 'SCIM provisioning & SSO configuration', icon: '🔐', href: '#aws-identity', source: '', drilldown: 'aws-identity' },
+      { title: 'Unity Catalog Storage', desc: 'S3 storage credentials & external locations', icon: '🗄️', href: '#aws-uc-storage', source: '', drilldown: 'aws-uc-storage' },
     ],
   },
 ];
@@ -499,6 +497,26 @@ const dataExfiltrationResourceGroups = [
   },
 ];
 
+const awsIdentityResourceGroups = [
+  {
+    category: 'Resources',
+    items: [
+      { title: 'User Provisioning — SCIM', desc: 'Automate user and group sync', icon: '👥', href: 'https://databricks-solutions.github.io/starter-journey/docs/infra-setup/add-users/scim', source: 'Starter Journey' },
+      { title: 'Configure SSO', desc: 'SAML 2.0 or OIDC setup', icon: '🔐', href: 'https://docs.databricks.com/aws/en/security/auth/single-sign-on/', source: 'Databricks Docs' },
+    ],
+  },
+];
+
+const awsUcStorageResourceGroups = [
+  {
+    category: 'Resources',
+    items: [
+      { title: 'UC Storage Credentials & External Locations for S3', desc: 'Setup walkthrough for AWS S3', icon: '▶️', href: 'https://www.youtube.com/watch?v=oysb7Kef0Bk&t=23s', source: 'YouTube' },
+      { title: 'S3 External Location Manual', desc: 'Manual setup for S3 external locations', icon: '📄', href: 'https://docs.databricks.com/aws/en/connect/unity-catalog/cloud-storage/s3/s3-external-location-manual', source: 'Databricks Docs' },
+    ],
+  },
+];
+
 const awsTerraformResourceGroups = [
   {
     category: 'Resources',
@@ -526,6 +544,8 @@ const drilldownData: Record<string, { title: string; image: string; groups: type
   'data-exfiltration': { title: 'Data Exfiltration Controls', image: '/icons/databricks/lock-shield.svg', groups: dataExfiltrationResourceGroups },
   aws: { title: 'Databricks on AWS', image: '/icons/aws.svg', groups: awsResourceGroups },
   'aws-terraform': { title: 'Terraform Deployment', image: '', groups: awsTerraformResourceGroups },
+  'aws-identity': { title: 'Identity & SSO', image: '', groups: awsIdentityResourceGroups },
+  'aws-uc-storage': { title: 'Unity Catalog Storage', image: '', groups: awsUcStorageResourceGroups },
   azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
   'azure-terraform': { title: 'Terraform Deployment', image: '', groups: azureTerraformResourceGroups },
   // Build sub-groups
