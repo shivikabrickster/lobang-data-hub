@@ -72,6 +72,7 @@ const sections = [
       { label: 'NextGen Lakehouse', emoji: '🏠', image: '/icons/databricks/lakehouse.svg', href: 'https://www.nextgenlakehouse.com/' },
       { label: 'Community', emoji: '💬', image: '/icons/databricks/community.svg', href: 'https://community.databricks.com/tmcxu86974/' },
       { label: 'User Groups', emoji: '👥', image: '/icons/databricks/user-group.svg', href: 'https://usergroups.databricks.com/' },
+      { label: 'Skill Builder', emoji: '🎓', image: '/icons/databricks/training.svg', href: 'https://www.youtube.com/@databricksskillbuilder/' },
     ],
   },
   {
