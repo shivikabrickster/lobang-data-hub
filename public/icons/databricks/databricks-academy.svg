@@ -1,0 +1,8 @@
+<svg width="166" height="166" viewBox="0 0 166 166" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Databricks Academy official style graduation cap -->
+  <rect width="166" height="166" rx="8" fill="#FF3621"/>
+  <path d="M83 45L30 75L83 105L136 75L83 45Z" fill="white"/>
+  <path d="M52 87V115L83 132L114 115V87L83 105L52 87Z" fill="white" fill-opacity="0.85"/>
+  <line x1="136" y1="75" x2="136" y2="120" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="136" cy="122" r="5" fill="white"/>
+</svg>

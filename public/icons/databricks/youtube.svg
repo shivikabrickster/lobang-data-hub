@@ -1,0 +1,7 @@
+<svg width="166" height="166" viewBox="0 0 166 166" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- YouTube official logo -->
+  <rect width="166" height="166" rx="8" fill="#FF0000"/>
+  <rect x="23" y="43" width="120" height="80" rx="20" fill="#FF0000"/>
+  <rect x="23" y="43" width="120" height="80" rx="20" stroke="white" stroke-width="4"/>
+  <polygon points="70,58 70,108 110,83" fill="white"/>
+</svg>

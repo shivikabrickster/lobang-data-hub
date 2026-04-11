@@ -33,9 +33,9 @@ const sections = [
       { label: 'Starter Journey', emoji: '🗺️', image: '/icons/databricks/map.svg', href: 'https://databricks-solutions.github.io/starter-journey/' },
       { label: 'Free Edition', emoji: '⚡', image: '/icons/databricks/sparkle.svg', href: 'https://www.databricks.com/learn/free-edition' },
       { label: 'Cheatsheet', emoji: '📋', image: '/icons/databricks/book.svg', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf' },
-      { label: 'Trainings', emoji: '🎓', image: '/icons/databricks/training.svg', href: '#trainings', drilldown: 'trainings' },
+      { label: 'Trainings', emoji: '🎓', image: '/icons/databricks/databricks-academy.svg', href: '#trainings', drilldown: 'trainings' },
       { label: 'Product Help', emoji: '🛟', image: '/icons/databricks/help.svg', href: '#product-help', drilldown: 'product-help' },
-      { label: 'Skill Builder', emoji: '🎓', image: '/icons/databricks/training.svg', href: 'https://www.youtube.com/@databricksskillbuilder/' },
+      { label: 'Skill Builder', emoji: '🎓', image: '/icons/databricks/youtube.svg', href: 'https://www.youtube.com/@databricksskillbuilder/' },
     ],
   },
   {
