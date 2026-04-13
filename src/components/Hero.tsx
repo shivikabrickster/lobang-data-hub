@@ -735,63 +735,86 @@ export default function Hero() {
         `}</style>
         <TickerBar newsItems={newsItems} />
 
-        {/* Centered landing card */}
-        <div className="flex-1 flex items-center justify-center px-6 py-10">
+        {/* Title + punchline */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="w-full px-6 pt-10 pb-6 text-center"
+        >
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <img src="/icons/databricks/lakehouse.svg" alt="" className="w-9 h-9" />
+            <h1 className="text-4xl font-bold text-white tracking-tight">
+              <span className="text-[#FF3621]">Lobang</span>
+            </h1>
+          </div>
+          <p className="text-white/50 text-[16px]">
+            Don't say bojio! — Your one-stop Databricks resource hub. 🇸🇬
+          </p>
+        </motion.div>
+
+        {/* Main content: tiles left — cloud center — tiles right */}
+        <div className="flex-1 flex items-center justify-center px-8 pb-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="w-full max-w-xl rounded-2xl overflow-hidden"
-            style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="flex items-center gap-10"
           >
-            {/* Header */}
-            <div className="px-8 pt-8 pb-6 text-center">
-              <div className="flex items-center justify-center gap-3 mb-3">
-                <img src="/icons/databricks/lakehouse.svg" alt="" className="w-9 h-9" />
-                <h1 className="text-4xl font-bold text-white tracking-tight">
-                  <span className="text-[#FF3621]">Lobang</span>
-                </h1>
-              </div>
-              <p className="text-white/50 text-[15px]">
-                Don't say bojio! — Your one-stop Databricks resource hub. 🇸🇬
-              </p>
+            {/* Left tiles */}
+            <div className="flex flex-col gap-4">
+              {[
+                { label: 'Security & Compliance', desc: 'Trust centre & certifications', href: 'https://www.databricks.com/trust/security-features' },
+                { label: 'Demo', desc: 'Interactive demos & showcases', href: 'https://www.databricks.com/resources/demos' },
+              ].map(link => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-56 py-5 px-5 rounded-xl no-underline transition-all duration-200 group block"
+                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)'; e.currentTarget.style.background = 'rgba(255,54,33,0.06)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; }}
+                >
+                  <span className="text-[16px] font-bold text-white group-hover:text-[#FF3621] transition-colors block mb-1">
+                    {link.label}
+                  </span>
+                  <span className="text-[13px] text-white/40 block">{link.desc}</span>
+                </a>
+              ))}
             </div>
 
-            {/* Cloud provider section */}
-            <div className="px-8 pb-6">
-              <h2 className="text-[13px] font-semibold text-white/50 uppercase tracking-wider mb-5 text-center">
+            {/* Cloud provider chooser — center */}
+            <div className="text-center">
+              <h2 className="text-[14px] font-semibold text-white/50 uppercase tracking-wider mb-6">
                 Choose your cloud provider
               </h2>
-              <div className="flex gap-4 justify-center">
+              <div className="flex gap-6 justify-center">
                 {[
                   { id: 'aws' as const, icon: '/icons/aws.svg', label: 'AWS' },
                   { id: 'azure' as const, icon: '/icons/azure.svg', label: 'Azure' },
                 ].map(cloud => (
                   <motion.button
                     key={cloud.id}
-                    whileHover={{ scale: 1.03 }}
+                    whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedCloud(cloud.id)}
-                    className="flex flex-col items-center gap-3 w-36 py-6 rounded-xl cursor-pointer border-none transition-all"
+                    className="flex flex-col items-center gap-3 w-40 py-8 rounded-xl cursor-pointer border-none transition-all"
                     style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
                     onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)'; e.currentTarget.style.background = 'rgba(255,54,33,0.08)'; }}
                     onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
                   >
-                    <img src={cloud.icon} alt={cloud.label} className="w-12 h-12 object-contain" />
-                    <span className="text-[15px] font-bold text-white">{cloud.label}</span>
+                    <img src={cloud.icon} alt={cloud.label} className="w-14 h-14 object-contain" />
+                    <span className="text-[16px] font-bold text-white">{cloud.label}</span>
                   </motion.button>
                 ))}
               </div>
             </div>
 
-            {/* Divider */}
-            <div className="mx-6" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }} />
-
-            {/* Quick links */}
-            <div className="px-6 py-4 flex flex-col">
+            {/* Right tiles */}
+            <div className="flex flex-col gap-4">
               {[
-                { label: 'Security & Compliance', desc: 'Trust centre & certifications', href: 'https://www.databricks.com/trust/security-features' },
-                { label: 'Demo', desc: 'Interactive demos & showcases', href: 'https://www.databricks.com/resources/demos' },
                 { label: 'Try out Databricks', desc: 'Free edition workspace', href: 'https://www.databricks.com/learn/free-edition' },
                 { label: 'Events', desc: 'Data+AI Summit 2026 · Jun 9–12, SF', href: 'https://www.databricks.com/dataaisummit' },
               ].map(link => (
@@ -800,15 +823,15 @@ export default function Hero() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between py-3.5 px-4 rounded-xl no-underline transition-all duration-200 group hover:bg-white/[0.03]"
+                  className="w-56 py-5 px-5 rounded-xl no-underline transition-all duration-200 group block"
+                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)'; e.currentTarget.style.background = 'rgba(255,54,33,0.06)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; }}
                 >
-                  <div>
-                    <span className="text-[15px] font-bold text-white group-hover:text-[#FF3621] transition-colors">
-                      {link.label}
-                    </span>
-                    <p className="text-[13px] text-white/40 mt-0.5">{link.desc}</p>
-                  </div>
-                  <span className="text-white/30 group-hover:text-white/60 transition-colors text-lg">→</span>
+                  <span className="text-[16px] font-bold text-white group-hover:text-[#FF3621] transition-colors block mb-1">
+                    {link.label}
+                  </span>
+                  <span className="text-[13px] text-white/40 block">{link.desc}</span>
                 </a>
               ))}
             </div>
