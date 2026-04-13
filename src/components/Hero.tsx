@@ -810,27 +810,36 @@ export default function Hero() {
         `}</style>
         <TickerBar newsItems={newsItems} />
 
-        <div className="w-full px-6 pt-12 md:pt-16 pb-6 flex flex-col items-center">
+        {/* Title + punchline at top */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="w-full px-6 pt-12 md:pt-16 text-center"
+        >
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <img src="/icons/databricks/lakehouse.svg" alt="" className="w-8 h-8" />
+            <h1 className="text-4xl font-bold text-white tracking-tight">
+              <span className="text-[#FF3621]">Lobang</span>
+            </h1>
+          </div>
+          <p className="text-white/40 text-[15px]">
+            Don't say bojio! — Your one-stop Databricks resource hub. 🇸🇬
+          </p>
+        </motion.div>
+
+        {/* Cloud provider chooser centered in remaining space */}
+        <div className="flex-1 flex items-center justify-center px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-lg"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-center"
           >
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <img src="/icons/databricks/lakehouse.svg" alt="" className="w-8 h-8" />
-              <h1 className="text-4xl font-bold text-white tracking-tight">
-                <span className="text-[#FF3621]">Lobang</span>
-              </h1>
-            </div>
-            <p className="text-white/40 text-[15px] mb-12">
-              Don't say bojio! — Your one-stop Databricks resource hub. 🇸🇬
-            </p>
-
             <h2 className="text-[14px] font-semibold text-white/60 uppercase tracking-wider mb-8">
               Choose your cloud provider
             </h2>
-            <div className="flex gap-8 justify-center mb-8">
+            <div className="flex gap-8 justify-center">
               {[
                 { id: 'aws' as const, icon: '/icons/aws.svg', label: 'AWS' },
                 { id: 'azure' as const, icon: '/icons/azure.svg', label: 'Azure' },
