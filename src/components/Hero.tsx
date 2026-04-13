@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import SgFeaturesView from './SgFeaturesView';
+
 
 function useTickerItems() {
   const [items, setItems] = useState<string[]>([]);
@@ -26,41 +26,66 @@ function useTickerItems() {
   return items;
 }
 
-const sections = [
+type SidebarItem = { label: string; key?: string; href?: string };
+const sidebarNav: { title: string; items: SidebarItem[] }[] = [
   {
-    title: 'Getting Started',
-    tiles: [
-      { label: 'Quick Start Guide', emoji: '📖', image: '/icons/databricks/book.svg', href: '#quick-start', drilldown: 'quick-start', desc: 'Learn the basics of Databricks in under an hour.' },
-      { label: 'Setup Your Workspace', emoji: '⚙️', image: '/icons/databricks/gear.svg', href: '#workspace-setup', drilldown: 'workspace-setup', desc: 'Configure your first Databricks environment.' },
-      { label: 'Trainings & Resources', emoji: '🎓', image: '/icons/databricks/databricks-academy.svg', href: '#learning', drilldown: 'learning', desc: 'Courses, tutorials, demos, and community.' },
+    title: 'GET STARTED',
+    items: [
+      { label: 'Quick Start Guide', key: 'quick-start' },
+      { label: 'Trainings & Learning', key: 'learning' },
     ],
   },
   {
-    title: 'Architecture & Security',
-    tiles: [
-      { label: 'Secure Your Data', emoji: '🔒', image: '/icons/databricks/shield-check.svg', href: '#security', drilldown: 'security', desc: 'Implementing best practices for data security.' },
-      { label: 'Build & Develop', emoji: '🔧', image: '/icons/databricks/lakeflow.svg', href: '#build', drilldown: 'build', desc: 'AI agents, pipelines, model serving, and apps.' },
-      { label: 'Governance & Migration', emoji: '🛡️', image: '/icons/databricks/unity-catalog.svg', href: '#governance-migration', drilldown: 'governance-migration', desc: 'Data governance, sharing, and migration tools.' },
+    title: 'BUILD',
+    items: [
+      { label: 'AI & Agents', key: 'ai-agents' },
+      { label: 'Data Engineering', key: 'data-engineering' },
+      { label: 'Model & Serving', key: 'model-serving' },
+      { label: 'Databricks Apps', key: 'databricks-apps' },
+      { label: 'Database & Storage', key: 'database-storage' },
     ],
   },
   {
-    title: 'Cloud Platforms',
-    tiles: [
-      { label: 'AWS Integration', emoji: '☁️', image: '/icons/aws.svg', href: '#aws', drilldown: 'aws', desc: 'Deploying Databricks on Amazon Web Services.' },
-      { label: 'Azure Integration', emoji: '🔷', image: '/icons/azure.svg', href: '#azure', drilldown: 'azure', desc: 'Integrating Databricks with Microsoft Azure.' },
+    title: 'SECURITY & GOVERNANCE',
+    items: [
+      { label: 'Security & Trust', key: 'security' },
+      { label: 'Data Exfiltration', key: 'data-exfiltration' },
+      { label: 'Governance', key: 'governance' },
     ],
   },
   {
-    title: 'Optimization',
-    tiles: [
-      { label: 'Cost Optimization Strategies', emoji: '💲', image: '/icons/databricks/chart-line.svg', href: '#cost-strategies', drilldown: 'cost-strategies', desc: 'Tips for reducing your cloud spend.' },
-      { label: 'Performance Tuning', emoji: '🏆', image: '/icons/databricks/performance.svg', href: '#performance', drilldown: 'performance', desc: 'Optimizing query and job performance.' },
-      { label: 'Sizing & Scaling', emoji: '⚡', image: '/icons/databricks/cluster.svg', href: '#sizing', drilldown: 'sizing', desc: 'Right-size compute and configure auto-scaling.' },
+    title: 'EXPLORE',
+    items: [
+      { label: 'Demo Centre', href: 'https://www.databricks.com/resources/demos' },
+      { label: 'Release Hub', key: 'release-hub' },
+      { label: 'NextGen Lakehouse', href: 'https://www.nextgenlakehouse.com/' },
+      { label: 'Skill Builder', href: 'https://www.youtube.com/@databricksskillbuilder/' },
+      { label: 'Community', href: 'https://community.databricks.com/tmcxu86974/' },
+    ],
+  },
+  {
+    title: 'MIGRATE',
+    items: [
+      { label: 'Lakebridge', href: 'https://databrickslabs.github.io/lakebridge/docs/overview/' },
+      { label: 'Migrate with LLM', href: 'https://github.com/databricks-solutions/databricks-migrator-with-llm' },
+    ],
+  },
+  {
+    title: 'SIZING',
+    items: [
+      { label: 'Compute & Cluster Sizing', key: 'compute-sizing' },
+      { label: 'Pricing & Cost Calculators', key: 'pricing' },
+    ],
+  },
+  {
+    title: 'COST & PERFORMANCE',
+    items: [
+      { label: 'Cost Monitoring', key: 'cost-monitoring' },
+      { label: 'Cost Optimization', key: 'cost-optimization' },
+      { label: 'Benchmarks', key: 'benchmarks' },
     ],
   },
 ];
-
-type Tile = { label: string; emoji: string; image?: string; href: string; drilldown?: string; desc?: string };
 
 const genieResourceGroups = [
   {
@@ -614,58 +639,80 @@ const drilldownData: Record<string, { title: string; image: string; groups: type
   'cost-monitoring': { title: 'Cost Monitoring', image: '', groups: costMonitoringGroups },
 };
 
-function TileCard({ tile, index, onDrilldown }: { tile: Tile; index: number; onDrilldown?: (key: string) => void }) {
-  const isDrilldown = !!tile.drilldown;
+function ResourceCard({ item, index, onNavigate }: { item: { title: string; desc: string; icon: string; href: string; source: string; drilldown?: string }; index: number; onNavigate?: (key: string) => void }) {
+  const hasDrilldown = 'drilldown' in item && item.drilldown && onNavigate;
 
-  const inner = (
-    <div className="flex items-start gap-4 p-5 h-full">
-      <div className="shrink-0 w-10 h-10 flex items-center justify-center rounded-lg bg-[#FFF0EE]">
-        {tile.image ? (
-          <img src={tile.image} alt={tile.label} className="w-7 h-7 object-contain" />
-        ) : (
-          <span className="text-xl">{tile.emoji}</span>
-        )}
+  const content = (
+    <div className="flex flex-col gap-3 p-5 h-full">
+      <div className="w-10 h-10 flex items-center justify-center rounded-lg" style={{ background: 'rgba(255,54,33,0.15)' }}>
+        <span className="text-xl">{item.icon}</span>
       </div>
-      <div className="flex flex-col gap-1 min-w-0">
-        <span className="text-[14px] font-semibold text-gray-900 leading-tight">{tile.label}</span>
-        {tile.desc && (
-          <span className="text-[12px] text-gray-500 leading-snug">{tile.desc}</span>
-        )}
+      <span className="text-[14px] font-semibold text-white leading-tight">{item.title}</span>
+      {item.desc && <span className="text-[12px] text-white/40 leading-snug">{item.desc}</span>}
+      <div className="mt-auto pt-2 flex items-center gap-2">
+        {item.source && <span className="text-[10px] text-white/25">{item.source}</span>}
+        <span className="ml-auto text-[11px] font-medium text-[#FF3621] border border-[#FF3621]/30 px-3 py-1 rounded-full hover:bg-[#FF3621]/10 transition-colors">
+          {hasDrilldown ? 'Explore' : 'Quick Link'}
+        </span>
       </div>
-      {isDrilldown && (
-        <span className="ml-auto shrink-0 text-gray-300 group-hover:text-[#FF3621] transition-colors text-lg">&#8250;</span>
-      )}
     </div>
   );
 
-  const sharedClass = "group bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-[#FF3621]/30 transition-all duration-200 hover:-translate-y-0.5 cursor-pointer";
+  const cls = "group rounded-xl transition-all duration-200 hover:-translate-y-0.5 cursor-pointer";
+  const style = { background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' };
+  const hoverHandlers = {
+    onMouseEnter: (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.borderColor = 'rgba(255,54,33,0.3)'; e.currentTarget.style.background = 'rgba(255,255,255,0.07)'; },
+    onMouseLeave: (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; },
+  };
 
-  if (isDrilldown) {
+  if (hasDrilldown) {
     return (
       <motion.button
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.35, delay: 0.1 + index * 0.03 }}
-        className={sharedClass + ' text-left w-full'}
-        onClick={() => onDrilldown?.(tile.drilldown!)}
-      >
-        {inner}
-      </motion.button>
+        initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.25, delay: 0.05 + index * 0.03 }}
+        className={cls + ' text-left'} style={style} {...hoverHandlers}
+        onClick={() => onNavigate!(item.drilldown!)}
+      >{content}</motion.button>
     );
   }
 
   return (
     <motion.a
-      href={tile.href}
-      target={tile.href.startsWith('http') ? '_blank' : undefined}
-      rel={tile.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, delay: 0.1 + index * 0.03 }}
-      className={sharedClass + ' no-underline block'}
-    >
-      {inner}
-    </motion.a>
+      href={item.href} target="_blank" rel="noopener noreferrer"
+      initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.25, delay: 0.05 + index * 0.03 }}
+      className={cls + ' no-underline block'} style={style} {...hoverHandlers}
+    >{content}</motion.a>
+  );
+}
+
+function TickerBar({ newsItems }: { newsItems: string[] }) {
+  if (newsItems.length === 0) return null;
+  return (
+    <div className="relative z-10 w-full">
+      <div
+        className="ticker-container relative flex items-center h-9 overflow-hidden"
+        style={{ background: '#0a0e14', borderBottom: '1px solid rgba(255,255,255,0.06)' }}
+      >
+        <div
+          className="shrink-0 h-full flex items-center px-4 text-[10px] font-bold text-white uppercase tracking-wider z-10"
+          style={{ background: '#FF3621' }}
+        >Latest</div>
+        <div
+          className="flex-1 overflow-hidden h-full flex items-center"
+          style={{ maskImage: 'linear-gradient(to right, transparent, black 20px, black 90%, transparent)' }}
+        >
+          <div className="inline-block whitespace-nowrap ticker-track">
+            {[...newsItems, ...newsItems].map((item, i) => (
+              <span key={i} className="inline-block text-[11px] font-medium text-white/50" style={{ padding: '0 2.5rem' }}>
+                <span className="text-[#FF3621] mr-2">•</span>{item}
+              </span>
+            ))}
+          </div>
+        </div>
+        <EventTickerBadge />
+      </div>
+    </div>
   );
 }
 
@@ -696,10 +743,10 @@ function EventTickerBadge() {
       href={EVENT_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="shrink-0 flex items-center gap-3 px-5 py-1 no-underline z-10 transition-all duration-200 hover:brightness-105 group"
+      className="shrink-0 flex items-center gap-3 px-4 py-1 no-underline z-10 transition-all duration-200 hover:brightness-110 group"
       style={{
-        background: '#fff',
-        borderLeft: '2px solid #FF3621',
+        background: '#0a0e14',
+        borderLeft: '1px solid rgba(255,54,33,0.3)',
       }}
     >
       {/* Pulsing attention dot */}
@@ -711,30 +758,27 @@ function EventTickerBadge() {
       <span className="text-[16px]">🎪</span>
 
       <div className="flex flex-col">
-        <span className="text-[13px] font-extrabold text-gray-900 leading-tight whitespace-nowrap tracking-tight">
+        <span className="text-[11px] font-extrabold text-white leading-tight whitespace-nowrap tracking-tight">
           DATA + AI SUMMIT 2026
         </span>
-        <span className="text-[10px] text-gray-400 whitespace-nowrap">📍 San Francisco · June 9–12</span>
+        <span className="text-[9px] text-white/40 whitespace-nowrap">June 9–12</span>
       </div>
 
-      {/* Divider */}
-      <div className="w-px h-8 bg-gray-200" />
+      <div className="w-px h-6 bg-white/10" />
 
-      {/* Countdown or Live badge */}
       {isHappening ? (
-        <span className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          LIVE NOW
+        <span className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-400 bg-emerald-500/15 px-2.5 py-1 rounded-full">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          LIVE
         </span>
       ) : (
         <div className="flex flex-col items-center">
-          <span className="text-[18px] font-extrabold text-[#FF3621] leading-none">{daysLeft}</span>
-          <span className="text-[8px] text-gray-400 uppercase tracking-wider">days</span>
+          <span className="text-[14px] font-extrabold text-white leading-none">{daysLeft}</span>
+          <span className="text-[7px] text-white/30 uppercase tracking-wider">days</span>
         </div>
       )}
 
-      {/* CTA with bouncing arrow */}
-      <span className="flex items-center gap-1.5 text-[12px] font-bold text-white bg-[#FF3621] px-4 py-1.5 rounded-full whitespace-nowrap group-hover:bg-[#e02e1b] transition-all duration-200">
+      <span className="flex items-center gap-1.5 text-[10px] font-bold text-white bg-[#FF3621] px-3 py-1 rounded-full whitespace-nowrap group-hover:bg-[#e02e1b] transition-all duration-200">
         {isHappening ? 'Watch Live' : 'Register Free'}
         <motion.span
           animate={{ x: [0, 4, 0] }}
@@ -748,247 +792,192 @@ function EventTickerBadge() {
   );
 }
 
-function DrilldownView({ data, onBack, onDrilldown }: { data: typeof drilldownData['aws']; onBack: () => void; onDrilldown?: (key: string) => void }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: 80 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -80 }}
-      transition={{ duration: 0.35, ease: 'easeOut' }}
-      className="flex flex-col gap-8 max-w-5xl w-full"
-    >
-      {/* Back button + title */}
-      <div className="flex items-center gap-4">
-        <button
-          onClick={onBack}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg text-[13px] font-semibold text-gray-500 hover:text-gray-900 bg-white border border-gray-200 hover:border-gray-300 cursor-pointer transition-all duration-200 shadow-sm"
-        >
-          <span className="text-lg leading-none">&larr;</span> Back
-        </button>
-        <div className="flex items-center gap-3">
-          {data.image && <img src={data.image} alt={data.title} className="w-8 h-8 object-contain" />}
-          <h2 className="text-[22px] font-bold text-gray-900">{data.title}</h2>
-        </div>
-      </div>
-
-      {/* Categories with resource tiles */}
-      {data.groups.map((group, gi) => (
-        <motion.div
-          key={group.category}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 + gi * 0.08 }}
-        >
-          {gi > 0 && <div className="w-full h-px bg-gray-200 mb-4" />}
-          <span className="text-[13px] font-bold uppercase tracking-[0.1em] text-[#FF3621] mb-4 block">
-            {group.category}
-          </span>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {group.items.map((item, ii) => {
-              const sharedProps = {
-                initial: { opacity: 0, y: 12 } as const,
-                animate: { opacity: 1, y: 0 } as const,
-                transition: { duration: 0.25, delay: 0.1 + ii * 0.03 },
-                className: "group flex items-start gap-3 p-4 rounded-xl no-underline transition-all duration-200 hover:-translate-y-0.5 cursor-pointer bg-white border border-gray-200 shadow-sm hover:shadow-md hover:border-[#FF3621]/30",
-              };
-              const content = (
-                <>
-                  {'icon' in item && item.icon && (
-                    <span className="text-xl shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-[#FFF0EE]">{item.icon}</span>
-                  )}
-                  <div className="flex flex-col gap-0.5 min-w-0">
-                    <span className="text-[13px] font-semibold text-gray-900 leading-tight">
-                      {item.title}
-                    </span>
-                    {item.desc && (
-                      <span className="text-[11px] text-gray-500 leading-snug">
-                        {item.desc}
-                      </span>
-                    )}
-                    {'source' in item && item.source && (
-                      <span className="text-[10px] text-[#FF3621]/60 font-medium mt-1">{item.source}</span>
-                    )}
-                  </div>
-                </>
-              );
-              if ('drilldown' in item && item.drilldown && onDrilldown) {
-                return (
-                  <motion.button key={item.title} {...sharedProps} onClick={() => onDrilldown(item.drilldown as string)}>
-                    {content}
-                  </motion.button>
-                );
-              }
-              return (
-                <motion.a key={item.href} href={item.href} target="_blank" rel="noopener noreferrer" {...sharedProps}>
-                  {content}
-                </motion.a>
-              );
-            })}
-          </div>
-        </motion.div>
-      ))}
-    </motion.div>
-  );
-}
-
 export default function Hero() {
   const newsItems = useTickerItems();
-  const [activeDrilldown, setActiveDrilldown] = useState<string | null>(null);
+  const [selectedCloud, setSelectedCloud] = useState<'aws' | 'azure' | null>(null);
+  const [activeNav, setActiveNav] = useState<string | null>(null);
 
+  const currentData = activeNav ? drilldownData[activeNav] : null;
+
+  // ── Landing page: choose cloud provider ──
+  if (!selectedCloud) {
+    return (
+      <section className="min-h-screen flex flex-col" style={{ background: 'radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)' }}>
+        <style>{`
+          @keyframes tickerScroll { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(-100%,0,0); } }
+          .ticker-track { animation: tickerScroll 150s linear infinite; padding-right: 100%; }
+          .ticker-container:hover .ticker-track { animation-play-state: paused !important; }
+        `}</style>
+        <TickerBar newsItems={newsItems} />
+
+        <div className="flex-1 flex items-center justify-center px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-lg"
+          >
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <img src="/icons/databricks/lakehouse.svg" alt="" className="w-8 h-8" />
+              <h1 className="text-4xl font-bold text-white tracking-tight">
+                <span className="text-[#FF3621]">Lobang</span>
+              </h1>
+            </div>
+            <p className="text-white/40 text-[15px] mb-12">
+              Don't say bojio! — Your one-stop Databricks resource hub. 🇸🇬
+            </p>
+
+            <h2 className="text-[14px] font-semibold text-white/60 uppercase tracking-wider mb-8">
+              Choose your cloud provider
+            </h2>
+            <div className="flex gap-8 justify-center mb-8">
+              {[
+                { id: 'aws' as const, icon: '/icons/aws.svg', label: 'AWS' },
+                { id: 'azure' as const, icon: '/icons/azure.svg', label: 'Azure' },
+              ].map(cloud => (
+                <motion.button
+                  key={cloud.id}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => setSelectedCloud(cloud.id)}
+                  className="flex flex-col items-center gap-4 w-40 py-8 rounded-2xl cursor-pointer border-none transition-all"
+                  style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)'; e.currentTarget.style.background = 'rgba(255,54,33,0.08)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
+                >
+                  <img src={cloud.icon} alt={cloud.label} className="w-14 h-14 object-contain" />
+                  <span className="text-[16px] font-semibold text-white">{cloud.label}</span>
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    );
+  }
+
+  // ── Main view: sidebar + content ──
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col bg-white">
+    <section className="min-h-screen flex flex-col" style={{ background: 'radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)' }}>
       <style>{`
         @keyframes tickerScroll { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(-100%,0,0); } }
         .ticker-track { animation: tickerScroll 150s linear infinite; padding-right: 100%; }
         .ticker-container:hover .ticker-track { animation-play-state: paused !important; }
       `}</style>
+      <TickerBar newsItems={newsItems} />
 
-      {/* News Ticker — top bar */}
-      {newsItems.length > 0 && (
-      <div className="relative z-10 w-full">
-        <div
-          className="ticker-container relative flex items-center h-10 overflow-hidden"
-          style={{
-            background: '#FF3621',
-          }}
-        >
-          {/* LATEST label */}
-          <div
-            className="shrink-0 h-full flex items-center px-5 text-[11px] font-bold text-white uppercase tracking-wider z-10"
-            style={{ background: '#e02e1b' }}
-          >
-            Latest
-          </div>
-          {/* Scrolling text with edge fade */}
-          <div
-            className="flex-1 overflow-hidden h-full flex items-center"
-            style={{ maskImage: 'linear-gradient(to right, transparent, black 20px, black 95%, transparent)' }}
-          >
-            <div className="inline-block whitespace-nowrap ticker-track">
-              {[...newsItems, ...newsItems].map((item, i) => (
-                <span key={i} className="inline-block text-[12px] font-medium text-white/90" style={{ padding: '0 3rem' }}>
-                  <span className="text-white mr-2">•</span>
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-          {/* Event highlight — fixed right side of ticker */}
-          <EventTickerBadge />
+      {/* Header */}
+      <div className="px-6 h-12 flex items-center justify-between shrink-0" style={{ background: 'rgba(0,0,0,0.25)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+        <div className="flex items-center gap-3">
+          <img src="/icons/databricks/lakehouse.svg" alt="" className="w-5 h-5" />
+          <span className="text-[15px] font-bold text-white">Lobang</span>
+          <span className="text-white/20 mx-2">|</span>
+          <span className="text-[12px] text-white/30">Databricks Resource Hub</span>
         </div>
-      </div>
-      )}
-
-      {/* Navigation Bar */}
-      <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-8">
-            <span className="text-lg font-bold text-gray-900 flex items-center gap-2">
-              <img src="/icons/databricks/lakehouse.svg" alt="Lobang" className="w-6 h-6" />
-              Lobang
-            </span>
-            <div className="hidden md:flex items-center gap-6 text-[13px] font-medium text-gray-500">
-              <a href="https://docs.databricks.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF3621] transition-colors no-underline">Docs</a>
-              <a href="https://community.databricks.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF3621] transition-colors no-underline">Community</a>
-              <a href="https://www.databricks.com/resources/demos" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF3621] transition-colors no-underline">Demos</a>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <a href="https://www.databricks.com/learn/free-edition" target="_blank" rel="noopener noreferrer" className="text-[13px] font-semibold text-white bg-[#FF3621] px-4 py-2 rounded-lg hover:bg-[#e02e1b] transition-colors no-underline">
-              Sign Up
-            </a>
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <div className="w-full bg-gradient-to-b from-[#FFF5F3] to-white">
-        <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <h1 className="text-[clamp(2rem,4.5vw,3.5rem)] font-bold text-gray-900 leading-tight tracking-tight">
-              Lobang
-            </h1>
-            <p className="text-gray-500 text-[16px] mt-2 max-w-xl">
-              Don't say bojio! — Your one-stop Databricks resource hub. 🇸🇬
-            </p>
+        <div className="flex items-center gap-1">
+          {(['aws', 'azure'] as const).map(c => (
             <button
-              onClick={() => {
-                document.getElementById('sections-start')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="mt-6 text-[14px] font-semibold text-white bg-[#FF3621] px-6 py-3 rounded-lg hover:bg-[#e02e1b] transition-colors cursor-pointer border-none"
-            >
-              Explore Resources
-            </button>
-          </motion.div>
+              key={c}
+              onClick={() => { setSelectedCloud(c); setActiveNav(null); }}
+              className={`text-[11px] font-semibold px-3 py-1 rounded cursor-pointer border-none transition-all ${
+                selectedCloud === c ? 'bg-[#FF3621] text-white' : 'bg-transparent text-white/40 hover:text-white/70'
+              }`}
+            >{c.toUpperCase()}</button>
+          ))}
         </div>
       </div>
 
-      {/* Main content area */}
-      <div id="sections-start" className="flex-1 max-w-6xl mx-auto w-full px-6 py-10">
-        <AnimatePresence mode="wait">
-          {activeDrilldown === 'sg-features' ? (
-            <SgFeaturesView
-              key="sg-features"
-              onBack={() => setActiveDrilldown(null)}
-            />
-          ) : activeDrilldown && drilldownData[activeDrilldown] ? (
-            <DrilldownView
-              key={activeDrilldown}
-              data={drilldownData[activeDrilldown]}
-              onBack={() => {
-                if (activeDrilldown.startsWith('azure-')) setActiveDrilldown('azure');
-                else if (activeDrilldown.startsWith('aws-')) setActiveDrilldown('aws');
-                else if (['ai-agents', 'data-engineering', 'model-serving', 'databricks-apps', 'database-storage'].includes(activeDrilldown)) setActiveDrilldown('build');
-                else if (activeDrilldown === 'governance') setActiveDrilldown('governance-migration');
-                else setActiveDrilldown(null);
-              }}
-              onDrilldown={(key) => setActiveDrilldown(key)}
-            />
-          ) : (
-            <motion.div
-              key="main-tiles"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.35, ease: 'easeOut' }}
-              className="flex flex-col gap-10"
-            >
-              {sections.map((section, si) => {
-                const offset = sections.slice(0, si).reduce((acc, s) => acc + s.tiles.length, 0);
+      <div className="flex flex-1 overflow-hidden">
+        {/* Sidebar */}
+        <aside className="w-52 shrink-0 overflow-y-auto py-4 px-3" style={{ background: 'rgba(0,0,0,0.15)', borderRight: '1px solid rgba(255,255,255,0.06)' }}>
+          {/* Cloud-specific section */}
+          <div className="mb-4">
+            <h3 className="text-[10px] font-bold uppercase tracking-wider text-[#FF3621] px-2 mb-2">
+              {selectedCloud === 'aws' ? 'AWS' : 'AZURE'}
+            </h3>
+            <button
+              onClick={() => setActiveNav(selectedCloud)}
+              className={`block w-full text-left text-[12px] px-2 py-1.5 rounded transition-colors cursor-pointer border-none ${
+                activeNav === selectedCloud ? 'bg-[#FF3621]/15 text-[#FF3621] font-semibold' : 'text-white/50 hover:text-white hover:bg-white/5 bg-transparent'
+              }`}
+            >Workspace Setup</button>
+          </div>
+
+          {sidebarNav.map(section => (
+            <div key={section.title} className="mb-4">
+              <h3 className="text-[10px] font-bold uppercase tracking-wider text-[#FF3621] px-2 mb-2">{section.title}</h3>
+              {section.items.map(item => {
+                if (item.href) {
+                  return (
+                    <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
+                      className="flex items-center justify-between text-[12px] text-white/50 hover:text-white px-2 py-1.5 rounded hover:bg-white/5 no-underline transition-colors">
+                      {item.label}
+                      <span className="text-[10px] text-white/20">↗</span>
+                    </a>
+                  );
+                }
                 return (
-                  <div key={section.title}>
-                    {si > 0 && <div className="w-full h-px bg-gray-100 mb-8" />}
-                    <h2 className="text-[18px] font-bold text-gray-900 mb-6">
-                      {section.title}
-                    </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                      {section.tiles.map((tile, i) => (
-                        <TileCard key={tile.label} tile={tile} index={offset + i} onDrilldown={setActiveDrilldown} />
+                  <button key={item.label}
+                    onClick={() => setActiveNav(item.key || null)}
+                    className={`block w-full text-left text-[12px] px-2 py-1.5 rounded transition-colors cursor-pointer border-none ${
+                      activeNav === item.key ? 'bg-[#FF3621]/15 text-[#FF3621] font-semibold' : 'text-white/50 hover:text-white hover:bg-white/5 bg-transparent'
+                    }`}
+                  >{item.label}</button>
+                );
+              })}
+            </div>
+          ))}
+        </aside>
+
+        {/* Main Content */}
+        <main className="flex-1 overflow-y-auto p-8">
+          <AnimatePresence mode="wait">
+            {currentData ? (
+              <motion.div
+                key={activeNav}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="flex items-center gap-3 mb-8">
+                  {currentData.image && <img src={currentData.image} alt="" className="w-7 h-7" />}
+                  <h2 className="text-xl font-bold text-white">{currentData.title}</h2>
+                </div>
+                {currentData.groups.map((group, gi) => (
+                  <div key={group.category} className="mb-8">
+                    {gi > 0 && <div className="w-full h-px mb-6" style={{ background: 'rgba(255,255,255,0.06)' }} />}
+                    <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#FF3621] mb-4">{group.category}</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {group.items.map((item, ii) => (
+                        <ResourceCard key={item.title} item={item} index={ii} onNavigate={setActiveNav} />
                       ))}
                     </div>
                   </div>
-                );
-              })}
-            </motion.div>
-          )}
-        </AnimatePresence>
+                ))}
+              </motion.div>
+            ) : (
+              <motion.div
+                key="welcome"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="flex flex-col items-center justify-center py-24 text-center"
+              >
+                <h2 className="text-2xl font-bold text-white mb-3">
+                  Welcome to Lobang 🇸🇬
+                </h2>
+                <p className="text-white/30 text-[14px] max-w-md">
+                  Select a section from the sidebar to explore Databricks resources for {selectedCloud === 'aws' ? 'AWS' : 'Azure'}.
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </main>
       </div>
 
       {/* Footer */}
-      <footer className="w-full border-t border-gray-200 bg-white mt-auto">
-        <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-[12px] text-gray-400">
-          <span>Built for Databricks Field Engineering</span>
-          <div className="flex items-center gap-6">
-            <a href="https://docs.databricks.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF3621] transition-colors no-underline">Docs</a>
-            <a href="https://www.databricks.com/trust/security-features" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF3621] transition-colors no-underline">Security</a>
-            <a href="https://community.databricks.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF3621] transition-colors no-underline">Community</a>
-          </div>
-          <span>&copy; {new Date().getFullYear()} Lobang Data Hub</span>
-        </div>
+      <footer className="shrink-0 py-3 px-6 text-center text-[11px] text-white/20" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+        &copy; {new Date().getFullYear()} Lobang Data Hub. All rights reserved.
       </footer>
     </section>
   );
