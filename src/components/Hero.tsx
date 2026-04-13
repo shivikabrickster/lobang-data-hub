@@ -748,14 +748,14 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* Body — grouped sections on left, cloud chooser centered */}
-        <div className="flex-1 flex overflow-hidden">
+        {/* Body — grouped sections on left, cloud chooser truly centered on page */}
+        <div className="flex-1 flex overflow-hidden relative">
           {/* Left — grouped navigation sections */}
           <motion.aside
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-72 shrink-0 overflow-y-auto py-6 pl-10 pr-4"
+            className="w-80 shrink-0 overflow-y-auto py-8 pl-12 pr-6"
             style={{ borderRight: '1px solid rgba(255,255,255,0.06)' }}
           >
             {[
@@ -779,20 +779,20 @@ export default function Hero() {
                 { label: 'Data+AI Summit 2026', href: 'https://www.databricks.com/dataaisummit', badge: 'Jun 9–12' },
               ]},
             ].map(section => (
-              <div key={section.title} className="mb-5">
-                <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#FF3621] px-3 mb-2">{section.title}</h3>
+              <div key={section.title} className="mb-6">
+                <h3 className="text-[13px] font-extrabold uppercase tracking-wider text-[#FF3621] px-3 mb-3">{section.title}</h3>
                 {section.items.map(item => (
                   <a
                     key={item.label}
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between text-[14px] font-bold text-white hover:text-[#FF3621] px-3 py-2 rounded-lg hover:bg-white/5 no-underline transition-colors"
+                    className="flex items-center justify-between text-[16px] font-bold text-white hover:text-[#FF3621] px-3 py-2.5 rounded-lg hover:bg-white/5 no-underline transition-colors"
                   >
                     {item.label}
-                    <span className="flex items-center gap-2">
-                      {'badge' in item && item.badge && <span className="text-[10px] font-bold text-white/30">{item.badge}</span>}
-                      <span className="text-[11px] text-white/30">↗</span>
+                    <span className="flex items-center gap-2 shrink-0 ml-2">
+                      {'badge' in item && item.badge && <span className="text-[11px] font-bold text-white/30 bg-white/5 px-2 py-0.5 rounded-full">{item.badge}</span>}
+                      <span className="text-[13px] text-white/30">↗</span>
                     </span>
                   </a>
                 ))}
@@ -800,18 +800,18 @@ export default function Hero() {
             ))}
           </motion.aside>
 
-          {/* Cloud provider chooser — centered in remaining space */}
-          <div className="flex-1 flex items-center justify-center px-6">
+          {/* Cloud provider chooser — absolutely centered on page */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="text-center"
+              className="text-center pointer-events-auto"
             >
-              <h2 className="text-[14px] font-semibold text-white/50 uppercase tracking-wider mb-8">
+              <h2 className="text-[15px] font-semibold text-white/50 uppercase tracking-wider mb-10">
                 Choose your cloud provider
               </h2>
-              <div className="flex gap-8 justify-center">
+              <div className="flex gap-10 justify-center">
                 {[
                   { id: 'aws' as const, icon: '/icons/aws.svg', label: 'AWS' },
                   { id: 'azure' as const, icon: '/icons/azure.svg', label: 'Azure' },
@@ -821,13 +821,13 @@ export default function Hero() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedCloud(cloud.id)}
-                    className="flex flex-col items-center gap-4 w-44 py-10 rounded-2xl cursor-pointer border-none transition-all"
+                    className="flex flex-col items-center gap-5 w-48 py-12 rounded-2xl cursor-pointer border-none transition-all"
                     style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
                     onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)'; e.currentTarget.style.background = 'rgba(255,54,33,0.08)'; }}
                     onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
                   >
-                    <img src={cloud.icon} alt={cloud.label} className="w-16 h-16 object-contain" />
-                    <span className="text-[17px] font-bold text-white">{cloud.label}</span>
+                    <img src={cloud.icon} alt={cloud.label} className="w-20 h-20 object-contain" />
+                    <span className="text-[18px] font-bold text-white">{cloud.label}</span>
                   </motion.button>
                 ))}
               </div>
