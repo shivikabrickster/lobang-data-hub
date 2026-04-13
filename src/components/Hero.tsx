@@ -30,72 +30,32 @@ const sections = [
   {
     title: 'Getting Started',
     tiles: [
-      { label: 'Starter Journey', emoji: '🗺️', image: '/icons/databricks/map.svg', href: 'https://databricks-solutions.github.io/starter-journey/', desc: 'Step-by-step guide to get started with Databricks' },
-      { label: 'Free Edition', emoji: '⚡', image: '/icons/databricks/sparkle.svg', href: 'https://www.databricks.com/learn/free-edition', desc: 'Try Databricks free with no commitment' },
-      { label: 'Cheatsheet', emoji: '📋', image: '/icons/databricks/book.svg', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf', desc: 'Quick reference for common operations' },
-      { label: 'Trainings', emoji: '🎓', image: '/icons/databricks/databricks-academy.svg', href: '#trainings', drilldown: 'trainings', desc: 'Databricks Academy learning paths' },
-      { label: 'Product Help', emoji: '🛟', image: '/icons/databricks/help.svg', href: '#product-help', drilldown: 'product-help', desc: 'Documentation and support resources' },
-      { label: 'Skill Builder', emoji: '🎓', image: '/icons/databricks/youtube.svg', href: 'https://www.youtube.com/@databricksskillbuilder/', desc: 'YouTube tutorials and walkthroughs' },
+      { label: 'Quick Start Guide', emoji: '📖', image: '/icons/databricks/book.svg', href: '#quick-start', drilldown: 'quick-start', desc: 'Learn the basics of Databricks in under an hour.' },
+      { label: 'Setup Your Workspace', emoji: '⚙️', image: '/icons/databricks/gear.svg', href: '#workspace-setup', drilldown: 'workspace-setup', desc: 'Configure your first Databricks environment.' },
+      { label: 'Trainings & Resources', emoji: '🎓', image: '/icons/databricks/databricks-academy.svg', href: '#learning', drilldown: 'learning', desc: 'Courses, tutorials, demos, and community.' },
     ],
   },
   {
     title: 'Architecture & Security',
     tiles: [
-      { label: 'Security & Trust Center', emoji: '🛡️', image: '/icons/databricks/shield-check.svg', href: 'https://www.databricks.com/trust/security-features', desc: 'Security features and compliance certifications' },
-      { label: 'Data Exfiltration Controls', emoji: '🔒', image: '/icons/databricks/lock-shield.svg', href: '#data-exfiltration', drilldown: 'data-exfiltration', desc: 'Protect sensitive data from unauthorized access' },
-      // SG Feature Availability — removed from public site, deployed as Databricks App
-      // { label: 'SG Feature Availability', emoji: '🇸🇬', href: '#sg-features', drilldown: 'sg-features' },
+      { label: 'Secure Your Data', emoji: '🔒', image: '/icons/databricks/shield-check.svg', href: '#security', drilldown: 'security', desc: 'Implementing best practices for data security.' },
+      { label: 'Build & Develop', emoji: '🔧', image: '/icons/databricks/lakeflow.svg', href: '#build', drilldown: 'build', desc: 'AI agents, pipelines, model serving, and apps.' },
+      { label: 'Governance & Migration', emoji: '🛡️', image: '/icons/databricks/unity-catalog.svg', href: '#governance-migration', drilldown: 'governance-migration', desc: 'Data governance, sharing, and migration tools.' },
     ],
   },
   {
     title: 'Cloud Platforms',
     tiles: [
-      { label: 'AWS', emoji: '☁️', image: '/icons/aws.svg', href: '#aws', drilldown: 'aws', desc: 'Databricks integration with Amazon Web Services' },
-      { label: 'Azure', emoji: '🔷', image: '/icons/azure.svg', href: '#azure', drilldown: 'azure', desc: 'Databricks integration with Microsoft Azure' },
-    ],
-  },
-  {
-    title: 'Build',
-    tiles: [
-      { label: 'AI & Agents', emoji: '🤖', image: '/icons/databricks/agent-bricks.svg', href: '#ai-agents', drilldown: 'ai-agents', desc: 'Build AI agents and applications' },
-      { label: 'Data Engineering', emoji: '🔧', image: '/icons/databricks/lakeflow.svg', href: '#data-engineering', drilldown: 'data-engineering', desc: 'ETL pipelines and data processing' },
-      { label: 'Model & Serving', emoji: '🧠', image: '/icons/databricks/mosaic-ai.svg', href: '#model-serving', drilldown: 'model-serving', desc: 'Train and deploy ML models' },
-      { label: 'Databricks Apps', emoji: '📱', image: '/icons/databricks/apps.svg', href: '#databricks-apps', drilldown: 'databricks-apps', desc: 'Build interactive web applications' },
-      { label: 'Database & Storage', emoji: '🗄️', image: '/icons/databricks/lakebase.svg', href: '#database-storage', drilldown: 'database-storage', desc: 'Lakebase, Delta Lake, and storage' },
-      { label: 'Governance', emoji: '🛡️', image: '/icons/databricks/unity-catalog.svg', href: '#governance', drilldown: 'governance', desc: 'Unity Catalog and data governance' },
-    ],
-  },
-  {
-    title: 'Explore',
-    tiles: [
-      { label: 'Demo Centre', emoji: '🎬', image: '/icons/databricks/play.svg', href: 'https://www.databricks.com/resources/demos', desc: 'Interactive demos and showcases' },
-      { label: 'Release Hub', emoji: '🚀', image: '/icons/databricks/globe.svg', href: '#release-hub', drilldown: 'release-hub', desc: 'Latest Databricks releases and updates' },
-      { label: 'NextGen Lakehouse', emoji: '🏠', image: '/icons/databricks/lakehouse.svg', href: 'https://www.nextgenlakehouse.com/', desc: 'Next generation lakehouse resources' },
-      { label: 'Community', emoji: '💬', image: '/icons/databricks/community.svg', href: 'https://community.databricks.com/tmcxu86974/', desc: 'Join the Databricks community' },
-      { label: 'User Groups', emoji: '👥', image: '/icons/databricks/user-group.svg', href: 'https://usergroups.databricks.com/', desc: 'Local and virtual user groups' },
-    ],
-  },
-  {
-    title: 'Migrate',
-    tiles: [
-      { label: 'Lakebridge', emoji: '🌉', image: '/icons/databricks/lakebridge.svg', href: 'https://databrickslabs.github.io/lakebridge/docs/overview/', desc: 'Migrate data to Databricks lakehouse' },
-      { label: 'Migrate with LLM', emoji: '🤖', image: '/icons/databricks/notebooks.svg', href: 'https://github.com/databricks-solutions/databricks-migrator-with-llm', desc: 'AI-assisted migration tools' },
-    ],
-  },
-  {
-    title: 'Sizing',
-    tiles: [
-      { label: 'Pricing & Cost Calculators', emoji: '💲', image: '/icons/databricks/chart-line.svg', href: '#pricing', drilldown: 'pricing', desc: 'Estimate costs and plan budgets' },
-      { label: 'Compute & Cluster Sizing', emoji: '⚡', image: '/icons/databricks/cluster.svg', href: '#compute-sizing', drilldown: 'compute-sizing', desc: 'Right-size your compute resources' },
-      { label: 'Lakemeter', emoji: '📏', href: '#lakemeter', drilldown: 'lakemeter', desc: 'Measure and optimize lake usage' },
+      { label: 'AWS Integration', emoji: '☁️', image: '/icons/aws.svg', href: '#aws', drilldown: 'aws', desc: 'Deploying Databricks on Amazon Web Services.' },
+      { label: 'Azure Integration', emoji: '🔷', image: '/icons/azure.svg', href: '#azure', drilldown: 'azure', desc: 'Integrating Databricks with Microsoft Azure.' },
     ],
   },
   {
     title: 'Optimization',
     tiles: [
-      { label: 'Cost Monitoring', emoji: '💰', image: '/icons/databricks/pie-chart.svg', href: '#cost-monitoring', drilldown: 'cost-monitoring', desc: 'Track and analyze cloud spending' },
-      { label: 'Cost Optimization', emoji: '📉', image: '/icons/databricks/gear.svg', href: '#cost-optimization', drilldown: 'cost-optimization', desc: 'Reduce costs without sacrificing performance' },
-      { label: 'Benchmarks', emoji: '🏆', image: '/icons/databricks/performance.svg', href: '#benchmarks', drilldown: 'benchmarks', desc: 'Performance benchmarks and comparisons' },
+      { label: 'Cost Optimization Strategies', emoji: '💲', image: '/icons/databricks/chart-line.svg', href: '#cost-strategies', drilldown: 'cost-strategies', desc: 'Tips for reducing your cloud spend.' },
+      { label: 'Performance Tuning', emoji: '🏆', image: '/icons/databricks/performance.svg', href: '#performance', drilldown: 'performance', desc: 'Optimizing query and job performance.' },
+      { label: 'Sizing & Scaling', emoji: '⚡', image: '/icons/databricks/cluster.svg', href: '#sizing', drilldown: 'sizing', desc: 'Right-size compute and configure auto-scaling.' },
     ],
   },
 ];
@@ -517,7 +477,119 @@ const azureTerraformResourceGroups = [
   },
 ];
 
+// ── Consolidated drilldown groups for top-level cards ──
+
+const quickStartGroups = [
+  {
+    category: 'Resources',
+    items: [
+      { title: 'Starter Journey', desc: 'Step-by-step guide to get started with Databricks', icon: '🗺️', href: 'https://databricks-solutions.github.io/starter-journey/', source: 'Starter Journey' },
+      { title: 'Free Edition', desc: 'Try Databricks free with no commitment', icon: '⚡', href: 'https://www.databricks.com/learn/free-edition', source: 'Databricks' },
+      { title: 'Cheatsheet', desc: 'Quick reference for common Databricks operations', icon: '📋', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf', source: 'Starter Journey' },
+    ],
+  },
+];
+
+const workspaceSetupGroups = [
+  {
+    category: 'Cloud Providers',
+    items: [
+      { title: 'AWS Setup', desc: 'Workspace deployment, Terraform, and networking', icon: '☁️', href: '#aws', source: '', drilldown: 'aws' },
+      { title: 'Azure Setup', desc: 'Workspace deployment, Terraform, and networking', icon: '🔷', href: '#azure', source: '', drilldown: 'azure' },
+    ],
+  },
+];
+
+const learningGroups = [
+  {
+    category: 'Training',
+    items: [
+      ...trainingsResourceGroups[0].items,
+      { title: 'Skill Builder', desc: 'YouTube tutorials and video walkthroughs', icon: '▶️', href: 'https://www.youtube.com/@databricksskillbuilder/', source: 'YouTube' },
+    ],
+  },
+  {
+    category: 'Support',
+    items: [...productHelpResourceGroups[0].items],
+  },
+  {
+    category: 'Explore',
+    items: [
+      { title: 'Demo Centre', desc: 'Interactive demos and showcases', icon: '🎬', href: 'https://www.databricks.com/resources/demos', source: 'Databricks' },
+      ...releaseHubResourceGroups[0].items,
+      { title: 'NextGen Lakehouse', desc: 'Community-built resource hub', icon: '🏠', href: 'https://www.nextgenlakehouse.com/', source: 'Community' },
+      { title: 'Community Forum', desc: 'Join the Databricks community', icon: '💬', href: 'https://community.databricks.com/tmcxu86974/', source: 'Databricks' },
+      { title: 'User Groups', desc: 'Local and virtual user groups', icon: '👥', href: 'https://usergroups.databricks.com/', source: 'Databricks' },
+    ],
+  },
+];
+
+const securityGroups = [
+  {
+    category: 'Overview',
+    items: [
+      { title: 'Security & Trust Center', desc: 'Security features and compliance certifications', icon: '🛡️', href: 'https://www.databricks.com/trust/security-features', source: 'Databricks' },
+    ],
+  },
+  ...dataExfiltrationResourceGroups,
+];
+
+const buildGroups = [
+  {
+    category: 'AI & Agents',
+    items: [
+      { title: 'AI & Agents', desc: 'Build AI agents and intelligent applications', icon: '🤖', href: '#ai-agents', source: '', drilldown: 'ai-agents' },
+    ],
+  },
+  {
+    category: 'Data Platform',
+    items: [
+      { title: 'Data Engineering', desc: 'ETL pipelines, Lakeflow Connect, orchestration', icon: '🔧', href: '#data-engineering', source: '', drilldown: 'data-engineering' },
+      { title: 'Model & Serving', desc: 'Train, deploy, and serve ML models', icon: '🧠', href: '#model-serving', source: '', drilldown: 'model-serving' },
+      { title: 'Databricks Apps', desc: 'Build interactive web applications', icon: '📱', href: '#databricks-apps', source: '', drilldown: 'databricks-apps' },
+      { title: 'Database & Storage', desc: 'Lakebase, Delta Lake, and Iceberg', icon: '🗄️', href: '#database-storage', source: '', drilldown: 'database-storage' },
+    ],
+  },
+];
+
+const governanceMigrationGroups = [
+  ...governanceResourceGroups,
+  {
+    category: 'Migration',
+    items: [
+      { title: 'Lakebridge', desc: 'Migrate data to the Databricks lakehouse', icon: '🌉', href: 'https://databrickslabs.github.io/lakebridge/docs/overview/', source: 'Databricks Labs' },
+      { title: 'Migrate with LLM', desc: 'AI-assisted SQL and workload migration', icon: '🤖', href: 'https://github.com/databricks-solutions/databricks-migrator-with-llm', source: 'GitHub' },
+    ],
+  },
+];
+
+const costStrategiesGroups = [
+  { category: 'Cost Monitoring', items: [...costMonitoringGroups[0].items] },
+  { category: 'Cost Optimization', items: [...costOptimizationResourceGroups[0].items] },
+  { category: 'Pricing', items: [...pricingResourceGroups[0].items] },
+];
+
+const performanceGroups = [
+  ...benchmarksResourceGroups,
+];
+
+const sizingGroups = [
+  { category: 'Compute Sizing', items: [...computeSizingResourceGroups[0].items] },
+  { category: 'Lakemeter', items: [{ title: 'Coming Soon', desc: 'Lakemeter content is being prepared', icon: '🔜', href: '', source: '' }] },
+];
+
 const drilldownData: Record<string, { title: string; image: string; groups: typeof awsResourceGroups }> = {
+  // ── Top-level consolidated drilldowns ──
+  'quick-start': { title: 'Quick Start Guide', image: '/icons/databricks/book.svg', groups: quickStartGroups },
+  'workspace-setup': { title: 'Setup Your Workspace', image: '/icons/databricks/gear.svg', groups: workspaceSetupGroups },
+  'learning': { title: 'Trainings & Resources', image: '/icons/databricks/databricks-academy.svg', groups: learningGroups },
+  'security': { title: 'Secure Your Data', image: '/icons/databricks/shield-check.svg', groups: securityGroups },
+  'build': { title: 'Build & Develop', image: '/icons/databricks/lakeflow.svg', groups: buildGroups },
+  'governance-migration': { title: 'Governance & Migration', image: '/icons/databricks/unity-catalog.svg', groups: governanceMigrationGroups },
+  'cost-strategies': { title: 'Cost Optimization Strategies', image: '/icons/databricks/chart-line.svg', groups: costStrategiesGroups },
+  'performance': { title: 'Performance Tuning', image: '/icons/databricks/performance.svg', groups: performanceGroups },
+  'sizing': { title: 'Sizing & Scaling', image: '/icons/databricks/cluster.svg', groups: sizingGroups },
+  // ── Existing sub-drilldowns (accessed from within consolidated views) ──
   'release-hub': { title: 'Release Hub', image: '', groups: releaseHubResourceGroups },
   'trainings': { title: 'Trainings', image: '', groups: trainingsResourceGroups },
   'product-help': { title: 'Product Help', image: '', groups: productHelpResourceGroups },
@@ -528,7 +600,6 @@ const drilldownData: Record<string, { title: string; image: string; groups: type
   'aws-uc-storage': { title: 'Unity Catalog Storage', image: '', groups: awsUcStorageResourceGroups },
   azure: { title: 'Databricks on Azure', image: '/icons/azure.svg', groups: azureResourceGroups },
   'azure-terraform': { title: 'Terraform Deployment', image: '', groups: azureTerraformResourceGroups },
-  // Build sub-groups
   'ai-agents': { title: 'AI & Agents', image: '/icons/databricks/agent-bricks.svg', groups: aiAgentsResourceGroups },
   'data-engineering': { title: 'Data Engineering', image: '/icons/databricks/lakeflow.svg', groups: dataEngineeringResourceGroups },
   'model-serving': { title: 'Model & Serving', image: '/icons/databricks/mosaic-ai.svg', groups: modelServingResourceGroups },
@@ -868,7 +939,13 @@ export default function Hero() {
             <DrilldownView
               key={activeDrilldown}
               data={drilldownData[activeDrilldown]}
-              onBack={() => setActiveDrilldown(activeDrilldown.startsWith('azure-') ? 'azure' : activeDrilldown.startsWith('aws-') ? 'aws' : null)}
+              onBack={() => {
+                if (activeDrilldown.startsWith('azure-')) setActiveDrilldown('azure');
+                else if (activeDrilldown.startsWith('aws-')) setActiveDrilldown('aws');
+                else if (['ai-agents', 'data-engineering', 'model-serving', 'databricks-apps', 'database-storage'].includes(activeDrilldown)) setActiveDrilldown('build');
+                else if (activeDrilldown === 'governance') setActiveDrilldown('governance-migration');
+                else setActiveDrilldown(null);
+              }}
               onDrilldown={(key) => setActiveDrilldown(key)}
             />
           ) : (
@@ -883,11 +960,12 @@ export default function Hero() {
               {sections.map((section, si) => {
                 const offset = sections.slice(0, si).reduce((acc, s) => acc + s.tiles.length, 0);
                 return (
-                  <div key={section.title} className="bg-gray-50 rounded-2xl p-6 md:p-8">
-                    <h2 className="text-[15px] font-bold text-[#FF3621] uppercase tracking-wide mb-5">
+                  <div key={section.title}>
+                    {si > 0 && <div className="w-full h-px bg-gray-100 mb-8" />}
+                    <h2 className="text-[18px] font-bold text-gray-900 mb-6">
                       {section.title}
                     </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                       {section.tiles.map((tile, i) => (
                         <TileCard key={tile.label} tile={tile} index={offset + i} onDrilldown={setActiveDrilldown} />
                       ))}
