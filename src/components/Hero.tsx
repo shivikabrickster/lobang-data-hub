@@ -28,100 +28,79 @@ function useTickerItems() {
 
 const sections = [
   {
-    title: 'Get Started',
+    title: 'Getting Started',
     tiles: [
-      { label: 'Starter Journey', emoji: '🗺️', image: '/icons/databricks/map.svg', href: 'https://databricks-solutions.github.io/starter-journey/' },
-      { label: 'Free Edition', emoji: '⚡', image: '/icons/databricks/sparkle.svg', href: 'https://www.databricks.com/learn/free-edition' },
-      { label: 'Cheatsheet', emoji: '📋', image: '/icons/databricks/book.svg', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf' },
-      { label: 'Trainings', emoji: '🎓', image: '/icons/databricks/databricks-academy.svg', href: '#trainings', drilldown: 'trainings' },
-      { label: 'Product Help', emoji: '🛟', image: '/icons/databricks/help.svg', href: '#product-help', drilldown: 'product-help' },
-      { label: 'Skill Builder', emoji: '🎓', image: '/icons/databricks/youtube.svg', href: 'https://www.youtube.com/@databricksskillbuilder/' },
+      { label: 'Starter Journey', emoji: '🗺️', image: '/icons/databricks/map.svg', href: 'https://databricks-solutions.github.io/starter-journey/', desc: 'Step-by-step guide to get started with Databricks' },
+      { label: 'Free Edition', emoji: '⚡', image: '/icons/databricks/sparkle.svg', href: 'https://www.databricks.com/learn/free-edition', desc: 'Try Databricks free with no commitment' },
+      { label: 'Cheatsheet', emoji: '📋', image: '/icons/databricks/book.svg', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf', desc: 'Quick reference for common operations' },
+      { label: 'Trainings', emoji: '🎓', image: '/icons/databricks/databricks-academy.svg', href: '#trainings', drilldown: 'trainings', desc: 'Databricks Academy learning paths' },
+      { label: 'Product Help', emoji: '🛟', image: '/icons/databricks/help.svg', href: '#product-help', drilldown: 'product-help', desc: 'Documentation and support resources' },
+      { label: 'Skill Builder', emoji: '🎓', image: '/icons/databricks/youtube.svg', href: 'https://www.youtube.com/@databricksskillbuilder/', desc: 'YouTube tutorials and walkthroughs' },
     ],
   },
   {
-    title: 'Security & Compliance',
+    title: 'Architecture & Security',
     tiles: [
-      { label: 'Security & Trust Center', emoji: '🛡️', image: '/icons/databricks/shield-check.svg', href: 'https://www.databricks.com/trust/security-features' },
-      { label: 'Data Exfiltration Controls', emoji: '🔒', image: '/icons/databricks/lock-shield.svg', href: '#data-exfiltration', drilldown: 'data-exfiltration' },
+      { label: 'Security & Trust Center', emoji: '🛡️', image: '/icons/databricks/shield-check.svg', href: 'https://www.databricks.com/trust/security-features', desc: 'Security features and compliance certifications' },
+      { label: 'Data Exfiltration Controls', emoji: '🔒', image: '/icons/databricks/lock-shield.svg', href: '#data-exfiltration', drilldown: 'data-exfiltration', desc: 'Protect sensitive data from unauthorized access' },
       // SG Feature Availability — removed from public site, deployed as Databricks App
       // { label: 'SG Feature Availability', emoji: '🇸🇬', href: '#sg-features', drilldown: 'sg-features' },
     ],
   },
   {
-    title: 'Cloud Provider',
+    title: 'Cloud Platforms',
     tiles: [
-      { label: 'AWS', emoji: '☁️', image: '/icons/aws.svg', href: '#aws', drilldown: 'aws' },
-      { label: 'Azure', emoji: '🔷', image: '/icons/azure.svg', href: '#azure', drilldown: 'azure' },
+      { label: 'AWS', emoji: '☁️', image: '/icons/aws.svg', href: '#aws', drilldown: 'aws', desc: 'Databricks integration with Amazon Web Services' },
+      { label: 'Azure', emoji: '🔷', image: '/icons/azure.svg', href: '#azure', drilldown: 'azure', desc: 'Databricks integration with Microsoft Azure' },
     ],
   },
   {
     title: 'Build',
     tiles: [
-      { label: 'AI & Agents', emoji: '🤖', image: '/icons/databricks/agent-bricks.svg', href: '#ai-agents', drilldown: 'ai-agents' },
-      { label: 'Data Engineering', emoji: '🔧', image: '/icons/databricks/lakeflow.svg', href: '#data-engineering', drilldown: 'data-engineering' },
-      { label: 'Model & Serving', emoji: '🧠', image: '/icons/databricks/mosaic-ai.svg', href: '#model-serving', drilldown: 'model-serving' },
-      { label: 'Databricks Apps', emoji: '📱', image: '/icons/databricks/apps.svg', href: '#databricks-apps', drilldown: 'databricks-apps' },
-      { label: 'Database & Storage', emoji: '🗄️', image: '/icons/databricks/lakebase.svg', href: '#database-storage', drilldown: 'database-storage' },
-      { label: 'Governance', emoji: '🛡️', image: '/icons/databricks/unity-catalog.svg', href: '#governance', drilldown: 'governance' },
+      { label: 'AI & Agents', emoji: '🤖', image: '/icons/databricks/agent-bricks.svg', href: '#ai-agents', drilldown: 'ai-agents', desc: 'Build AI agents and applications' },
+      { label: 'Data Engineering', emoji: '🔧', image: '/icons/databricks/lakeflow.svg', href: '#data-engineering', drilldown: 'data-engineering', desc: 'ETL pipelines and data processing' },
+      { label: 'Model & Serving', emoji: '🧠', image: '/icons/databricks/mosaic-ai.svg', href: '#model-serving', drilldown: 'model-serving', desc: 'Train and deploy ML models' },
+      { label: 'Databricks Apps', emoji: '📱', image: '/icons/databricks/apps.svg', href: '#databricks-apps', drilldown: 'databricks-apps', desc: 'Build interactive web applications' },
+      { label: 'Database & Storage', emoji: '🗄️', image: '/icons/databricks/lakebase.svg', href: '#database-storage', drilldown: 'database-storage', desc: 'Lakebase, Delta Lake, and storage' },
+      { label: 'Governance', emoji: '🛡️', image: '/icons/databricks/unity-catalog.svg', href: '#governance', drilldown: 'governance', desc: 'Unity Catalog and data governance' },
     ],
   },
   {
     title: 'Explore',
     tiles: [
-      { label: 'Demo Centre', emoji: '🎬', image: '/icons/databricks/play.svg', href: 'https://www.databricks.com/resources/demos' },
-      { label: 'Release Hub', emoji: '🚀', image: '/icons/databricks/globe.svg', href: '#release-hub', drilldown: 'release-hub' },
-      { label: 'NextGen Lakehouse', emoji: '🏠', image: '/icons/databricks/lakehouse.svg', href: 'https://www.nextgenlakehouse.com/' },
-      { label: 'Community', emoji: '💬', image: '/icons/databricks/community.svg', href: 'https://community.databricks.com/tmcxu86974/' },
-      { label: 'User Groups', emoji: '👥', image: '/icons/databricks/user-group.svg', href: 'https://usergroups.databricks.com/' },
+      { label: 'Demo Centre', emoji: '🎬', image: '/icons/databricks/play.svg', href: 'https://www.databricks.com/resources/demos', desc: 'Interactive demos and showcases' },
+      { label: 'Release Hub', emoji: '🚀', image: '/icons/databricks/globe.svg', href: '#release-hub', drilldown: 'release-hub', desc: 'Latest Databricks releases and updates' },
+      { label: 'NextGen Lakehouse', emoji: '🏠', image: '/icons/databricks/lakehouse.svg', href: 'https://www.nextgenlakehouse.com/', desc: 'Next generation lakehouse resources' },
+      { label: 'Community', emoji: '💬', image: '/icons/databricks/community.svg', href: 'https://community.databricks.com/tmcxu86974/', desc: 'Join the Databricks community' },
+      { label: 'User Groups', emoji: '👥', image: '/icons/databricks/user-group.svg', href: 'https://usergroups.databricks.com/', desc: 'Local and virtual user groups' },
     ],
   },
   {
     title: 'Migrate',
     tiles: [
-      { label: 'Lakebridge', emoji: '🌉', image: '/icons/databricks/lakebridge.svg', href: 'https://databrickslabs.github.io/lakebridge/docs/overview/' },
-      { label: 'Migrate with LLM', emoji: '🤖', image: '/icons/databricks/notebooks.svg', href: 'https://github.com/databricks-solutions/databricks-migrator-with-llm' },
+      { label: 'Lakebridge', emoji: '🌉', image: '/icons/databricks/lakebridge.svg', href: 'https://databrickslabs.github.io/lakebridge/docs/overview/', desc: 'Migrate data to Databricks lakehouse' },
+      { label: 'Migrate with LLM', emoji: '🤖', image: '/icons/databricks/notebooks.svg', href: 'https://github.com/databricks-solutions/databricks-migrator-with-llm', desc: 'AI-assisted migration tools' },
     ],
   },
   {
     title: 'Sizing',
     tiles: [
-      { label: 'Pricing & Cost Calculators', emoji: '💲', image: '/icons/databricks/chart-line.svg', href: '#pricing', drilldown: 'pricing' },
-      { label: 'Compute & Cluster Sizing', emoji: '⚡', image: '/icons/databricks/cluster.svg', href: '#compute-sizing', drilldown: 'compute-sizing' },
-      { label: 'Lakemeter', emoji: '📏', href: '#lakemeter', drilldown: 'lakemeter' },
+      { label: 'Pricing & Cost Calculators', emoji: '💲', image: '/icons/databricks/chart-line.svg', href: '#pricing', drilldown: 'pricing', desc: 'Estimate costs and plan budgets' },
+      { label: 'Compute & Cluster Sizing', emoji: '⚡', image: '/icons/databricks/cluster.svg', href: '#compute-sizing', drilldown: 'compute-sizing', desc: 'Right-size your compute resources' },
+      { label: 'Lakemeter', emoji: '📏', href: '#lakemeter', drilldown: 'lakemeter', desc: 'Measure and optimize lake usage' },
     ],
   },
   {
-    title: 'Cost & Performance',
+    title: 'Optimization',
     tiles: [
-      { label: 'Cost Monitoring', emoji: '💰', image: '/icons/databricks/pie-chart.svg', href: '#cost-monitoring', drilldown: 'cost-monitoring' },
-      { label: 'Cost Optimization', emoji: '📉', image: '/icons/databricks/gear.svg', href: '#cost-optimization', drilldown: 'cost-optimization' },
-      { label: 'Benchmarks', emoji: '🏆', image: '/icons/databricks/performance.svg', href: '#benchmarks', drilldown: 'benchmarks' },
+      { label: 'Cost Monitoring', emoji: '💰', image: '/icons/databricks/pie-chart.svg', href: '#cost-monitoring', drilldown: 'cost-monitoring', desc: 'Track and analyze cloud spending' },
+      { label: 'Cost Optimization', emoji: '📉', image: '/icons/databricks/gear.svg', href: '#cost-optimization', drilldown: 'cost-optimization', desc: 'Reduce costs without sacrificing performance' },
+      { label: 'Benchmarks', emoji: '🏆', image: '/icons/databricks/performance.svg', href: '#benchmarks', drilldown: 'benchmarks', desc: 'Performance benchmarks and comparisons' },
     ],
   },
 ];
 
-// Parallax stars
-function generateStars(count: number) {
-  return Array.from({ length: count }, () => ({
-    x: Math.random() * 2000,
-    y: Math.random() * 2000,
-  }));
-}
-const stars1 = generateStars(50);
-const stars2 = generateStars(100);
-const stars3 = generateStars(80);
-
-function StarLayer({ stars, size, duration, opacity }: { stars: { x: number; y: number }[]; size: number; duration: number; opacity: number }) {
-  const shadow = stars.map(s => `${s.x}px ${s.y}px #FFF`).join(', ');
-  return (
-    <>
-      <div className="absolute" style={{ width: `${size}px`, height: `${size}px`, background: 'transparent', boxShadow: shadow, animation: `starScroll ${duration}s linear infinite`, opacity }} />
-      <div className="absolute" style={{ width: `${size}px`, height: `${size}px`, top: '2000px', background: 'transparent', boxShadow: shadow, animation: `starScroll ${duration}s linear infinite`, opacity }} />
-    </>
-  );
-}
-
-type Tile = { label: string; emoji: string; image?: string; href: string; drilldown?: string };
+type Tile = { label: string; emoji: string; image?: string; href: string; drilldown?: string; desc?: string };
 
 const genieResourceGroups = [
   {
@@ -568,44 +547,35 @@ function TileCard({ tile, index, onDrilldown }: { tile: Tile; index: number; onD
   const isDrilldown = !!tile.drilldown;
 
   const inner = (
-    <>
-      {tile.image ? (
-        <img src={tile.image} alt={tile.label} className="w-10 h-10 object-contain rounded" />
-      ) : (
-        <span className="text-3xl">{tile.emoji}</span>
+    <div className="flex items-start gap-4 p-5 h-full">
+      <div className="shrink-0 w-10 h-10 flex items-center justify-center rounded-lg bg-[#FFF0EE]">
+        {tile.image ? (
+          <img src={tile.image} alt={tile.label} className="w-7 h-7 object-contain" />
+        ) : (
+          <span className="text-xl">{tile.emoji}</span>
+        )}
+      </div>
+      <div className="flex flex-col gap-1 min-w-0">
+        <span className="text-[14px] font-semibold text-gray-900 leading-tight">{tile.label}</span>
+        {tile.desc && (
+          <span className="text-[12px] text-gray-500 leading-snug">{tile.desc}</span>
+        )}
+      </div>
+      {isDrilldown && (
+        <span className="ml-auto shrink-0 text-gray-300 group-hover:text-[#FF3621] transition-colors text-lg">&#8250;</span>
       )}
-      <span className="text-[13px] font-extrabold text-white transition-colors leading-tight text-center">
-        {tile.label}
-      </span>
-    </>
+    </div>
   );
 
-  const sharedClass = "group flex flex-col items-center justify-center gap-3 w-[150px] h-[120px] rounded-2xl no-underline transition-all duration-200 hover:-translate-y-1 cursor-pointer";
-  const sharedStyle = {
-    background: 'rgba(255,255,255,0.035)',
-    border: '1px solid rgba(255,255,255,0.07)',
-  };
-  const enter = (e: React.MouseEvent<HTMLElement>) => {
-    e.currentTarget.style.background = 'rgba(255,54,33,0.1)';
-    e.currentTarget.style.borderColor = 'rgba(255,54,33,0.3)';
-    e.currentTarget.style.boxShadow = '0 8px 24px rgba(255,54,33,0.08)';
-  };
-  const leave = (e: React.MouseEvent<HTMLElement>) => {
-    e.currentTarget.style.background = 'rgba(255,255,255,0.035)';
-    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)';
-    e.currentTarget.style.boxShadow = 'none';
-  };
+  const sharedClass = "group bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md hover:border-[#FF3621]/30 transition-all duration-200 hover:-translate-y-0.5 cursor-pointer";
 
   if (isDrilldown) {
     return (
       <motion.button
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.35, delay: 0.25 + index * 0.04 }}
-        className={sharedClass + ' border-none'}
-        style={sharedStyle}
-        onMouseEnter={enter}
-        onMouseLeave={leave}
+        transition={{ duration: 0.35, delay: 0.1 + index * 0.03 }}
+        className={sharedClass + ' text-left w-full'}
         onClick={() => onDrilldown?.(tile.drilldown!)}
       >
         {inner}
@@ -620,11 +590,8 @@ function TileCard({ tile, index, onDrilldown }: { tile: Tile; index: number; onD
       rel={tile.href.startsWith('http') ? 'noopener noreferrer' : undefined}
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, delay: 0.25 + index * 0.04 }}
-      className={sharedClass}
-      style={sharedStyle}
-      onMouseEnter={enter}
-      onMouseLeave={leave}
+      transition={{ duration: 0.35, delay: 0.1 + index * 0.03 }}
+      className={sharedClass + ' no-underline block'}
     >
       {inner}
     </motion.a>
@@ -658,11 +625,10 @@ function EventTickerBadge() {
       href={EVENT_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="shrink-0 flex items-center gap-3 px-5 py-1 no-underline z-10 transition-all duration-200 hover:brightness-110 group"
+      className="shrink-0 flex items-center gap-3 px-5 py-1 no-underline z-10 transition-all duration-200 hover:brightness-105 group"
       style={{
-        background: 'linear-gradient(135deg, #2a0a06, #1a0604, #0d0302)',
+        background: '#fff',
         borderLeft: '2px solid #FF3621',
-        boxShadow: '-8px 0 20px rgba(0,0,0,0.6), inset 0 0 30px rgba(255,54,33,0.05)',
       }}
     >
       {/* Pulsing attention dot */}
@@ -674,30 +640,30 @@ function EventTickerBadge() {
       <span className="text-[16px]">🎪</span>
 
       <div className="flex flex-col">
-        <span className="text-[13px] font-extrabold text-white leading-tight whitespace-nowrap tracking-tight">
+        <span className="text-[13px] font-extrabold text-gray-900 leading-tight whitespace-nowrap tracking-tight">
           DATA + AI SUMMIT 2026
         </span>
-        <span className="text-[10px] text-white/50 whitespace-nowrap">📍 San Francisco · June 9–12</span>
+        <span className="text-[10px] text-gray-400 whitespace-nowrap">📍 San Francisco · June 9–12</span>
       </div>
 
       {/* Divider */}
-      <div className="w-px h-8 bg-white/10" />
+      <div className="w-px h-8 bg-gray-200" />
 
       {/* Countdown or Live badge */}
       {isHappening ? (
-        <span className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-400 bg-emerald-500/15 px-2.5 py-1 rounded-full">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+        <span className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           LIVE NOW
         </span>
       ) : (
         <div className="flex flex-col items-center">
-          <span className="text-[18px] font-extrabold text-white leading-none">{daysLeft}</span>
-          <span className="text-[8px] text-white/30 uppercase tracking-wider">days</span>
+          <span className="text-[18px] font-extrabold text-[#FF3621] leading-none">{daysLeft}</span>
+          <span className="text-[8px] text-gray-400 uppercase tracking-wider">days</span>
         </div>
       )}
 
       {/* CTA with bouncing arrow */}
-      <span className="flex items-center gap-1.5 text-[12px] font-bold text-white bg-[#FF3621] px-4 py-1.5 rounded-full whitespace-nowrap group-hover:bg-[#ff4a33] transition-all duration-200 group-hover:shadow-[0_0_15px_rgba(255,54,33,0.4)]">
+      <span className="flex items-center gap-1.5 text-[12px] font-bold text-white bg-[#FF3621] px-4 py-1.5 rounded-full whitespace-nowrap group-hover:bg-[#e02e1b] transition-all duration-200">
         {isHappening ? 'Watch Live' : 'Register Free'}
         <motion.span
           animate={{ x: [0, 4, 0] }}
@@ -718,19 +684,19 @@ function DrilldownView({ data, onBack, onDrilldown }: { data: typeof drilldownDa
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -80 }}
       transition={{ duration: 0.35, ease: 'easeOut' }}
-      className="flex flex-col gap-8 max-w-[820px] w-full"
+      className="flex flex-col gap-8 max-w-5xl w-full"
     >
       {/* Back button + title */}
       <div className="flex items-center gap-4">
         <button
           onClick={onBack}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl text-[13px] font-semibold text-white/60 hover:text-white bg-transparent border border-white/10 hover:border-white/20 cursor-pointer transition-all duration-200"
+          className="flex items-center gap-2 px-4 py-2 rounded-lg text-[13px] font-semibold text-gray-500 hover:text-gray-900 bg-white border border-gray-200 hover:border-gray-300 cursor-pointer transition-all duration-200 shadow-sm"
         >
           <span className="text-lg leading-none">&larr;</span> Back
         </button>
         <div className="flex items-center gap-3">
           {data.image && <img src={data.image} alt={data.title} className="w-8 h-8 object-contain" />}
-          <h2 className="text-[22px] font-bold text-white">{data.title}</h2>
+          <h2 className="text-[22px] font-bold text-gray-900">{data.title}</h2>
         </div>
       </div>
 
@@ -741,45 +707,37 @@ function DrilldownView({ data, onBack, onDrilldown }: { data: typeof drilldownDa
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.1 + gi * 0.08 }}
-          className="flex flex-col items-center gap-3"
         >
-          {gi > 0 && <div className="w-full h-px bg-white/10 mb-1" />}
-          <span className="text-[13px] font-extrabold uppercase tracking-[0.15em] text-[#FF3621]">
+          {gi > 0 && <div className="w-full h-px bg-gray-200 mb-4" />}
+          <span className="text-[13px] font-bold uppercase tracking-[0.1em] text-[#FF3621] mb-4 block">
             {group.category}
           </span>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {group.items.map((item, ii) => {
               const sharedProps = {
                 initial: { opacity: 0, y: 12 } as const,
                 animate: { opacity: 1, y: 0 } as const,
-                transition: { duration: 0.25, delay: 0.15 + ii * 0.04 },
-                className: "group flex flex-col items-center justify-center gap-2 w-[200px] py-5 rounded-2xl no-underline transition-all duration-200 hover:-translate-y-1 cursor-pointer",
-                style: {
-                  background: 'rgba(255,255,255,0.035)',
-                  border: '1px solid rgba(255,255,255,0.07)',
-                },
-                onMouseEnter: (e: React.MouseEvent<HTMLElement>) => {
-                  e.currentTarget.style.background = 'rgba(255,54,33,0.1)';
-                  e.currentTarget.style.borderColor = 'rgba(255,54,33,0.3)';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(255,54,33,0.08)';
-                },
-                onMouseLeave: (e: React.MouseEvent<HTMLElement>) => {
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.035)';
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)';
-                  e.currentTarget.style.boxShadow = 'none';
-                },
+                transition: { duration: 0.25, delay: 0.1 + ii * 0.03 },
+                className: "group flex items-start gap-3 p-4 rounded-xl no-underline transition-all duration-200 hover:-translate-y-0.5 cursor-pointer bg-white border border-gray-200 shadow-sm hover:shadow-md hover:border-[#FF3621]/30",
               };
               const content = (
                 <>
-                  {'icon' in item && item.icon && <span className="text-2xl">{item.icon}</span>}
-                  <span className="text-[13px] font-bold text-white text-center leading-tight px-3">
-                    {item.title}
-                  </span>
-                  {item.desc && (
-                    <span className="text-[10px] text-white/35 text-center leading-snug px-3">
-                      {item.desc}
-                    </span>
+                  {'icon' in item && item.icon && (
+                    <span className="text-xl shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-[#FFF0EE]">{item.icon}</span>
                   )}
+                  <div className="flex flex-col gap-0.5 min-w-0">
+                    <span className="text-[13px] font-semibold text-gray-900 leading-tight">
+                      {item.title}
+                    </span>
+                    {item.desc && (
+                      <span className="text-[11px] text-gray-500 leading-snug">
+                        {item.desc}
+                      </span>
+                    )}
+                    {'source' in item && item.source && (
+                      <span className="text-[10px] text-[#FF3621]/60 font-medium mt-1">{item.source}</span>
+                    )}
+                  </div>
                 </>
               );
               if ('drilldown' in item && item.drilldown && onDrilldown) {
@@ -807,34 +765,26 @@ export default function Hero() {
   const [activeDrilldown, setActiveDrilldown] = useState<string | null>(null);
 
   return (
-    <section id="hero" className="relative overflow-hidden min-h-screen flex flex-col">
-      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none" style={{ background: 'radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)' }}>
-        <StarLayer stars={stars1} size={1} duration={150} opacity={0.3} />
-        <StarLayer stars={stars2} size={2} duration={100} opacity={0.2} />
-        <StarLayer stars={stars3} size={3} duration={50} opacity={0.1} />
-      </div>
+    <section id="hero" className="relative min-h-screen flex flex-col bg-white">
       <style>{`
-        @keyframes starScroll { from { transform: translateY(0); } to { transform: translateY(-2000px); } }
         @keyframes tickerScroll { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(-100%,0,0); } }
         .ticker-track { animation: tickerScroll 150s linear infinite; padding-right: 100%; }
         .ticker-container:hover .ticker-track { animation-play-state: paused !important; }
       `}</style>
 
-      {/* News Ticker — above header, full width; hidden until RSS loads */}
+      {/* News Ticker — top bar */}
       {newsItems.length > 0 && (
       <div className="relative z-10 w-full">
         <div
-          className="ticker-container relative flex items-center h-14 overflow-hidden"
+          className="ticker-container relative flex items-center h-10 overflow-hidden"
           style={{
-            background: '#000',
-            borderTop: '1px solid #FF3621',
-            borderBottom: '1px solid #FF3621',
+            background: '#FF3621',
           }}
         >
           {/* LATEST label */}
           <div
-            className="shrink-0 h-full flex items-center px-5 text-[12px] font-bold text-white uppercase tracking-wider z-10"
-            style={{ background: '#FF3621', boxShadow: '5px 0 15px rgba(0,0,0,0.5)' }}
+            className="shrink-0 h-full flex items-center px-5 text-[11px] font-bold text-white uppercase tracking-wider z-10"
+            style={{ background: '#e02e1b' }}
           >
             Latest
           </div>
@@ -843,12 +793,10 @@ export default function Hero() {
             className="flex-1 overflow-hidden h-full flex items-center"
             style={{ maskImage: 'linear-gradient(to right, transparent, black 20px, black 95%, transparent)' }}
           >
-            <div
-              className="inline-block whitespace-nowrap ticker-track"
-            >
+            <div className="inline-block whitespace-nowrap ticker-track">
               {[...newsItems, ...newsItems].map((item, i) => (
-                <span key={i} className="inline-block text-[13px] font-medium text-white" style={{ padding: '0 3rem' }}>
-                  <span className="text-[#FF3621] mr-2.5">•</span>
+                <span key={i} className="inline-block text-[12px] font-medium text-white/90" style={{ padding: '0 3rem' }}>
+                  <span className="text-white mr-2">•</span>
                   {item}
                 </span>
               ))}
@@ -860,28 +808,56 @@ export default function Hero() {
       </div>
       )}
 
-      {/* Title + Punchline — centered */}
-      <div className="relative z-10 w-full px-6 pt-12 md:pt-16 pb-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="text-center"
-        >
-          <h1 className="text-[clamp(2rem,4.5vw,3rem)] font-bold text-white leading-tight tracking-tight">
-            The <span className="text-[#FF3621]">Lobang</span> Data Hub 🇸🇬
-          </h1>
-          <p className="text-[#71717a] text-[15px] mt-3">
-            Don't say bojio! — Your one-stop Databricks resource hub.
-          </p>
-        </motion.div>
+      {/* Navigation Bar */}
+      <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
+        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+          <div className="flex items-center gap-8">
+            <span className="text-lg font-bold text-gray-900 flex items-center gap-2">
+              <img src="/icons/databricks/lakehouse.svg" alt="Lobang" className="w-6 h-6" />
+              Lobang
+            </span>
+            <div className="hidden md:flex items-center gap-6 text-[13px] font-medium text-gray-500">
+              <a href="https://docs.databricks.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF3621] transition-colors no-underline">Docs</a>
+              <a href="https://community.databricks.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF3621] transition-colors no-underline">Community</a>
+              <a href="https://www.databricks.com/resources/demos" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF3621] transition-colors no-underline">Demos</a>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <a href="https://www.databricks.com/learn/free-edition" target="_blank" rel="noopener noreferrer" className="text-[13px] font-semibold text-white bg-[#FF3621] px-4 py-2 rounded-lg hover:bg-[#e02e1b] transition-colors no-underline">
+              Sign Up
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <div className="w-full bg-gradient-to-b from-[#FFF5F3] to-white">
+        <div className="max-w-6xl mx-auto px-6 py-12 md:py-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <h1 className="text-[clamp(2rem,4.5vw,3.5rem)] font-bold text-gray-900 leading-tight tracking-tight">
+              Lobang
+            </h1>
+            <p className="text-gray-500 text-[16px] mt-2 max-w-xl">
+              Don't say bojio! — Your one-stop Databricks resource hub. 🇸🇬
+            </p>
+            <button
+              onClick={() => {
+                document.getElementById('sections-start')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="mt-6 text-[14px] font-semibold text-white bg-[#FF3621] px-6 py-3 rounded-lg hover:bg-[#e02e1b] transition-colors cursor-pointer border-none"
+            >
+              Explore Resources
+            </button>
+          </motion.div>
+        </div>
       </div>
 
-      {/* Spacer */}
-      <div className="h-12 md:h-16" />
-
       {/* Main content area */}
-      <div className="relative z-10 flex-1 flex items-start justify-center px-6">
+      <div id="sections-start" className="flex-1 max-w-6xl mx-auto w-full px-6 py-10">
         <AnimatePresence mode="wait">
           {activeDrilldown === 'sg-features' ? (
             <SgFeaturesView
@@ -898,21 +874,20 @@ export default function Hero() {
           ) : (
             <motion.div
               key="main-tiles"
-              initial={{ opacity: 0, x: -80 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -80 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.35, ease: 'easeOut' }}
-              className="flex flex-col gap-8 max-w-[820px] w-full"
+              className="flex flex-col gap-10"
             >
               {sections.map((section, si) => {
                 const offset = sections.slice(0, si).reduce((acc, s) => acc + s.tiles.length, 0);
                 return (
-                  <div key={section.title} className="flex flex-col items-center gap-3">
-                    {si > 0 && <div className="w-full h-px bg-white/10" />}
-                    <span className="text-[16px] font-extrabold uppercase tracking-[0.15em] text-[#FF3621]">
+                  <div key={section.title} className="bg-gray-50 rounded-2xl p-6 md:p-8">
+                    <h2 className="text-[15px] font-bold text-[#FF3621] uppercase tracking-wide mb-5">
                       {section.title}
-                    </span>
-                    <div className="flex flex-wrap justify-center gap-4">
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                       {section.tiles.map((tile, i) => (
                         <TileCard key={tile.label} tile={tile} index={offset + i} onDrilldown={setActiveDrilldown} />
                       ))}
@@ -925,6 +900,18 @@ export default function Hero() {
         </AnimatePresence>
       </div>
 
+      {/* Footer */}
+      <footer className="w-full border-t border-gray-200 bg-white mt-auto">
+        <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-[12px] text-gray-400">
+          <span>Built for Databricks Field Engineering</span>
+          <div className="flex items-center gap-6">
+            <a href="https://docs.databricks.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF3621] transition-colors no-underline">Docs</a>
+            <a href="https://www.databricks.com/trust/security-features" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF3621] transition-colors no-underline">Security</a>
+            <a href="https://community.databricks.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF3621] transition-colors no-underline">Community</a>
+          </div>
+          <span>&copy; {new Date().getFullYear()} Lobang Data Hub</span>
+        </div>
+      </footer>
     </section>
   );
 }
