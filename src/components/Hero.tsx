@@ -780,7 +780,7 @@ export default function Hero() {
               ]},
             ].map(section => (
               <div key={section.title} className="mb-8">
-                <h3 className="text-[15px] font-extrabold uppercase tracking-[0.12em] text-[#5B9BD5] mb-3 pb-2" style={{ borderBottom: '1px solid rgba(91,155,213,0.2)' }}>
+                <h3 className="text-[15px] font-extrabold uppercase tracking-[0.12em] text-[#00BCD4] mb-3 pb-2" style={{ borderBottom: '1px solid rgba(0,188,212,0.2)' }}>
                   {section.title}
                 </h3>
                 <div className="flex flex-col gap-1">
