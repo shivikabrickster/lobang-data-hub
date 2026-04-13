@@ -748,59 +748,77 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* Body — cloud chooser + quick access tiles */}
-        <div className="flex-1 flex flex-col items-center justify-center px-8 gap-12">
-          {/* Cloud provider chooser */}
-          <div className="text-center">
-            <h2 className="text-[14px] font-semibold text-white/50 uppercase tracking-wider mb-8">
-              Choose your cloud provider
-            </h2>
-            <div className="flex gap-8 justify-center">
-              {[
-                { id: 'aws' as const, icon: '/icons/aws.svg', label: 'AWS' },
-                { id: 'azure' as const, icon: '/icons/azure.svg', label: 'Azure' },
-              ].map(cloud => (
-                <motion.button
-                  key={cloud.id}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.97 }}
-                  onClick={() => setSelectedCloud(cloud.id)}
-                  className="flex flex-col items-center gap-4 w-44 py-10 rounded-2xl cursor-pointer border-none transition-all"
-                  style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)'; e.currentTarget.style.background = 'rgba(255,54,33,0.08)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
-                >
-                  <img src={cloud.icon} alt={cloud.label} className="w-16 h-16 object-contain" />
-                  <span className="text-[17px] font-bold text-white">{cloud.label}</span>
-                </motion.button>
-              ))}
-            </div>
-          </div>
-
-          {/* Quick access tiles — 4 across */}
-          <div className="grid grid-cols-4 gap-5 w-full max-w-4xl">
+        {/* Body — tiles on left, cloud chooser centered right */}
+        <div className="flex-1 flex overflow-hidden">
+          {/* Left tiles — vertical stack with breathing room */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-col gap-4 py-8 pl-12 pr-6 shrink-0"
+          >
             {[
-              { label: 'Security & Compliance', desc: 'Trust centre & certifications', href: 'https://www.databricks.com/trust/security-features' },
-              { label: 'Demo Centre', desc: 'Interactive demos & showcases', href: 'https://www.databricks.com/resources/demos' },
-              { label: 'Try out Databricks', desc: 'Free edition workspace', href: 'https://www.databricks.com/learn/free-edition' },
-              { label: 'Events', desc: 'Data+AI Summit 2026 · Jun 9–12, SF', href: 'https://www.databricks.com/dataaisummit' },
+              { label: 'Security & Compliance', desc: 'Trust centre & certifications', icon: '/icons/databricks/shield-check.svg', href: 'https://www.databricks.com/trust/security-features' },
+              { label: 'Demo Centre', desc: 'Interactive demos & showcases', icon: '/icons/databricks/play.svg', href: 'https://www.databricks.com/resources/demos' },
+              { label: 'Try out Databricks', desc: 'Free edition workspace', icon: '/icons/databricks/rocket.svg', href: 'https://www.databricks.com/learn/free-edition' },
+              { label: 'Events', desc: 'Data+AI Summit 2026 · Jun 9–12, SF', icon: '/icons/databricks/community.svg', href: 'https://www.databricks.com/dataaisummit' },
             ].map(link => (
               <a
                 key={link.label}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-6 px-5 rounded-xl no-underline transition-all duration-200 group block text-center"
-                style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)'; e.currentTarget.style.background = 'rgba(255,54,33,0.06)'; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; }}
+                className="flex items-center gap-4 w-72 py-4 px-5 rounded-xl no-underline transition-all duration-200 group"
+                style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)'; e.currentTarget.style.background = 'rgba(255,54,33,0.06)'; e.currentTarget.style.transform = 'translateX(4px)'; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; e.currentTarget.style.transform = 'translateX(0)'; }}
               >
-                <span className="text-[16px] font-bold text-white group-hover:text-[#FF3621] transition-colors block mb-2">
-                  {link.label}
-                </span>
-                <span className="text-[13px] text-white/40 block">{link.desc}</span>
+                <div className="w-10 h-10 rounded-lg shrink-0 flex items-center justify-center" style={{ background: 'rgba(255,54,33,0.1)' }}>
+                  <img src={link.icon} alt="" className="w-5 h-5" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <span className="text-[15px] font-bold text-white group-hover:text-[#FF3621] transition-colors block leading-tight">
+                    {link.label}
+                  </span>
+                  <span className="text-[12px] text-white/40 block mt-0.5 leading-tight">{link.desc}</span>
+                </div>
+                <span className="text-white/20 group-hover:text-[#FF3621] transition-colors text-sm shrink-0">↗</span>
               </a>
             ))}
+          </motion.div>
+
+          {/* Cloud provider chooser — centered in remaining space */}
+          <div className="flex-1 flex items-center justify-center px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="text-center"
+            >
+              <h2 className="text-[14px] font-semibold text-white/50 uppercase tracking-wider mb-8">
+                Choose your cloud provider
+              </h2>
+              <div className="flex gap-8 justify-center">
+                {[
+                  { id: 'aws' as const, icon: '/icons/aws.svg', label: 'AWS' },
+                  { id: 'azure' as const, icon: '/icons/azure.svg', label: 'Azure' },
+                ].map(cloud => (
+                  <motion.button
+                    key={cloud.id}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.97 }}
+                    onClick={() => setSelectedCloud(cloud.id)}
+                    className="flex flex-col items-center gap-4 w-44 py-10 rounded-2xl cursor-pointer border-none transition-all"
+                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)'; e.currentTarget.style.background = 'rgba(255,54,33,0.08)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
+                  >
+                    <img src={cloud.icon} alt={cloud.label} className="w-16 h-16 object-contain" />
+                    <span className="text-[17px] font-bold text-white">{cloud.label}</span>
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
