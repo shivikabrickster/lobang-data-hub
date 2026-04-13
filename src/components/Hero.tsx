@@ -748,44 +748,57 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* Body — tiles on left, cloud chooser centered right */}
+        {/* Body — grouped sections on left, cloud chooser centered */}
         <div className="flex-1 flex overflow-hidden">
-          {/* Left tiles — vertical stack with breathing room */}
-          <motion.div
+          {/* Left — grouped navigation sections */}
+          <motion.aside
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col gap-4 py-8 pl-12 pr-6 shrink-0"
+            className="w-72 shrink-0 overflow-y-auto py-6 pl-10 pr-4"
+            style={{ borderRight: '1px solid rgba(255,255,255,0.06)' }}
           >
             {[
-              { label: 'Security & Compliance', desc: 'Trust centre & certifications', icon: '/icons/databricks/shield-check.svg', href: 'https://www.databricks.com/trust/security-features' },
-              { label: 'Demo Centre', desc: 'Interactive demos & showcases', icon: '/icons/databricks/play.svg', href: 'https://www.databricks.com/resources/demos' },
-              { label: 'Try out Databricks', desc: 'Free edition workspace', icon: '/icons/databricks/rocket.svg', href: 'https://www.databricks.com/learn/free-edition' },
-              { label: 'Events', desc: 'Data+AI Summit 2026 · Jun 9–12, SF', icon: '/icons/databricks/community.svg', href: 'https://www.databricks.com/dataaisummit' },
-            ].map(link => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 w-72 py-4 px-5 rounded-xl no-underline transition-all duration-200 group"
-                style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)'; e.currentTarget.style.background = 'rgba(255,54,33,0.06)'; e.currentTarget.style.transform = 'translateX(4px)'; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; e.currentTarget.style.transform = 'translateX(0)'; }}
-              >
-                <div className="w-10 h-10 rounded-lg shrink-0 flex items-center justify-center" style={{ background: 'rgba(255,54,33,0.1)' }}>
-                  <img src={link.icon} alt="" className="w-5 h-5" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <span className="text-[15px] font-bold text-white group-hover:text-[#FF3621] transition-colors block leading-tight">
-                    {link.label}
-                  </span>
-                  <span className="text-[12px] text-white/40 block mt-0.5 leading-tight">{link.desc}</span>
-                </div>
-                <span className="text-white/20 group-hover:text-[#FF3621] transition-colors text-sm shrink-0">↗</span>
-              </a>
+              { title: 'EXPLORE', items: [
+                { label: 'Demo Centre', href: 'https://www.databricks.com/resources/demos' },
+                { label: 'NextGen Lakehouse', href: 'https://www.nextgenlakehouse.com/' },
+                { label: 'Skill Builder', href: 'https://www.youtube.com/@databricksskillbuilder/' },
+                { label: 'Community', href: 'https://community.databricks.com/tmcxu86974/' },
+              ]},
+              { title: 'GET STARTED', items: [
+                { label: 'Try out Databricks', href: 'https://www.databricks.com/learn/free-edition' },
+              ]},
+              { title: 'SECURITY & COMPLIANCE', items: [
+                { label: 'Security & Trust Centre', href: 'https://www.databricks.com/trust/security-features' },
+              ]},
+              { title: 'MIGRATE', items: [
+                { label: 'Lakebridge', href: 'https://databrickslabs.github.io/lakebridge/docs/overview/' },
+                { label: 'Migrate with LLM', href: 'https://github.com/databricks-solutions/databricks-migrator-with-llm' },
+              ]},
+              { title: 'EVENTS', items: [
+                { label: 'Data+AI Summit 2026', href: 'https://www.databricks.com/dataaisummit', badge: 'Jun 9–12' },
+              ]},
+            ].map(section => (
+              <div key={section.title} className="mb-5">
+                <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#FF3621] px-3 mb-2">{section.title}</h3>
+                {section.items.map(item => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between text-[14px] font-bold text-white hover:text-[#FF3621] px-3 py-2 rounded-lg hover:bg-white/5 no-underline transition-colors"
+                  >
+                    {item.label}
+                    <span className="flex items-center gap-2">
+                      {'badge' in item && item.badge && <span className="text-[10px] font-bold text-white/30">{item.badge}</span>}
+                      <span className="text-[11px] text-white/30">↗</span>
+                    </span>
+                  </a>
+                ))}
+              </div>
             ))}
-          </motion.div>
+          </motion.aside>
 
           {/* Cloud provider chooser — centered in remaining space */}
           <div className="flex-1 flex items-center justify-center px-6">
