@@ -810,7 +810,7 @@ export default function Hero() {
         `}</style>
         <TickerBar newsItems={newsItems} />
 
-        <div className="flex-1 flex items-center justify-center px-6">
+        <div className="w-full px-6 pt-12 md:pt-16 pb-6 flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
