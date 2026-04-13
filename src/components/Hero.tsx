@@ -755,7 +755,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-80 shrink-0 overflow-y-auto py-8 pl-12 pr-6"
+            className="w-96 shrink-0 overflow-y-auto py-8 pl-16 pr-8"
             style={{ borderRight: '1px solid rgba(255,255,255,0.06)' }}
           >
             {[
@@ -779,23 +779,27 @@ export default function Hero() {
                 { label: 'Data+AI Summit 2026', href: 'https://www.databricks.com/dataaisummit', badge: 'Jun 9–12' },
               ]},
             ].map(section => (
-              <div key={section.title} className="mb-6">
-                <h3 className="text-[13px] font-extrabold uppercase tracking-wider text-[#FF3621] px-3 mb-3">{section.title}</h3>
-                {section.items.map(item => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between text-[16px] font-bold text-white hover:text-[#FF3621] px-3 py-2.5 rounded-lg hover:bg-white/5 no-underline transition-colors"
-                  >
-                    {item.label}
-                    <span className="flex items-center gap-2 shrink-0 ml-2">
-                      {'badge' in item && item.badge && <span className="text-[11px] font-bold text-white/30 bg-white/5 px-2 py-0.5 rounded-full">{item.badge}</span>}
-                      <span className="text-[13px] text-white/30">↗</span>
-                    </span>
-                  </a>
-                ))}
+              <div key={section.title} className="mb-8">
+                <h3 className="text-[12px] font-extrabold uppercase tracking-[0.15em] text-[#FF3621]/80 mb-3 pb-2" style={{ borderBottom: '1px solid rgba(255,54,33,0.15)' }}>
+                  {section.title}
+                </h3>
+                <div className="flex flex-col gap-1">
+                  {section.items.map(item => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between text-[15px] font-semibold text-white/80 hover:text-white px-4 py-2.5 rounded-lg hover:bg-white/[0.04] no-underline transition-all duration-150"
+                    >
+                      {item.label}
+                      <span className="flex items-center gap-2 shrink-0 ml-3">
+                        {'badge' in item && item.badge && <span className="text-[10px] font-bold text-[#FF3621]/70 bg-[#FF3621]/10 px-2.5 py-1 rounded-full">{item.badge}</span>}
+                        <span className="text-[12px] text-white/20">↗</span>
+                      </span>
+                    </a>
+                  ))}
+                </div>
               </div>
             ))}
           </motion.aside>
