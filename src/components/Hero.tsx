@@ -810,25 +810,6 @@ export default function Hero() {
         `}</style>
         <TickerBar newsItems={newsItems} />
 
-        {/* Top nav bar */}
-        <nav className="w-full flex justify-center gap-10 py-4" style={{ background: 'rgba(0,0,0,0.3)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-          {[
-            { label: 'Security & Compliance', href: 'https://www.databricks.com/trust/security-features' },
-            { label: 'Demo', href: 'https://www.databricks.com/resources/demos' },
-            { label: 'Try out Databricks', href: 'https://www.databricks.com/learn/free-edition' },
-          ].map(link => (
-            <a
-              key={link.label}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[15px] font-semibold text-white/80 hover:text-white transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
         {/* Title + punchline at top */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -846,6 +827,25 @@ export default function Hero() {
             Don't say bojio! — Your one-stop Databricks resource hub. 🇸🇬
           </p>
         </motion.div>
+
+        {/* Nav bar below title */}
+        <nav className="w-full flex justify-center gap-10 py-4 mt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+          {[
+            { label: 'Security & Compliance', href: 'https://www.databricks.com/trust/security-features' },
+            { label: 'Demo', href: 'https://www.databricks.com/resources/demos' },
+            { label: 'Try out Databricks', href: 'https://www.databricks.com/learn/free-edition' },
+          ].map(link => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[15px] font-semibold text-white/80 hover:text-white transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
 
         {/* Cloud provider chooser centered in remaining space */}
         <div className="flex-1 flex items-center justify-center px-6">
