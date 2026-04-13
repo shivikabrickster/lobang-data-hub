@@ -710,87 +710,12 @@ function TickerBar({ newsItems }: { newsItems: string[] }) {
             ))}
           </div>
         </div>
-        <EventTickerBadge />
+        {/* Event badge removed — summit link now in landing sidebar */}
       </div>
     </div>
   );
 }
 
-function EventTickerBadge() {
-  const EVENT_DATE = new Date('2026-06-09T00:00:00');
-  const EVENT_END = new Date('2026-06-12T23:59:59');
-  const EVENT_URL = 'https://www.databricks.com/dataaisummit';
-
-  const [daysLeft, setDaysLeft] = useState(() => {
-    const diff = EVENT_DATE.getTime() - new Date().getTime();
-    return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
-  });
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const diff = EVENT_DATE.getTime() - new Date().getTime();
-      setDaysLeft(Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24))));
-    }, 60000);
-    return () => clearInterval(timer);
-  }, []);
-
-  if (new Date() > EVENT_END) return null;
-
-  const isHappening = new Date() >= EVENT_DATE && new Date() <= EVENT_END;
-
-  return (
-    <a
-      href={EVENT_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="shrink-0 flex items-center gap-3 px-4 py-1 no-underline z-10 transition-all duration-200 hover:brightness-110 group"
-      style={{
-        background: '#0a0e14',
-        borderLeft: '1px solid rgba(255,54,33,0.3)',
-      }}
-    >
-      {/* Pulsing attention dot */}
-      <span className="relative flex h-3 w-3 shrink-0">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF3621] opacity-60" />
-        <span className="relative inline-flex rounded-full h-3 w-3 bg-[#FF3621]" />
-      </span>
-
-      <span className="text-[16px]">🎪</span>
-
-      <div className="flex flex-col">
-        <span className="text-[11px] font-extrabold text-white leading-tight whitespace-nowrap tracking-tight">
-          DATA + AI SUMMIT 2026
-        </span>
-        <span className="text-[9px] font-bold text-white/60 whitespace-nowrap">June 9–12</span>
-      </div>
-
-      <div className="w-px h-6 bg-white/10" />
-
-      {isHappening ? (
-        <span className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-400 bg-emerald-500/15 px-2.5 py-1 rounded-full">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          LIVE
-        </span>
-      ) : (
-        <div className="flex flex-col items-center">
-          <span className="text-[14px] font-extrabold text-white leading-none">{daysLeft}</span>
-          <span className="text-[7px] text-white/30 uppercase tracking-wider">days</span>
-        </div>
-      )}
-
-      <span className="flex items-center gap-1.5 text-[10px] font-bold text-white bg-[#FF3621] px-3 py-1 rounded-full whitespace-nowrap group-hover:bg-[#e02e1b] transition-all duration-200">
-        {isHappening ? 'Watch Live' : 'Register Free'}
-        <motion.span
-          animate={{ x: [0, 4, 0] }}
-          transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
-          className="inline-block"
-        >
-          →
-        </motion.span>
-      </span>
-    </a>
-  );
-}
 
 export default function Hero() {
   const newsItems = useTickerItems();
@@ -831,23 +756,41 @@ export default function Hero() {
         {/* Left sidebar nav + cloud chooser */}
         <div className="flex-1 flex">
           {/* Left side vertical nav */}
-          <nav className="w-56 shrink-0 flex flex-col gap-1 px-6 pt-10" style={{ borderRight: '1px solid rgba(255,255,255,0.06)' }}>
+          <motion.nav
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="w-64 shrink-0 flex flex-col py-8 px-5"
+            style={{ borderRight: '1px solid rgba(255,255,255,0.06)' }}
+          >
             {[
-              { label: 'Security & Compliance', href: 'https://www.databricks.com/trust/security-features' },
-              { label: 'Demo', href: 'https://www.databricks.com/resources/demos' },
-              { label: 'Try out Databricks', href: 'https://www.databricks.com/learn/free-edition' },
+              { label: 'Security & Compliance', desc: 'Trust centre & certifications', icon: '🛡️', href: 'https://www.databricks.com/trust/security-features' },
+              { label: 'Demo', desc: 'Interactive demos & showcases', icon: '🎬', href: 'https://www.databricks.com/resources/demos' },
+              { label: 'Try out Databricks', desc: 'Free edition workspace', icon: '⚡', href: 'https://www.databricks.com/learn/free-edition' },
+              { label: 'Events', desc: 'Data+AI Summit · Jun 9–12, SF', icon: '🎪', href: 'https://www.databricks.com/dataaisummit' },
             ].map(link => (
               <a
                 key={link.label}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[13px] font-bold text-white/60 uppercase tracking-wider py-3 px-3 rounded-lg hover:text-white hover:bg-white/5 transition-colors"
+                className="flex items-center gap-3 py-3.5 px-4 rounded-xl no-underline transition-all duration-200 group"
+                style={{ background: 'transparent' }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}
               >
-                {link.label}
+                <span className="text-[18px] shrink-0">{link.icon}</span>
+                <div className="flex flex-col">
+                  <span className="text-[13px] font-bold text-white/80 group-hover:text-white transition-colors leading-tight">
+                    {link.label}
+                  </span>
+                  <span className="text-[11px] text-white/35 group-hover:text-white/50 transition-colors leading-tight mt-0.5">
+                    {link.desc}
+                  </span>
+                </div>
               </a>
             ))}
-          </nav>
+          </motion.nav>
 
           {/* Cloud provider chooser centered in remaining space */}
           <div className="flex-1 flex items-center justify-center px-6">
