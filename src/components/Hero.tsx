@@ -647,11 +647,11 @@ function ResourceCard({ item, index, onNavigate }: { item: { title: string; desc
       <div className="w-10 h-10 flex items-center justify-center rounded-lg" style={{ background: 'rgba(255,54,33,0.15)' }}>
         <span className="text-xl">{item.icon}</span>
       </div>
-      <span className="text-[14px] font-semibold text-white leading-tight">{item.title}</span>
-      {item.desc && <span className="text-[12px] text-white/40 leading-snug">{item.desc}</span>}
+      <span className="text-[14px] font-bold text-white leading-tight">{item.title}</span>
+      {item.desc && <span className="text-[12px] font-medium text-white/70 leading-snug">{item.desc}</span>}
       <div className="mt-auto pt-2 flex items-center gap-2">
-        {item.source && <span className="text-[10px] text-white/25">{item.source}</span>}
-        <span className="ml-auto text-[11px] font-medium text-[#FF3621] border border-[#FF3621]/30 px-3 py-1 rounded-full hover:bg-[#FF3621]/10 transition-colors">
+        {item.source && <span className="text-[10px] font-bold text-white/40">{item.source}</span>}
+        <span className="ml-auto text-[11px] font-bold text-[#FF3621] border border-[#FF3621]/30 px-3 py-1 rounded-full hover:bg-[#FF3621]/10 transition-colors">
           {hasDrilldown ? 'Explore' : 'Quick Link'}
         </span>
       </div>
@@ -695,16 +695,16 @@ function TickerBar({ newsItems }: { newsItems: string[] }) {
         style={{ background: '#0a0e14', borderBottom: '1px solid rgba(255,255,255,0.06)' }}
       >
         <div
-          className="shrink-0 h-full flex items-center px-4 text-[10px] font-bold text-white uppercase tracking-wider z-10"
-          style={{ background: '#FF3621' }}
-        >Latest</div>
+          className="shrink-0 h-full flex items-center justify-center px-5 text-[10px] font-bold text-white uppercase tracking-wider z-10"
+          style={{ background: '#FF3621', minWidth: '140px' }}
+        >Latest on Databricks</div>
         <div
           className="flex-1 overflow-hidden h-full flex items-center"
           style={{ maskImage: 'linear-gradient(to right, transparent, black 20px, black 90%, transparent)' }}
         >
           <div className="inline-block whitespace-nowrap ticker-track">
             {[...newsItems, ...newsItems].map((item, i) => (
-              <span key={i} className="inline-block text-[11px] font-medium text-white/50" style={{ padding: '0 2.5rem' }}>
+              <span key={i} className="inline-block text-[11px] font-bold text-white" style={{ padding: '0 2.5rem' }}>
                 <span className="text-[#FF3621] mr-2">•</span>{item}
               </span>
             ))}
@@ -761,7 +761,7 @@ function EventTickerBadge() {
         <span className="text-[11px] font-extrabold text-white leading-tight whitespace-nowrap tracking-tight">
           DATA + AI SUMMIT 2026
         </span>
-        <span className="text-[9px] text-white/40 whitespace-nowrap">June 9–12</span>
+        <span className="text-[9px] font-bold text-white/60 whitespace-nowrap">June 9–12</span>
       </div>
 
       <div className="w-px h-6 bg-white/10" />
@@ -866,21 +866,24 @@ export default function Hero() {
       `}</style>
       <TickerBar newsItems={newsItems} />
 
-      {/* Header */}
-      <div className="px-6 h-12 flex items-center justify-between shrink-0" style={{ background: 'rgba(0,0,0,0.25)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-        <div className="flex items-center gap-3">
-          <img src="/icons/databricks/lakehouse.svg" alt="" className="w-5 h-5" />
-          <span className="text-[15px] font-bold text-white">Lobang</span>
-          <span className="text-white/20 mx-2">|</span>
-          <span className="text-[12px] text-white/30">Databricks Resource Hub</span>
+      {/* Hero Header — centered branding */}
+      <div className="w-full py-8 text-center shrink-0" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+        <div className="flex items-center justify-center gap-3 mb-2">
+          <img src="/icons/databricks/lakehouse.svg" alt="" className="w-7 h-7" />
+          <h1 className="text-[clamp(1.8rem,3.5vw,2.5rem)] font-bold text-white tracking-tight">
+            The <span className="text-[#FF3621]">Lobang</span> Data Hub 🇸🇬
+          </h1>
         </div>
-        <div className="flex items-center gap-1">
+        <p className="text-white/60 text-[14px] font-bold">
+          Don't say bojio! — Your one-stop Databricks resource hub.
+        </p>
+        <div className="flex items-center justify-center gap-2 mt-4">
           {(['aws', 'azure'] as const).map(c => (
             <button
               key={c}
               onClick={() => { setSelectedCloud(c); setActiveNav(null); }}
-              className={`text-[11px] font-semibold px-3 py-1 rounded cursor-pointer border-none transition-all ${
-                selectedCloud === c ? 'bg-[#FF3621] text-white' : 'bg-transparent text-white/40 hover:text-white/70'
+              className={`text-[11px] font-bold px-4 py-1.5 rounded-full cursor-pointer border-none transition-all ${
+                selectedCloud === c ? 'bg-[#FF3621] text-white' : 'bg-white/5 text-white/60 hover:text-white hover:bg-white/10'
               }`}
             >{c.toUpperCase()}</button>
           ))}
@@ -897,8 +900,8 @@ export default function Hero() {
             </h3>
             <button
               onClick={() => setActiveNav(selectedCloud)}
-              className={`block w-full text-left text-[12px] px-2 py-1.5 rounded transition-colors cursor-pointer border-none ${
-                activeNav === selectedCloud ? 'bg-[#FF3621]/15 text-[#FF3621] font-semibold' : 'text-white/50 hover:text-white hover:bg-white/5 bg-transparent'
+              className={`block w-full text-left text-[12px] font-bold px-2 py-1.5 rounded transition-colors cursor-pointer border-none ${
+                activeNav === selectedCloud ? 'bg-[#FF3621]/15 text-[#FF3621]' : 'text-white hover:text-[#FF3621] hover:bg-white/5 bg-transparent'
               }`}
             >Workspace Setup</button>
           </div>
@@ -910,17 +913,17 @@ export default function Hero() {
                 if (item.href) {
                   return (
                     <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
-                      className="flex items-center justify-between text-[12px] text-white/50 hover:text-white px-2 py-1.5 rounded hover:bg-white/5 no-underline transition-colors">
+                      className="flex items-center justify-between text-[12px] font-bold text-white hover:text-[#FF3621] px-2 py-1.5 rounded hover:bg-white/5 no-underline transition-colors">
                       {item.label}
-                      <span className="text-[10px] text-white/20">↗</span>
+                      <span className="text-[10px] text-white/40">↗</span>
                     </a>
                   );
                 }
                 return (
                   <button key={item.label}
                     onClick={() => setActiveNav(item.key || null)}
-                    className={`block w-full text-left text-[12px] px-2 py-1.5 rounded transition-colors cursor-pointer border-none ${
-                      activeNav === item.key ? 'bg-[#FF3621]/15 text-[#FF3621] font-semibold' : 'text-white/50 hover:text-white hover:bg-white/5 bg-transparent'
+                    className={`block w-full text-left text-[12px] font-bold px-2 py-1.5 rounded transition-colors cursor-pointer border-none ${
+                      activeNav === item.key ? 'bg-[#FF3621]/15 text-[#FF3621]' : 'text-white hover:text-[#FF3621] hover:bg-white/5 bg-transparent'
                     }`}
                   >{item.label}</button>
                 );
@@ -966,7 +969,7 @@ export default function Hero() {
                 <h2 className="text-2xl font-bold text-white mb-3">
                   Welcome to Lobang 🇸🇬
                 </h2>
-                <p className="text-white/30 text-[14px] max-w-md">
+                <p className="text-white/60 text-[14px] font-bold max-w-md">
                   Select a section from the sidebar to explore Databricks resources for {selectedCloud === 'aws' ? 'AWS' : 'Azure'}.
                 </p>
               </motion.div>
@@ -976,7 +979,7 @@ export default function Hero() {
       </div>
 
       {/* Footer */}
-      <footer className="shrink-0 py-3 px-6 text-center text-[11px] text-white/20" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <footer className="shrink-0 py-3 px-6 text-center text-[11px] font-bold text-white/40" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
         &copy; {new Date().getFullYear()} Lobang Data Hub. All rights reserved.
       </footer>
     </section>
