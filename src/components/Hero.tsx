@@ -735,107 +735,80 @@ export default function Hero() {
         `}</style>
         <TickerBar newsItems={newsItems} />
 
-        {/* Title + punchline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="w-full px-6 pt-10 pb-6 text-center"
-        >
-          <div className="flex items-center justify-center gap-3 mb-3">
-            <img src="/icons/databricks/lakehouse.svg" alt="" className="w-9 h-9" />
-            <h1 className="text-4xl font-bold text-white tracking-tight">
-              <span className="text-[#FF3621]">Lobang</span>
-            </h1>
-          </div>
-          <p className="text-white/50 text-[16px]">
-            Don't say bojio! — Your one-stop Databricks resource hub. 🇸🇬
-          </p>
-        </motion.div>
+        {/* Sidebar + content layout (matches main view pattern) */}
+        <div className="flex flex-1 overflow-hidden">
+          {/* Sidebar — same style as main view */}
+          <aside className="w-52 shrink-0 overflow-y-auto py-4 px-3" style={{ background: 'rgba(0,0,0,0.15)', borderRight: '1px solid rgba(255,255,255,0.06)' }}>
+            {/* Branding */}
+            <div className="flex items-center gap-2 px-2 mb-6">
+              <img src="/icons/databricks/lakehouse.svg" alt="" className="w-7 h-7" />
+              <span className="text-xl font-bold text-white tracking-tight">
+                <span className="text-[#FF3621]">Lobang</span>
+              </span>
+            </div>
 
-        {/* Main content: tiles left — cloud center — tiles right */}
-        <div className="flex-1 flex items-center justify-center px-8 pb-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="flex items-center gap-10"
-          >
-            {/* Left tiles */}
-            <div className="flex flex-col gap-4">
+            {/* Explore section */}
+            <div className="mb-5">
+              <h3 className="text-[10px] font-bold uppercase tracking-wider text-[#FF3621] px-2 mb-2">Explore</h3>
+              <a href="https://www.databricks.com/trust/security-features" target="_blank" rel="noopener noreferrer"
+                className="flex items-center justify-between text-[12px] font-bold text-white hover:text-[#FF3621] px-2 py-1.5 rounded hover:bg-white/5 no-underline transition-colors">
+                Security & Compliance <span className="text-[10px] text-white/40">↗</span>
+              </a>
+              <a href="https://www.databricks.com/resources/demos" target="_blank" rel="noopener noreferrer"
+                className="flex items-center justify-between text-[12px] font-bold text-white hover:text-[#FF3621] px-2 py-1.5 rounded hover:bg-white/5 no-underline transition-colors">
+                Demo Centre <span className="text-[10px] text-white/40">↗</span>
+              </a>
+            </div>
+
+            {/* Get Started section */}
+            <div className="mb-5">
+              <h3 className="text-[10px] font-bold uppercase tracking-wider text-[#FF3621] px-2 mb-2">Get Started</h3>
+              <a href="https://www.databricks.com/learn/free-edition" target="_blank" rel="noopener noreferrer"
+                className="flex items-center justify-between text-[12px] font-bold text-white hover:text-[#FF3621] px-2 py-1.5 rounded hover:bg-white/5 no-underline transition-colors">
+                Try out Databricks <span className="text-[10px] text-white/40">↗</span>
+              </a>
+            </div>
+
+            {/* Events section */}
+            <div className="mb-5">
+              <h3 className="text-[10px] font-bold uppercase tracking-wider text-[#FF3621] px-2 mb-2">Events</h3>
+              <a href="https://www.databricks.com/dataaisummit" target="_blank" rel="noopener noreferrer"
+                className="flex items-center justify-between text-[12px] font-bold text-white hover:text-[#FF3621] px-2 py-1.5 rounded hover:bg-white/5 no-underline transition-colors">
+                Data+AI Summit 2026 <span className="text-[10px] text-white/40">↗</span>
+              </a>
+              <span className="text-[10px] text-white/30 px-2">Jun 9–12 · San Francisco</span>
+            </div>
+          </aside>
+
+          {/* Main content — cloud chooser centered */}
+          <main className="flex-1 flex flex-col items-center justify-center px-6">
+            <p className="text-white/50 text-[15px] mb-10 text-center">
+              Don't say bojio! — Your one-stop Databricks resource hub. 🇸🇬
+            </p>
+            <h2 className="text-[13px] font-semibold text-white/50 uppercase tracking-wider mb-8">
+              Choose your cloud provider
+            </h2>
+            <div className="flex gap-6 justify-center">
               {[
-                { label: 'Security & Compliance', desc: 'Trust centre & certifications', href: 'https://www.databricks.com/trust/security-features' },
-                { label: 'Demo', desc: 'Interactive demos & showcases', href: 'https://www.databricks.com/resources/demos' },
-              ].map(link => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-56 py-5 px-5 rounded-xl no-underline transition-all duration-200 group block"
-                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)'; e.currentTarget.style.background = 'rgba(255,54,33,0.06)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; }}
+                { id: 'aws' as const, icon: '/icons/aws.svg', label: 'AWS' },
+                { id: 'azure' as const, icon: '/icons/azure.svg', label: 'Azure' },
+              ].map(cloud => (
+                <motion.button
+                  key={cloud.id}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => setSelectedCloud(cloud.id)}
+                  className="flex flex-col items-center gap-4 w-44 py-10 rounded-2xl cursor-pointer border-none transition-all"
+                  style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)'; e.currentTarget.style.background = 'rgba(255,54,33,0.08)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
                 >
-                  <span className="text-[16px] font-bold text-white group-hover:text-[#FF3621] transition-colors block mb-1">
-                    {link.label}
-                  </span>
-                  <span className="text-[13px] text-white/40 block">{link.desc}</span>
-                </a>
+                  <img src={cloud.icon} alt={cloud.label} className="w-16 h-16 object-contain" />
+                  <span className="text-[17px] font-bold text-white">{cloud.label}</span>
+                </motion.button>
               ))}
             </div>
-
-            {/* Cloud provider chooser — center */}
-            <div className="text-center">
-              <h2 className="text-[14px] font-semibold text-white/50 uppercase tracking-wider mb-6">
-                Choose your cloud provider
-              </h2>
-              <div className="flex gap-6 justify-center">
-                {[
-                  { id: 'aws' as const, icon: '/icons/aws.svg', label: 'AWS' },
-                  { id: 'azure' as const, icon: '/icons/azure.svg', label: 'Azure' },
-                ].map(cloud => (
-                  <motion.button
-                    key={cloud.id}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.97 }}
-                    onClick={() => setSelectedCloud(cloud.id)}
-                    className="flex flex-col items-center gap-3 w-40 py-8 rounded-xl cursor-pointer border-none transition-all"
-                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
-                    onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)'; e.currentTarget.style.background = 'rgba(255,54,33,0.08)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
-                  >
-                    <img src={cloud.icon} alt={cloud.label} className="w-14 h-14 object-contain" />
-                    <span className="text-[16px] font-bold text-white">{cloud.label}</span>
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-
-            {/* Right tiles */}
-            <div className="flex flex-col gap-4">
-              {[
-                { label: 'Try out Databricks', desc: 'Free edition workspace', href: 'https://www.databricks.com/learn/free-edition' },
-                { label: 'Events', desc: 'Data+AI Summit 2026 · Jun 9–12, SF', href: 'https://www.databricks.com/dataaisummit' },
-              ].map(link => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-56 py-5 px-5 rounded-xl no-underline transition-all duration-200 group block"
-                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)'; e.currentTarget.style.background = 'rgba(255,54,33,0.06)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; }}
-                >
-                  <span className="text-[16px] font-bold text-white group-hover:text-[#FF3621] transition-colors block mb-1">
-                    {link.label}
-                  </span>
-                  <span className="text-[13px] text-white/40 block">{link.desc}</span>
-                </a>
-              ))}
-            </div>
-          </motion.div>
+          </main>
         </div>
       </section>
     );
