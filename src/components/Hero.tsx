@@ -759,14 +759,14 @@ export default function Hero() {
             style={{ borderRight: '1px solid rgba(255,255,255,0.06)' }}
           >
             {[
+              { title: 'GET STARTED', items: [
+                { label: 'Try out Databricks', href: 'https://www.databricks.com/learn/free-edition' },
+              ]},
               { title: 'EXPLORE', items: [
                 { label: 'Demo Centre', href: 'https://www.databricks.com/resources/demos' },
                 { label: 'NextGen Lakehouse', href: 'https://www.nextgenlakehouse.com/' },
                 { label: 'Skill Builder', href: 'https://www.youtube.com/@databricksskillbuilder/' },
                 { label: 'Community', href: 'https://community.databricks.com/tmcxu86974/' },
-              ]},
-              { title: 'GET STARTED', items: [
-                { label: 'Try out Databricks', href: 'https://www.databricks.com/learn/free-edition' },
               ]},
               { title: 'SECURITY & COMPLIANCE', items: [
                 { label: 'Security & Trust Centre', href: 'https://www.databricks.com/trust/security-features' },
@@ -780,7 +780,7 @@ export default function Hero() {
               ]},
             ].map(section => (
               <div key={section.title} className="mb-8">
-                <h3 className="text-[12px] font-extrabold uppercase tracking-[0.15em] text-[#FF3621]/80 mb-3 pb-2" style={{ borderBottom: '1px solid rgba(255,54,33,0.15)' }}>
+                <h3 className="text-[15px] font-extrabold uppercase tracking-[0.12em] text-[#FF3621] mb-3 pb-2" style={{ borderBottom: '1px solid rgba(255,54,33,0.15)' }}>
                   {section.title}
                 </h3>
                 <div className="flex flex-col gap-1">
