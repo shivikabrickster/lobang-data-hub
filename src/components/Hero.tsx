@@ -730,28 +730,32 @@ export default function Hero() {
       { title: 'GET STARTED', items: [
         { label: 'Try the Free Edition', href: 'https://www.databricks.com/learn/free-edition', tag: 'Free' },
         { label: 'Starter Journey', href: 'https://databricks-solutions.github.io/starter-journey/' },
-        { label: 'Cheatsheet', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf' },
+        { label: 'Cheatsheet', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf', tag: 'PDF' },
       ]},
       { title: 'LEARN', items: [
         { label: 'Training Home', href: 'https://www.databricks.com/learn/training/home' },
         { label: 'Free Trainings', href: 'https://docs.databricks.com/aws/en/getting-started/free-training', tag: 'Free' },
         { label: 'Skill Builder', href: 'https://www.youtube.com/@databricksskillbuilder/', tag: 'YouTube' },
       ]},
+      { title: 'EXPLORE', items: [
+        { label: 'Demo Centre', href: 'https://www.databricks.com/resources/demos' },
+        { label: 'NextGen Lakehouse', href: 'https://www.nextgenlakehouse.com/' },
+        { label: 'Community Forum', href: 'https://community.databricks.com/tmcxu86974/' },
+        { label: 'User Groups', href: 'https://usergroups.databricks.com/' },
+      ]},
+      { title: 'SECURITY & COMPLIANCE', items: [
+        { label: 'Security & Trust Centre', href: 'https://www.databricks.com/trust/security-features' },
+      ]},
       { title: 'MIGRATE', items: [
         { label: 'Lakebridge', href: 'https://databrickslabs.github.io/lakebridge/docs/overview/' },
         { label: 'Migrate with LLM', href: 'https://github.com/databricks-solutions/databricks-migrator-with-llm' },
       ]},
-      { title: 'EXPLORE & COMPLIANCE', items: [
-        { label: 'Demo Centre', href: 'https://www.databricks.com/resources/demos' },
-        { label: 'User Groups', href: 'https://usergroups.databricks.com/' },
-        { label: 'NextGen Lakehouse', href: 'https://www.nextgenlakehouse.com/' },
-        { label: 'Community Forum', href: 'https://community.databricks.com/tmcxu86974/' },
-        { label: 'Security & Trust Centre', href: 'https://www.databricks.com/trust/security-features' },
-      ]},
-      { title: 'HELP & EVENTS', items: [
+      { title: 'HELP & SUPPORT', items: [
         { label: 'Help Centre', href: 'https://help.databricks.com/s/' },
         { label: 'Contact Support', href: 'https://docs.databricks.com/aws/en/resources/support' },
         { label: 'Product Feedback', href: 'https://docs.databricks.com/aws/en/resources/ideas' },
+      ]},
+      { title: 'EVENTS', items: [
         { label: 'Data+AI Summit 2026', href: 'https://www.databricks.com/dataaisummit', badge: 'Jun 9–12 · SF' },
       ]},
     ];
@@ -780,37 +784,34 @@ export default function Hero() {
           <p className="text-white/50 text-[15px]">Don't say bojio! — Your one-stop Databricks resource hub.</p>
         </motion.div>
 
-        {/* Main area: sidebar boxes + cloud chooser */}
+        {/* Main area: sidebar + cloud chooser */}
         <div className="flex flex-1 overflow-hidden">
-          {/* Left sidebar — boxed sections */}
+          {/* Left sidebar — clean list with gold headings */}
           <motion.aside
             initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
-            className="w-[420px] shrink-0 overflow-y-auto scrollbar-hide px-8 py-6"
+            className="w-96 shrink-0 overflow-y-auto scrollbar-hide pl-12 pr-6 py-6"
+            style={{ borderRight: '1px solid rgba(255,255,255,0.06)' }}
           >
-            <div className="flex flex-col gap-3">
-              {landingSections.map(section => (
-                <div key={section.title}
-                  className="rounded-xl p-4"
-                  style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}
-                >
-                  <h3 className="text-[13px] font-bold text-[#FFAB00] tracking-[0.06em] mb-3">
-                    {section.title}
-                  </h3>
-                  <div className="grid grid-cols-2 gap-x-3 gap-y-[6px]">
-                    {section.items.map(item => (
-                      <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
-                        className="group flex items-center gap-1.5 text-[13px] font-medium text-white/65 hover:text-white no-underline transition-colors"
-                      >
-                        <span className="text-[#FF3621] text-[10px] opacity-50 group-hover:opacity-100 transition-opacity">›</span>
-                        <span className="truncate">{item.label}</span>
-                        {item.tag && <span className="text-[9px] font-bold text-[#FFAB00] bg-[#FFAB00]/15 px-1.5 py-[1px] rounded shrink-0">{item.tag}</span>}
-                        {item.badge && <span className="text-[9px] font-bold text-[#FF3621] bg-[#FF3621]/15 px-1.5 py-[1px] rounded shrink-0">{item.badge}</span>}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
+            {landingSections.map((section, si) => (
+              <div key={section.title} className="mb-1">
+                {si > 0 && <div className="h-px my-4" style={{ background: 'rgba(255,255,255,0.06)' }} />}
+                <h3 className="text-[14px] font-extrabold text-[#FFAB00] tracking-wide mb-3">
+                  {section.title}
+                </h3>
+                {section.items.map(item => (
+                  <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
+                    className="group flex items-center justify-between py-[5px] text-[15px] text-white/75 hover:text-white no-underline transition-colors"
+                  >
+                    <span>{item.label}</span>
+                    <span className="flex items-center gap-2 shrink-0 ml-3">
+                      {item.tag && <span className="text-[10px] font-bold text-[#FFAB00] bg-[#FFAB00]/12 px-1.5 py-[2px] rounded">{item.tag}</span>}
+                      {item.badge && <span className="text-[10px] font-bold text-[#FF3621] bg-[#FF3621]/12 px-1.5 py-[2px] rounded">{item.badge}</span>}
+                      <span className="text-white/25 group-hover:text-white/60 text-[11px] transition-colors">↗</span>
+                    </span>
+                  </a>
+                ))}
+              </div>
+            ))}
           </motion.aside>
 
           {/* Cloud provider chooser — centered in remaining space */}
