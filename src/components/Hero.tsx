@@ -850,7 +850,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }}
               className="text-center"
             >
-              <p className="text-white/40 text-[13px] font-semibold tracking-[0.15em] uppercase mb-8">Choose your cloud</p>
+              <p className="text-white/40 text-[13px] font-extrabold tracking-[0.15em] uppercase mb-8">Choose your cloud</p>
               <div className="flex gap-6">
                 {[
                   { id: 'aws' as const, icon: '/icons/aws.svg', label: 'AWS' },
