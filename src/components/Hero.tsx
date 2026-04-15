@@ -809,8 +809,8 @@ export default function Hero() {
             style={{ borderRight: '1px solid rgba(255,255,255,0.06)' }}
           >
             {landingSections.map((section, si) => (
-              <div key={section.title} className={si < landingSections.length - 1 ? 'mb-5' : 'mb-4'}>
-                <h3 className="text-[13px] font-extrabold text-[#FFAB00] tracking-[0.1em] mb-2.5 pl-1">
+              <div key={section.title} className={si < landingSections.length - 1 ? 'mb-8' : 'mb-4'}>
+                <h3 className="text-[13px] font-extrabold text-white tracking-[0.1em] mb-3 pl-1">
                   {section.title}
                 </h3>
                 <div className="flex flex-col gap-2">
@@ -844,8 +844,8 @@ export default function Hero() {
             </div>
           </motion.aside>
 
-          {/* Cloud provider chooser — centered on full page */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          {/* Cloud provider chooser — centered on full viewport */}
+          <div className="fixed inset-0 flex items-center justify-center pointer-events-none" style={{ top: 0, left: 0 }}>
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }}
               className="pointer-events-auto text-center"
