@@ -755,18 +755,25 @@ export default function Hero() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-96 shrink-0 overflow-y-auto py-8 pl-16 pr-8"
+            className="w-[420px] shrink-0 overflow-y-auto py-6 pl-14 pr-8"
             style={{ borderRight: '1px solid rgba(255,255,255,0.06)' }}
           >
             {[
-              { title: 'NEW TO DATABRICKS?', items: [
-                { label: 'Try the Free Edition', href: 'https://www.databricks.com/learn/free-edition' },
+              { title: 'GET STARTED', items: [
+                { label: 'Try the Free Edition', href: 'https://www.databricks.com/learn/free-edition', tag: 'Free' },
+                { label: 'Starter Journey', href: 'https://databricks-solutions.github.io/starter-journey/' },
+                { label: 'Cheatsheet', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf', tag: 'PDF' },
+              ]},
+              { title: 'LEARN', items: [
+                { label: 'Training Home', href: 'https://www.databricks.com/learn/training/home' },
+                { label: 'Free Trainings', href: 'https://docs.databricks.com/aws/en/getting-started/free-training', tag: 'Free' },
+                { label: 'Skill Builder', href: 'https://www.youtube.com/@databricksskillbuilder/', tag: 'YouTube' },
               ]},
               { title: 'EXPLORE', items: [
                 { label: 'Demo Centre', href: 'https://www.databricks.com/resources/demos' },
                 { label: 'NextGen Lakehouse', href: 'https://www.nextgenlakehouse.com/' },
-                { label: 'Skill Builder', href: 'https://www.youtube.com/@databricksskillbuilder/' },
-                { label: 'Community', href: 'https://community.databricks.com/tmcxu86974/' },
+                { label: 'Community Forum', href: 'https://community.databricks.com/tmcxu86974/' },
+                { label: 'User Groups', href: 'https://usergroups.databricks.com/' },
               ]},
               { title: 'SECURITY & COMPLIANCE', items: [
                 { label: 'Security & Trust Centre', href: 'https://www.databricks.com/trust/security-features' },
@@ -775,27 +782,36 @@ export default function Hero() {
                 { label: 'Lakebridge', href: 'https://databrickslabs.github.io/lakebridge/docs/overview/' },
                 { label: 'Migrate with LLM', href: 'https://github.com/databricks-solutions/databricks-migrator-with-llm' },
               ]},
+              { title: 'HELP & SUPPORT', items: [
+                { label: 'Help Centre', href: 'https://help.databricks.com/s/' },
+                { label: 'Contact Support', href: 'https://docs.databricks.com/aws/en/resources/support' },
+                { label: 'Product Feedback', href: 'https://docs.databricks.com/aws/en/resources/ideas' },
+              ]},
               { title: 'EVENTS', items: [
-                { label: 'Data+AI Summit 2026', href: 'https://www.databricks.com/dataaisummit', badge: 'Jun 9–12' },
+                { label: 'Data+AI Summit 2026', href: 'https://www.databricks.com/dataaisummit', badge: 'Jun 9–12 · SF' },
               ]},
             ].map(section => (
-              <div key={section.title} className="mb-8">
-                <h3 className="text-[15px] font-extrabold uppercase tracking-[0.12em] text-[#FFAB00] mb-3 pb-2" style={{ borderBottom: '1px solid rgba(255,171,0,0.2)' }}>
+              <div key={section.title} className="mb-6">
+                <h3 className="text-[13px] font-extrabold uppercase tracking-[0.14em] text-[#FFAB00] mb-2 ml-1">
                   {section.title}
                 </h3>
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col">
                   {section.items.map(item => (
                     <a
                       key={item.label}
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-between text-[15px] font-semibold text-white/80 hover:text-white px-4 py-2.5 rounded-lg hover:bg-white/[0.04] no-underline transition-all duration-150"
+                      className="flex items-center justify-between text-[14px] font-semibold text-white/75 hover:text-white pl-4 pr-3 py-[7px] rounded-lg hover:bg-white/[0.04] no-underline transition-all duration-150"
+                      style={{ borderLeft: '2px solid transparent' }}
+                      onMouseEnter={e => { e.currentTarget.style.borderLeftColor = '#FFAB00'; }}
+                      onMouseLeave={e => { e.currentTarget.style.borderLeftColor = 'transparent'; }}
                     >
                       {item.label}
                       <span className="flex items-center gap-2 shrink-0 ml-3">
-                        {'badge' in item && item.badge && <span className="text-[10px] font-bold text-[#FF3621]/70 bg-[#FF3621]/10 px-2.5 py-1 rounded-full">{item.badge}</span>}
-                        <span className="text-[12px] text-white/20">↗</span>
+                        {'tag' in item && item.tag && <span className="text-[9px] font-bold text-[#FFAB00]/80 bg-[#FFAB00]/10 px-2 py-0.5 rounded">{item.tag}</span>}
+                        {'badge' in item && item.badge && <span className="text-[9px] font-bold text-[#FF3621]/80 bg-[#FF3621]/10 px-2 py-0.5 rounded">{item.badge}</span>}
+                        <span className="text-[11px] text-white/20">↗</span>
                       </span>
                     </a>
                   ))}
