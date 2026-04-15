@@ -759,8 +759,8 @@ export default function Hero() {
             style={{ borderRight: '1px solid rgba(255,255,255,0.06)' }}
           >
             {[
-              { title: 'GET STARTED', items: [
-                { label: 'Try out Databricks', href: 'https://www.databricks.com/learn/free-edition' },
+              { title: 'NEW TO DATABRICKS?', items: [
+                { label: 'Try the Free Edition', href: 'https://www.databricks.com/learn/free-edition' },
               ]},
               { title: 'EXPLORE', items: [
                 { label: 'Demo Centre', href: 'https://www.databricks.com/resources/demos' },
