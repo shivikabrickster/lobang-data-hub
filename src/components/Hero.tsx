@@ -785,7 +785,7 @@ export default function Hero() {
         </motion.div>
 
         {/* Main area: sidebar + cloud chooser */}
-        <div className="flex flex-1 overflow-hidden">
+        <div className="flex flex-1 overflow-hidden relative">
           {/* Left sidebar — clean list with gold headings */}
           <motion.aside
             initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
@@ -814,11 +814,11 @@ export default function Hero() {
             ))}
           </motion.aside>
 
-          {/* Cloud provider chooser — centered in remaining space */}
-          <div className="flex-1 flex items-center justify-center">
+          {/* Cloud provider chooser — centered on full page */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }}
-              className="text-center"
+              className="pointer-events-auto text-center"
             >
               <p className="text-white/40 text-[13px] font-semibold tracking-[0.15em] uppercase mb-8">Choose your cloud</p>
               <div className="flex gap-6">
