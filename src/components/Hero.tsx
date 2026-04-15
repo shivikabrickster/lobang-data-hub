@@ -769,80 +769,74 @@ export default function Hero() {
         `}</style>
         <TickerBar newsItems={newsItems} />
 
-        {/* Centered header with bottom divider */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-          className="text-center py-6 shrink-0"
-          style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}
-        >
-          <div className="flex items-center justify-center gap-3 mb-1">
-            <img src="/icons/databricks/lakehouse.svg" alt="" className="w-9 h-9" />
-            <h1 className="text-[clamp(1.8rem,3.5vw,2.5rem)] font-bold text-white tracking-tight">
-              The <span className="text-[#FF3621]">Lobang</span> Data Hub 🇸🇬
-            </h1>
-          </div>
-          <p className="text-white/50 text-[15px]">Don't say bojio! — Your one-stop Databricks resource hub.</p>
-        </motion.div>
-
-        {/* Main area: sidebar + cloud chooser */}
-        <div className="flex flex-1 overflow-hidden relative">
-          {/* Left sidebar — resource navigation */}
-          <motion.aside
-            initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
-            className="w-96 shrink-0 overflow-y-auto scrollbar-hide pl-16 pr-8 py-8"
-            style={{ borderRight: '1px solid rgba(255,255,255,0.06)' }}
+        <div className="flex-1 overflow-y-auto">
+          {/* Hero — branding + cloud chooser */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
+            className="text-center pt-10 pb-8"
           >
-            {landingSections.map((section, si) => (
-              <div key={section.title} className={si < landingSections.length - 1 ? 'mb-6' : ''}>
-                <div className="flex items-center gap-2.5 mb-2">
-                  <img src={section.icon} alt="" className="w-[18px] h-[18px] opacity-60" />
-                  <h3 className="text-[13px] font-bold text-[#FFAB00] tracking-[0.08em]">
-                    {section.title}
-                  </h3>
-                </div>
-                <div className="w-10 h-px mb-3" style={{ background: 'rgba(255,171,0,0.25)' }} />
-                {section.items.map(item => (
-                  <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
-                    className="group flex items-center justify-between py-[6px] text-[15px] font-medium text-white/70 hover:text-white no-underline transition-colors"
-                  >
-                    <span>{item.label}</span>
-                    <span className="flex items-center gap-2 shrink-0 ml-4">
-                      {item.tag && <span className="text-[10px] font-bold text-[#FFAB00] bg-[#FFAB00]/10 px-2 py-0.5 rounded">{item.tag}</span>}
-                      {item.badge && <span className="text-[10px] font-bold text-[#FF3621] bg-[#FF3621]/10 px-2 py-0.5 rounded">{item.badge}</span>}
-                      <span className="text-white/20 group-hover:text-[#FF3621] text-xs transition-colors">↗</span>
-                    </span>
-                  </a>
-                ))}
-              </div>
-            ))}
-          </motion.aside>
+            <div className="flex items-center justify-center gap-3 mb-1">
+              <img src="/icons/databricks/lakehouse.svg" alt="" className="w-9 h-9" />
+              <h1 className="text-[clamp(1.8rem,3.5vw,2.5rem)] font-bold text-white tracking-tight">
+                The <span className="text-[#FF3621]">Lobang</span> Data Hub 🇸🇬
+              </h1>
+            </div>
+            <p className="text-white/50 text-[15px] mb-8">Don't say bojio! — Your one-stop Databricks resource hub.</p>
+            <div className="flex gap-5 justify-center">
+              {[
+                { id: 'aws' as const, icon: '/icons/aws.svg', label: 'AWS' },
+                { id: 'azure' as const, icon: '/icons/azure.svg', label: 'Azure' },
+              ].map(cloud => (
+                <motion.button key={cloud.id} whileHover={{ scale: 1.04, y: -3 }} whileTap={{ scale: 0.97 }}
+                  onClick={() => setSelectedCloud(cloud.id)}
+                  className="flex items-center gap-3 px-8 py-4 rounded-xl cursor-pointer border-none transition-all duration-200"
+                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)'; e.currentTarget.style.background = 'rgba(255,54,33,0.06)'; e.currentTarget.style.boxShadow = '0 0 30px rgba(255,54,33,0.08)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.boxShadow = 'none'; }}
+                >
+                  <img src={cloud.icon} alt={cloud.label} className="w-10 h-10 object-contain" />
+                  <span className="text-[17px] font-bold text-white">{cloud.label}</span>
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
 
-          {/* Cloud provider chooser — centered on full page */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }}
-              className="pointer-events-auto text-center"
-            >
-              <p className="text-white/40 text-[13px] font-semibold tracking-[0.15em] uppercase mb-8">Choose your cloud</p>
-              <div className="flex gap-6">
-                {[
-                  { id: 'aws' as const, icon: '/icons/aws.svg', label: 'AWS' },
-                  { id: 'azure' as const, icon: '/icons/azure.svg', label: 'Azure' },
-                ].map(cloud => (
-                  <motion.button key={cloud.id} whileHover={{ scale: 1.04, y: -4 }} whileTap={{ scale: 0.97 }}
-                    onClick={() => setSelectedCloud(cloud.id)}
-                    className="flex flex-col items-center gap-4 w-48 py-12 rounded-2xl cursor-pointer border-none transition-all duration-200"
-                    style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
-                    onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)'; e.currentTarget.style.background = 'rgba(255,54,33,0.06)'; e.currentTarget.style.boxShadow = '0 0 40px rgba(255,54,33,0.1)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.boxShadow = 'none'; }}
-                  >
-                    <img src={cloud.icon} alt={cloud.label} className="w-14 h-14 object-contain" />
-                    <span className="text-[18px] font-bold text-white">{cloud.label}</span>
-                  </motion.button>
-                ))}
-              </div>
-            </motion.div>
+          {/* Divider */}
+          <div className="w-full max-w-5xl mx-auto px-12">
+            <div className="h-px" style={{ background: 'rgba(255,255,255,0.06)' }} />
           </div>
+
+          {/* Resource sections — 3 column grid */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
+            className="w-full max-w-5xl mx-auto px-12 py-10 pb-16"
+          >
+            <div className="grid grid-cols-3 gap-x-14 gap-y-10">
+              {landingSections.map(section => (
+                <div key={section.title}>
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <img src={section.icon} alt="" className="w-[18px] h-[18px] opacity-60" />
+                    <h3 className="text-[14px] font-bold text-[#FFAB00] tracking-[0.08em]">
+                      {section.title}
+                    </h3>
+                  </div>
+                  <div className="w-10 h-px mb-4" style={{ background: 'rgba(255,171,0,0.25)' }} />
+                  {section.items.map(item => (
+                    <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
+                      className="group flex items-center justify-between py-[7px] text-[16px] font-medium text-white/70 hover:text-white no-underline transition-colors"
+                    >
+                      <span>{item.label}</span>
+                      <span className="flex items-center gap-2 shrink-0 ml-4">
+                        {item.tag && <span className="text-[10px] font-bold text-[#FFAB00] bg-[#FFAB00]/10 px-2 py-0.5 rounded">{item.tag}</span>}
+                        {item.badge && <span className="text-[10px] font-bold text-[#FF3621] bg-[#FF3621]/10 px-2 py-0.5 rounded">{item.badge}</span>}
+                        <span className="text-white/20 group-hover:text-[#FF3621] text-xs transition-colors">↗</span>
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
     );
