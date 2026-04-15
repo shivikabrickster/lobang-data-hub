@@ -726,75 +726,93 @@ export default function Hero() {
 
   // ── Landing page: choose cloud provider ──
   if (!selectedCloud) {
+    const landingSections = [
+      { title: 'GET STARTED', items: [
+        { label: 'Try the Free Edition', href: 'https://www.databricks.com/learn/free-edition', tag: 'Free' },
+        { label: 'Starter Journey', href: 'https://databricks-solutions.github.io/starter-journey/' },
+        { label: 'Cheatsheet', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf', tag: 'PDF' },
+      ]},
+      { title: 'LEARN', items: [
+        { label: 'Training Home', href: 'https://www.databricks.com/learn/training/home' },
+        { label: 'Free Trainings', href: 'https://docs.databricks.com/aws/en/getting-started/free-training', tag: 'Free' },
+        { label: 'Skill Builder', href: 'https://www.youtube.com/@databricksskillbuilder/', tag: 'YouTube' },
+      ]},
+      { title: 'EXPLORE', items: [
+        { label: 'Demo Centre', href: 'https://www.databricks.com/resources/demos' },
+        { label: 'NextGen Lakehouse', href: 'https://www.nextgenlakehouse.com/' },
+        { label: 'Community Forum', href: 'https://community.databricks.com/tmcxu86974/' },
+        { label: 'User Groups', href: 'https://usergroups.databricks.com/' },
+      ]},
+      { title: 'SECURITY & COMPLIANCE', items: [
+        { label: 'Security & Trust Centre', href: 'https://www.databricks.com/trust/security-features' },
+      ]},
+      { title: 'MIGRATE', items: [
+        { label: 'Lakebridge', href: 'https://databrickslabs.github.io/lakebridge/docs/overview/' },
+        { label: 'Migrate with LLM', href: 'https://github.com/databricks-solutions/databricks-migrator-with-llm' },
+      ]},
+      { title: 'HELP & SUPPORT', items: [
+        { label: 'Help Centre', href: 'https://help.databricks.com/s/' },
+        { label: 'Contact Support', href: 'https://docs.databricks.com/aws/en/resources/support' },
+        { label: 'Product Feedback', href: 'https://docs.databricks.com/aws/en/resources/ideas' },
+      ]},
+      { title: 'EVENTS', items: [
+        { label: 'Data+AI Summit 2026', href: 'https://www.databricks.com/dataaisummit', badge: 'Jun 9–12 · SF' },
+      ]},
+    ];
+
     return (
-      <section className="min-h-screen flex flex-col" style={{ background: 'radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)' }}>
+      <section className="min-h-screen flex flex-col" style={{ background: '#070b10' }}>
         <style>{`
           @keyframes tickerScroll { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(-100%,0,0); } }
           .ticker-track { animation: tickerScroll 150s linear infinite; padding-right: 100%; }
           .ticker-container:hover .ticker-track { animation-play-state: paused !important; }
+          .landing-glow { background: radial-gradient(600px circle at 60% 50%, rgba(255,171,0,0.03) 0%, transparent 70%); }
         `}</style>
         <TickerBar newsItems={newsItems} />
 
-        {/* Header — Lobang + punchline centered */}
-        <div className="w-full py-8 text-center shrink-0" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-          <div className="flex items-center justify-center gap-3 mb-2">
-            <img src="/icons/databricks/lakehouse.svg" alt="" className="w-9 h-9" />
-            <h1 className="text-[clamp(1.8rem,3.5vw,2.5rem)] font-bold text-white tracking-tight">
+        {/* Full-width header band */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="w-full py-6 text-center shrink-0"
+          style={{ background: 'linear-gradient(180deg, rgba(255,171,0,0.04) 0%, transparent 100%)', borderBottom: '1px solid rgba(255,171,0,0.08)' }}
+        >
+          <div className="flex items-center justify-center gap-3 mb-1.5">
+            <img src="/icons/databricks/lakehouse.svg" alt="" className="w-8 h-8" />
+            <h1 className="text-[clamp(1.6rem,3vw,2.2rem)] font-bold text-white tracking-tight">
               The <span className="text-[#FF3621]">Lobang</span> Data Hub 🇸🇬
             </h1>
           </div>
-          <p className="text-white/60 text-[15px] font-bold">
+          <p className="text-white/45 text-[14px] font-medium tracking-wide">
             Don't say bojio! — Your one-stop Databricks resource hub.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Body — grouped sections on left, cloud chooser truly centered on page */}
-        <div className="flex-1 flex overflow-hidden relative">
-          {/* Left — grouped navigation sections */}
+        {/* Body */}
+        <div className="flex-1 flex overflow-hidden landing-glow">
+          {/* Left panel — navigation sections */}
           <motion.aside
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-[420px] shrink-0 overflow-y-auto py-6 pl-14 pr-8"
-            style={{ borderRight: '1px solid rgba(255,255,255,0.06)' }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="w-[380px] shrink-0 overflow-y-auto py-5 pl-10 pr-6"
+            style={{ background: 'linear-gradient(180deg, rgba(255,171,0,0.02) 0%, transparent 40%)' }}
           >
-            {[
-              { title: 'GET STARTED', items: [
-                { label: 'Try the Free Edition', href: 'https://www.databricks.com/learn/free-edition', tag: 'Free' },
-                { label: 'Starter Journey', href: 'https://databricks-solutions.github.io/starter-journey/' },
-                { label: 'Cheatsheet', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf', tag: 'PDF' },
-              ]},
-              { title: 'LEARN', items: [
-                { label: 'Training Home', href: 'https://www.databricks.com/learn/training/home' },
-                { label: 'Free Trainings', href: 'https://docs.databricks.com/aws/en/getting-started/free-training', tag: 'Free' },
-                { label: 'Skill Builder', href: 'https://www.youtube.com/@databricksskillbuilder/', tag: 'YouTube' },
-              ]},
-              { title: 'EXPLORE', items: [
-                { label: 'Demo Centre', href: 'https://www.databricks.com/resources/demos' },
-                { label: 'NextGen Lakehouse', href: 'https://www.nextgenlakehouse.com/' },
-                { label: 'Community Forum', href: 'https://community.databricks.com/tmcxu86974/' },
-                { label: 'User Groups', href: 'https://usergroups.databricks.com/' },
-              ]},
-              { title: 'SECURITY & COMPLIANCE', items: [
-                { label: 'Security & Trust Centre', href: 'https://www.databricks.com/trust/security-features' },
-              ]},
-              { title: 'MIGRATE', items: [
-                { label: 'Lakebridge', href: 'https://databrickslabs.github.io/lakebridge/docs/overview/' },
-                { label: 'Migrate with LLM', href: 'https://github.com/databricks-solutions/databricks-migrator-with-llm' },
-              ]},
-              { title: 'HELP & SUPPORT', items: [
-                { label: 'Help Centre', href: 'https://help.databricks.com/s/' },
-                { label: 'Contact Support', href: 'https://docs.databricks.com/aws/en/resources/support' },
-                { label: 'Product Feedback', href: 'https://docs.databricks.com/aws/en/resources/ideas' },
-              ]},
-              { title: 'EVENTS', items: [
-                { label: 'Data+AI Summit 2026', href: 'https://www.databricks.com/dataaisummit', badge: 'Jun 9–12 · SF' },
-              ]},
-            ].map(section => (
-              <div key={section.title} className="mb-6">
-                <h3 className="text-[13px] font-extrabold uppercase tracking-[0.14em] text-[#FFAB00] mb-2 ml-1">
-                  {section.title}
-                </h3>
+            {landingSections.map((section, si) => (
+              <motion.div
+                key={section.title}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, delay: 0.2 + si * 0.05 }}
+                className="mb-5"
+              >
+                <div className="flex items-center gap-2 mb-1.5 pl-1">
+                  <div className="w-1 h-3.5 rounded-full bg-[#FFAB00]" />
+                  <h3 className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#FFAB00]">
+                    {section.title}
+                  </h3>
+                </div>
                 <div className="flex flex-col">
                   {section.items.map(item => (
                     <a
@@ -802,52 +820,68 @@ export default function Hero() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-between text-[14px] font-semibold text-white/75 hover:text-white pl-4 pr-3 py-[7px] rounded-lg hover:bg-white/[0.04] no-underline transition-all duration-150"
-                      style={{ borderLeft: '2px solid transparent' }}
-                      onMouseEnter={e => { e.currentTarget.style.borderLeftColor = '#FFAB00'; }}
-                      onMouseLeave={e => { e.currentTarget.style.borderLeftColor = 'transparent'; }}
+                      className="group flex items-center justify-between text-[13px] font-semibold text-white/65 hover:text-white pl-5 pr-3 py-[6px] rounded-md no-underline transition-all duration-150 hover:bg-white/[0.03]"
                     >
-                      {item.label}
-                      <span className="flex items-center gap-2 shrink-0 ml-3">
-                        {'tag' in item && item.tag && <span className="text-[9px] font-bold text-[#FFAB00]/80 bg-[#FFAB00]/10 px-2 py-0.5 rounded">{item.tag}</span>}
-                        {'badge' in item && item.badge && <span className="text-[9px] font-bold text-[#FF3621]/80 bg-[#FF3621]/10 px-2 py-0.5 rounded">{item.badge}</span>}
-                        <span className="text-[11px] text-white/20">↗</span>
+                      <span className="flex items-center gap-2">
+                        <span className="w-1 h-1 rounded-full bg-white/20 group-hover:bg-[#FFAB00] transition-colors shrink-0" />
+                        {item.label}
+                      </span>
+                      <span className="flex items-center gap-1.5 shrink-0 ml-2">
+                        {'tag' in item && item.tag && <span className="text-[8px] font-bold text-[#FFAB00] bg-[#FFAB00]/10 px-1.5 py-[1px] rounded">{item.tag}</span>}
+                        {'badge' in item && item.badge && <span className="text-[8px] font-bold text-[#FF3621] bg-[#FF3621]/10 px-1.5 py-[1px] rounded">{item.badge}</span>}
+                        <span className="text-[10px] text-white/15 group-hover:text-white/40 transition-colors">↗</span>
                       </span>
                     </a>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </motion.aside>
 
-          {/* Cloud provider chooser — absolutely centered on page */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          {/* Vertical separator */}
+          <div className="w-px shrink-0" style={{ background: 'linear-gradient(180deg, rgba(255,171,0,0.12) 0%, rgba(255,255,255,0.04) 50%, transparent 100%)' }} />
+
+          {/* Cloud provider chooser — centered */}
+          <div className="flex-1 flex items-center justify-center px-8">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="text-center pointer-events-auto"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-center"
             >
-              <h2 className="text-[15px] font-semibold text-white/50 uppercase tracking-wider mb-10">
+              <p className="text-[12px] font-semibold text-white/30 uppercase tracking-[0.2em] mb-3">
+                Select to continue
+              </p>
+              <h2 className="text-[20px] font-bold text-white/80 mb-10 tracking-tight">
                 Choose your cloud provider
               </h2>
-              <div className="flex gap-10 justify-center">
+              <div className="flex gap-8 justify-center">
                 {[
                   { id: 'aws' as const, icon: '/icons/aws.svg', label: 'AWS' },
                   { id: 'azure' as const, icon: '/icons/azure.svg', label: 'Azure' },
                 ].map(cloud => (
                   <motion.button
                     key={cloud.id}
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.04, y: -4 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedCloud(cloud.id)}
-                    className="flex flex-col items-center gap-5 w-48 py-12 rounded-2xl cursor-pointer border-none transition-all"
-                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
-                    onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)'; e.currentTarget.style.background = 'rgba(255,54,33,0.08)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
+                    className="flex flex-col items-center gap-5 w-44 py-10 rounded-2xl cursor-pointer border-none transition-all duration-200"
+                    style={{
+                      background: 'linear-gradient(145deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+                      border: '1px solid rgba(255,255,255,0.08)',
+                      boxShadow: '0 4px 24px rgba(0,0,0,0.3)',
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.borderColor = 'rgba(255,171,0,0.35)';
+                      e.currentTarget.style.boxShadow = '0 8px 32px rgba(255,171,0,0.08), 0 4px 24px rgba(0,0,0,0.3)';
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
+                      e.currentTarget.style.boxShadow = '0 4px 24px rgba(0,0,0,0.3)';
+                    }}
                   >
-                    <img src={cloud.icon} alt={cloud.label} className="w-20 h-20 object-contain" />
-                    <span className="text-[18px] font-bold text-white">{cloud.label}</span>
+                    <img src={cloud.icon} alt={cloud.label} className="w-16 h-16 object-contain" />
+                    <span className="text-[17px] font-bold text-white">{cloud.label}</span>
                   </motion.button>
                 ))}
               </div>
