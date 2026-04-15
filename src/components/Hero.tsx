@@ -726,36 +726,36 @@ export default function Hero() {
 
   // ── Landing page: choose cloud provider ──
   if (!selectedCloud) {
-    const landingSections = [
-      { title: 'GET STARTED', items: [
+    const landingSections: { title: string; icon: string; items: { label: string; href: string; tag?: string; badge?: string }[] }[] = [
+      { title: 'NEW TO DATABRICKS?', icon: '/icons/databricks/rocket.svg', items: [
         { label: 'Try the Free Edition', href: 'https://www.databricks.com/learn/free-edition', tag: 'Free' },
         { label: 'Starter Journey', href: 'https://databricks-solutions.github.io/starter-journey/' },
         { label: 'Cheatsheet', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf', tag: 'PDF' },
       ]},
-      { title: 'LEARN', items: [
+      { title: 'LEARN', icon: '/icons/databricks/training.svg', items: [
         { label: 'Training Home', href: 'https://www.databricks.com/learn/training/home' },
         { label: 'Free Trainings', href: 'https://docs.databricks.com/aws/en/getting-started/free-training', tag: 'Free' },
         { label: 'Skill Builder', href: 'https://www.youtube.com/@databricksskillbuilder/', tag: 'YouTube' },
       ]},
-      { title: 'EXPLORE', items: [
+      { title: 'EXPLORE', icon: '/icons/databricks/search-data.svg', items: [
         { label: 'Demo Centre', href: 'https://www.databricks.com/resources/demos' },
         { label: 'NextGen Lakehouse', href: 'https://www.nextgenlakehouse.com/' },
         { label: 'Community Forum', href: 'https://community.databricks.com/tmcxu86974/' },
         { label: 'User Groups', href: 'https://usergroups.databricks.com/' },
       ]},
-      { title: 'SECURITY & COMPLIANCE', items: [
+      { title: 'SECURITY & COMPLIANCE', icon: '/icons/databricks/shield-check.svg', items: [
         { label: 'Security & Trust Centre', href: 'https://www.databricks.com/trust/security-features' },
       ]},
-      { title: 'MIGRATE', items: [
+      { title: 'MIGRATE', icon: '/icons/databricks/lakebridge.svg', items: [
         { label: 'Lakebridge', href: 'https://databrickslabs.github.io/lakebridge/docs/overview/' },
         { label: 'Migrate with LLM', href: 'https://github.com/databricks-solutions/databricks-migrator-with-llm' },
       ]},
-      { title: 'HELP & SUPPORT', items: [
+      { title: 'HELP & SUPPORT', icon: '/icons/databricks/help.svg', items: [
         { label: 'Help Centre', href: 'https://help.databricks.com/s/' },
         { label: 'Contact Support', href: 'https://docs.databricks.com/aws/en/resources/support' },
-        { label: 'Product Feedback', href: 'https://docs.databricks.com/aws/en/resources/ideas' },
+        { label: 'Submit Product Feedback', href: 'https://docs.databricks.com/aws/en/resources/ideas' },
       ]},
-      { title: 'EVENTS', items: [
+      { title: 'EVENTS', icon: '/icons/databricks/community.svg', items: [
         { label: 'Data+AI Summit 2026', href: 'https://www.databricks.com/dataaisummit', badge: 'Jun 9–12 · SF' },
       ]},
     ];
@@ -769,111 +769,78 @@ export default function Hero() {
         `}</style>
         <TickerBar newsItems={newsItems} />
 
-        {/* Scrollable content */}
-        <div className="flex-1 overflow-y-auto">
-          {/* Hero area — branding + cloud chooser */}
-          <div className="w-full max-w-6xl mx-auto px-10 pt-10 pb-8">
-            {/* Branding */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-10"
-            >
-              <div className="flex items-center justify-center gap-3 mb-2">
-                <img src="/icons/databricks/lakehouse.svg" alt="" className="w-9 h-9" />
-                <h1 className="text-[clamp(1.8rem,3.5vw,2.5rem)] font-bold text-white tracking-tight">
-                  The <span className="text-[#FF3621]">Lobang</span> Data Hub 🇸🇬
-                </h1>
-              </div>
-              <p className="text-white/50 text-[16px] font-medium">
-                Don't say bojio! — Your one-stop Databricks resource hub.
-              </p>
-            </motion.div>
+        {/* Centered header with bottom divider */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
+          className="text-center py-6 shrink-0"
+          style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}
+        >
+          <div className="flex items-center justify-center gap-3 mb-1">
+            <img src="/icons/databricks/lakehouse.svg" alt="" className="w-9 h-9" />
+            <h1 className="text-[clamp(1.8rem,3.5vw,2.5rem)] font-bold text-white tracking-tight">
+              The <span className="text-[#FF3621]">Lobang</span> Data Hub 🇸🇬
+            </h1>
+          </div>
+          <p className="text-white/50 text-[15px]">Don't say bojio! — Your one-stop Databricks resource hub.</p>
+        </motion.div>
 
-            {/* Cloud provider chooser */}
+        {/* Main area: sidebar + cloud chooser */}
+        <div className="flex flex-1 overflow-hidden relative">
+          {/* Left sidebar — resource navigation */}
+          <motion.aside
+            initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
+            className="w-96 shrink-0 overflow-y-auto scrollbar-hide pl-16 pr-8 py-8"
+            style={{ borderRight: '1px solid rgba(255,255,255,0.06)' }}
+          >
+            {landingSections.map((section, si) => (
+              <div key={section.title} className={si < landingSections.length - 1 ? 'mb-6' : ''}>
+                <div className="flex items-center gap-2.5 mb-2">
+                  <img src={section.icon} alt="" className="w-[18px] h-[18px] opacity-60" />
+                  <h3 className="text-[13px] font-bold text-[#FFAB00] tracking-[0.08em]">
+                    {section.title}
+                  </h3>
+                </div>
+                <div className="w-10 h-px mb-3" style={{ background: 'rgba(255,171,0,0.25)' }} />
+                {section.items.map(item => (
+                  <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
+                    className="group flex items-center justify-between py-[6px] text-[15px] font-medium text-white/70 hover:text-white no-underline transition-colors"
+                  >
+                    <span>{item.label}</span>
+                    <span className="flex items-center gap-2 shrink-0 ml-4">
+                      {item.tag && <span className="text-[10px] font-bold text-[#FFAB00] bg-[#FFAB00]/10 px-2 py-0.5 rounded">{item.tag}</span>}
+                      {item.badge && <span className="text-[10px] font-bold text-[#FF3621] bg-[#FF3621]/10 px-2 py-0.5 rounded">{item.badge}</span>}
+                      <span className="text-white/20 group-hover:text-[#FF3621] text-xs transition-colors">↗</span>
+                    </span>
+                  </a>
+                ))}
+              </div>
+            ))}
+          </motion.aside>
+
+          {/* Cloud provider chooser — centered on full page */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              className="text-center mb-12"
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }}
+              className="pointer-events-auto text-center"
             >
-              <h2 className="text-[14px] font-semibold text-white/40 uppercase tracking-[0.15em] mb-6">
-                Choose your cloud provider
-              </h2>
-              <div className="flex gap-6 justify-center">
+              <p className="text-white/40 text-[13px] font-semibold tracking-[0.15em] uppercase mb-8">Choose your cloud</p>
+              <div className="flex gap-6">
                 {[
                   { id: 'aws' as const, icon: '/icons/aws.svg', label: 'AWS' },
                   { id: 'azure' as const, icon: '/icons/azure.svg', label: 'Azure' },
                 ].map(cloud => (
-                  <motion.button
-                    key={cloud.id}
-                    whileHover={{ scale: 1.04, y: -3 }}
-                    whileTap={{ scale: 0.97 }}
+                  <motion.button key={cloud.id} whileHover={{ scale: 1.04, y: -4 }} whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedCloud(cloud.id)}
-                    className="flex flex-col items-center gap-4 w-40 py-8 rounded-2xl cursor-pointer border-none transition-all duration-200"
-                    style={{
-                      background: 'rgba(255,255,255,0.04)',
-                      border: '1px solid rgba(255,255,255,0.08)',
-                      boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
-                    }}
-                    onMouseEnter={e => {
-                      e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)';
-                      e.currentTarget.style.background = 'rgba(255,54,33,0.06)';
-                      e.currentTarget.style.boxShadow = '0 8px 30px rgba(255,54,33,0.1)';
-                    }}
-                    onMouseLeave={e => {
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
-                      e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
-                      e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.2)';
-                    }}
+                    className="flex flex-col items-center gap-4 w-48 py-12 rounded-2xl cursor-pointer border-none transition-all duration-200"
+                    style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)'; e.currentTarget.style.background = 'rgba(255,54,33,0.06)'; e.currentTarget.style.boxShadow = '0 0 40px rgba(255,54,33,0.1)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.boxShadow = 'none'; }}
                   >
                     <img src={cloud.icon} alt={cloud.label} className="w-14 h-14 object-contain" />
-                    <span className="text-[16px] font-bold text-white">{cloud.label}</span>
+                    <span className="text-[18px] font-bold text-white">{cloud.label}</span>
                   </motion.button>
                 ))}
               </div>
-            </motion.div>
-
-            {/* Divider */}
-            <div className="w-full max-w-3xl mx-auto mb-10" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }} />
-
-            {/* Section cards — 2 column grid */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="grid grid-cols-2 gap-5 pb-10"
-            >
-              {landingSections.map(section => (
-                <div
-                  key={section.title}
-                  className="rounded-xl p-6"
-                  style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}
-                >
-                  <h3 className="text-[13px] font-extrabold uppercase tracking-[0.12em] text-[#FFAB00] mb-4">
-                    {section.title}
-                  </h3>
-                  <div className="flex flex-col gap-1">
-                    {section.items.map(item => (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center justify-between text-[15px] font-semibold text-white/70 hover:text-white px-3 py-2 rounded-lg hover:bg-white/[0.04] no-underline transition-all duration-150"
-                      >
-                        {item.label}
-                        <span className="flex items-center gap-2 shrink-0 ml-3">
-                          {'tag' in item && item.tag && <span className="text-[10px] font-bold text-[#FFAB00] bg-[#FFAB00]/10 px-2 py-0.5 rounded">{item.tag}</span>}
-                          {'badge' in item && item.badge && <span className="text-[10px] font-bold text-[#FF3621] bg-[#FF3621]/10 px-2 py-0.5 rounded">{item.badge}</span>}
-                          <span className="text-[12px] text-white/20 group-hover:text-white/50 transition-colors">↗</span>
-                        </span>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              ))}
             </motion.div>
           </div>
         </div>
