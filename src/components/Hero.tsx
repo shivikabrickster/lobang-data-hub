@@ -726,11 +726,11 @@ export default function Hero() {
 
   // ── Landing page: choose cloud provider ──
   if (!selectedCloud) {
-    const landingSections: { title: string; items: { label: string; href: string; tag?: string; badge?: string }[] }[] = [
+    const landingSections: { title: string; items: { label: string; href: string; tag?: string }[] }[] = [
       { title: 'GET STARTED', items: [
         { label: 'Try the Free Edition', href: 'https://www.databricks.com/learn/free-edition', tag: 'Free' },
         { label: 'Starter Journey', href: 'https://databricks-solutions.github.io/starter-journey/' },
-        { label: 'Cheatsheet', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf', tag: 'PDF' },
+        { label: 'Databricks Cheatsheet', href: 'https://databricks-solutions.github.io/starter-journey/pdfs/Databricks-Cheatsheet-2026-Ready.pdf', tag: 'PDF' },
       ]},
       { title: 'LEARN', items: [
         { label: 'Training Home', href: 'https://www.databricks.com/learn/training/home' },
@@ -755,9 +755,6 @@ export default function Hero() {
         { label: 'Contact Support', href: 'https://docs.databricks.com/aws/en/resources/support' },
         { label: 'Product Feedback', href: 'https://docs.databricks.com/aws/en/resources/ideas' },
       ]},
-      { title: 'EVENTS', items: [
-        { label: 'Data+AI Summit 2026', href: 'https://www.databricks.com/dataaisummit', badge: 'Jun 9–12 · SF' },
-      ]},
     ];
 
     return (
@@ -766,6 +763,25 @@ export default function Hero() {
           @keyframes tickerScroll { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(-100%,0,0); } }
           .ticker-track { animation: tickerScroll 150s linear infinite; padding-right: 100%; }
           .ticker-container:hover .ticker-track { animation-play-state: paused !important; }
+          .sidebar-card {
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,171,0,0.12);
+            border-radius: 12px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+          }
+          .sidebar-card:hover {
+            background: rgba(255,171,0,0.06);
+            border-color: rgba(255,171,0,0.3);
+            box-shadow: 0 0 20px rgba(255,171,0,0.06);
+            transform: translateX(3px);
+          }
         `}</style>
         <TickerBar newsItems={newsItems} />
 
@@ -784,34 +800,48 @@ export default function Hero() {
           <p className="text-white/50 text-[15px]">Don't say bojio! — Your one-stop Databricks resource hub.</p>
         </motion.div>
 
-        {/* Main area: sidebar + cloud chooser */}
+        {/* Main area: sidebar cards + cloud chooser */}
         <div className="flex flex-1 overflow-hidden relative">
-          {/* Left sidebar — clean list with gold headings */}
+          {/* Left sidebar — card-style links */}
           <motion.aside
             initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
-            className="w-96 shrink-0 overflow-y-auto scrollbar-hide pl-12 pr-6 py-6"
+            className="w-[420px] shrink-0 overflow-y-auto scrollbar-hide px-8 py-6"
             style={{ borderRight: '1px solid rgba(255,255,255,0.06)' }}
           >
             {landingSections.map((section, si) => (
-              <div key={section.title} className="mb-1">
-                {si > 0 && <div className="h-px my-4" style={{ background: 'rgba(255,255,255,0.06)' }} />}
-                <h3 className="text-[14px] font-extrabold text-[#FFAB00] tracking-wide mb-3">
+              <div key={section.title} className={si < landingSections.length - 1 ? 'mb-5' : 'mb-4'}>
+                <h3 className="text-[13px] font-extrabold text-[#FFAB00] tracking-[0.1em] mb-2.5 pl-1">
                   {section.title}
                 </h3>
-                {section.items.map(item => (
-                  <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
-                    className="group flex items-center justify-between py-[5px] text-[15px] text-white/75 hover:text-white no-underline transition-colors"
-                  >
-                    <span>{item.label}</span>
-                    <span className="flex items-center gap-2 shrink-0 ml-3">
-                      {item.tag && <span className="text-[10px] font-bold text-[#FFAB00] bg-[#FFAB00]/12 px-1.5 py-[2px] rounded">{item.tag}</span>}
-                      {item.badge && <span className="text-[10px] font-bold text-[#FF3621] bg-[#FF3621]/12 px-1.5 py-[2px] rounded">{item.badge}</span>}
-                      <span className="text-white/25 group-hover:text-white/60 text-[11px] transition-colors">↗</span>
-                    </span>
-                  </a>
-                ))}
+                <div className="flex flex-col gap-2">
+                  {section.items.map(item => (
+                    <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" className="sidebar-card">
+                      <div className="min-w-0">
+                        <div className="text-[14px] font-semibold text-[#FFAB00] leading-tight">{item.label}</div>
+                        {item.tag && <span className="text-[10px] font-bold text-[#FFAB00]/50 mt-0.5 block">{item.tag}</span>}
+                      </div>
+                      <span className="text-[#FFAB00]/30 text-[15px] shrink-0" style={{ fontFamily: 'system-ui' }}>↗</span>
+                    </a>
+                  ))}
+                </div>
               </div>
             ))}
+
+            {/* Events — special feature card */}
+            <div
+              className="rounded-xl p-5 mt-1"
+              style={{ background: 'rgba(255,171,0,0.04)', border: '1px solid rgba(255,171,0,0.18)' }}
+            >
+              <p className="text-[12px] text-white/40 font-medium mb-1">Jun 9–12 · San Francisco</p>
+              <h3 className="text-[16px] font-bold text-white mb-0.5">Data+AI Summit 2026</h3>
+              <p className="text-[13px] text-white/45 mb-4">The future of data and AI</p>
+              <a href="https://www.databricks.com/dataaisummit" target="_blank" rel="noopener noreferrer"
+                className="block w-full text-center py-2.5 rounded-lg font-bold text-[14px] no-underline transition-all duration-200"
+                style={{ background: '#FFAB00', color: '#0b1219' }}
+                onMouseEnter={e => { e.currentTarget.style.background = '#FFC033'; e.currentTarget.style.boxShadow = '0 0 20px rgba(255,171,0,0.3)'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = '#FFAB00'; e.currentTarget.style.boxShadow = 'none'; }}
+              >Register</a>
+            </div>
           </motion.aside>
 
           {/* Cloud provider chooser — centered on full page */}
