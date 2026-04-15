@@ -761,130 +761,119 @@ export default function Hero() {
     ];
 
     return (
-      <section className="min-h-screen flex flex-col" style={{ background: '#070b10' }}>
+      <section className="min-h-screen flex flex-col" style={{ background: 'radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)' }}>
         <style>{`
           @keyframes tickerScroll { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(-100%,0,0); } }
           .ticker-track { animation: tickerScroll 150s linear infinite; padding-right: 100%; }
           .ticker-container:hover .ticker-track { animation-play-state: paused !important; }
-          .landing-glow { background: radial-gradient(600px circle at 60% 50%, rgba(255,171,0,0.03) 0%, transparent 70%); }
         `}</style>
         <TickerBar newsItems={newsItems} />
 
-        {/* Full-width header band */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="w-full py-6 text-center shrink-0"
-          style={{ background: 'linear-gradient(180deg, rgba(255,171,0,0.04) 0%, transparent 100%)', borderBottom: '1px solid rgba(255,171,0,0.08)' }}
-        >
-          <div className="flex items-center justify-center gap-3 mb-1.5">
-            <img src="/icons/databricks/lakehouse.svg" alt="" className="w-8 h-8" />
-            <h1 className="text-[clamp(1.6rem,3vw,2.2rem)] font-bold text-white tracking-tight">
-              The <span className="text-[#FF3621]">Lobang</span> Data Hub 🇸🇬
-            </h1>
-          </div>
-          <p className="text-white/45 text-[14px] font-medium tracking-wide">
-            Don't say bojio! — Your one-stop Databricks resource hub.
-          </p>
-        </motion.div>
-
-        {/* Body */}
-        <div className="flex-1 flex overflow-hidden landing-glow">
-          {/* Left panel — navigation sections */}
-          <motion.aside
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="w-[380px] shrink-0 overflow-y-auto py-5 pl-10 pr-6"
-            style={{ background: 'linear-gradient(180deg, rgba(255,171,0,0.02) 0%, transparent 40%)' }}
-          >
-            {landingSections.map((section, si) => (
-              <motion.div
-                key={section.title}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: 0.2 + si * 0.05 }}
-                className="mb-5"
-              >
-                <div className="flex items-center gap-2 mb-1.5 pl-1">
-                  <div className="w-1 h-3.5 rounded-full bg-[#FFAB00]" />
-                  <h3 className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#FFAB00]">
-                    {section.title}
-                  </h3>
-                </div>
-                <div className="flex flex-col">
-                  {section.items.map(item => (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex items-center justify-between text-[13px] font-semibold text-white/65 hover:text-white pl-5 pr-3 py-[6px] rounded-md no-underline transition-all duration-150 hover:bg-white/[0.03]"
-                    >
-                      <span className="flex items-center gap-2">
-                        <span className="w-1 h-1 rounded-full bg-white/20 group-hover:bg-[#FFAB00] transition-colors shrink-0" />
-                        {item.label}
-                      </span>
-                      <span className="flex items-center gap-1.5 shrink-0 ml-2">
-                        {'tag' in item && item.tag && <span className="text-[8px] font-bold text-[#FFAB00] bg-[#FFAB00]/10 px-1.5 py-[1px] rounded">{item.tag}</span>}
-                        {'badge' in item && item.badge && <span className="text-[8px] font-bold text-[#FF3621] bg-[#FF3621]/10 px-1.5 py-[1px] rounded">{item.badge}</span>}
-                        <span className="text-[10px] text-white/15 group-hover:text-white/40 transition-colors">↗</span>
-                      </span>
-                    </a>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </motion.aside>
-
-          {/* Vertical separator */}
-          <div className="w-px shrink-0" style={{ background: 'linear-gradient(180deg, rgba(255,171,0,0.12) 0%, rgba(255,255,255,0.04) 50%, transparent 100%)' }} />
-
-          {/* Cloud provider chooser — centered */}
-          <div className="flex-1 flex items-center justify-center px-8">
+        {/* Scrollable content */}
+        <div className="flex-1 overflow-y-auto">
+          {/* Hero area — branding + cloud chooser */}
+          <div className="w-full max-w-6xl mx-auto px-10 pt-10 pb-8">
+            {/* Branding */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-10"
             >
-              <p className="text-[12px] font-semibold text-white/30 uppercase tracking-[0.2em] mb-3">
-                Select to continue
+              <div className="flex items-center justify-center gap-3 mb-2">
+                <img src="/icons/databricks/lakehouse.svg" alt="" className="w-9 h-9" />
+                <h1 className="text-[clamp(1.8rem,3.5vw,2.5rem)] font-bold text-white tracking-tight">
+                  The <span className="text-[#FF3621]">Lobang</span> Data Hub 🇸🇬
+                </h1>
+              </div>
+              <p className="text-white/50 text-[16px] font-medium">
+                Don't say bojio! — Your one-stop Databricks resource hub.
               </p>
-              <h2 className="text-[20px] font-bold text-white/80 mb-10 tracking-tight">
+            </motion.div>
+
+            {/* Cloud provider chooser */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-[14px] font-semibold text-white/40 uppercase tracking-[0.15em] mb-6">
                 Choose your cloud provider
               </h2>
-              <div className="flex gap-8 justify-center">
+              <div className="flex gap-6 justify-center">
                 {[
                   { id: 'aws' as const, icon: '/icons/aws.svg', label: 'AWS' },
                   { id: 'azure' as const, icon: '/icons/azure.svg', label: 'Azure' },
                 ].map(cloud => (
                   <motion.button
                     key={cloud.id}
-                    whileHover={{ scale: 1.04, y: -4 }}
+                    whileHover={{ scale: 1.04, y: -3 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedCloud(cloud.id)}
-                    className="flex flex-col items-center gap-5 w-44 py-10 rounded-2xl cursor-pointer border-none transition-all duration-200"
+                    className="flex flex-col items-center gap-4 w-40 py-8 rounded-2xl cursor-pointer border-none transition-all duration-200"
                     style={{
-                      background: 'linear-gradient(145deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+                      background: 'rgba(255,255,255,0.04)',
                       border: '1px solid rgba(255,255,255,0.08)',
-                      boxShadow: '0 4px 24px rgba(0,0,0,0.3)',
+                      boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
                     }}
                     onMouseEnter={e => {
-                      e.currentTarget.style.borderColor = 'rgba(255,171,0,0.35)';
-                      e.currentTarget.style.boxShadow = '0 8px 32px rgba(255,171,0,0.08), 0 4px 24px rgba(0,0,0,0.3)';
+                      e.currentTarget.style.borderColor = 'rgba(255,54,33,0.4)';
+                      e.currentTarget.style.background = 'rgba(255,54,33,0.06)';
+                      e.currentTarget.style.boxShadow = '0 8px 30px rgba(255,54,33,0.1)';
                     }}
                     onMouseLeave={e => {
                       e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
-                      e.currentTarget.style.boxShadow = '0 4px 24px rgba(0,0,0,0.3)';
+                      e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
+                      e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.2)';
                     }}
                   >
-                    <img src={cloud.icon} alt={cloud.label} className="w-16 h-16 object-contain" />
-                    <span className="text-[17px] font-bold text-white">{cloud.label}</span>
+                    <img src={cloud.icon} alt={cloud.label} className="w-14 h-14 object-contain" />
+                    <span className="text-[16px] font-bold text-white">{cloud.label}</span>
                   </motion.button>
                 ))}
               </div>
+            </motion.div>
+
+            {/* Divider */}
+            <div className="w-full max-w-3xl mx-auto mb-10" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }} />
+
+            {/* Section cards — 2 column grid */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="grid grid-cols-2 gap-5 pb-10"
+            >
+              {landingSections.map(section => (
+                <div
+                  key={section.title}
+                  className="rounded-xl p-6"
+                  style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}
+                >
+                  <h3 className="text-[13px] font-extrabold uppercase tracking-[0.12em] text-[#FFAB00] mb-4">
+                    {section.title}
+                  </h3>
+                  <div className="flex flex-col gap-1">
+                    {section.items.map(item => (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-center justify-between text-[15px] font-semibold text-white/70 hover:text-white px-3 py-2 rounded-lg hover:bg-white/[0.04] no-underline transition-all duration-150"
+                      >
+                        {item.label}
+                        <span className="flex items-center gap-2 shrink-0 ml-3">
+                          {'tag' in item && item.tag && <span className="text-[10px] font-bold text-[#FFAB00] bg-[#FFAB00]/10 px-2 py-0.5 rounded">{item.tag}</span>}
+                          {'badge' in item && item.badge && <span className="text-[10px] font-bold text-[#FF3621] bg-[#FF3621]/10 px-2 py-0.5 rounded">{item.badge}</span>}
+                          <span className="text-[12px] text-white/20 group-hover:text-white/50 transition-colors">↗</span>
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </motion.div>
           </div>
         </div>
