@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-17",
+  "last_updated": "2026-04-18",
   "aws": {
     "feature_region": {
       "CMK": {
@@ -68,6 +68,11 @@
         "raw": "\u2713\u2021"
       },
       "ai_parse_document v2": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "ai_prep_search": {
         "available": true,
         "xgeo": true,
         "raw": "\u2713\u2942"
@@ -296,6 +301,11 @@
           "category": "Foundation Model APIs pay-per-token"
         },
         {
+          "model": "databricks-claude-opus-4-7",
+          "xgeo": false,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
           "model": "databricks-claude-opus-4-6",
           "xgeo": true,
           "category": "Foundation Model APIs pay-per-token"
@@ -476,7 +486,7 @@
           "category": "AI Functions (batch inference)"
         }
       ],
-      "count": 57
+      "count": 58
     },
     "lakebase_in_sg": true
   },
@@ -568,6 +578,11 @@
         "raw": "\u2713"
       },
       "ai_parse_document v2": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "ai_prep_search": {
         "available": true,
         "xgeo": true,
         "raw": "\u2713\u2942"
@@ -753,6 +768,11 @@
         "raw": "\u2713\u2942"
       },
       "ai_parse_document v2": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "ai_prep_search": {
         "available": true,
         "xgeo": true,
         "raw": "\u2713\u2942"
