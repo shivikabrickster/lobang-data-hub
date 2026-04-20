@@ -333,7 +333,7 @@ export const libraryLanes: LibraryLane[] = [
   },
 ];
 
-export interface LibraryWatchItem {
+export interface LibraryRailItem {
   tag: string;
   duration: string;
   title: string;
@@ -341,20 +341,13 @@ export interface LibraryWatchItem {
   url: string;
 }
 
-export const libraryWatch: LibraryWatchItem[] = [
+export const libraryVideos: LibraryRailItem[] = [
   {
     tag: 'Channel',
     duration: 'Hub',
     title: 'Databricks on YouTube',
     description: 'Keynotes, customer sessions, and product deep-dives.',
     url: 'https://www.youtube.com/@Databricks',
-  },
-  {
-    tag: 'Demos',
-    duration: 'Library',
-    title: 'Product Demos Hub',
-    description: 'Short, focused demos across the Databricks platform.',
-    url: 'https://www.databricks.com/resources/demos',
   },
   {
     tag: 'Skills',
@@ -364,11 +357,87 @@ export const libraryWatch: LibraryWatchItem[] = [
     url: 'https://www.youtube.com/@databricksskillbuilder',
   },
   {
+    tag: 'Field',
+    duration: 'Channel',
+    title: 'NextGen Lakehouse',
+    description: 'Field-engineering walkthroughs and real-world lakehouse patterns.',
+    url: 'https://www.youtube.com/@nextgenlakehouse',
+  },
+  {
+    tag: 'Summit',
+    duration: 'Sessions',
+    title: 'Data + AI Summit Sessions',
+    description: 'Recorded talks from the latest Summit — architectures, deep-dives, customer panels.',
+    url: 'https://www.databricks.com/dataaisummit/sessions',
+  },
+  {
     tag: 'Customers',
     duration: 'Stories',
     title: 'Customer Stories',
     description: 'How real teams deliver data and AI on Databricks.',
     url: 'https://www.databricks.com/customers',
+  },
+];
+
+export const libraryDemos: LibraryRailItem[] = [
+  {
+    tag: 'Demos',
+    duration: 'Library',
+    title: 'Product Demos Hub',
+    description: 'Short, focused demos across the Databricks platform.',
+    url: 'https://www.databricks.com/resources/demos',
+  },
+  {
+    tag: 'Accelerators',
+    duration: 'Ready-made',
+    title: 'Solution Accelerators',
+    description: 'Pre-built notebooks and reference implementations for common industry use cases.',
+    url: 'https://www.databricks.com/solutions/accelerators',
+  },
+  {
+    tag: 'GenAI',
+    duration: 'Cookbook',
+    title: 'Generative AI Cookbook',
+    description: 'End-to-end recipes for building RAG, agents, and evaluation on Databricks.',
+    url: 'https://ai-cookbook.io/',
+  },
+  {
+    tag: 'Notebooks',
+    duration: 'Guide',
+    title: 'Notebook Examples',
+    description: 'Hands-on notebooks covering Delta, Spark, ML, and analytics patterns.',
+    url: 'https://docs.databricks.com/aws/en/notebooks/index.html',
+  },
+];
+
+export const libraryBlogs: LibraryRailItem[] = [
+  {
+    tag: 'Blog',
+    duration: 'Hub',
+    title: 'Databricks Blog',
+    description: 'The main blog — product launches, customer stories, and platform deep-dives.',
+    url: 'https://www.databricks.com/blog',
+  },
+  {
+    tag: 'Engineering',
+    duration: 'Tech',
+    title: 'Engineering Blog',
+    description: 'Deep technical posts from the Databricks engineering team.',
+    url: 'https://www.databricks.com/blog/category/engineering',
+  },
+  {
+    tag: 'GenAI',
+    duration: 'AI posts',
+    title: 'Generative AI Posts',
+    description: 'All Databricks writing on GenAI, agents, and foundation models.',
+    url: 'https://www.databricks.com/blog/category/generative-ai',
+  },
+  {
+    tag: 'Platform',
+    duration: 'Product',
+    title: 'Platform & Product News',
+    description: 'New features, GA announcements, and platform updates.',
+    url: 'https://www.databricks.com/blog/category/platform',
   },
 ];
 
