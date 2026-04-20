@@ -367,16 +367,23 @@ export const libraryVideos: LibraryRailItem[] = [
   {
     tag: 'Summit',
     duration: 'Sessions',
-    title: 'Data + AI Summit Sessions',
-    description: 'Recorded talks from the latest Summit — architectures, deep-dives, customer panels.',
+    title: 'Data + AI Summit 2025 — On-Demand',
+    description: 'Recorded keynotes and breakouts from the latest Summit — architectures, deep-dives, and product launches.',
     url: 'https://www.databricks.com/dataaisummit/sessions',
   },
   {
-    tag: 'Customers',
-    duration: 'Stories',
-    title: 'Customer Stories',
-    description: 'How real teams deliver data and AI on Databricks.',
-    url: 'https://www.databricks.com/customers',
+    tag: 'Shorts',
+    duration: '< 1 min',
+    title: 'Databricks Shorts',
+    description: 'Bite-sized clips — product tours, quick tips, and feature highlights straight from the channel.',
+    url: 'https://www.youtube.com/@Databricks/shorts',
+  },
+  {
+    tag: 'Podcast',
+    duration: 'Series',
+    title: 'Data Brew by Databricks',
+    description: 'The official Databricks podcast with Denny Lee and Brooke Wenig — conversations with data and AI experts.',
+    url: 'https://www.databricks.com/discover/data-brew',
   },
 ];
 

@@ -6,6 +6,7 @@ interface Props {
 
 const FREE_EDITION_URL = 'https://www.databricks.com/learn/free-edition';
 const HELP_CENTRE_URL = 'https://help.databricks.com/s/';
+const CUSTOMER_STORIES_URL = 'https://www.databricks.com/customers';
 
 const Icon = {
   sparkle: (
@@ -79,6 +80,14 @@ export default function PosterHero({ onPickCloud, onBrowse, onJump }: Props) {
         >
           Learn and grow
         </button>
+        <a
+          className="btn btn-ghost"
+          href={CUSTOMER_STORIES_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Customer stories <span className="arr" aria-hidden="true">↗</span>
+        </a>
       </div>
 
       <div className="jump-bento" aria-label="Jump to">
