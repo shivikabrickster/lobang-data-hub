@@ -19,6 +19,15 @@ export default function IndexGrid({ open }: { open: boolean }) {
         <span className="tag">{total} hand-picked</span>
       </div>
 
+      <nav className="lib-jump" aria-label="Jump within the library">
+        <span className="lib-jump-label">Jump to</span>
+        <a href="#lib-feature">Featured</a>
+        <span className="lib-jump-sep" aria-hidden="true">·</span>
+        <a href="#lib-lanes">Lanes</a>
+        <span className="lib-jump-sep" aria-hidden="true">·</span>
+        <a href="#watch-rail">Watch</a>
+      </nav>
+
       <p className="lib-deck">
         A short shelf, not a landfill. Every link is one we&apos;d send a customer on day
         one — curated for Singapore public-sector teams standing up Databricks.
@@ -26,6 +35,7 @@ export default function IndexGrid({ open }: { open: boolean }) {
 
       <article className="spread">
         <a
+          id="lib-feature"
           className="spread-feature"
           href={libraryFeature.url}
           target="_blank"
@@ -44,7 +54,7 @@ export default function IndexGrid({ open }: { open: boolean }) {
           </span>
         </a>
 
-        <div className="spread-lanes">
+        <div id="lib-lanes" className="spread-lanes">
           {libraryLanes.map((lane) => (
             <section key={lane.key} className="lane" aria-labelledby={`lane-${lane.key}`}>
               <header className="lane-head">
@@ -75,7 +85,7 @@ export default function IndexGrid({ open }: { open: boolean }) {
           ))}
         </div>
 
-        <section className="watch-rail" aria-labelledby="watch-rail-title">
+        <section id="watch-rail" className="watch-rail" aria-labelledby="watch-rail-title">
           <header className="watch-rail-head">
             <span className="watch-rail-num" aria-hidden="true">V</span>
             <div>

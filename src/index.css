@@ -213,6 +213,19 @@ body::after {
   line-height: 1;
 }
 
+/* Standalone powered-by chip positioned below the hero bento, aligned
+   under the Latest tile (col 1 of the 3-col grid). */
+.powered-by-foot {
+  display: inline-flex;
+  margin-top: 20px;
+  transform: none;
+  align-self: flex-start;
+}
+.powered-by-foot:hover,
+.powered-by-foot:focus-visible {
+  transform: translateY(-2px);
+}
+
 /* ───── hero bento (preview tiles) ───── */
 .poster .jump-bento {
   display: grid;
@@ -1301,6 +1314,43 @@ body::after {
 .lib-more { margin-top: 20px; display: flex; justify-content: center; }
 
 /* ───── library editorial spread ───── */
+.lib-jump {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: -8px 0 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.lib-jump-label {
+  color: var(--ink-faint);
+  opacity: 0.7;
+  margin-right: 4px;
+}
+.lib-jump a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding: 4px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  transition: color 180ms, border-color 180ms, background 180ms;
+}
+.lib-jump a:hover,
+.lib-jump a:focus-visible {
+  color: var(--ink);
+  border-color: rgba(255,122,89,0.55);
+  background: rgba(255,122,89,0.06);
+}
+.lib-jump-sep { opacity: 0.3; }
+
+#lib-feature,
+#lib-lanes,
+#watch-rail { scroll-margin-top: 24px; }
+
 .lib-deck {
   font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
   font-size: clamp(19px, 1.7vw, 24px);
