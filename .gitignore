@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Design scratch — screenshots, mockups, reference images
+screenshot-*.png
+ref-*.png
+mockup-*.html
+

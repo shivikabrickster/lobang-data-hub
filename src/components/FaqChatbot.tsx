@@ -48,7 +48,7 @@ function RenderText({ text }: { text: string }) {
           }
           const linkMatch = part.match(/^\[(.*?)\]\((.*?)\)$/);
           if (linkMatch) {
-            return <a key={pi} href={linkMatch[2]} target="_blank" rel="noopener noreferrer" className="text-[#FF3621] hover:text-[#ff5a45] underline underline-offset-2">{linkMatch[1]}</a>;
+            return <a key={pi} href={linkMatch[2]} target="_blank" rel="noopener noreferrer" className="text-[#FF7A59] hover:text-[#ff9477] underline underline-offset-2">{linkMatch[1]}</a>;
           }
           return <span key={pi}>{part}</span>;
         });
@@ -56,7 +56,7 @@ function RenderText({ text }: { text: string }) {
         if (isBullet) {
           return (
             <div key={li} className="flex gap-2 mt-1">
-              <span className="text-[#FF3621] shrink-0 mt-0.5">•</span>
+              <span className="text-[#FF7A59] shrink-0 mt-0.5">•</span>
               <span>{parts}</span>
             </div>
           );
@@ -134,11 +134,11 @@ export default function FaqChatbot() {
               height: '580px',
               background: 'linear-gradient(180deg, #0d1117, #0f1419)',
               border: '1px solid rgba(255,255,255,0.08)',
-              boxShadow: '0 25px 80px rgba(0,0,0,0.6), 0 0 40px rgba(255,54,33,0.08)',
+              boxShadow: '0 25px 80px rgba(0,0,0,0.6), 0 0 40px rgba(255,122,89,0.10)',
             }}
           >
             {/* Header */}
-            <div className="relative px-5 py-4" style={{ background: 'linear-gradient(135deg, #FF3621 0%, #d42e1a 100%)' }}>
+            <div className="relative px-5 py-4" style={{ background: 'linear-gradient(135deg, #FF7A59 0%, #e8623f 100%)' }}>
               <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 80% 20%, white 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
               <div className="relative flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -178,14 +178,14 @@ export default function FaqChatbot() {
                   className={`flex gap-2.5 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   {msg.role === 'bot' && (
-                    <div className="w-7 h-7 rounded-lg bg-[#FF3621]/15 flex items-center justify-center shrink-0 mt-0.5">
-                      <Bot size={14} className="text-[#FF3621]" />
+                    <div className="w-7 h-7 rounded-lg bg-[#FF7A59]/15 flex items-center justify-center shrink-0 mt-0.5">
+                      <Bot size={14} className="text-[#FF7A59]" />
                     </div>
                   )}
                   <div
                     className={`max-w-[82%] rounded-2xl px-4 py-3 text-[13px] leading-[1.6] ${
                       msg.role === 'user'
-                        ? 'bg-[#FF3621] text-white rounded-br-md'
+                        ? 'bg-[#FF7A59] text-white rounded-br-md'
                         : 'text-white/80 rounded-bl-md'
                     }`}
                     style={msg.role === 'bot' ? { background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' } : {}}
@@ -203,15 +203,15 @@ export default function FaqChatbot() {
               {/* Typing indicator */}
               {isTyping && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-2.5 items-start">
-                  <div className="w-7 h-7 rounded-lg bg-[#FF3621]/15 flex items-center justify-center shrink-0 mt-0.5">
-                    <Bot size={14} className="text-[#FF3621]" />
+                  <div className="w-7 h-7 rounded-lg bg-[#FF7A59]/15 flex items-center justify-center shrink-0 mt-0.5">
+                    <Bot size={14} className="text-[#FF7A59]" />
                   </div>
                   <div className="rounded-2xl rounded-bl-md px-4 py-3.5" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }}>
                     <div className="flex gap-1.5 items-center">
                       <span className="text-[11px] text-white/30 mr-1">Thinking</span>
-                      <span className="w-1.5 h-1.5 bg-[#FF3621]/60 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                      <span className="w-1.5 h-1.5 bg-[#FF3621]/60 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                      <span className="w-1.5 h-1.5 bg-[#FF3621]/60 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                      <span className="w-1.5 h-1.5 bg-[#FF7A59]/60 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                      <span className="w-1.5 h-1.5 bg-[#FF7A59]/60 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                      <span className="w-1.5 h-1.5 bg-[#FF7A59]/60 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                     </div>
                   </div>
                 </motion.div>
@@ -247,13 +247,13 @@ export default function FaqChatbot() {
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask about Databricks in SG..."
                   disabled={isTyping}
-                  className="flex-1 bg-white/[0.06] text-white text-[13px] px-4 py-3 rounded-xl border-none outline-none placeholder:text-white/20 focus:bg-white/[0.08] focus:ring-1 focus:ring-[#FF3621]/30 transition-all disabled:opacity-50"
+                  className="flex-1 bg-white/[0.06] text-white text-[13px] px-4 py-3 rounded-xl border-none outline-none placeholder:text-white/20 focus:bg-white/[0.08] focus:ring-1 focus:ring-[#FF7A59]/30 transition-all disabled:opacity-50"
                 />
                 <button
                   type="submit"
                   disabled={!input.trim() || isTyping}
                   className="w-10 h-10 rounded-xl flex items-center justify-center text-white shrink-0 transition-all cursor-pointer border-none disabled:opacity-20"
-                  style={{ background: !input.trim() || isTyping ? 'rgba(255,255,255,0.05)' : '#FF3621' }}
+                  style={{ background: !input.trim() || isTyping ? 'rgba(255,255,255,0.05)' : '#FF7A59' }}
                 >
                   <Send size={15} />
                 </button>
@@ -270,7 +270,7 @@ export default function FaqChatbot() {
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-110 cursor-pointer border-none"
-        style={{ background: 'linear-gradient(135deg, #FF3621, #d42e1a)', boxShadow: '0 4px 24px rgba(255,54,33,0.4)' }}
+        style={{ background: 'linear-gradient(135deg, #FF7A59, #e8623f)', boxShadow: '0 4px 24px rgba(255,122,89,0.42)' }}
         whileTap={{ scale: 0.95 }}
       >
         <AnimatePresence mode="wait">

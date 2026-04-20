@@ -253,3 +253,169 @@ export const filterCategories = [
   { key: 'governance', label: 'Governance' },
   { key: 'apps', label: 'Apps & Platform' },
 ];
+export interface LibraryItem {
+  title: string;
+  description: string;
+  url: string;
+  source: string;
+}
+
+export interface LibraryLane {
+  key: string;
+  number: string;
+  label: string;
+  kicker: string;
+  items: LibraryItem[];
+}
+
+export interface LibraryFeature {
+  kicker: string;
+  title: string;
+  blurb: string;
+  url: string;
+  source: string;
+  meta: string;
+}
+
+export const libraryFeature: LibraryFeature = {
+  kicker: "Editor's pick",
+  title: "Databricks AI DevKit",
+  blurb: "A field-engineering toolkit for coding agents on Databricks. Prebuilt skills, prompts, and workflows so your team builds with Claude Code against Databricks from day one.",
+  url: "https://github.com/databricks-solutions/ai-dev-kit",
+  source: "GitHub · databricks-solutions",
+  meta: "Open source · Field Engineering",
+};
+
+export const libraryLanes: LibraryLane[] = [
+  {
+    key: "deploy",
+    number: "I",
+    label: "Deploy",
+    kicker: "Land a workspace",
+    items: [
+      { title: "Databricks on AWS", description: "Official quickstart, ap-southeast-1 ready.", url: "https://docs.databricks.com/en/getting-started/index.html", source: "Databricks Docs" },
+      { title: "Databricks on Azure", description: "Southeast Asia region, Entra ID setup.", url: "https://learn.microsoft.com/en-us/azure/databricks/", source: "Microsoft Docs" },
+      { title: "Terraform SRA", description: "Security reference architecture for workspaces.", url: "https://github.com/databricks/terraform-databricks-sra", source: "GitHub" },
+    ],
+  },
+  {
+    key: "govern",
+    number: "II",
+    label: "Govern",
+    kicker: "Control the data",
+    items: [
+      { title: "Unity Catalog", description: "Unified governance for data and AI.", url: "https://docs.databricks.com/aws/en/data-governance/unity-catalog/", source: "Databricks Docs" },
+      { title: "System Tables", description: "Audit logs, lineage, billing — queryable.", url: "https://docs.databricks.com/aws/en/admin/system-tables/", source: "Databricks Docs" },
+      { title: "Security Analysis Tool", description: "Workspace posture checks against best practice.", url: "https://github.com/databricks-industry-solutions/security-analysis-tool", source: "GitHub" },
+    ],
+  },
+  {
+    key: "build",
+    number: "III",
+    label: "Build",
+    kicker: "Ship data & AI",
+    items: [
+      { title: "Lakeflow Declarative Pipelines", description: "SQL-first pipelines with AUTO CDC.", url: "https://docs.databricks.com/aws/en/delta-live-tables/", source: "Databricks Docs" },
+      { title: "Databricks Apps", description: "Full-stack apps on Databricks, auth included.", url: "https://docs.databricks.com/en/dev-tools/databricks-apps/index.html", source: "Databricks Docs" },
+      { title: "Genie Best Practices", description: "High-performing natural-language spaces.", url: "https://docs.databricks.com/aws/en/genie/best-practices", source: "Databricks Docs" },
+    ],
+  },
+  {
+    key: "optimize",
+    number: "IV",
+    label: "Optimize",
+    kicker: "Right-size the cost",
+    items: [
+      { title: "Pricing Calculator", description: "Instance types, DBU rates by SKU.", url: "https://www.databricks.com/product/pricing/product-pricing/instance-types", source: "Databricks" },
+      { title: "Cost Optimization Guide", description: "Official best-practice playbook.", url: "https://docs.databricks.com/aws/en/lakehouse-architecture/cost-optimization/best-practices", source: "Databricks Docs" },
+      { title: "Compute Config Recommendations", description: "Sizing cores, memory, instance types.", url: "https://docs.databricks.com/aws/en/compute/cluster-config-best-practices", source: "Databricks Docs" },
+    ],
+  },
+];
+
+export interface LibraryWatchItem {
+  tag: string;
+  duration: string;
+  title: string;
+  description: string;
+  url: string;
+}
+
+export const libraryWatch: LibraryWatchItem[] = [
+  {
+    tag: 'Channel',
+    duration: 'Hub',
+    title: 'Databricks on YouTube',
+    description: 'Keynotes, customer sessions, and product deep-dives.',
+    url: 'https://www.youtube.com/@Databricks',
+  },
+  {
+    tag: 'Demos',
+    duration: 'Library',
+    title: 'Product Demos Hub',
+    description: 'Short, focused demos across the Databricks platform.',
+    url: 'https://www.databricks.com/resources/demos',
+  },
+  {
+    tag: 'Skills',
+    duration: '5–15 min',
+    title: 'Skill Builder',
+    description: 'Bite-sized tutorials for everyday Databricks tasks.',
+    url: 'https://www.youtube.com/@databricksskillbuilder',
+  },
+  {
+    tag: 'Customers',
+    duration: 'Stories',
+    title: 'Customer Stories',
+    description: 'How real teams deliver data and AI on Databricks.',
+    url: 'https://www.databricks.com/customers',
+  },
+];
+
+export interface LearnItem {
+  title: string;
+  description: string;
+  url: string;
+  meta: string;
+}
+
+export interface LearnColumn {
+  key: string;
+  number: string;
+  kicker: string;
+  title: string;
+  titleEm: string;
+  blurb: string;
+  items: LearnItem[];
+}
+
+export const learnColumns: LearnColumn[] = [
+  {
+    key: "train",
+    number: "I",
+    kicker: "Training",
+    title: "Level",
+    titleEm: "up.",
+    blurb: "Self-paced paths, live certifications, and short-form videos from the people who build Databricks.",
+    items: [
+      { title: "Databricks Academy", description: "All training courses, certifications, and learning plans.", url: "https://www.databricks.com/learn/training/home", meta: "Free · Self-paced" },
+      { title: "Free Trainings", description: "Curated no-cost learning paths for new practitioners.", url: "https://docs.databricks.com/aws/en/getting-started/free-training", meta: "Free · Beginner" },
+      { title: "Skill Builder", description: "Short video tutorials for day-to-day Databricks skills.", url: "https://www.youtube.com/@databricksskillbuilder/", meta: "YouTube · 5–15 min" },
+      { title: "GenAI Fundamentals", description: "LLMs, RAG, prompt engineering — with free certification.", url: "https://www.databricks.com/learn/training/generative-ai-fundamentals", meta: "Free · Certification" },
+    ],
+  },
+  {
+    key: "community",
+    number: "II",
+    kicker: "Community",
+    title: "Find your",
+    titleEm: "people.",
+    blurb: "Ask questions, share patterns, meet Databricks builders across Singapore and the region.",
+    items: [
+      { title: "Community Forum", description: "Q&A with Databricks engineers and practitioners worldwide.", url: "https://community.databricks.com/", meta: "Global · Q&A" },
+      { title: "User Groups", description: "Local and virtual meetups. Singapore chapter active.", url: "https://usergroups.databricks.com/", meta: "In person · Virtual" },
+      { title: "Help Centre", description: "Knowledge base and support articles, searchable.", url: "https://help.databricks.com/s/", meta: "KB · Support" },
+      { title: "NextGen Lakehouse", description: "Community-built resource hub with field patterns.", url: "https://www.nextgenlakehouse.com/", meta: "Community · Hub" },
+    ],
+  },
+];
