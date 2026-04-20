@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-20",
+  "last_updated": "2026-04-21",
   "aws": {
     "feature_region": {
       "CMK": {
@@ -140,9 +140,9 @@
       },
       "Foundation Model Fine-tuning": {
         "available": true,
-        "not_available": true,
-        "footnote": "",
-        "raw": "Not available"
+        "not_available": false,
+        "footnote": "*",
+        "raw": "Available*"
       },
       "AI-generated comments": {
         "available": true,
