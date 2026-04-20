@@ -13,11 +13,6 @@ export default function Build({ open }: { open: boolean }) {
 
   return (
     <section className={`reveal-target${open ? ' is-open' : ''}`} id="build" aria-label="Build with us">
-      <div className="section-title" data-ornament="06">
-        <h2><em>Let's build something.</em></h2>
-        <span className="tag">Contact</span>
-      </div>
-
       <div className="build">
         <div className="build-copy">
           <h3>Let's <span className="mark">build</span> something together.</h3>
