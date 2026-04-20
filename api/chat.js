@@ -78,7 +78,7 @@ function formatSearchContext(searchData) {
   if (results && results.length > 0) {
     const docs = results
       .map((r, i) => {
-        const maxChars = i === 0 ? 20000 : 4000;
+        const maxChars = i === 0 ? 6000 : 2500;
         const text = (r.raw_content || r.content || '').slice(0, maxChars);
         return `[${i + 1}] ${r.title}\nSource: ${r.url}\n${text}`;
       })
@@ -193,7 +193,8 @@ export default async function handler(req, res) {
 
     // For SG-specific queries, inject the comprehensive scraped feature data
     if (isSgQuery && sgFeaturesContext) {
-      systemPrompt += `\n\n## Singapore Feature Availability (Auto-updated from official docs)\n${sgFeaturesContext}`;
+      const truncated = sgFeaturesContext.slice(0, 8000);
+      systemPrompt += `\n\n## Singapore Feature Availability (Auto-updated from official docs)\n${truncated}`;
     }
 
     // Add Tavily search results for additional context
