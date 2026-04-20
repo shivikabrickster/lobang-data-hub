@@ -27,6 +27,8 @@ export default function IndexGrid({ open }: { open: boolean }) {
         <a href="#lib-lanes">Lanes</a>
         <span className="lib-jump-sep" aria-hidden="true">·</span>
         <a href="#demos">Demo</a>
+        <span className="lib-jump-sep" aria-hidden="true">·</span>
+        <a href="#release-notes">Releases</a>
       </nav>
 
       <p className="lib-deck">
@@ -56,23 +58,42 @@ export default function IndexGrid({ open }: { open: boolean }) {
             </span>
           </a>
 
-          {demo && (
+          <div className="spread-mini-row">
+            {demo && (
+              <a
+                id="demos"
+                className="spread-demo-mini"
+                href={demo.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${demo.title} — ${demo.description}`}
+              >
+                <span className="demo-mini-tag">{demo.tag}</span>
+                <span className="demo-mini-body">
+                  <span className="demo-mini-title">{demo.title}</span>
+                  <span className="demo-mini-desc">{demo.description}</span>
+                </span>
+                <span className="demo-mini-go" aria-hidden="true">↗</span>
+              </a>
+            )}
             <a
-              id="demos"
+              id="release-notes"
               className="spread-demo-mini"
-              href={demo.url}
+              href="https://databricksreleasehub.com/timeline"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`${demo.title} — ${demo.description}`}
+              aria-label="Databricks Release Notes — release timeline"
             >
-              <span className="demo-mini-tag">{demo.tag}</span>
+              <span className="demo-mini-tag">Releases</span>
               <span className="demo-mini-body">
-                <span className="demo-mini-title">{demo.title}</span>
-                <span className="demo-mini-desc">{demo.description}</span>
+                <span className="demo-mini-title">Databricks release notes</span>
+                <span className="demo-mini-desc">
+                  Timeline of the latest Databricks platform releases and GA milestones.
+                </span>
               </span>
               <span className="demo-mini-go" aria-hidden="true">↗</span>
             </a>
-          )}
+          </div>
         </div>
 
         <div id="lib-lanes" className="spread-lanes">

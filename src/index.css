@@ -1485,6 +1485,15 @@ body::after {
   min-height: 300px;
   flex: 1 1 auto;
 }
+.spread-mini-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  min-width: 0;
+}
+@media (max-width: 860px) {
+  .spread-mini-row { grid-template-columns: 1fr; }
+}
 .spread-demo-mini {
   position: relative;
   display: grid;
