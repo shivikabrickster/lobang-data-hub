@@ -1,6 +1,7 @@
 import { libraryFeature, libraryLanes, libraryDemos } from '../data/content';
 
 export default function IndexGrid({ open }: { open: boolean }) {
+  const demo = libraryDemos[0];
   const total =
     1 +
     libraryLanes.reduce((n, l) => n + l.items.length, 0) +
@@ -25,7 +26,7 @@ export default function IndexGrid({ open }: { open: boolean }) {
         <span className="lib-jump-sep" aria-hidden="true">·</span>
         <a href="#lib-lanes">Lanes</a>
         <span className="lib-jump-sep" aria-hidden="true">·</span>
-        <a href="#demos">Demos</a>
+        <a href="#demos">Demo</a>
       </nav>
 
       <p className="lib-deck">
@@ -34,25 +35,45 @@ export default function IndexGrid({ open }: { open: boolean }) {
       </p>
 
       <article className="spread">
-        <a
-          id="lib-feature"
-          className="spread-feature"
-          href={libraryFeature.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${libraryFeature.title} — ${libraryFeature.blurb}`}
-        >
-          <span className="spread-kicker">{libraryFeature.kicker}</span>
-          <h3 className="spread-title">{libraryFeature.title}</h3>
-          <p className="spread-blurb">{libraryFeature.blurb}</p>
-          <span className="spread-foot">
-            <span className="spread-meta">{libraryFeature.meta}</span>
-            <span className="spread-src">{libraryFeature.source} ↗</span>
-          </span>
-          <span className="spread-drop" aria-hidden="true">
-            {libraryFeature.title.charAt(0)}
-          </span>
-        </a>
+        <div className="spread-left">
+          <a
+            id="lib-feature"
+            className="spread-feature"
+            href={libraryFeature.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${libraryFeature.title} — ${libraryFeature.blurb}`}
+          >
+            <span className="spread-kicker">{libraryFeature.kicker}</span>
+            <h3 className="spread-title">{libraryFeature.title}</h3>
+            <p className="spread-blurb">{libraryFeature.blurb}</p>
+            <span className="spread-foot">
+              <span className="spread-meta">{libraryFeature.meta}</span>
+              <span className="spread-src">{libraryFeature.source} ↗</span>
+            </span>
+            <span className="spread-drop" aria-hidden="true">
+              {libraryFeature.title.charAt(0)}
+            </span>
+          </a>
+
+          {demo && (
+            <a
+              id="demos"
+              className="spread-demo-mini"
+              href={demo.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${demo.title} — ${demo.description}`}
+            >
+              <span className="demo-mini-tag">{demo.tag}</span>
+              <span className="demo-mini-body">
+                <span className="demo-mini-title">{demo.title}</span>
+                <span className="demo-mini-desc">{demo.description}</span>
+              </span>
+              <span className="demo-mini-go" aria-hidden="true">↗</span>
+            </a>
+          )}
+        </div>
 
         <div id="lib-lanes" className="spread-lanes">
           {libraryLanes.map((lane) => (
@@ -84,47 +105,6 @@ export default function IndexGrid({ open }: { open: boolean }) {
             </section>
           ))}
         </div>
-
-        <section id="demos" className="watch-rail" aria-labelledby="demos-title">
-          <header className="watch-rail-head">
-            <span className="watch-rail-num" aria-hidden="true">D</span>
-            <div>
-              <h4 id="demos-title" className="lane-label">
-                Demos
-              </h4>
-              <span className="lane-kicker">Try it yourself</span>
-            </div>
-          </header>
-          <ul className="watch-rail-list watch-rail-list--solo">
-            {libraryDemos.map((v) => (
-              <li key={v.url}>
-                <a
-                  className="watch-rail-card"
-                  href={v.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="watch-rail-thumb" aria-hidden="true">
-                    <span className="watch-rail-tag">{v.tag}</span>
-                    <span className="watch-rail-play">
-                      <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true">
-                        <path d="M6 4 L16 10 L6 16 Z" fill="currentColor" />
-                      </svg>
-                    </span>
-                    <span className="watch-rail-dur">{v.duration}</span>
-                  </span>
-                  <span className="watch-rail-body">
-                    <span className="watch-rail-title">{v.title}</span>
-                    <span className="watch-rail-desc">{v.description}</span>
-                    <span className="watch-rail-src">
-                      Open <span aria-hidden="true">↗</span>
-                    </span>
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
       </article>
     </section>
   );
