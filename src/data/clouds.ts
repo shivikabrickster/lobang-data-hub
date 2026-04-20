@@ -51,7 +51,7 @@ export const CLOUDS: Record<'aws' | 'azure', CloudSpec> = {
           'Orient the team. Confirm the region, pick the deployment pattern, and agree on an account model before anyone touches the console.',
         items: [
           {
-            title: 'Databricks on AWS — deployment guide',
+            title: 'Databricks production planning',
             desc: 'Official 10-phase production-planning guide covering architecture, accounts, networking, and best practices.',
             href: 'https://docs.databricks.com/aws/en/lakehouse-architecture/deployment-guide/',
             source: 'Databricks Docs',
