@@ -62,6 +62,12 @@ export const CLOUDS: Record<'aws' | 'azure', CloudSpec> = {
             href: 'https://docs.databricks.com/aws/en/resources/supported-regions',
             source: 'Databricks Docs',
           },
+          {
+            title: 'Release notes',
+            desc: 'Platform release notes for Databricks on AWS — new features, GA announcements, and Runtime updates.',
+            href: 'https://docs.databricks.com/aws/en/release-notes/',
+            source: 'Databricks Docs',
+          },
         ],
       },
       {
@@ -179,6 +185,12 @@ export const CLOUDS: Record<'aws' | 'azure', CloudSpec> = {
             desc: 'Region and feature availability — confirm serverless / Delta Sharing support for SEA.',
             href: 'https://learn.microsoft.com/en-us/azure/databricks/resources/supported-regions',
             source: 'Microsoft Docs',
+          },
+          {
+            title: 'Release notes',
+            desc: 'Platform release notes for Azure Databricks — new features, GA announcements, and Runtime updates.',
+            href: 'https://learn.microsoft.com/en-us/azure/databricks/release-notes/product/',
+            source: 'Microsoft Learn',
           },
         ],
       },
