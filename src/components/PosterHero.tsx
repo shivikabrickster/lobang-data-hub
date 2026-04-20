@@ -163,6 +163,7 @@ export default function PosterHero({ onPickCloud, onBrowse, onJump }: Props) {
           <span className="tile-title">
             Databricks <em>Free&nbsp;Edition</em>
           </span>
+          <span className="tile-sub">Try it today</span>
           <span className="tile-arr tile-ext" aria-hidden="true">↗</span>
         </a>
       </div>
