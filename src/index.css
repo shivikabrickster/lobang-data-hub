@@ -216,16 +216,24 @@ body::after {
 /* Powered-by chip: sits above the hero bento, left-aligned, so it
    appears at the top-left of the tile section — just above the
    'Latest updates' (launches) tile. */
-/* Powered-by chip positioned directly under the LAUNCHES ticker label,
-   top-left of the page. The .sheet's padding handles the left offset. */
+.page { position: relative; }
 .powered-by-topleft {
+  position: absolute;
+  top: 62px;
+  right: 24px;
   display: inline-flex;
-  margin: 16px 0 0 max(24px, calc((100% - 1280px) / 2));
   transform: none;
+  z-index: 4;
 }
 .powered-by-topleft:hover,
 .powered-by-topleft:focus-visible {
   transform: translateY(-2px);
+}
+@media (max-width: 700px) {
+  .powered-by-topleft {
+    top: 56px;
+    right: 16px;
+  }
 }
 
 /* ───── hero bento (preview tiles) ───── */
