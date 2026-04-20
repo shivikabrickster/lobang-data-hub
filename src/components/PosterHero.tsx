@@ -89,6 +89,27 @@ export default function PosterHero({ onPickCloud, onBrowse, onJump }: Props) {
         </button>
       </div>
 
+      <a
+        className="powered-by powered-by-foot"
+        href="https://www.databricks.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Powered by Databricks"
+      >
+        <span className="pb-label">Powered&nbsp;by</span>
+        <span className="pb-lockup" aria-hidden="true">
+          <span className="pb-spark">
+            <svg viewBox="0 0 24 24" width="22" height="22" role="img" focusable="false">
+              <path
+                d="M11.9 2.1 1.6 7.8v2.3l10.3 5.7 8.6-4.8v2.9l-8.6 4.7L1.6 12.8v2.5l10.3 5.7 10.3-5.7V9.7L11.9 15.4 3.9 11V9.5l8 4.4 10.3-5.7V5.9L11.9 11.6 3.9 7.2v-.4l8-4.4 8 4.4v.5l1.7-.9V6L11.9 2.1Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          <span className="pb-word" translate="no">Databricks</span>
+        </span>
+      </a>
+
       <div className="jump-bento" aria-label="Jump to">
         <button
           type="button"
@@ -164,27 +185,6 @@ export default function PosterHero({ onPickCloud, onBrowse, onJump }: Props) {
             Databricks <em>Free&nbsp;Edition</em>
           </span>
           <span className="tile-arr tile-ext" aria-hidden="true">↗</span>
-        </a>
-
-        <a
-          className="powered-by powered-by-foot"
-          href="https://www.databricks.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Powered by Databricks"
-        >
-          <span className="pb-label">Powered&nbsp;by</span>
-          <span className="pb-lockup" aria-hidden="true">
-            <span className="pb-spark">
-              <svg viewBox="0 0 24 24" width="22" height="22" role="img" focusable="false">
-                <path
-                  d="M11.9 2.1 1.6 7.8v2.3l10.3 5.7 8.6-4.8v2.9l-8.6 4.7L1.6 12.8v2.5l10.3 5.7 10.3-5.7V9.7L11.9 15.4 3.9 11V9.5l8 4.4 10.3-5.7V5.9L11.9 11.6 3.9 7.2v-.4l8-4.4 8 4.4v.5l1.7-.9V6L11.9 2.1Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
-            <span className="pb-word" translate="no">Databricks</span>
-          </span>
         </a>
       </div>
     </section>

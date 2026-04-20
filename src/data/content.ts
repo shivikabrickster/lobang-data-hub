@@ -318,6 +318,7 @@ export const libraryLanes: LibraryLane[] = [
       { title: "Lakeflow Declarative Pipelines", description: "SQL-first pipelines with AUTO CDC.", url: "https://docs.databricks.com/aws/en/delta-live-tables/", source: "Databricks Docs" },
       { title: "Databricks Apps", description: "Full-stack apps on Databricks, auth included.", url: "https://docs.databricks.com/en/dev-tools/databricks-apps/index.html", source: "Databricks Docs" },
       { title: "Genie Best Practices", description: "High-performing natural-language spaces.", url: "https://docs.databricks.com/aws/en/genie/best-practices", source: "Databricks Docs" },
+      { title: "Solution Accelerators", description: "Pre-built notebooks & reference implementations for common industry use cases.", url: "https://www.databricks.com/solutions/accelerators", source: "Databricks" },
     ],
   },
   {
@@ -382,31 +383,10 @@ export const libraryVideos: LibraryRailItem[] = [
 export const libraryDemos: LibraryRailItem[] = [
   {
     tag: 'Demos',
-    duration: 'Library',
-    title: 'Product Demos Hub',
-    description: 'Short, focused demos across the Databricks platform.',
-    url: 'https://www.databricks.com/resources/demos',
-  },
-  {
-    tag: 'Accelerators',
-    duration: 'Ready-made',
-    title: 'Solution Accelerators',
-    description: 'Pre-built notebooks and reference implementations for common industry use cases.',
-    url: 'https://www.databricks.com/solutions/accelerators',
-  },
-  {
-    tag: 'GenAI',
-    duration: 'Cookbook',
-    title: 'Generative AI Cookbook',
-    description: 'End-to-end recipes for building RAG, agents, and evaluation on Databricks.',
-    url: 'https://ai-cookbook.io/',
-  },
-  {
-    tag: 'Notebooks',
-    duration: 'Guide',
-    title: 'Notebook Examples',
-    description: 'Hands-on notebooks covering Delta, Spark, ML, and analytics patterns.',
-    url: 'https://docs.databricks.com/aws/en/notebooks/index.html',
+    duration: 'Hub',
+    title: 'Databricks Demos Home',
+    description: 'The official, curated demo library — short, focused walk-throughs across the platform.',
+    url: 'https://www.databricks.com/resources/demos-home',
   },
 ];
 

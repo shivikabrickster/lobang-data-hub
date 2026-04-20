@@ -1,16 +1,10 @@
-import { libraryFeature, libraryLanes, libraryVideos, libraryDemos, libraryBlogs, type LibraryRailItem } from '../data/content';
-
-const rails: { id: string; label: string; kicker: string; mark: string; items: LibraryRailItem[] }[] = [
-  { id: 'videos',  label: 'Videos', kicker: 'Watch sessions',   mark: 'V', items: libraryVideos },
-  { id: 'demos',   label: 'Demos',  kicker: 'Try it yourself',  mark: 'D', items: libraryDemos },
-  { id: 'blogs',   label: 'Latest blogs', kicker: 'Read the posts', mark: 'B', items: libraryBlogs },
-];
+import { libraryFeature, libraryLanes, libraryDemos } from '../data/content';
 
 export default function IndexGrid({ open }: { open: boolean }) {
   const total =
     1 +
     libraryLanes.reduce((n, l) => n + l.items.length, 0) +
-    rails.reduce((n, r) => n + r.items.length, 0);
+    libraryDemos.length;
 
   return (
     <section
@@ -31,11 +25,7 @@ export default function IndexGrid({ open }: { open: boolean }) {
         <span className="lib-jump-sep" aria-hidden="true">·</span>
         <a href="#lib-lanes">Lanes</a>
         <span className="lib-jump-sep" aria-hidden="true">·</span>
-        <a href="#videos">Videos</a>
-        <span className="lib-jump-sep" aria-hidden="true">·</span>
         <a href="#demos">Demos</a>
-        <span className="lib-jump-sep" aria-hidden="true">·</span>
-        <a href="#blogs">Blogs</a>
       </nav>
 
       <p className="lib-deck">
@@ -95,53 +85,46 @@ export default function IndexGrid({ open }: { open: boolean }) {
           ))}
         </div>
 
-        {rails.map((rail) => (
-          <section
-            key={rail.id}
-            id={rail.id}
-            className="watch-rail"
-            aria-labelledby={`${rail.id}-title`}
-          >
-            <header className="watch-rail-head">
-              <span className="watch-rail-num" aria-hidden="true">{rail.mark}</span>
-              <div>
-                <h4 id={`${rail.id}-title`} className="lane-label">
-                  {rail.label}
-                </h4>
-                <span className="lane-kicker">{rail.kicker}</span>
-              </div>
-            </header>
-            <ul className="watch-rail-list">
-              {rail.items.map((v) => (
-                <li key={v.url}>
-                  <a
-                    className="watch-rail-card"
-                    href={v.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="watch-rail-thumb" aria-hidden="true">
-                      <span className="watch-rail-tag">{v.tag}</span>
-                      <span className="watch-rail-play">
-                        <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true">
-                          <path d="M6 4 L16 10 L6 16 Z" fill="currentColor" />
-                        </svg>
-                      </span>
-                      <span className="watch-rail-dur">{v.duration}</span>
+        <section id="demos" className="watch-rail" aria-labelledby="demos-title">
+          <header className="watch-rail-head">
+            <span className="watch-rail-num" aria-hidden="true">D</span>
+            <div>
+              <h4 id="demos-title" className="lane-label">
+                Demos
+              </h4>
+              <span className="lane-kicker">Try it yourself</span>
+            </div>
+          </header>
+          <ul className="watch-rail-list watch-rail-list--solo">
+            {libraryDemos.map((v) => (
+              <li key={v.url}>
+                <a
+                  className="watch-rail-card"
+                  href={v.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="watch-rail-thumb" aria-hidden="true">
+                    <span className="watch-rail-tag">{v.tag}</span>
+                    <span className="watch-rail-play">
+                      <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true">
+                        <path d="M6 4 L16 10 L6 16 Z" fill="currentColor" />
+                      </svg>
                     </span>
-                    <span className="watch-rail-body">
-                      <span className="watch-rail-title">{v.title}</span>
-                      <span className="watch-rail-desc">{v.description}</span>
-                      <span className="watch-rail-src">
-                        Open <span aria-hidden="true">↗</span>
-                      </span>
+                    <span className="watch-rail-dur">{v.duration}</span>
+                  </span>
+                  <span className="watch-rail-body">
+                    <span className="watch-rail-title">{v.title}</span>
+                    <span className="watch-rail-desc">{v.description}</span>
+                    <span className="watch-rail-src">
+                      Open <span aria-hidden="true">↗</span>
                     </span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
       </article>
     </section>
   );
