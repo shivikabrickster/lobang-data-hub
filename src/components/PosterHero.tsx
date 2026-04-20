@@ -77,7 +77,7 @@ export default function PosterHero({ onPickCloud, onBrowse, onJump }: Props) {
           className="btn btn-ghost"
           onClick={() => onJump('learn')}
         >
-          Learn
+          Learn and grow
         </button>
       </div>
 

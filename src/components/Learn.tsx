@@ -5,16 +5,16 @@ export default function Learn({ open }: { open: boolean }) {
     <section
       className={`reveal-target${open ? ' is-open' : ''}`}
       id="learn"
-      aria-label="Learn"
+      aria-label="Learn and grow"
     >
       <div className="section-title" data-ornament="04">
         <h2>
-          <em>Learn</em>.
+          Learn and <em>grow</em>.
         </h2>
         <span className="tag">Watch · Read</span>
       </div>
 
-      <nav className="lib-jump" aria-label="Jump within Learn">
+      <nav className="lib-jump" aria-label="Jump within Learn and grow">
         <span className="lib-jump-label">Jump to</span>
         <a href="#learn-videos">Videos</a>
         <span className="lib-jump-sep" aria-hidden="true">·</span>
