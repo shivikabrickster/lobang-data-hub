@@ -2,7 +2,7 @@
 // Auto-updated by GitHub Actions cron job from public Databricks docs
 // Manual overrides for 3 features not on any public region page
 
-export const LAST_UPDATED = '2026-04-22';
+export const LAST_UPDATED = '2026-04-23';
 
 export type AvailabilityStatus = 'yes' | 'no' | 'tbc' | 'na' | 'depends';
 export type CloudProvider = 'aws' | 'azure' | 'gcp';
