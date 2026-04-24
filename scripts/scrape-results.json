@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-24",
+  "last_updated": "2026-04-25",
   "aws": {
     "feature_region": {
       "CMK": {
@@ -196,6 +196,16 @@
     "models": {
       "in_sg": [
         {
+          "model": "databricks-gpt-5-5-pro",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
+          "model": "databricks-gpt-5-5",
+          "xgeo": true,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
           "model": "databricks-gpt-5-4",
           "xgeo": true,
           "category": "Foundation Model APIs pay-per-token"
@@ -336,6 +346,11 @@
           "category": "Foundation Model APIs pay-per-token"
         },
         {
+          "model": "databricks-qwen3-next-80b-a3b-instruct",
+          "xgeo": false,
+          "category": "Foundation Model APIs pay-per-token"
+        },
+        {
           "model": "databricks-claude-sonnet-4",
           "xgeo": true,
           "category": "Foundation Model APIs pay-per-token"
@@ -369,21 +384,6 @@
           "model": "databricks-gte-large-en",
           "xgeo": true,
           "category": "Foundation Model APIs pay-per-token"
-        },
-        {
-          "model": "databricks-gpt-5-4",
-          "xgeo": true,
-          "category": "AI Functions (batch inference)"
-        },
-        {
-          "model": "databricks-gpt-5-4-mini",
-          "xgeo": true,
-          "category": "AI Functions (batch inference)"
-        },
-        {
-          "model": "databricks-gpt-5-4-nano",
-          "xgeo": true,
-          "category": "AI Functions (batch inference)"
         },
         {
           "model": "databricks-gpt-5-2",
@@ -421,11 +421,6 @@
           "category": "AI Functions (batch inference)"
         },
         {
-          "model": "databricks-gemini-3-1-flash-lite",
-          "xgeo": true,
-          "category": "AI Functions (batch inference)"
-        },
-        {
           "model": "databricks-gemini-3-flash",
           "xgeo": true,
           "category": "AI Functions (batch inference)"
@@ -438,6 +433,11 @@
         {
           "model": "databricks-gemini-2-5-flash",
           "xgeo": true,
+          "category": "AI Functions (batch inference)"
+        },
+        {
+          "model": "databricks-qwen3-next-80b-a3b-instruct",
+          "xgeo": false,
           "category": "AI Functions (batch inference)"
         },
         {
