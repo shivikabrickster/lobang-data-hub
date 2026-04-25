@@ -51,6 +51,14 @@ class TableParser(HTMLParser):
                 self._current_row.append(self._current_cell.strip())
             self._in_cell = True
             self._current_cell = ""
+        elif tag == "br" and self._in_cell:
+            # Convert <br> to newline so model names can be split later
+            self._current_cell += "\n"
+
+    def handle_startendtag(self, tag, attrs):
+        """Handle self-closing tags like <br/> or <br />."""
+        if tag == "br" and self._in_cell:
+            self._current_cell += "\n"
 
     def handle_endtag(self, tag):
         if tag == "table" and self._in_table:
@@ -168,8 +176,8 @@ def scrape_aws_designated(html: str) -> dict:
 
 # ── Foundation Model Overview ────────────────────────────
 
-def scrape_foundation_models(html: str) -> dict:
-    """Extract models available in ap-southeast-1.
+def scrape_foundation_models(html: str, sg_key: str = "ap-southeast-1") -> dict:
+    """Extract models available in a given region.
 
     The model overview page has rows=regions, and each cell contains
     a newline-separated list of model names. Models with ⥂ require X-geo.
@@ -185,23 +193,23 @@ def scrape_foundation_models(html: str) -> dict:
             continue
         # Find SG row
         for row in table[1:]:
-            is_sg = any("ap-southeast-1" in cell.lower() for cell in row[:1])
+            is_sg = any(sg_key in cell.lower() for cell in row[:2])
             if not is_sg:
                 continue
             # Parse model names from each column
             for ci in range(1, len(row)):
                 cell = row[ci]
                 for line in cell.split("\n"):
-                    model = line.strip()
-                    if model.startswith("databricks-") or model.startswith("The following"):
-                        if model.startswith("databricks-"):
-                            clean = model.replace("⥂", "").strip()
-                            xgeo = "⥂" in model
-                            models_in_sg.append({
-                                "model": clean,
-                                "xgeo": xgeo,
-                                "category": header[ci].strip() if ci < len(header) else "unknown",
-                            })
+                    line = line.strip().lstrip("-").strip()
+                    # Extract databricks-* model names (may appear anywhere in the line)
+                    # Use lookahead to stop before another databricks- prefix
+                    for token in re.findall(r"databricks-[\w.-]+?(?=databricks-|⥂|$)", line):
+                        xgeo = "⥂" in line
+                        models_in_sg.append({
+                            "model": token,
+                            "xgeo": xgeo,
+                            "category": header[ci].strip() if ci < len(header) else "unknown",
+                        })
             break
     return {"in_sg": models_in_sg, "count": len(models_in_sg)}
 
@@ -241,6 +249,7 @@ def main():
         "aws_designated": "https://docs.databricks.com/aws/en/resources/designated-services",
         "aws_models": "https://docs.databricks.com/aws/en/machine-learning/model-serving/foundation-model-overview",
         "aws_lakebase": "https://docs.databricks.com/aws/en/oltp/projects/manage-projects",
+        "azure_models": "https://learn.microsoft.com/en-us/azure/databricks/machine-learning/model-serving/foundation-model-overview",
         "azure_feature_region": "https://learn.microsoft.com/en-us/azure/databricks/resources/feature-region-support",
         "azure_designated": "https://learn.microsoft.com/en-us/azure/databricks/resources/designated-services",
         "gcp_feature_region": "https://docs.databricks.com/gcp/en/resources/feature-region-support",
@@ -275,6 +284,11 @@ def main():
         elif name == "azure_feature_region":
             results["azure"]["feature_region"] = scrape_feature_region(html, "southeastasia")
             print(f"    Parsed Azure feature-region-support")
+
+        elif name == "azure_models":
+            results["azure"]["models"] = scrape_foundation_models(html, "southeastasia")
+            count = len(results["azure"].get("models", {}).get("in_sg", []))
+            print(f"    Found {count} models in southeastasia")
 
         elif name == "azure_designated":
             results["azure"]["designated"] = scrape_aws_designated(html)  # Same table format
@@ -314,10 +328,12 @@ def main():
     aws_fr = results.get("aws", {}).get("feature_region", {})
     aws_ds = results.get("aws", {}).get("designated", {})
     aws_models = results.get("aws", {}).get("models", {})
+    azure_models = results.get("azure", {}).get("models", {})
     print(f"\n📊 Summary:")
     print(f"   AWS feature-region: {sum(1 for v in aws_fr.values() if isinstance(v, dict) and v.get('available'))} features in SG")
     print(f"   AWS designated:     {sum(1 for v in aws_ds.values() if isinstance(v, dict) and v.get('available'))} services in Asia")
     print(f"   AWS models in SG:   {len(aws_models.get('in_sg', []))}")
+    print(f"   Azure models in SG: {len(azure_models.get('in_sg', []))}")
     print(f"   Lakebase in SG:     {results.get('aws', {}).get('lakebase_in_sg', False)}")
 
 
