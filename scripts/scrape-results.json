@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-28",
+  "last_updated": "2026-04-29",
   "aws": {
     "feature_region": {
       "CMK": {
@@ -174,7 +174,7 @@
         "footnote": "\u00b6",
         "raw": "Available\u00b6"
       },
-      "Genie spaces Agent mode": {
+      "Genie Spaces Agent mode": {
         "available": true,
         "not_available": false,
         "footnote": "\u2020",
@@ -845,7 +845,7 @@
         "footnote": "*",
         "raw": "Available*"
       },
-      "Genie spaces Agent mode": {
+      "Genie Spaces Agent mode": {
         "available": true,
         "not_available": false,
         "footnote": "*",
