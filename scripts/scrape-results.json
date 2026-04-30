@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-30",
+  "last_updated": "2026-05-01",
   "aws": {
     "feature_region": {
       "CMK": {
@@ -58,6 +58,11 @@
         "raw": "\u2713"
       },
       "Knowledge Assistant": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "Supervisor Agent": {
         "available": true,
         "xgeo": true,
         "raw": "\u2713\u2942"
@@ -717,6 +722,11 @@
         "xgeo": true,
         "raw": "\u2713\u2942"
       },
+      "MLflow traces in Unity Catalog": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
       "ai_query (batch inference)": {
         "available": true,
         "xgeo": false,
@@ -903,6 +913,11 @@
         "raw": "\u2713"
       },
       "Knowledge Assistant": {
+        "available": true,
+        "xgeo": true,
+        "raw": "\u2713\u2942"
+      },
+      "Supervisor Agent": {
         "available": true,
         "xgeo": true,
         "raw": "\u2713\u2942"
