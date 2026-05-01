@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-01",
+  "last_updated": "2026-05-02",
   "aws": {
     "feature_region": {
       "CMK": {
@@ -28,6 +28,11 @@
         "raw": "\u2713"
       },
       "Serverless workspaces": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Default storage": {
         "available": true,
         "xgeo": false,
         "raw": "\u2713"
@@ -673,6 +678,11 @@
         "raw": "\u2713"
       },
       "Model Training - forecasting": {
+        "available": true,
+        "xgeo": false,
+        "raw": "\u2713"
+      },
+      "Lakebase Autoscaling": {
         "available": true,
         "xgeo": false,
         "raw": "\u2713"
